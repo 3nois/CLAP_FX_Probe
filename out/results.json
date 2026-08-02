@@ -1,0 +1,253 @@
+{
+  "effects": {
+    "reverb": {
+      "probe_r2": 0.7215895291499802,
+      "probe_r2_std": 0.020232224367856242,
+      "probe_r2_shuffled": -0.03449429909604986,
+      "probe_r2_shuffled_std": 0.01049118673745337,
+      "direction_cosine_mean": 0.27601853013038635,
+      "direction_cosine_by_level": {
+        "0": {
+          "cosine_mean": 0.1928192675113678,
+          "cosine_std": 0.15076057612895966,
+          "n_sources": 300,
+          "n_dropped_near_zero_norm": 0
+        },
+        "1": {
+          "cosine_mean": 0.213180810213089,
+          "cosine_std": 0.14903970062732697,
+          "n_sources": 300,
+          "n_dropped_near_zero_norm": 0
+        },
+        "2": {
+          "cosine_mean": 0.23798096179962158,
+          "cosine_std": 0.14641481637954712,
+          "n_sources": 300,
+          "n_dropped_near_zero_norm": 0
+        },
+        "3": {
+          "cosine_mean": 0.2686993181705475,
+          "cosine_std": 0.14285708963871002,
+          "n_sources": 300,
+          "n_dropped_near_zero_norm": 0
+        },
+        "4": {
+          "cosine_mean": 0.30210477113723755,
+          "cosine_std": 0.1394241899251938,
+          "n_sources": 300,
+          "n_dropped_near_zero_norm": 0
+        },
+        "5": {
+          "cosine_mean": 0.3375309109687805,
+          "cosine_std": 0.1381320357322693,
+          "n_sources": 300,
+          "n_dropped_near_zero_norm": 0
+        },
+        "6": {
+          "cosine_mean": 0.37981367111206055,
+          "cosine_std": 0.13898520171642303,
+          "n_sources": 300,
+          "n_dropped_near_zero_norm": 0
+        }
+      },
+      "magnitude_spearman_rho": 0.5481697919186431,
+      "magnitude_spearman_pvalue": 4.901641932181905e-165,
+      "magnitude_spearman_rho_abs_param": 0.5481697919186431,
+      "magnitude_spearman_pvalue_abs_param": 4.901641932181905e-165,
+      "monotonicity_spearman_rho": 0.556307682349884,
+      "monotonicity_spearman_pvalue": 6.198289320152003e-171,
+      "monotonicity_spearman_rho_abs_param": 0.556307682349884,
+      "monotonicity_spearman_pvalue_abs_param": 6.198289320152003e-171
+    },
+    "distortion": {
+      "probe_r2": 0.8282796378754685,
+      "probe_r2_std": 0.007780197161770045,
+      "probe_r2_shuffled": -0.026492316914596924,
+      "probe_r2_shuffled_std": 0.010727191167612641,
+      "direction_cosine_mean": 0.2535492277571133,
+      "direction_cosine_by_level": {
+        "0": {
+          "cosine_mean": 0.08142923563718796,
+          "cosine_std": 0.16262751817703247,
+          "n_sources": 300,
+          "n_dropped_near_zero_norm": 0
+        },
+        "1": {
+          "cosine_mean": 0.17677870392799377,
+          "cosine_std": 0.15472839772701263,
+          "n_sources": 300,
+          "n_dropped_near_zero_norm": 0
+        },
+        "2": {
+          "cosine_mean": 0.24295289814472198,
+          "cosine_std": 0.15222106873989105,
+          "n_sources": 300,
+          "n_dropped_near_zero_norm": 0
+        },
+        "3": {
+          "cosine_mean": 0.2822171449661255,
+          "cosine_std": 0.15200211107730865,
+          "n_sources": 300,
+          "n_dropped_near_zero_norm": 0
+        },
+        "4": {
+          "cosine_mean": 0.3088896870613098,
+          "cosine_std": 0.15270979702472687,
+          "n_sources": 300,
+          "n_dropped_near_zero_norm": 0
+        },
+        "5": {
+          "cosine_mean": 0.33121779561042786,
+          "cosine_std": 0.15346698462963104,
+          "n_sources": 300,
+          "n_dropped_near_zero_norm": 0
+        },
+        "6": {
+          "cosine_mean": 0.35135912895202637,
+          "cosine_std": 0.15252722799777985,
+          "n_sources": 300,
+          "n_dropped_near_zero_norm": 0
+        }
+      },
+      "magnitude_spearman_rho": 0.8581028414627075,
+      "magnitude_spearman_pvalue": 0.0,
+      "magnitude_spearman_rho_abs_param": 0.8581028414627075,
+      "magnitude_spearman_pvalue_abs_param": 0.0,
+      "monotonicity_spearman_rho": 0.8522943828918763,
+      "monotonicity_spearman_pvalue": 0.0,
+      "monotonicity_spearman_rho_abs_param": 0.8522943828918763,
+      "monotonicity_spearman_pvalue_abs_param": 0.0
+    },
+    "highshelf": {
+      "probe_r2": 0.4951642631757072,
+      "probe_r2_std": 0.030879633486454183,
+      "probe_r2_shuffled": -0.032294957283201996,
+      "probe_r2_shuffled_std": 0.0074008206622577285,
+      "direction_cosine_mean": 0.22384347730881668,
+      "direction_cosine_by_level": {
+        "0": {
+          "cosine_mean": 0.2715296745300293,
+          "cosine_std": 0.15858443081378937,
+          "n_sources": 300,
+          "n_dropped_near_zero_norm": 0
+        },
+        "1": {
+          "cosine_mean": 0.27370965480804443,
+          "cosine_std": 0.15292906761169434,
+          "n_sources": 300,
+          "n_dropped_near_zero_norm": 0
+        },
+        "2": {
+          "cosine_mean": 0.2611163854598999,
+          "cosine_std": 0.14979082345962524,
+          "n_sources": 300,
+          "n_dropped_near_zero_norm": 0
+        },
+        "3": {
+          "cosine_mean": -0.00021427375031635165,
+          "cosine_std": 0.12114197760820389,
+          "n_sources": 293,
+          "n_dropped_near_zero_norm": 7
+        },
+        "4": {
+          "cosine_mean": 0.2518068552017212,
+          "cosine_std": 0.1500769704580307,
+          "n_sources": 300,
+          "n_dropped_near_zero_norm": 0
+        },
+        "5": {
+          "cosine_mean": 0.25564345717430115,
+          "cosine_std": 0.16641142964363098,
+          "n_sources": 300,
+          "n_dropped_near_zero_norm": 0
+        },
+        "6": {
+          "cosine_mean": 0.2533125877380371,
+          "cosine_std": 0.17705795168876648,
+          "n_sources": 300,
+          "n_dropped_near_zero_norm": 0
+        }
+      },
+      "magnitude_spearman_rho": -0.02574903941467937,
+      "magnitude_spearman_pvalue": 0.23821417511910228,
+      "magnitude_spearman_rho_abs_param": 0.9242365742162114,
+      "magnitude_spearman_pvalue_abs_param": 0.0,
+      "monotonicity_spearman_rho": -0.30508566326499215,
+      "monotonicity_spearman_pvalue": 1.7611902874012617e-46,
+      "monotonicity_spearman_rho_abs_param": 0.3390940934692493,
+      "monotonicity_spearman_pvalue_abs_param": 1.149214738299692e-57
+    }
+  },
+  "controls": {
+    "random_vector_cosine_mean": 0.0002031040562492682,
+    "random_vector_cosine_std": 0.04414291315714226,
+    "instrument_classification": {
+      "accuracy": 0.435374149659864,
+      "accuracy_std": 0.020408163265306117,
+      "n_classes_used": 47,
+      "n_sources_used": 294,
+      "n_sources_dropped_singleton": 6,
+      "paper_reference_accuracy": 0.904,
+      "note": "샘플 수가 논문(953개 악기)보다 훨씬 적어 절대치는 참고용. 이펙트 프로브 R²와의 상대적 격차가 해석의 핵심."
+    }
+  },
+  "mapping_model": {
+    "architecture": "MLP 516 -> 1024 -> 1024 -> 512, GELU + LayerNorm, residual (e' = e_dry + Delta)",
+    "loss": "MSE + (1 - cosine_similarity), equal weight",
+    "epochs": 300,
+    "lr": 0.001,
+    "seed": 0,
+    "test_size": 0.3,
+    "n_train_sources": 210,
+    "n_test_sources": 90,
+    "param_normalization_stats": {
+      "reverb": {
+        "mean": 0.44999998807907104,
+        "std": 0.30000001192092896
+      },
+      "distortion": {
+        "mean": 15.0,
+        "std": 10.0
+      },
+      "highshelf": {
+        "mean": 0.0,
+        "std": 10.0
+      }
+    },
+    "held_out_cos_real_labels": 0.9541647434234619,
+    "held_out_cos_shuffled_labels": 0.4733848571777344
+  },
+  "hierarchy": {
+    "reverb": {
+      "identity": 0.8670203685760498,
+      "H1": 0.9019004106521606,
+      "H2": 0.9063234852022084,
+      "H3": 0.909633457660675,
+      "H4": 0.9266868829727173,
+      "H5": 0.9385408759117126,
+      "shuffle_control": 0.4733848571777344,
+      "n_test_rows": 630
+    },
+    "distortion": {
+      "identity": 0.8231391310691833,
+      "H1": 0.8626066446304321,
+      "H2": 0.8779175881547128,
+      "H3": 0.8797029256820679,
+      "H4": 0.9225208163261414,
+      "H5": 0.9288392066955566,
+      "shuffle_control": 0.4733848571777344,
+      "n_test_rows": 630
+    },
+    "highshelf": {
+      "identity": 0.9933510422706604,
+      "H1": 0.9933896064758301,
+      "H2": 0.9934431142194124,
+      "H3": 0.9950350522994995,
+      "H4": 0.9558702111244202,
+      "H5": 0.995114266872406,
+      "shuffle_control": 0.4733848571777344,
+      "n_test_rows": 630
+    },
+    "_note": "H0/H6 여부는 이 표의 각 칸이 identity/shuffle_control을 이기는지로 README의 해석 기준표에 따라 판단할 것 — 이 스크립트는 수치만 산출하고 판정하지 않는다. 참고용 악기 분류 상한(공유 기준선): 0.435374149659864"
+  }
+}
