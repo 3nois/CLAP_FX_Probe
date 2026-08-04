@@ -2,6 +2,11 @@
 
 NSynth 오디오에 Reverb/Distortion/HighShelf 이펙트를 걸어가며 CLAP 임베딩을 추출한다.
 오디오는 디스크에 쓰지 않고 메모리에서 처리한 뒤 임베딩만 저장한다.
+
+이펙트별 스윕 범위(EFFECT_SPECS)는 실무에서 흔히 쓰는 세기로 설정했다 — 예를 들어
+아무도 EQ를 ±60dB씩 걸지 않는다. "오디오 도메인 거리로 강도를 기계적으로 맞추는" 접근은
+쓰지 않는다: 그건 "단위 음향 변화당 인코딩 효율"이라는 다른 질문에 답할 뿐, 실무에서
+실제로 쓰는 세기에서 얼마나 잘 작동하는지는 알려주지 않는다.
 """
 import argparse
 import json
@@ -22,17 +27,27 @@ NUM_SAMPLES = int(SAMPLE_RATE * DURATION_SEC)
 PEAK_TARGET = 0.7
 SILENCE_PEAK_THRESHOLD = 1e-4
 
-# 이펙트별 파라미터 범위와 레벨 수.
+# 이펙트별 파라미터 범위와 레벨 수 — 실무에서 흔히 쓰는 세기로 잡는다 (60dB EQ를 거는
+# 사람은 없다). "스윕 강도를 기계적으로 맞추는" 대신, 애초에 각 이펙트의 스윕 범위를
+# 실무 상식선으로 설정해 이펙트 간 성적 차이가 비현실적인 강도 차이 때문이 아니게 한다.
 # reverb/distortion은 범위의 첫 값이 "무효과"에 해당해 dry와 자연스럽게 이어진다.
-# highshelf는 gain_db=0이 무효과 지점이며, 대칭 범위(-15~+15)의 중간에 위치한다.
+# highshelf는 gain_db=0이 무효과 지점이며, 대칭 범위(-9~+9)의 중간에 위치한다.
 EFFECT_SPECS = {
-    "reverb": {"param_range": (0.0, 0.9), "n_levels": 7},
-    "distortion": {"param_range": (0.0, 30.0), "n_levels": 7},
-    "highshelf": {"param_range": (-15.0, 15.0), "n_levels": 7},
+    "reverb": {"param_range": (0.0, 0.5), "n_levels": 7},  # room_size: 무반향~중대형 룸 (카세드럴급 0.9는 제외)
+    "distortion": {"param_range": (0.0, 15.0), "n_levels": 7},  # drive_db: 미세~중간 새추레이션 (헤비 퍼즈 급은 제외)
+    "highshelf": {"param_range": (-9.0, 9.0), "n_levels": 7},  # gain_db: 일반적인 믹싱 EQ 부스트/컷 범위
 }
 
 CLAP_REPO_ID = "lukewys/laion_clap"
 CLAP_FILENAME = "music_audioset_epoch_15_esc_90.14.pt"
+
+# NSynth 악기 패밀리 11종. 개별 악기(수백~천 종)는 소스 수 대비 클래스당 표본이
+# 너무 적어(1차 실험: 47클래스/294샘플 ≈ 6개) 통제로 부적합 — 패밀리 단위로 바꾼다.
+NSYNTH_FAMILIES = [
+    "bass", "brass", "flute", "guitar", "keyboard", "mallet",
+    "organ", "reed", "string", "synth_lead", "vocal",
+]
+NSYNTH_SOURCE_TYPES = {"acoustic", "electronic", "synthetic"}
 
 
 def parse_nsynth_filename(path: Path):
@@ -45,6 +60,21 @@ def parse_nsynth_filename(path: Path):
         return instrument, int(pitch_str), int(velocity_str)
     except ValueError:
         return instrument, None, None
+
+
+def parse_instrument_family(instrument: str) -> str:
+    """예: "synth_lead_synthetic_006" -> "synth_lead" (패밀리명 자체에 밑줄이 있는 경우 대응).
+
+    NSynth 악기 문자열은 "{family}_{source_type}_{id}" 형태다. source_type
+    (acoustic/electronic/synthetic) 바로 앞까지가 패밀리명이므로, 알려진
+    source_type 토큰을 뒤에서 찾아 그 앞부분을 패밀리로 취급한다.
+    """
+    tokens = instrument.split("_")
+    for i in range(len(tokens) - 1, -1, -1):
+        if tokens[i] in NSYNTH_SOURCE_TYPES:
+            family = "_".join(tokens[:i])
+            return family if family else instrument
+    return instrument
 
 
 def load_and_preprocess(path: Path):
@@ -189,6 +219,7 @@ def main():
             break
 
         instrument, pitch, _velocity = parse_nsynth_filename(wav_path)
+        family = parse_instrument_family(instrument)
         y = load_and_preprocess(wav_path)
         if y is None:
             n_skipped_silent += 1
@@ -203,6 +234,7 @@ def main():
                     "src_id": src_id,
                     "filename": wav_path.name,
                     "instrument": instrument,
+                    "instrument_family": family,
                     "pitch": pitch if pitch is not None else -1,
                     "effect": effect_name,
                     "level_idx": level_idx,
@@ -235,6 +267,7 @@ def main():
         src_id=np.array([r["src_id"] for r in records], dtype=np.int64),
         filename=np.array([r["filename"] for r in records]),
         instrument=np.array([r["instrument"] for r in records]),
+        instrument_family=np.array([r["instrument_family"] for r in records]),
         pitch=np.array([r["pitch"] for r in records], dtype=np.int64),
         effect=np.array([r["effect"] for r in records]),
         level_idx=np.array([r["level_idx"] for r in records], dtype=np.int64),
@@ -253,6 +286,7 @@ def main():
         "duration_sec": DURATION_SEC,
         "peak_target": PEAK_TARGET,
         "effect_specs": EFFECT_SPECS,
+        "nsynth_families": NSYNTH_FAMILIES,
         "clap_repo_id": CLAP_REPO_ID,
         "clap_checkpoint": CLAP_FILENAME,
         "n_conditions_per_source": len(conditions),

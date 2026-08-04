@@ -1,7 +1,7 @@
 {
   "audio_dir": "nsynth-test/audio",
-  "n_sources_requested": 300,
-  "n_sources_collected": 300,
+  "n_sources_requested": 800,
+  "n_sources_collected": 800,
   "n_skipped_silent": 0,
   "batch_size": 16,
   "device": "cpu",
@@ -13,27 +13,40 @@
     "reverb": {
       "param_range": [
         0.0,
-        0.9
+        0.5
       ],
       "n_levels": 7
     },
     "distortion": {
       "param_range": [
         0.0,
-        30.0
+        15.0
       ],
       "n_levels": 7
     },
     "highshelf": {
       "param_range": [
-        -15.0,
-        15.0
+        -9.0,
+        9.0
       ],
       "n_levels": 7
     }
   },
+  "nsynth_families": [
+    "bass",
+    "brass",
+    "flute",
+    "guitar",
+    "keyboard",
+    "mallet",
+    "organ",
+    "reed",
+    "string",
+    "synth_lead",
+    "vocal"
+  ],
   "clap_repo_id": "lukewys/laion_clap",
   "clap_checkpoint": "music_audioset_epoch_15_esc_90.14.pt",
   "n_conditions_per_source": 22,
-  "n_embeddings": 6600
+  "n_embeddings": 17600
 }

@@ -448,7 +448,7 @@ def main():
     plot_mapping_cos(mapping_results, out_dir / "mapping_cos.png")
     plot_hierarchy(ladder_results, mapping_results, out_dir / "hierarchy.png")
 
-    instrument_ctrl = results_json.get("controls", {}).get("instrument_classification", {})
+    instrument_ctrl = results_json.get("controls", {}).get("instrument_family", {})
 
     results_json["mapping_model"] = {
         "architecture": "MLP 516 -> 1024 -> 1024 -> 512, GELU + LayerNorm, residual (e' = e_dry + Delta)",
