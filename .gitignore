@@ -122,6 +122,9 @@ media/output/
 # .npy files.
 *.npy
 
+# CLAP FX Probe: 대용량 재생성 가능 데이터 (GitHub 100MB 제한 초과, 01_embed.py로 재생성)
+out/embeddings.npz
+
 # pdm-related file.
 .pdm-python
 

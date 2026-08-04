@@ -1,247 +1,408 @@
 {
-  "effects": {
-    "reverb": {
-      "is_signed": false,
-      "probe_r2": 0.3802668240233978,
-      "probe_r2_std": 0.018005369672157847,
-      "probe_r2_ci_low": 0.3200924476948876,
-      "probe_r2_ci_high": 0.4153635235994551,
-      "probe_r2_ci_method": "source-level bootstrap (resample src_id with replacement, OOB test)",
-      "probe_r2_shuffled": -0.016313958193888478,
-      "probe_r2_shuffled_std": 0.006739897825677022,
-      "probe_accuracy_7way": 0.2576190476190476,
-      "probe_accuracy_7way_std": 0.005208248298625563,
-      "probe_acc_chance_normalized": 0.13388888888888884,
-      "probe_nmi": 0.09561832790955582,
-      "probe_nmi_std": 0.00478056906558533,
-      "probe_chance_level_7way": 0.14285714285714285,
-      "direction_cosine_mean": 0.22708351271493094,
-      "direction_cosine_by_level": {
-        "0": {
-          "cosine_mean": 0.19013634324073792,
-          "cosine_std": 0.1506151556968689,
-          "n_sources": 800,
-          "n_dropped_near_zero_norm": 0
-        },
-        "1": {
-          "cosine_mean": 0.19934715330600739,
-          "cosine_std": 0.15030620992183685,
-          "n_sources": 800,
-          "n_dropped_near_zero_norm": 0
-        },
-        "2": {
-          "cosine_mean": 0.2106233686208725,
-          "cosine_std": 0.14948050677776337,
-          "n_sources": 800,
-          "n_dropped_near_zero_norm": 0
-        },
-        "3": {
-          "cosine_mean": 0.2235850691795349,
-          "cosine_std": 0.14844821393489838,
-          "n_sources": 800,
-          "n_dropped_near_zero_norm": 0
-        },
-        "4": {
-          "cosine_mean": 0.23804345726966858,
-          "cosine_std": 0.14713157713413239,
-          "n_sources": 800,
-          "n_dropped_near_zero_norm": 0
-        },
-        "5": {
-          "cosine_mean": 0.2549026310443878,
-          "cosine_std": 0.14573116600513458,
-          "n_sources": 800,
-          "n_dropped_near_zero_norm": 0
-        },
-        "6": {
-          "cosine_mean": 0.2729465663433075,
-          "cosine_std": 0.14436595141887665,
-          "n_sources": 800,
-          "n_dropped_near_zero_norm": 0
-        }
+  "meta": {
+    "experiment_version": 3,
+    "sampling": "latin_hypercube",
+    "param_space": {
+      "reverb": {
+        "wet_level": [
+          0.0,
+          0.5
+        ],
+        "room_size": [
+          0.0,
+          0.9
+        ],
+        "damping": [
+          0.0,
+          1.0
+        ],
+        "width": [
+          0.0,
+          1.0
+        ],
+        "freeze_mode": "bernoulli_0.5"
       },
-      "direction_positive": null,
-      "direction_negative": null,
-      "cos_pos_neg": null,
-      "n_neutral_excluded_rows": 0,
-      "neutral_level_cos_check": 0.9350417256355286,
-      "magnitude_spearman_rho": 0.23822100381872507,
-      "magnitude_spearman_pvalue": 4.276292860060939e-73,
-      "magnitude_spearman_rho_abs_param": 0.23822100381872507,
-      "magnitude_spearman_pvalue_abs_param": 4.276292860060939e-73,
-      "monotonicity_spearman_rho": 0.2451679858011466,
-      "monotonicity_spearman_pvalue": 1.9199005434293005e-77,
-      "monotonicity_spearman_rho_abs_param": 0.2451679858011466,
-      "monotonicity_spearman_pvalue_abs_param": 1.9199005434293005e-77
+      "distortion": {
+        "drive_db": [
+          0.0,
+          15.0
+        ]
+      },
+      "highshelf": {
+        "gain_db": [
+          -9.0,
+          9.0
+        ],
+        "cutoff_frequency_hz": [
+          500.0,
+          8000.0
+        ],
+        "q": [
+          0.3,
+          3.0
+        ]
+      }
     },
-    "distortion": {
-      "is_signed": false,
-      "probe_r2": 0.7071582249850398,
-      "probe_r2_std": 0.014638605928815083,
-      "probe_r2_ci_low": 0.668526734407048,
-      "probe_r2_ci_high": 0.7393719911204684,
-      "probe_r2_ci_method": "source-level bootstrap (resample src_id with replacement, OOB test)",
-      "probe_r2_shuffled": -0.02258960089869726,
-      "probe_r2_shuffled_std": 0.010951876887457652,
-      "probe_accuracy_7way": 0.37666666666666665,
-      "probe_accuracy_7way_std": 0.011023320980638131,
-      "probe_acc_chance_normalized": 0.27277777777777773,
-      "probe_nmi": 0.24973057512295876,
-      "probe_nmi_std": 0.009377493588321932,
-      "probe_chance_level_7way": 0.14285714285714285,
-      "direction_cosine_mean": 0.1957903334072658,
-      "direction_cosine_by_level": {
-        "0": {
-          "cosine_mean": 0.08608201891183853,
-          "cosine_std": 0.1583816409111023,
-          "n_sources": 800,
-          "n_dropped_near_zero_norm": 0
-        },
-        "1": {
-          "cosine_mean": 0.11833574622869492,
-          "cosine_std": 0.1557834893465042,
-          "n_sources": 800,
-          "n_dropped_near_zero_norm": 0
-        },
-        "2": {
-          "cosine_mean": 0.17278310656547546,
-          "cosine_std": 0.15341705083847046,
-          "n_sources": 800,
-          "n_dropped_near_zero_norm": 0
-        },
-        "3": {
-          "cosine_mean": 0.21132533252239227,
-          "cosine_std": 0.15174581110477448,
-          "n_sources": 800,
-          "n_dropped_near_zero_norm": 0
-        },
-        "4": {
-          "cosine_mean": 0.24026651680469513,
-          "cosine_std": 0.15139155089855194,
-          "n_sources": 800,
-          "n_dropped_near_zero_norm": 0
-        },
-        "5": {
-          "cosine_mean": 0.2618653178215027,
-          "cosine_std": 0.15175992250442505,
-          "n_sources": 800,
-          "n_dropped_near_zero_norm": 0
-        },
-        "6": {
-          "cosine_mean": 0.2798742949962616,
-          "cosine_std": 0.15194274485111237,
-          "n_sources": 800,
-          "n_dropped_near_zero_norm": 0
-        }
-      },
-      "direction_positive": null,
-      "direction_negative": null,
-      "cos_pos_neg": null,
-      "n_neutral_excluded_rows": 0,
-      "neutral_level_cos_check": 0.973914623260498,
-      "magnitude_spearman_rho": 0.7238963447109255,
-      "magnitude_spearman_pvalue": 0.0,
-      "magnitude_spearman_rho_abs_param": 0.7238963447109255,
-      "magnitude_spearman_pvalue_abs_param": 0.0,
-      "monotonicity_spearman_rho": 0.7481279900601513,
-      "monotonicity_spearman_pvalue": 0.0,
-      "monotonicity_spearman_rho_abs_param": 0.7481279900601513,
-      "monotonicity_spearman_pvalue_abs_param": 0.0
+    "n_samples_per_source": {
+      "reverb": 32,
+      "distortion": 8,
+      "highshelf": 16
+    }
+  },
+  "neutral_check": {
+    "cos_by_effect": {
+      "reverb": 1.0,
+      "distortion": 1.0,
+      "highshelf": 1.0
+    }
+  },
+  "surrogate": {
+    "held_out_cos_real": 0.9848175644874573,
+    "held_out_cos_shuffled": 0.5121887922286987,
+    "held_out_cos_identity": 0.9698055386543274,
+    "held_out_cos_by_effect": {
+      "reverb": 0.9848124980926514,
+      "distortion": 0.9622060060501099,
+      "highshelf": 0.9961334466934204
     },
-    "highshelf": {
-      "is_signed": true,
-      "probe_r2": 0.3594662665805446,
-      "probe_r2_std": 0.015185873916061373,
-      "probe_r2_ci_low": 0.27633805369521397,
-      "probe_r2_ci_high": 0.4080096953429988,
+    "hierarchy_H1_to_H5": {
+      "reverb": {
+        "identity": 0.9682468175888062,
+        "H1": 0.9752000570297241,
+        "H2": 0.9738866686820984,
+        "H3": 0.6504085659980774,
+        "H4": 0.9451834559440613,
+        "H5": 0.9848124980926514,
+        "shuffle_control": 0.5121887922286987
+      },
+      "distortion": {
+        "identity": 0.9266675114631653,
+        "H1": 0.942587673664093,
+        "H2": 0.9421485662460327,
+        "H3": 0.6449236273765564,
+        "H4": 0.8312019109725952,
+        "H5": 0.9622060060501099,
+        "shuffle_control": 0.5121887922286987
+      },
+      "highshelf": {
+        "identity": 0.9944918751716614,
+        "H1": 0.995107889175415,
+        "H2": 0.9945454001426697,
+        "H3": 0.6418203711509705,
+        "H4": 0.9920915961265564,
+        "H5": 0.9961334466934204,
+        "shuffle_control": 0.5121887922286987
+      }
+    },
+    "epochs": 300,
+    "lr": 0.001,
+    "seed": 0,
+    "test_size": 0.3,
+    "n_train_sources": 560,
+    "n_test_sources": 240
+  },
+  "params": {
+    "reverb.wet_level": {
+      "effect": "reverb",
+      "name": "wet_level",
+      "range": [
+        0.0,
+        0.5
+      ],
+      "is_negative_control": false,
+      "jacobian_norm_mean": 0.11315759643912315,
+      "jacobian_theta_dependence": {
+        "cosine_mean": 0.4541265591979027,
+        "cosine_std": 0.06953072831147615
+      },
+      "jacobian_family_cosine": {
+        "cosine_mean": 0.6178668244751844,
+        "cosine_std": 0.13541506551017712,
+        "n_family_pairs": 45,
+        "n_families": 10
+      },
+      "gate_spearman_vs_wet_level": null,
+      "probe_r2": 0.05644470860309869,
+      "probe_r2_std": 0.005604455281383544,
+      "probe_r2_ci_low": 0.039886069906108025,
+      "probe_r2_ci_high": 0.06150459593788788,
+      "probe_r2_ci95": [
+        0.039886069906108025,
+        0.06150459593788788
+      ],
       "probe_r2_ci_method": "source-level bootstrap (resample src_id with replacement, OOB test)",
-      "probe_r2_shuffled": -0.01822220395953713,
-      "probe_r2_shuffled_std": 0.007655329735085557,
-      "probe_accuracy_7way": 0.2571428571428571,
-      "probe_accuracy_7way_std": 0.00574643732673675,
-      "probe_acc_chance_normalized": 0.1333333333333333,
-      "probe_nmi": 0.09162513782046419,
-      "probe_nmi_std": 0.005912554703156708,
-      "probe_chance_level_7way": 0.14285714285714285,
-      "direction_cosine_mean": null,
-      "direction_cosine_by_level": {
-        "0": {
-          "cosine_mean": 0.27623099088668823,
-          "cosine_std": 0.14691849052906036,
-          "n_sources": 800,
-          "n_dropped_near_zero_norm": 0
-        },
-        "1": {
-          "cosine_mean": 0.2706754505634308,
-          "cosine_std": 0.14506813883781433,
-          "n_sources": 800,
-          "n_dropped_near_zero_norm": 0
-        },
-        "2": {
-          "cosine_mean": 0.26242712140083313,
-          "cosine_std": 0.1449117213487625,
-          "n_sources": 800,
-          "n_dropped_near_zero_norm": 0
-        },
-        "3": {
-          "cosine_mean": -9.919593867380172e-05,
-          "cosine_std": 0.12141589820384979,
-          "n_sources": 782,
-          "n_dropped_near_zero_norm": 18
-        },
-        "4": {
-          "cosine_mean": 0.25549373030662537,
-          "cosine_std": 0.1450020968914032,
-          "n_sources": 800,
-          "n_dropped_near_zero_norm": 0
-        },
-        "5": {
-          "cosine_mean": 0.25765517354011536,
-          "cosine_std": 0.14842726290225983,
-          "n_sources": 800,
-          "n_dropped_near_zero_norm": 0
-        },
-        "6": {
-          "cosine_mean": 0.25894737243652344,
-          "cosine_std": 0.1580096334218979,
-          "n_sources": 800,
-          "n_dropped_near_zero_norm": 0
-        }
+      "probe_r2_shuffled": -0.010207411467744398,
+      "probe_r2_shuffled_std": 0.002021414271323672
+    },
+    "reverb.room_size": {
+      "effect": "reverb",
+      "name": "room_size",
+      "range": [
+        0.0,
+        0.9
+      ],
+      "is_negative_control": false,
+      "jacobian_norm_mean": 0.19048346827427545,
+      "jacobian_theta_dependence": {
+        "cosine_mean": 0.5723730673392614,
+        "cosine_std": 0.04251066810980568
       },
-      "direction_positive": {
-        "direction_cosine_mean": 0.2563687264919281,
-        "direction_cosine_std": 0.15102854371070862,
-        "n_valid_direction": 2400,
-        "n_dropped_near_zero_norm": 0,
-        "monotonicity_spearman_rho_abs_param": 0.7384832523944442,
-        "monotonicity_spearman_pvalue_abs_param": 0.0,
-        "n_rows": 2400
+      "jacobian_family_cosine": {
+        "cosine_mean": 0.7258884623659743,
+        "cosine_std": 0.10805145754670675,
+        "n_family_pairs": 45,
+        "n_families": 10
       },
-      "direction_negative": {
-        "direction_cosine_mean": 0.2687753438949585,
-        "direction_cosine_std": 0.14579761028289795,
-        "n_valid_direction": 2400,
-        "n_dropped_near_zero_norm": 0,
-        "monotonicity_spearman_rho_abs_param": 0.7888940788611596,
-        "monotonicity_spearman_pvalue_abs_param": 0.0,
-        "n_rows": 2400
+      "gate_spearman_vs_wet_level": 0.44230769230769235,
+      "probe_r2": 0.15491434259667722,
+      "probe_r2_std": 0.004194886055109587,
+      "probe_r2_ci_low": 0.11643353279175399,
+      "probe_r2_ci_high": 0.16085494573753575,
+      "probe_r2_ci95": [
+        0.11643353279175399,
+        0.16085494573753575
+      ],
+      "probe_r2_ci_method": "source-level bootstrap (resample src_id with replacement, OOB test)",
+      "probe_r2_shuffled": -0.005346111625573036,
+      "probe_r2_shuffled_std": 0.0015550871703020061
+    },
+    "reverb.damping": {
+      "effect": "reverb",
+      "name": "damping",
+      "range": [
+        0.0,
+        1.0
+      ],
+      "is_negative_control": false,
+      "jacobian_norm_mean": 0.032585122932990394,
+      "jacobian_theta_dependence": {
+        "cosine_mean": 0.6675080706675848,
+        "cosine_std": 0.05996176440059017
       },
-      "cos_pos_neg": -0.9554540514945984,
-      "n_neutral_excluded_rows": 800,
-      "neutral_level_cos_check": 1.0,
-      "magnitude_spearman_rho": -0.014543483030280947,
-      "magnitude_spearman_pvalue": 0.2765292462141375,
-      "magnitude_spearman_rho_abs_param": 0.9243600257430467,
-      "magnitude_spearman_pvalue_abs_param": 0.0,
-      "monotonicity_spearman_rho": null,
-      "monotonicity_spearman_pvalue": null,
-      "monotonicity_spearman_rho_abs_param": null,
-      "monotonicity_spearman_pvalue_abs_param": null
+      "jacobian_family_cosine": {
+        "cosine_mean": 0.6398004468802541,
+        "cosine_std": 0.10639902553861094,
+        "n_family_pairs": 45,
+        "n_families": 10
+      },
+      "gate_spearman_vs_wet_level": 0.3676923076923077,
+      "probe_r2": 0.009942268518864062,
+      "probe_r2_std": 0.0010908483048870927,
+      "probe_r2_ci_low": 0.000940757223527575,
+      "probe_r2_ci_high": 0.010487355644093931,
+      "probe_r2_ci95": [
+        0.000940757223527575,
+        0.010487355644093931
+      ],
+      "probe_r2_ci_method": "source-level bootstrap (resample src_id with replacement, OOB test)",
+      "probe_r2_shuffled": -0.008281698249837443,
+      "probe_r2_shuffled_std": 0.0011749014867857839
+    },
+    "reverb.width": {
+      "effect": "reverb",
+      "name": "width",
+      "range": [
+        0.0,
+        1.0
+      ],
+      "is_negative_control": true,
+      "jacobian_norm_mean": 0.029878774968286354,
+      "jacobian_theta_dependence": {
+        "cosine_mean": 0.5923176606496176,
+        "cosine_std": 0.04755105111748725
+      },
+      "jacobian_family_cosine": {
+        "cosine_mean": 0.6341789166989341,
+        "cosine_std": 0.122266929234929,
+        "n_family_pairs": 45,
+        "n_families": 10
+      },
+      "gate_spearman_vs_wet_level": 0.15615384615384614,
+      "probe_r2": 0.008695947061068998,
+      "probe_r2_std": 0.0006075464862489401,
+      "probe_r2_ci_low": 0.0012915735927605313,
+      "probe_r2_ci_high": 0.009628838994760351,
+      "probe_r2_ci95": [
+        0.0012915735927605313,
+        0.009628838994760351
+      ],
+      "probe_r2_ci_method": "source-level bootstrap (resample src_id with replacement, OOB test)",
+      "probe_r2_shuffled": -0.005527586026468479,
+      "probe_r2_shuffled_std": 0.002406026472862276
+    },
+    "reverb.freeze_mode": {
+      "effect": "reverb",
+      "name": "freeze_mode",
+      "range": "bernoulli_0.5",
+      "is_negative_control": false,
+      "jacobian_norm_mean": 0.46329110115766525,
+      "jacobian_theta_dependence": {
+        "cosine_mean": 0.5636962726712227,
+        "cosine_std": 0.08391248792065209
+      },
+      "jacobian_family_cosine": {
+        "cosine_mean": 0.663347548586,
+        "cosine_std": 0.11891860664660889,
+        "n_family_pairs": 45,
+        "n_families": 10
+      },
+      "gate_spearman_vs_wet_level": null,
+      "probe_r2": 0.4189981475037981,
+      "probe_r2_std": 0.023218809116475347,
+      "probe_r2_ci_low": 0.3772869806699383,
+      "probe_r2_ci_high": 0.4525241146209536,
+      "probe_r2_ci95": [
+        0.3772869806699383,
+        0.4525241146209536
+      ],
+      "probe_r2_ci_method": "source-level bootstrap (resample src_id with replacement, OOB test)",
+      "probe_r2_shuffled": -0.009122041968274486,
+      "probe_r2_shuffled_std": 0.0016624517146600591
+    },
+    "distortion.drive_db": {
+      "effect": "distortion",
+      "name": "drive_db",
+      "range": [
+        0.0,
+        15.0
+      ],
+      "is_negative_control": false,
+      "jacobian_norm_mean": 0.7579000343879064,
+      "jacobian_theta_dependence": {
+        "cosine_mean": 0.7658590227365494,
+        "cosine_std": 0.07140459538765606
+      },
+      "jacobian_family_cosine": {
+        "cosine_mean": 0.7250518232967396,
+        "cosine_std": 0.08532051369934388,
+        "n_family_pairs": 45,
+        "n_families": 10
+      },
+      "gate_spearman_vs_wet_level": null,
+      "probe_r2": 0.6989630673075045,
+      "probe_r2_std": 0.014323839767042478,
+      "probe_r2_ci_low": 0.661618273960343,
+      "probe_r2_ci_high": 0.731265805013748,
+      "probe_r2_ci95": [
+        0.661618273960343,
+        0.731265805013748
+      ],
+      "probe_r2_ci_method": "source-level bootstrap (resample src_id with replacement, OOB test)",
+      "probe_r2_shuffled": -0.026221173167517663,
+      "probe_r2_shuffled_std": 0.004583436960316791
+    },
+    "highshelf.gain_db": {
+      "effect": "highshelf",
+      "name": "gain_db",
+      "range": [
+        -9.0,
+        9.0
+      ],
+      "is_negative_control": false,
+      "jacobian_norm_mean": 0.31637626017133397,
+      "jacobian_theta_dependence": {
+        "cosine_mean": 0.6367203593254089,
+        "cosine_std": 0.05188893577025479
+      },
+      "jacobian_family_cosine": {
+        "cosine_mean": 0.7020987391873967,
+        "cosine_std": 0.11793592007686934,
+        "n_family_pairs": 45,
+        "n_families": 10
+      },
+      "gate_spearman_vs_wet_level": null,
+      "probe_r2": 0.3140132826840082,
+      "probe_r2_std": 0.01745514983310065,
+      "probe_r2_ci_low": 0.21245322865493693,
+      "probe_r2_ci_high": 0.3512147394755751,
+      "probe_r2_ci95": [
+        0.21245322865493693,
+        0.3512147394755751
+      ],
+      "probe_r2_ci_method": "source-level bootstrap (resample src_id with replacement, OOB test)",
+      "probe_r2_shuffled": -0.011043817857312588,
+      "probe_r2_shuffled_std": 0.0038606727266414865
+    },
+    "highshelf.cutoff_frequency_hz": {
+      "effect": "highshelf",
+      "name": "cutoff_frequency_hz",
+      "range": [
+        500.0,
+        8000.0
+      ],
+      "is_negative_control": false,
+      "jacobian_norm_mean": 0.17978635368247828,
+      "jacobian_theta_dependence": {
+        "cosine_mean": 0.16875575172404447,
+        "cosine_std": 0.03550447865101845
+      },
+      "jacobian_family_cosine": {
+        "cosine_mean": 0.7697737607060801,
+        "cosine_std": 0.05590532801345111,
+        "n_family_pairs": 45,
+        "n_families": 10
+      },
+      "gate_spearman_vs_wet_level": null,
+      "probe_r2": 0.0038592080287802146,
+      "probe_r2_std": 0.0002979051681789427,
+      "probe_r2_ci_low": 0.00029575696882005217,
+      "probe_r2_ci_high": 0.005220818169821267,
+      "probe_r2_ci95": [
+        0.00029575696882005217,
+        0.005220818169821267
+      ],
+      "probe_r2_ci_method": "source-level bootstrap (resample src_id with replacement, OOB test)",
+      "probe_r2_shuffled": -0.012911134857690599,
+      "probe_r2_shuffled_std": 0.0029974671764953363
+    },
+    "highshelf.q": {
+      "effect": "highshelf",
+      "name": "q",
+      "range": [
+        0.3,
+        3.0
+      ],
+      "is_negative_control": false,
+      "jacobian_norm_mean": 0.09825816750526428,
+      "jacobian_theta_dependence": {
+        "cosine_mean": 0.3472014019886653,
+        "cosine_std": 0.04987151680066305
+      },
+      "jacobian_family_cosine": {
+        "cosine_mean": 0.7296735530904268,
+        "cosine_std": 0.08513080495670061,
+        "n_family_pairs": 45,
+        "n_families": 10
+      },
+      "gate_spearman_vs_wet_level": null,
+      "probe_r2": 0.014157889154506508,
+      "probe_r2_std": 0.0026652185287322438,
+      "probe_r2_ci_low": 0.0025657301620178336,
+      "probe_r2_ci_high": 0.017905192318492053,
+      "probe_r2_ci95": [
+        0.0025657301620178336,
+        0.017905192318492053
+      ],
+      "probe_r2_ci_method": "source-level bootstrap (resample src_id with replacement, OOB test)",
+      "probe_r2_shuffled": -0.008958791918905673,
+      "probe_r2_shuffled_std": 0.0024429050027662065
+    }
+  },
+  "jacobian_gate_analysis": {
+    "room_size": {
+      "spearman_vs_wet_level": 0.44230769230769235,
+      "spearman_pvalue": 0.026833254515162278
+    },
+    "damping": {
+      "spearman_vs_wet_level": 0.3676923076923077,
+      "spearman_pvalue": 0.07056170286653744
+    },
+    "width": {
+      "spearman_vs_wet_level": 0.15615384615384614,
+      "spearman_pvalue": 0.4560374306078927
     }
   },
   "controls": {
-    "random_vector_cosine_mean": 0.00011380094431757439,
-    "random_vector_cosine_std": 0.04416747417288695,
     "instrument_family": {
       "accuracy": 0.7716666666666667,
       "accuracy_std": 0.018521758975744033,
@@ -284,63 +445,132 @@
       "n_sources_used": 475
     }
   },
-  "mapping_model": {
-    "architecture": "MLP 516 -> 1024 -> 1024 -> 512, GELU + LayerNorm, residual (e' = e_dry + Delta)",
-    "loss": "MSE + (1 - cosine_similarity), equal weight",
+  "text_alignment": {
+    "representative_param": {
+      "reverb": "wet_level",
+      "distortion": "drive_db",
+      "highshelf": "gain_db"
+    },
+    "highshelf_note": "highshelf에 대응하는 정확한 캡션 관용구가 없어 'bright/crisp' 계열로 근사함 — 불완전한 근사임에 유의",
+    "cos_by_effect": {
+      "reverb": 0.16002876970632102,
+      "distortion": 0.2866725651082802,
+      "highshelf": 0.031394911798979235
+    },
+    "cos_random_control_by_effect": {
+      "reverb": -0.06079564939639971,
+      "distortion": 0.12912419987898424,
+      "highshelf": 0.07240869606848119
+    },
+    "cos_random_control_mean": 0.04691241551702191,
+    "cos_random_control": 0.04691241551702191,
+    "cos_cross_effect": {
+      "reverb_vs_distortion": 0.014942939201904079,
+      "reverb_vs_highshelf": -0.07256336086785466,
+      "distortion_vs_reverb": -0.008706834534698152,
+      "distortion_vs_highshelf": 0.0681969294518564,
+      "highshelf_vs_reverb": -0.20832470770935418,
+      "highshelf_vs_distortion": 0.13792259876755517
+    }
+  },
+  "reverse_model": {
+    "effect_type_accuracy": 0.6969494223594666,
+    "param_r2": {
+      "reverb.wet_level": -0.804959147209646,
+      "reverb.room_size": -0.6619575286823915,
+      "reverb.damping": -1.170792475733835,
+      "reverb.width": -0.7696217811388113,
+      "reverb.freeze_mode": -0.3516178894277311,
+      "distortion.drive_db": 0.7536909217865178,
+      "highshelf.gain_db": -0.26778271307225787,
+      "highshelf.cutoff_frequency_hz": -1.223188449792426,
+      "highshelf.q": -0.8678212963469953
+    },
+    "dry_reconstruction_cosine_by_effect": {
+      "reverb": 0.9743900299072266,
+      "distortion": 0.9605243802070618,
+      "highshelf": 0.9834021329879761
+    },
+    "cycle_consistency": {
+      "reverb": 0.9762161374092102,
+      "distortion": 0.9632620215415955,
+      "highshelf": 0.9851856231689453
+    },
+    "cycle_baseline": {
+      "reverb": 0.9682468175888062,
+      "distortion": 0.9266675710678101,
+      "highshelf": 0.9944918751716614
+    },
+    "cycle_note": "cycle_consistency가 cycle_baseline(=cos(e_dry,e_wet), 아무 처리도 안 했을 때의 값)을 넘지 못하면 역방향 모델이 무의미하다. highshelf는 baseline 자체가 이미 천장이라 개선 여지가 거의 없다.",
+    "injectivity_collision_rate": 0.018,
+    "injectivity_detail": {
+      "collision_rate": 0.018,
+      "threshold": 0.99,
+      "nn_cosine_mean": 0.9839183555694959,
+      "nn_cosine_median": 0.995349365379667,
+      "n_sampled": 3000
+    },
     "epochs": 300,
     "lr": 0.001,
     "seed": 0,
-    "test_size": 0.3,
-    "n_train_sources": 560,
-    "n_test_sources": 240,
-    "param_normalization_stats": {
-      "reverb": {
-        "mean": 0.25,
-        "std": 0.1666666567325592
-      },
-      "distortion": {
-        "mean": 7.5,
-        "std": 5.0
-      },
-      "highshelf": {
-        "mean": 0.0,
-        "std": 6.0
-      }
-    },
-    "held_out_cos_real_labels": 0.9715419411659241,
-    "held_out_cos_shuffled_labels": 0.5031258463859558
+    "test_size": 0.3
   },
-  "hierarchy": {
-    "reverb": {
-      "identity": 0.9136193990707397,
-      "H1": 0.9326592087745667,
-      "H2": 0.9331531261149061,
-      "H3": 0.9335170388221741,
-      "H4": 0.9500553607940674,
-      "H5": 0.9569195508956909,
-      "shuffle_control": 0.5031258463859558,
-      "n_test_rows": 1680
-    },
-    "distortion": {
-      "identity": 0.9135891199111938,
-      "H1": 0.9279911518096924,
-      "H2": 0.9323215210479865,
-      "H3": 0.9332661032676697,
-      "H4": 0.950092077255249,
-      "H5": 0.9594855308532715,
-      "shuffle_control": 0.5031258463859558,
-      "n_test_rows": 1680
-    },
-    "highshelf": {
-      "identity": 0.9973730444908142,
-      "H1": 0.9973846673965454,
-      "H2": 0.9973913659690635,
-      "H3": 0.998022735118866,
-      "H4": 0.9772094488143921,
-      "H5": 0.9982205629348755,
-      "shuffle_control": 0.5031258463859558,
-      "n_test_rows": 1680
-    },
-    "_note": "H0/H6 여부는 이 표의 각 칸이 identity/shuffle_control을 이기는지로 README의 해석 기준표에 따라 판단할 것 — 이 스크립트는 수치만 산출하고 판정하지 않는다. 참고용 악기 분류 상한(공유 기준선): 0.7716666666666667"
+  "subspace": {
+    "projection_ratio_by_param": {
+      "reverb.wet_level": {
+        "mean": 0.00635428776464131,
+        "ci_low": 0.0030008327990358945,
+        "ci_high": 0.012283980199732555,
+        "n_boot_used": 300
+      },
+      "reverb.room_size": {
+        "mean": 0.006128238890643453,
+        "ci_low": 0.0029144028483582135,
+        "ci_high": 0.011226018078365077,
+        "n_boot_used": 300
+      },
+      "reverb.damping": {
+        "mean": 0.0077051135192552364,
+        "ci_low": 0.0036073234820369637,
+        "ci_high": 0.014026307708145924,
+        "n_boot_used": 300
+      },
+      "reverb.width": {
+        "mean": 0.007169374487222268,
+        "ci_low": 0.003023269607183092,
+        "ci_high": 0.013239690435396849,
+        "n_boot_used": 300
+      },
+      "reverb.freeze_mode": {
+        "mean": 0.005843329678331881,
+        "ci_low": 0.002599702251682888,
+        "ci_high": 0.010338751824558692,
+        "n_boot_used": 300
+      },
+      "distortion.drive_db": {
+        "mean": 0.007095884266436485,
+        "ci_low": 0.0034137648126501235,
+        "ci_high": 0.012269015334012003,
+        "n_boot_used": 300
+      },
+      "highshelf.gain_db": {
+        "mean": 0.003722451362894976,
+        "ci_low": 0.0017603859330315235,
+        "ci_high": 0.006812563766323221,
+        "n_boot_used": 300
+      },
+      "highshelf.cutoff_frequency_hz": {
+        "mean": 0.008005802626852292,
+        "ci_low": 0.003731715279974925,
+        "ci_high": 0.01466244910333611,
+        "n_boot_used": 300
+      },
+      "highshelf.q": {
+        "mean": 0.006496796981451333,
+        "ci_low": 0.003121261284866179,
+        "ci_high": 0.01133106053582791,
+        "n_boot_used": 300
+      }
+    }
   }
 }

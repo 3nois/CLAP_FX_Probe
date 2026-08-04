@@ -1,4 +1,6 @@
 {
+  "experiment_version": 3,
+  "sampling": "latin_hypercube",
   "audio_dir": "nsynth-test/audio",
   "n_sources_requested": 800,
   "n_sources_collected": 800,
@@ -9,28 +11,86 @@
   "sample_rate": 48000,
   "duration_sec": 4.0,
   "peak_target": 0.7,
-  "effect_specs": {
+  "param_space": {
     "reverb": {
-      "param_range": [
+      "wet_level": [
         0.0,
         0.5
       ],
-      "n_levels": 7
+      "room_size": [
+        0.0,
+        0.9
+      ],
+      "damping": [
+        0.0,
+        1.0
+      ],
+      "width": [
+        0.0,
+        1.0
+      ],
+      "freeze_mode": "bernoulli_0.5"
     },
     "distortion": {
-      "param_range": [
+      "drive_db": [
         0.0,
         15.0
-      ],
-      "n_levels": 7
+      ]
     },
     "highshelf": {
-      "param_range": [
+      "gain_db": [
         -9.0,
         9.0
       ],
-      "n_levels": 7
+      "cutoff_frequency_hz": [
+        500.0,
+        8000.0
+      ],
+      "q": [
+        0.3,
+        3.0
+      ]
     }
+  },
+  "param_order": {
+    "reverb": [
+      "wet_level",
+      "room_size",
+      "damping",
+      "width",
+      "freeze_mode"
+    ],
+    "distortion": [
+      "drive_db"
+    ],
+    "highshelf": [
+      "gain_db",
+      "cutoff_frequency_hz",
+      "q"
+    ]
+  },
+  "theta_slots": {
+    "reverb": [
+      0,
+      5
+    ],
+    "distortion": [
+      5,
+      6
+    ],
+    "highshelf": [
+      6,
+      9
+    ]
+  },
+  "theta_width": 9,
+  "negative_control_params": [
+    "reverb.width"
+  ],
+  "n_samples_per_source": {
+    "reverb": 32,
+    "distortion": 8,
+    "highshelf": 16
   },
   "nsynth_families": [
     "bass",
@@ -47,6 +107,6 @@
   ],
   "clap_repo_id": "lukewys/laion_clap",
   "clap_checkpoint": "music_audioset_epoch_15_esc_90.14.pt",
-  "n_conditions_per_source": 22,
-  "n_embeddings": 17600
+  "n_conditions_per_source": 57,
+  "n_embeddings": 45600
 }

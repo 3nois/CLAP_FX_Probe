@@ -100,13 +100,39 @@ This work utilizes codebase and pretrained weights of [DAC](https://github.com/d
 TokenSynth 논문은 오디오 이펙트(EQ·디스토션·리버브)로 augmentation한 `TokenSynth-Aug`가
 이펙트 걸린(wet) 오디오 복제에서 오히려 dry로만 학습한 기본 모델보다 못한 현상을 관찰하고,
 그 원인을 "CLAP 임베딩이 오디오 이펙트 정보를 결여했기 때문으로 보인다"고 추정만 했다.
-이 하위 프로젝트(`01_embed.py`, `02_analyze.py`, `03_mapping.py`)는 그 추정을 재학습 없이
-직접 측정한다.
+이 하위 프로젝트는 그 추정을 재학습 없이 직접 측정한다.
 
-단, "차이 벡터가 전부 같은 방향인가"라는 단일 질문은 너무 엄격하다 — 방향이 소스마다
-달라도 어떤 방법으로든 dry 임베딩에서 wet 임베딩을 예측할 수 있으면 실용적으로 충분하다.
-그래서 단일 가설이 아니라 **구조의 위계(H0~H6)**로 측정한다 — 자세한 표는 아래 "결과 해석
-기준" 참고.
+### 3차 개정 — 왜 "한 번에 하나씩(OAT)"을 버렸는가
+
+reverb의 파라미터는 서로 독립이 아니다. `wet_level`이 다른 모든 파라미터의 **곱셈
+게이트**다 — `wet_level=0`이면 `room_size`/`damping`/`width`가 무엇이든 출력은 dry다.
+1·2차처럼 OAT(한 번에 하나씩 스윕)로 `damping`을 재려면 `wet_level`을 어딘가 고정해야
+하는데, 그 고정값에 따라 "damping 효과"가 완전히 달라진다 — 게이트가 닫혀 있으면 거의
+0, 열려 있으면 크게 나온다. 어느 지점을 볼지가 임의 선택이 되어 "CLAP이 damping을
+읽는다"는 진술 자체가 정의되지 않는다. 격자 탐색(7^5=16,807 조합/소스)도 비용상
+불가능하다.
+
+그래서 파라미터 공간을 **결합(joint) Latin Hypercube 샘플링**하고, 미분 가능한
+**대리모델(residual MLP)**을 학습한 뒤 그 **야코비안 J = ∂e'/∂θ**를 분석하는 방식으로
+바꿨다. 비용은 OAT와 비슷한데 파라미터 간 상호작용까지 잡힌다.
+
+### 파이프라인 (7단계)
+
+```
+01_embed.py         결합 LHS 샘플링 + CLAP 오디오/텍스트 임베딩 추출
+      │
+02_surrogate.py      residual MLP 대리모델 학습 + H1~H5 위계 재구성
+      │
+      ├── 03_jacobian.py       야코비안 분석 (게이트 구조, 악기 패밀리별 손잡이) ★핵심
+      ├── 04_probe.py          다변량 프로브 + width 음성 통제 + 악기 패밀리 NMI 통제
+      ├── 05_text_alignment.py 텍스트-오디오 방향 정렬 검증
+      ├── 06_reverse.py        역방향 사상 + cycle consistency + 단사성 진단
+      └── 07_subspace.py       (부차) 악기 판별 부분공간 투영
+```
+
+`03`~`07`은 `02`가 저장한 `surrogate_model.pt`를 재사용하며 서로 독립적으로 실행
+가능하다(순서 무관, 전부 `results.json`에 이어 붙임). `01`, `02`는 반드시 먼저 실행해야
+한다.
 
 ### 설치
 
@@ -120,7 +146,9 @@ pip install -e ".[probe]"
 > (설치된 `torch` 버전은 `python -c "import torch; print(torch.__version__)"`로 확인).
 
 기존 TokenSynth 의존성(`laion-clap`, `torch` 등)에 더해 `pedalboard`, `scikit-learn`,
-`scipy`, `soundfile`, `matplotlib`가 추가로 설치됩니다.
+`scipy`, `soundfile`, `matplotlib`가 추가로 설치됩니다. 3차 개정은 새 의존성이 없습니다 —
+LHS 샘플링은 `scipy.stats.qmc`, 야코비안은 `torch.func`(jacrev/vmap), 부분공간 투영은
+`sklearn.discriminant_analysis`를 씁니다.
 
 ### 체크포인트
 
@@ -143,158 +171,185 @@ curl -L -o ckpts/music_audioset_epoch_15_esc_90.14.pt \
 source-type 토큰 앞부분을 취해 파싱하므로 `synth_lead`처럼 이름에 밑줄이 있는 패밀리도
 올바르게 처리됩니다.
 
+### 파라미터 공간
+
+pedalboard 0.9.24 실제 시그니처로 확인한 파라미터명입니다 (`Reverb`:
+room_size/damping/wet_level/dry_level/width/freeze_mode, `Distortion`: drive_db,
+`HighShelfFilter`: cutoff_frequency_hz/gain_db/q).
+
+| 이펙트 | 파라미터 | 범위 | 스케일 | 비고 |
+|---|---|---|---|---|
+| reverb | wet_level | 0.0 → 0.5 | 선형 | 게이트 — 나머지 4개를 곱셈으로 통제 |
+| reverb | room_size | 0.0 → 0.9 | 선형 | |
+| reverb | damping | 0.0 → 1.0 | 선형 | |
+| reverb | **width** | 0.0 → 1.0 | 선형 | **★ 음성 통제** — 모노 파이프라인이라 원리적으로 무영향이어야 함 |
+| reverb | freeze_mode | {0,1} | 베르누이(p=0.5) | |
+| distortion | drive_db | 0.0 → 15.0 | 선형 | |
+| highshelf | gain_db | −9.0 → +9.0 | 선형, signed | 0 중심 대칭 |
+| highshelf | cutoff_frequency_hz | 500 → 8000 | 로그 | |
+| highshelf | q | 0.3 → 3.0 | 로그 | |
+
+소스당 표본 수: dry 1 + reverb 32 + distortion 8 + highshelf 16 = **57**. 각 이펙트의
+표본 중 정확히 1개는 **θ=0 앵커**(모든 파라미터가 "무효과" 값)로 예약되며, 이 앵커는
+pedalboard를 통과시키지 않고 dry 오디오를 그대로 써서 `cos(e_dry, e_theta0) = 1.000`이
+되도록 보장한다 (`neutral_check` 참고 — 2차의 "무효과 레벨이 진짜 dry가 아닐 수 있다"는
+문제가 여기서 구조적으로 해소된다).
+
 ### 실행
 
 ```bash
-# 1. 이펙트 적용 + CLAP 임베딩 추출 (오디오는 디스크에 쓰지 않음)
-#    소스 800개 권장 (300개는 통제 표본이 너무 적어 1차 실험에서 문제가 됐다) — M5 CPU 기준 약 40분
+# 1. 결합 LHS 샘플링 + CLAP 오디오/텍스트 임베딩 추출 (오디오는 디스크에 쓰지 않음)
+#    800소스 × 57조건 ≈ 45,600 임베딩. M5 CPU 기준 약 2.5~3시간.
 python 01_embed.py --audio-dir /path/to/nsynth-test/audio --n-sources 800 --out out
 
-# 2. (a)(b)(c) 분석 + 그림 + 통제(레이블 셔플/무작위 벡터/악기 패밀리 분류)
-python 02_analyze.py --embeddings out/embeddings.npz --out out
+# 2. residual MLP 대리모델 학습 + H1~H5 위계 재구성 (surrogate_model.pt 저장)
+python 02_surrogate.py --embeddings out/embeddings.npz --out out
 
-# 3. (d) 사상 모델(residual MLP) 학습 + H1~H5 위계 사다리 비교
-#    out/results.json을 읽어 이어 붙이므로 반드시 2번 다음에 실행할 것
-python 03_mapping.py --embeddings out/embeddings.npz --results out/results.json --out out
+# 3~7 (순서 무관, 모두 02가 저장한 surrogate_model.pt를 재사용)
+python 03_jacobian.py --embeddings out/embeddings.npz --out out       # ★ 이 실험의 핵심
+python 04_probe.py --embeddings out/embeddings.npz --out out          # ★ width 통제 최우선 확인
+python 05_text_alignment.py --embeddings out/embeddings.npz --out out
+python 06_reverse.py --embeddings out/embeddings.npz --out out
+python 07_subspace.py --embeddings out/embeddings.npz --out out       # 부차, 시간 없으면 생략 가능
 ```
 
 **환경**: 기본 `--device cpu`. Apple Silicon에서 `--device mps`를 쓰려면 먼저
-`PYTORCH_ENABLE_MPS_FALLBACK=1`을 설정하세요 (CLAP 일부 연산이 MPS에 없어 CPU로 폴백 필요).
-`01_embed.py`는 800 소스 기준 M-시리즈 CPU에서 약 40분 소요됩니다. `02_analyze.py`의
-`--n-boot`(기본 1000)는 Ridge R² 부트스트랩 신뢰구간 반복 횟수로, 느리면 줄이세요.
-`03_mapping.py`는 TokenSynth를 통과시키지 않는 작은 MLP만 학습하므로 M5 CPU에서 수 분이면
-끝납니다. GPU 클러스터가 없는 환경을 상정해 **1단계(이 문서)에서는 TokenSynth 자체를
-재학습하거나 건드리지 않으며 추론만 수행**합니다 (TokenSynth를 통과시키는 검증은
-"2단계 — 상한 확인" 참고, 이번 구현 범위 밖).
+`PYTORCH_ENABLE_MPS_FALLBACK=1`을 설정하세요. `01_embed.py`가 압도적으로 오래 걸리는
+단계입니다(45,600개 CLAP forward pass). `02`~`07`은 모두 M5 CPU에서 수 분~수십 분
+내외입니다(대리모델 학습은 pooled 45,600행에 300 epoch 기준으로 십수 분, 야코비안/부분공간
+분석은 batched autograd라 빠름). `04_probe.py`의 `--n-boot`(기본 1000)와
+`07_subspace.py`의 `--n-boot`(기본 300)는 부트스트랩 반복 횟수로, 느리면 줄이세요.
+GPU 클러스터가 없는 환경을 상정해 **1단계(이 문서)에서는 TokenSynth 자체를 재학습하거나
+건드리지 않으며 대리모델(작은 MLP) 추론만 수행**합니다 (TokenSynth를 실제로 통과시키는
+검증은 "2단계 — 상한 확인" 참고, 이번 구현 범위 밖).
 
 ### 출력
 
 ```
 out/
-├── embeddings.npz        임베딩 + 메타(src_id, effect, param_value, instrument, instrument_family, pitch)
-├── embed_config.json     재현용 설정 기록
-├── results.json          모든 수치 — (a)(b)(c) 측정, 통제, H0~H6 위계(hierarchy), 사상 모델(mapping_model)
-├── probe_r2.png           ① R²(부트스트랩 95% CI) vs 셔플 통제 ② 분류 NMI — 이펙트 vs 악기 패밀리(단위 통일 비교)
-├── direction_cos.png      ① 방향 일관성(정규화 후 코사인, signed 이펙트는 부호별 분리) vs 무작위 벡터 ② 크기-파라미터 Spearman ρ
-├── monotonicity.png       (unsigned 이펙트만) 파라미터 값 vs 방향 벡터 투영값 산점도
-├── signed_direction.png   (signed 이펙트만) 부스트(+)/컷(-) 분리 후 |파라미터| vs 투영값, cos(v_+, v_-) 표기
-├── mapping_cos.png        사상 모델(H5) 성능 vs identity vs 셔플(동일 용량) 기준선
-└── hierarchy.png          H1~H5 위계 사다리 비교 (이펙트별 3분할, identity/셔플 기준선 포함)
+├── embeddings.npz          임베딩 + 메타(src_id, effect, instrument_family, is_anchor, theta_raw, theta_norm)
+├── text_embeddings.npz     텍스트 임베딩 (과제5용 캡션 쌍)
+├── embed_config.json       재현용 설정 — param_space, param_order, theta_slots, n_samples_per_source
+├── surrogate_model.pt      학습된 residual MLP 대리모델 (03/05/06/07이 재사용)
+├── results.json            모든 수치 (아래 스키마)
+│
+├── hierarchy.png            H1~H5 위계 사다리 (이펙트별 3분할)
+├── surrogate_quality.png    대리모델 신뢰도 — identity/셔플/실제 레이블 held-out 코사인
+├── jacobian_gate.png        ★ ‖∂f/∂param‖ vs wet_level — 게이트 구조 검증
+├── jacobian_by_family.png   ★ 파라미터별 악기 패밀리 간 야코비안 코사인 — 원래 질문
+├── param_profile.png        파라미터별 다변량 프로브 R² (부트스트랩 95% CI)
+├── width_control.png        ★ 최우선 확인 — width 음성 통제 (프로브 R² + 야코비안 노름)
+├── text_alignment.png       텍스트-오디오 방향 정렬 + 통제 2종(무작위/교차)
+├── cycle_consistency.png    정방향→역방향 cycle 코사인 vs 기준선
+└── subspace_projection.png  (부차) 이펙트 방향의 악기 판별 부분공간 투영 비율
 ```
 
-### 결과 해석 기준 — 구조의 위계 (H0~H6)
+`results.json` 최상위 키: `meta`(실험 버전/샘플링/파라미터 공간), `neutral_check`(θ=0
+앵커 검증), `surrogate`(대리모델 신뢰도 + H1~H5), `params`(파라미터별 프로브/야코비안
+통계), `controls`(악기 패밀리 NMI), `text_alignment`, `reverse_model`, `subspace`.
 
-"차이 벡터가 전부 같은 방향인가"는 가장 엄격한 질문(H1)이다. 이게 깨져도 실험은 끝나지
-않는다 — 아래 표에서 **어느 칸까지 구조가 잡히는지** 찾는 것이 목표다. 코드는 수치만
-내고, 최종 판정은 이 표로 사람이 한다. **어느 칸에서 잡히든 유효한 결과다.**
+### 결과 해석 기준
 
-| 단계 | 형태 | 의미 | `results.json`에서 볼 곳 | 실용적 귀결 |
-|---|---|---|---|---|
-| **H0** | 정보 없음 | 아무 방법으로도 못 읽음 | 아래 모든 지표가 통제 수준 | 별도 이펙트 인코더 필요 |
-| **H1** | `e' = e + v` | 상수 벡터 | `hierarchy.<effect>.H1` | 벡터 하나만 더하면 됨 — 사실상 무료 |
-| **H2** | `e' = e + f(p)·v` | 방향 고정, 크기만 파라미터 의존 | `hierarchy.<effect>.H2`, `direction_cos.png`②, `magnitude_spearman_rho` | 스칼라 함수 하나만 fit하면 됨 |
-| **H3** | `e' = e + Δ(p)` | 파라미터별 방향, 소스와 무관 | `hierarchy.<effect>.H3` | 파라미터→벡터 룩업으로 충분 |
-| **H4** | `e' = W·e + b` | 선형 변환, 소스마다 다르게 이동 | `hierarchy.<effect>.H4` | 작은 선형 계층 하나 추가 |
-| **H5** | `e' = e + g(e, p)` | 비선형 (residual MLP) | `hierarchy.<effect>.H5`, `mapping_model.held_out_cos_real_labels` | MLP 추론 1회 — 여전히 실용적 |
-| **H6** | 정보는 있으나 학습 불가 | 사실상 H0 | H1~H5가 전부 통제 수준에 머무름 | 별도 이펙트 인코더 필요 (H0과 동일 결론) |
+아래 표들은 코드가 내리지 않는 판정 기준이다. **코드는 수치만 산출한다 — 결론은 사람이
+이 표로 내린다.**
 
-**판정 방법**: `hierarchy.<effect>`의 각 칸(H1~H5)을 같은 이펙트의
-`hierarchy.<effect>.identity`와 `hierarchy.<effect>.shuffle_control`(또는
-`mapping_model.held_out_cos_shuffled_labels`)과 비교한다. **두 기준선을 모두 이기는 가장
-앞선(단순한) 칸**이 그 이펙트가 위치한 위계다. 어느 칸도 두 기준선을 못 이기면 H6(=사실상
-H0)으로 본다.
+#### ① 대리모델을 믿어도 되는가 (모든 분석의 전제)
 
-- **identity 기준선이 왜 필요한가**: `cos(e_dry, e_wet)`은 이펙트가 약하면 원래도 높게
-  나온다. 이 기준선 없이는 "잘 예측했다"는 착시가 생긴다.
-- **셔플 기준선의 "동일 용량" 조건**: `03_mapping.py`의 셔플 통제는 실제 모델과 **완전히
-  같은 아키텍처·에폭·학습 절차**로, 레이블(=목표 `e_wet`)만 무작위로 섞어 학습한다.
-  MLP는 용량이 크면 정보가 없어도 train loss를 낮출 수 있으므로, 반드시 held-out
-  코사인으로만 비교하고 절대치가 아니라 **실제 레이블 모델과의 격차**를 신뢰할 것.
-  **프로브(사상 모델)가 강력해질수록 이 통제의 중요성도 커진다.**
-- **`probe_r2`에는 부트스트랩 95% CI(`probe_r2_ci_low`/`probe_r2_ci_high`)가 붙는다.**
-  src_id를 복원추출로 재표집하고 뽑히지 않은 소스로 평가하는 소스 단위 부트스트랩이다.
-  이펙트 간 R² 차이가 유의한지는 std가 아니라 이 CI로 판단할 것.
-- **방향/크기를 반드시 나눠서 볼 것.** `direction_cosine_mean`(정규화 후 코사인, H1의 방향
-  일관성)과 `magnitude_spearman_rho`(‖차이 벡터‖-파라미터 상관, H2의 크기 의존성)를
-  분리하지 않고 정규화 없이 코사인만 재면, 소스마다 다른 벡터 크기가 방향 불일치로
-  오인되어 H2인 경우를 H0으로 잘못 판정하게 된다.
+`03_jacobian.py`부터의 모든 분석은 **실제 CLAP의 미분이 아니라 학습된 근사의 미분**이다.
+`surrogate.held_out_cos_real`이 `surrogate.held_out_cos_shuffled`·`held_out_cos_identity`를
+확실히 넘지 못하면(`surrogate_quality.png`), 야코비안 해석 전체가 무의미하니 여기서 멈추고
+대리모델의 용량·학습을 재검토할 것.
 
-#### 통제 — 단위를 반드시 맞춰서 비교할 것 (1차 실험의 결함 1)
+#### ② 게이트 구조 (`jacobian_gate.png`, `params[*].gate_spearman_vs_wet_level`)
 
-1차 실험은 이펙트 프로브(R², 회귀)와 악기 통제(accuracy, 분류)의 단위가 달라 "악기는 잘
-읽고 이펙트는 못 읽는다"는 핵심 대조가 성립하지 않았다. 게다가 개별 악기 47클래스/294샘플
-≈ 클래스당 6개로 표본도 너무 적었다. 이번 판에서 고친 것:
+`‖∂f/∂room_size‖`, `‖∂f/∂damping‖`, `‖∂f/∂width‖`가 `wet_level`에 대해 Spearman ρ로
+얼마나 단조 증가하는지를 본다.
 
-- `controls.instrument_family` — 개별 악기 대신 **NSynth 패밀리 11종**(bass, brass, flute,
-  guitar, keyboard, mallet, organ, reed, string, synth_lead, vocal)으로 바꿔 클래스당 표본을
-  늘렸다. `accuracy`, `acc_chance_normalized`(=`(acc−chance)/(1−chance)`), `nmi`를 모두
-  보고한다.
-- `controls.instrument_family_7class_subsampled` — 악기 패밀리를 7종으로 무작위
-  서브샘플링해, 이펙트의 7-way 분류 프로브와 **클래스 수를 완전히 맞춘** 버전.
-- `effects.<effect>.probe_accuracy_7way` / `probe_nmi` / `probe_acc_chance_normalized` —
-  파라미터가 이미 7단계 이산값이므로 R²와 별개로 분류 프로브도 돌린다.
-- **NMI를 주 지표로 볼 것.** 클래스 수(이펙트 7종 vs 패밀리 11종/7종)가 달라 accuracy의
-  우연 수준 자체가 다르다. NMI는 클래스 수와 무관해 `probe_r2.png`②에서 이펙트 3개와
-  악기 패밀리(11종/7종)를 나란히 비교할 수 있다.
+| ρ (wet_level 대비 노름) | 판정 |
+|---|---|
+| > 0.5, 유의(p<0.05) | 게이트 구조가 대리모델에 실재 — 야코비안 접근 자체가 검증됨 |
+| ≈ 0 또는 비유의 | 대리모델이 게이트 구조를 학습하지 못함 — 모델 용량/학습 재검토 필요, 이하 분석 신뢰 낮음 |
 
-#### 스윕 강도 — "기계적 매칭" 대신 실무 상식 범위 사용 (1차 실험의 결함 2)
+이 확인이 이 실험의 **내적 타당성 검증**이다 — 여기서 실패하면 (b) 악기 패밀리 분석도
+신뢰할 수 없다.
 
-1차 실험에서 프로브 성적이 `distortion > reverb > highshelf` 순으로 나왔는데, 스윕
-범위(reverb `room_size` 0~0.9, distortion `drive_db` 0~30, highshelf `gain_db` ±15)를
-임의로 정한 것이라 이 순서가 "의미론적으로 더 잘 학습된 이펙트라서"인지 "단지 스윕이
-지각적으로 더 큰 변화였기 때문"인지 구분이 안 됐다.
+#### ③ 악기 패밀리별 손잡이 차이 — 원래 질문 (`jacobian_by_family.png`, `params[*].jacobian_family_cosine`)
 
-처음에는 오디오 도메인 거리(D_audio, log-mel 스펙트로그램 기반)로 세 이펙트의 "지각적
-강도"를 사후에 기계적으로 맞춰보는 접근을 시도했다. 하지만 이건 "단위 음향 변화당
-CLAP이 얼마나 잘 인코딩하는가"라는 기계적 질문에만 답할 뿐, **"실무에서 실제로 쓰는
-세기에서 얼마나 잘 작동하는가"**라는 더 중요한 질문에는 답하지 못한다 — 예를 들어 EQ를
-±60dB씩 거는 사람은 없다. 그래서 이 접근을 버리고, **애초에 스윕 범위 자체를 실무에서
-흔히 쓰는 세기로 다시 잡았다** (`01_embed.py`의 `EFFECT_SPECS`):
+파라미터별 악기 패밀리 간 야코비안 열 코사인의 평균.
 
-| 이펙트 | 이전 범위 (1차 실험) | 현재 범위 (실무 상식선) |
+| `cosine_mean` | 판정 | 실용적 귀결 |
 |---|---|---|
-| reverb `room_size` | 0.0 → 0.9 (카세드럴급까지 포함) | 0.0 → 0.5 (무반향~중대형 룸) |
-| distortion `drive_db` | 0 → 30dB (헤비 퍼즈급까지 포함) | 0 → 15dB (미세~중간 새추레이션) |
-| highshelf `gain_db` | −15 → +15dB | −9 → +9dB (일반적인 믹싱 EQ 부스트/컷) |
+| > 0.8 | 공통 손잡이로 충분 | 악기 무관하게 파라미터 하나로 조작 가능 |
+| 0.5 ~ 0.8 | 대체로 공통이나 일부 예외 | 공통 손잡이 + 악기별 보정 고려 |
+| < 0.5 | 악기별 손잡이 필요 | 단일 조작으로는 악기마다 다른 결과 — 악기별 조건화 필요 |
 
-D_audio 계산, `encoding_efficiency`, 강도 매칭 프로브는 전부 뺐다 — 오디오 도메인 거리를
-계산해 비교하는 "기계적" 접근 자체를 실험에서 제외하기로 했기 때문이다. 세 이펙트 간
-순서 비교는 이제 이 실무 상식 범위 안에서의 프로브 R²/NMI를 그대로 보면 된다.
+#### ④ width 음성 통제 — 최우선 확인 (`width_control.png`, `params["reverb.width"]`)
 
-#### 부호 있는 파라미터 (1차 실험의 결함 3)
+| `probe_r2` (width) | 판정 |
+|---|---|
+| ≈ 0, 셔플과 구분 안 됨 | 파이프라인 정상 (모노 변환이 실제로 stereo 정보를 지웠다) |
+| 유의하게 0 초과 | **파이프라인 누수** — 1·2차 결과까지 재검토 대상. `apply_effect`의 모노 처리, pedalboard 채널 처리를 다시 볼 것 |
 
-`highshelf`처럼 파라미터 범위가 0(dry)을 사이에 둔 대칭이면(`-9~+9`), 부스트(+)와
-컷(-)이 반대 방향이라 **전역 평균 방향 벡터 하나로는 상쇄돼 무의미해진다** — 1차 실험의
-`monotonicity_spearman_rho = -0.305`가 이 문제였다.
+width는 셔플 통제보다 **강한** 통제다: 셔플은 "레이블이 가짜일 때 못 맞히는지"를 보고,
+width는 "**레이블이 진짜인데도** 못 맞혀야 하는지"를 본다.
 
-- `effects.<effect>.is_signed` — 파라미터 범위가 0을 걸치는지 자동 판정(코드가 직접
-  데이터에서 min/max를 봄).
-- signed 이펙트는 `direction_cosine_mean`/`monotonicity_spearman_rho`(pooled 버전)가
-  `null`이다 — 의미가 없어서 일부러 비웠다. 대신 `direction_positive` / `direction_negative`
-  (각각 부호 그룹 내에서 계산한 방향 일관성 + `|param|` 기준 단조성)를 본다.
-- `cos_pos_neg` — 부스트 방향 벡터와 컷 방향 벡터의 코사인. **-1에 가까우면 부스트와
-  컷이 같은 축의 양방향이라는 뜻**이고, 이는 그 자체로 의미 있는 발견이라 항상 보고한다.
-- `n_neutral_excluded_rows` — 무효과 레벨(`param≈0`)은 방향 계산에서 제외되며, 제외된
-  행 수가 여기 기록된다 (1차 실험에서 highshelf 레벨 3이 정확히 이 경우였다 — 그 지점의
-  diff 벡터가 거의 0이라 방향이 정의되지 않았다).
-- unsigned 이펙트(reverb, distortion)는 기존 방식 그대로 — `monotonicity_spearman_rho`와
-  `magnitude_spearman_rho`가 대칭 범위 문제 자체가 없으므로 `..._abs_param` 필드와 함께
-  참고용으로만 보면 된다.
+#### ⑤ H1~H5 위계 (`hierarchy.png`, `surrogate.hierarchy_H1_to_H5`)
 
-#### 추가 점검: 무효과 레벨이 진짜 dry와 같은가
+| 단계 | 형태 | 의미 |
+|---|---|---|
+| H1 | Δ = V·θ + b | 선형, θ만, 소스 무관 — J는 상수 |
+| H2 | Δ = g(θ)·v | 방향 고정 v, 크기만 θ 의존 |
+| H3 | Δ = MLP(θ) | 비선형, θ만, 소스 무관 — J = J(θ) |
+| H4 | Δ = M(e_dry)·θ | θ에 선형, 계수(하이퍼네트워크)는 e_dry의 함수 — J = J(e_dry) |
+| H5 | Δ = MLP(e_dry, effect, θ) | 완전 비선형 — J = J(e_dry, θ) (실제 대리모델) |
 
-`effects.<effect>.neutral_level_cos_check` = `cos(e_dry, e_at_param==0)`. 1.0에 가까워야
-"레벨 0(혹은 중립 레벨)이 진짜 dry와 다르지 않다"는 뜻이다. reverb는 `room_size=0`이어도
-`wet_level=0.4`가 항상 섞이므로 1.0에서 유의하게 떨어질 수 있다 — 그러면 reverb 스윕이
-dry와 매끄럽게 이어지지 않는다는 뜻이니 `Reverb(...)` 파라미터를 재검토해야 한다. 세
-이펙트 모두 이 값을 확인할 것.
+각 칸의 held-out 코사인을 `identity`(e'=e_dry)와 `shuffle_control`과 비교한다. 두
+기준선을 모두 이기는 가장 단순한(앞선) 칸이 해당 이펙트의 위계다.
+
+#### ⑥ 다변량 프로브 (`param_profile.png`, `params[*].probe_r2` / `probe_r2_ci95`)
+
+파라미터별 held-out R²(부트스트랩 95% CI)를 그대로 비교한다. CI가 셔플 통제(`≈0`)와
+겹치지 않으면 그 파라미터는 임베딩에서 읽힌다는 뜻. 이펙트 간 R² 차이가 유의한지도 CI
+겹침 여부로 판단할 것 — std만으로는 판단하지 말 것.
+
+#### ⑦ 텍스트-오디오 방향 정렬 (`text_alignment.png`, `text_alignment.*`)
+
+| 비교 | 기대(캡션 가설이 맞다면) |
+|---|---|
+| `cos_by_effect[e]` (자기 정렬) | `cos_random_control`보다 뚜렷이 높음 |
+| `cos_by_effect[e]` (자기 정렬) | `cos_cross_effect["{e}_vs_{other}"]`(교차 정렬)보다 높음 |
+
+둘 다 성립하면 그 이펙트에 대해 "CLAP이 캡션 개념과 정합적인 방향으로 이펙트를
+인코딩한다"는 근거. `highshelf`는 대응하는 정확한 캡션 관용구가 없어 "bright/crisp"
+계열로 근사했다 — 정렬도가 낮게 나와도 "정렬이 없다"가 아니라 "근사가 부정확했을
+가능성"을 먼저 의심할 것.
+
+#### ⑧ 역방향 사상 (`cycle_consistency.png`, `reverse_model.*`)
+
+- **Cycle consistency**: `reverse_model.cycle_consistency[e]`가
+  `reverse_model.cycle_baseline[e]`(=`cos(e_dry, e_wet)`, 아무 처리도 안 했을 때의 값)를
+  넘지 못하면 역방향 모델이 무의미하다. `highshelf`는 baseline 자체가 이미 천장(2차 기준
+  ≈0.997)이라 개선 여지가 거의 없다는 점을 감안할 것.
+- **단사성**: `reverse_model.injectivity_collision_rate`가 유의하게 0보다 크면(서로 다른
+  소스가 최근접 이웃으로 자주 충돌하면), 원리적으로 역방향이 불가능한 영역이 있다는 뜻 —
+  이 또한 유효한 결과다.
+
+#### ⑨ (부차) 부분공간 투영 (`subspace_projection.png`, `subspace.projection_ratio_by_param`)
+
+★ 이 분석은 "손잡이가 악기마다 다른가"에 답하지 않는다(③이 담당). "왜 TokenSynth가
+이 정보를 무시하는가"에 답하는 별개의 2단계 예비 진단이다.
+
+| `projection_ratio`(=‖proj_instrument(v)‖/‖v‖) | 판정 |
+|---|---|
+| 0에 가까움 | 이펙트 방향이 악기 판별 축과 직교 — TokenSynth가 무시하는 이유는 다른 데 있음 |
+| 1에 가까움 | 이펙트 방향이 악기 판별 부분공간 내부 — 악기 정체성 조건화가 이펙트 신호를 "밀어냈을" 가능성 |
 
 ### 2단계 — 상한 확인 (이번 구현 범위 밖)
 
 > 진짜 wet 오디오 → CLAP → 임베딩 → TokenSynth → 실제로 wet 소리가 나는가?
 
-이것이 사상 모델(H5) 성능의 상한이다. 진짜(실측) wet 임베딩으로도 TokenSynth가 wet을
-재현하지 못한다면, 사상 모델이 만든 근사 임베딩으로는 당연히 안 된다 — 사상 모델이 아무리
+이것이 대리모델(H5) 성능의 상한이다. 진짜(실측) wet 임베딩으로도 TokenSynth가 wet을
+재현하지 못한다면, 대리모델이 만든 근사 임베딩으로는 당연히 안 된다 — 대리모델이 아무리
 `e_wet`에 가까운 벡터를 만들어도, 그 벡터가 실제 오디오에서 나올 수 있는 영역
 밖(off-manifold)이면 TokenSynth는 (진짜 오디오에서 나온 임베딩만 보고 학습했으므로)
 알아듣지 못한다.
@@ -305,3 +360,17 @@ dry와 매끄럽게 이어지지 않는다는 뜻이니 `Reverb(...)` 파라미�
 
 1단계(이 문서에 구현된 스크립트)의 결과를 본 뒤 진행할 후속 과제로, 이번 구현에는
 포함되지 않는다.
+
+### 유지된 것 (2차에서 검증 완료, 3차에서도 변경 없음)
+
+- 스윕 강도(reverb wet 0→0.5, distortion 0→15dB, highshelf ±9dB) — 실무 수준 조정
+- 800 소스, src_id 단위 GroupShuffleSplit / 소스 단위 부트스트랩
+- 48kHz 리샘플, 피크 정규화 0.7, 무음 제외, 클리핑 방지
+- 악기 패밀리 통제(NMI 주 지표, 7클래스 서브샘플)
+- residual 파라미터화(e' = e_dry + Δ), identity/셔플 기준선
+- 시드 고정, `embed_config.json` 재현 기록
+
+2차의 `abs_param` 병기와 부호별 방향 분리는 이제 야코비안이 자연히 처리한다(부호 있는
+파라미터는 J가 부호에 따라 부호를 바꾸는 것 자체가 신호). 다만 2차에서 확인된
+`cos(v_+, v_-) = −0.955`와 이번 판의 야코비안 기반 부호 분석이 정합하는지는 검증 항목으로
+남아 있다.
