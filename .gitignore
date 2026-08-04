@@ -115,9 +115,9 @@ nsynth-valid/
 # Audio/MIDI files.
 *.wav
 *.mid
-!media/reference_audio.wav
-!media/input_midi.mid
-media/output/
+!tokensynth_paper/media/reference_audio.wav
+!tokensynth_paper/media/input_midi.mid
+tokensynth_paper/media/output/
 
 # .npy files.
 *.npy

@@ -1,101 +1,9 @@
-# TokenSynth: A Token-based Neural Synthesizer for Instrument Cloning and Text-to-Instrument
-![Description](media/figure.png)
+# CLAP FX Probe
 
-<div align="center">
-
-[![Build Status](https://github.com/KyungsuKim42/tokensynth/actions/workflows/test_and_publish.yml/badge.svg)](https://github.com/KyungsuKim42/tokensynth/actions)
-[![PyPI version](https://img.shields.io/pypi/v/tokensynth.svg)](https://pypi.org/project/tokensynth/)
-[![License](https://img.shields.io/pypi/l/tokensynth.svg)](https://github.com/KyungsuKim42/tokensynth/blob/main/LICENSE)
-
-[Kyungsu Kim](https://scholar.google.com/citations?user=bCMZWFIAAAAJ&hl=en&oi=sra), [Junghyun Koo](https://scholar.google.com/citations?user=9LbxECcAAAAJ&hl=en), [Sungho Lee](https://scholar.google.com/citations?hl=en&user=8yMXL5AAAAAJ), [Haesun Joung](https://scholar.google.com/citations?hl=en&user=yV8xVKoAAAAJ), [Kyogu Lee](https://scholar.google.com/citations?user=Fk4jQFEAAAAJ&hl=en)
-
-📄 [Paper](https://arxiv.org/abs/2502.08939) | 🎵 [Demo Page](http://tinyurl.com/tokensynth-demo)
-
-
-</div>
-
-###  **Official implementation** of "TokenSynth: A Token-based Neural Synthesizer for Instrument Cloning and Text-to-Instrument", published in **ICASSP 2025**.
-
-TokenSynth is a token-based neural synthesizer that generates polyphonic single-instrument musical audio from MIDI and timbre embeddings, enabling instrument cloning, text-to-instrument synthesis, and timbre manipulation. It uses a decoder-only transformer trained on neural audio tokens with CLAP-based timbre conditioning, allowing for flexible sound design without fine-tuning.
-
-## Installation
-
-To install TokenSynth, simply run:
-
-```bash
-pip install tokensynth
-```
-
-## Quickstart
-
-```python
-from tokensynth import TokenSynth, CLAP, DACDecoder
-import audiofile
-import torch
-
-# Set file paths
-ref_audio = "media/reference_audio.wav"
-midi = "media/input_midi.mid"
-
-# Initialize models
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-synth = TokenSynth.from_pretrained(aug=True, device=device)
-clap = CLAP(device=device)
-decoder = DACDecoder(device=device)
-
-with torch.no_grad():
-    # Extract timbre embeddings from audio and text
-    timbre_audio = clap.encode_audio(ref_audio)
-    timbre_text = clap.encode_text("warm smooth electronic bass")
-    timbre_audio_text = 0.5 * timbre_audio + 0.5 * timbre_text
-
-    # Generate audio tokens
-    tokens_audio = synth.synthesize(timbre_audio, midi, top_k=10)
-    tokens_text = synth.synthesize(timbre_text, midi, top_p=0.6, guidance_scale=1.6)
-    tokens_audio_text = synth.synthesize(timbre_audio_text, midi, top_p=0.6, guidance_scale=1.6)
-
-    # Decode tokens into audio waveforms
-    audio_audio = decoder.decode(tokens_audio) 
-    audio_text = decoder.decode(tokens_text)
-    audio_audio_text = decoder.decode(tokens_audio_text)
-
-# Save audio files
-audiofile.write("media/output_audio.wav", audio_audio.cpu().numpy(), 16000)
-audiofile.write("media/output_text.wav", audio_text.cpu().numpy(), 16000)
-audiofile.write("media/output_audio_text.wav", audio_audio_text.cpu().numpy(), 16000)
-```
-
-You can also run `python quickstart.py` from the project root directory.
-
-## Model Weights
-TokenSynth automatically downloads pretrained weights when initialized.  
-If you want to manually download the weights, you can find them here:  
-
-[🔗 TokenSynth Pretrained Weights](https://huggingface.co/KyungsuKim/TokenSynth/tree/main)
-
-## Citation
-
-```bibtex
-@misc{kim2025tokensynthtokenbasedneuralsynthesizer,
-      title={TokenSynth: A Token-based Neural Synthesizer for Instrument Cloning and Text-to-Instrument}, 
-      author={Kyungsu Kim and Junghyun Koo and Sungho Lee and Haesun Joung and Kyogu Lee},
-      year={2025},
-      eprint={2502.08939},
-      archivePrefix={arXiv},
-      primaryClass={cs.SD},
-      url={https://arxiv.org/abs/2502.08939}, 
-}
-```
-## LICENSE
-
-This project is released under the [MIT License](./LICENSE)
-
-### Acknowledgements:
-This work utilizes codebase and pretrained weights of [DAC](https://github.com/descriptinc/descript-audio-codec) and [CLAP](https://github.com/LAION-AI/CLAP).
-
----
-
-## CLAP FX Probe
+> 원본 TokenSynth 논문(ICASSP 2025) 코드는 [`tokensynth_paper/`](tokensynth_paper/) 폴더로 옮겼습니다 —
+> 사용법은 [`tokensynth_paper/README.md`](tokensynth_paper/README.md), 논문 요약은
+> [`tokensynth_paper/PAPER_SUMMARY.md`](tokensynth_paper/PAPER_SUMMARY.md) 참고. 이 문서는 현재
+> 진행 중인 실험(아래)만 다룹니다.
 
 TokenSynth 논문은 오디오 이펙트(EQ·디스토션·리버브)로 augmentation한 `TokenSynth-Aug`가
 이펙트 걸린(wet) 오디오 복제에서 오히려 dry로만 학습한 기본 모델보다 못한 현상을 관찰하고,
@@ -137,8 +45,11 @@ reverb의 파라미터는 서로 독립이 아니다. `wet_level`이 다른 모�
 ### 설치
 
 ```bash
-pip install -e ".[probe]"
+pip install -e "./tokensynth_paper[probe]"
 ```
+
+TokenSynth 패키지 정의(`pyproject.toml`)가 `tokensynth_paper/`로 옮겨졌으므로 저장소 루트에서
+위 경로로 설치합니다.
 
 > **알려진 문제**: pip가 `torchaudio`를 `torch`와 호환되지 않는 버전(예: torch 2.5.1 +
 > torchaudio 2.11.0)으로 설치해 `_torchaudio.abi3.so` 관련 `OSError`가 날 수 있습니다.
@@ -305,6 +216,13 @@ width는 "**레이블이 진짜인데도** 못 맞혀야 하는지"를 본다.
 
 각 칸의 held-out 코사인을 `identity`(e'=e_dry)와 `shuffle_control`과 비교한다. 두
 기준선을 모두 이기는 가장 단순한(앞선) 칸이 해당 이펙트의 위계다.
+
+> **알려진 이슈 (미해결)**: 800소스 본 실행에서 세 이펙트 전부 H3(θ만, 비선형)가
+> H1(θ만, 선형)보다 뚜렷이 나쁘게 나왔다(예: reverb 0.65 vs 0.98). H3는 이론상 H1을
+> 포함하는 상위 모델이라 이래선 안 된다 — "θ만으로는 안 읽힌다"는 실질적 발견이 아니라
+> `ThetaOnlyMLP` 학습이 수렴하지 못했을 가능성이 높다(세 이펙트에서 거의 같은 값으로
+> 수렴한 게 방증). H4/H5는 정상적으로 identity를 상회하므로 이 문제가 다른 결과에
+> 전염되지는 않았지만, H3 자체의 결론은 신뢰하지 말 것 — 후속 조사 필요.
 
 #### ⑥ 다변량 프로브 (`param_profile.png`, `params[*].probe_r2` / `probe_r2_ci95`)
 
