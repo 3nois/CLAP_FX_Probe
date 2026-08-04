@@ -1,4 +1,4 @@
-"""CLAP FX Probe — 04_probe.py (3차)
+"""CLAP FX Probe — 04_probe.py (4차 개정: 해상도 바닥 추가)
 
 이펙트별로 임베딩(512) → θ 전체(5/1/3차원)를 동시에 회귀하는 다변량 Ridge 프로브.
 파라미터별 R²와 source-level 부트스트랩 95% CI를 낸다 — 어느 성분이 읽히고 어느
@@ -9,6 +9,13 @@
 누수이며 1·2차 결과까지 재검토 대상이다 — width_control.png와 결과를 반드시 먼저 볼 것.
 
 악기 패밀리 통제(NMI 주 지표, 7클래스 서브샘플)는 2차 설계를 그대로 유지한다.
+
+4차: 3차에서 width(R²=0.0087, 음성 통제)와 damping(0.0099)/q(0.0142)/cutoff(0.0039)가
+통계적으로 구분되지 않았다 — 즉 R²<0.02는 이 실험의 "해상도 바닥"이다. 이를
+resolution_floor로 명시적으로 계산해 results.json에 넣고, 이 바닥 아래 파라미터는
+"약함"이 아니라 "측정 불가(below resolution)"로 구분해 표기한다. 바닥 정의: 음성
+통제 파라미터(negative_control_params)들의 held-out R² 부트스트랩 CI 상단값 중 최댓값
+— 그 아래는 통계적으로 잡음과 구분이 안 된다는 뜻이다.
 
 결과 해석은 이 스크립트가 단정하지 않는다. README의 판정 기준표를 따를 것.
 """
@@ -182,7 +189,7 @@ def instrument_family_control(d, seed):
     return full, subsampled
 
 
-def plot_param_profile(probe_results, param_order_by_effect, negative_control_params, out_path):
+def plot_param_profile(probe_results, param_order_by_effect, negative_control_params, resolution_floor, out_path):
     keys, r2s, ci_lo, ci_hi, colors = [], [], [], [], []
     for e in EFFECTS:
         for p in param_order_by_effect[e]:
@@ -200,17 +207,20 @@ def plot_param_profile(probe_results, param_order_by_effect, negative_control_pa
     fig, ax = plt.subplots(figsize=(12, 5), dpi=150)
     x = np.arange(len(keys))
     ax.bar(x, r2s, yerr=yerr, capsize=3, color=colors, zorder=3)
+    ax.axhline(resolution_floor, color=INK_SECONDARY, linestyle="--", linewidth=1.2, zorder=4,
+               label=f"해상도 바닥 = {resolution_floor:.4f} (음성 통제 CI 상단)")
     ax.set_xticks(x)
     ax.set_xticklabels(keys, rotation=45, ha="right", fontsize=8)
     ax.set_ylabel("Held-out R² (부트스트랩 95% CI, 0 미만은 0으로 표시)")
-    ax.set_title("파라미터별 인코딩 강도 — 다변량 프로브")
+    ax.set_title("파라미터별 인코딩 강도 — 다변량 프로브 (점선 아래=측정 불가)")
+    ax.legend(frameon=False, fontsize=8)
     style_axis(ax)
     fig.tight_layout()
     fig.savefig(out_path)
     plt.close(fig)
 
 
-def plot_width_control(probe_results, jacobian_norms, out_path):
+def plot_width_control(probe_results, jacobian_norms, resolution_floor, out_path):
     """★ 최우선 확인 — width(모노라 원리적으로 못 읽어야 함) vs reverb의 다른 파라미터들."""
     reverb_params = ["wet_level", "room_size", "damping", "width", "freeze_mode"]
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(11, 4.5), dpi=150)
@@ -223,6 +233,8 @@ def plot_width_control(probe_results, jacobian_norms, out_path):
     width_bar = 0.35
     ax1.bar(x - width_bar / 2, r2s, width_bar, color=colors, label="실제 레이블", zorder=3)
     ax1.bar(x + width_bar / 2, shuffled, width_bar, color=COLORS["baseline"], label="셔플 통제", zorder=3)
+    ax1.axhline(resolution_floor, color=INK_SECONDARY, linestyle="--", linewidth=1.2, zorder=4,
+                label=f"해상도 바닥={resolution_floor:.4f}")
     ax1.set_xticks(x)
     ax1.set_xticklabels(reverb_params, rotation=30, ha="right")
     ax1.set_ylabel("Held-out R²")
@@ -288,9 +300,18 @@ def main():
     if "params" in results_json:
         jacobian_norms = {k: v.get("jacobian_norm_mean") for k, v in results_json["params"].items()}
 
+    # 해상도 바닥: 음성 통제 파라미터들의 held-out R² 부트스트랩 CI 상단값 중 최댓값.
+    # 이 아래는 통계적으로 잡음(음성 통제)과 구분되지 않으므로 "약함"이 아니라
+    # "측정 불가(below resolution)"로 표기한다.
+    control_ci_highs = []
+    for key in negative_control_params:
+        e, p = key.split(".", 1)
+        control_ci_highs.append(probe_results[e][p]["probe_r2_ci_high"])
+    resolution_floor = float(max(control_ci_highs))
+
     print("그림 저장 중...")
-    plot_param_profile(probe_results, param_order_by_effect, negative_control_params, out_dir / "param_profile.png")
-    plot_width_control(probe_results, jacobian_norms, out_dir / "width_control.png")
+    plot_param_profile(probe_results, param_order_by_effect, negative_control_params, resolution_floor, out_dir / "param_profile.png")
+    plot_width_control(probe_results, jacobian_norms, resolution_floor, out_dir / "width_control.png")
 
     params = results_json.setdefault("params", {})
     for e in EFFECTS:
@@ -302,6 +323,15 @@ def main():
             entry["range"] = config["param_space"][e][p]
             entry["is_negative_control"] = key in negative_control_params
             entry.update(probe_results[e][p])
+            entry["measurability"] = "측정 불가(below resolution)" if entry["probe_r2"] < resolution_floor else "resolution 이상"
+
+    results_json["resolution_floor"] = {
+        "value": resolution_floor,
+        "definition": "음성 통제 파라미터(negative_control_params)들의 held-out R² 부트스트랩 95% CI 상단값 중 최댓값. "
+        "이 값 아래 R²는 통계적으로 잡음과 구분되지 않으므로 '약함'이 아니라 '측정 불가'로 봐야 한다.",
+        "based_on_params": negative_control_params,
+        "based_on_ci_highs": {k: v for k, v in zip(negative_control_params, control_ci_highs)},
+    }
 
     results_json["controls"] = results_json.get("controls", {})
     results_json["controls"]["instrument_family"] = family_full
@@ -313,6 +343,7 @@ def main():
     width_r2 = probe_results["reverb"]["width"]["probe_r2"]
     print(f"완료: {results_path}, {out_dir}/param_profile.png, {out_dir}/width_control.png")
     print(f"★ width 음성 통제 probe_r2 = {width_r2:.4f} (0에 가까워야 함 — width_control.png 확인)")
+    print(f"★ 해상도 바닥 = {resolution_floor:.4f} — 이 아래 파라미터는 '측정 불가'로 표기됨")
 
 
 if __name__ == "__main__":

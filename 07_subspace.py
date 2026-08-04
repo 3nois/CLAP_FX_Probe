@@ -1,4 +1,4 @@
-"""CLAP FX Probe — 07_subspace.py (3차, 부차 — 우선순위 낮음)
+"""CLAP FX Probe — 07_subspace.py (4차 개정: 무작위 기준선 추가)
 
 ★ 주의: 이 분석은 "손잡이가 악기마다 다른가"에 답하지 못한다 (그건 03_jacobian.py의
 악기 패밀리 분석이 담당). 이건 "왜 TokenSynth가 이 정보를 무시하는가"에 답하는 별개
@@ -8,8 +8,16 @@
 악기 패밀리 LDA로 판별 부분공간을 얻고, 각 파라미터의 야코비안 평균 방향이 그
 부분공간에 얼마나 들어가는지(‖proj‖/‖v‖)를 부트스트랩 CI와 함께 낸다.
 
+4차: 3차 관측값(0.004~0.008)이 512차원 공간에서 무작위 단위벡터를 9차원 부분공간에
+투영했을 때의 기댓값 sqrt(9/512)≈0.133보다 20배 이상 작아, 정규화 오류 가능성이
+제기되었다. 이를 배제하기 위해 무작위 단위벡터 1000개를 "같은" 부분공간에 투영한
+기준선 분포를 계산하고, 실제 관측값이 그 분포의 몇 백분위에 있는지 함께 보고한다.
+LDA 부분공간의 실제 차원수(embedding_dim, subspace_dim)도 명시적으로 기록한다.
+
   0에 가까움 → 이펙트 방향이 악기 판별 축과 직교
   1에 가까움 → 악기 판별 부분공간 내부
+  기준선과 비슷함 → 그냥 고차원에서의 우연한 직교성 (해석 불가)
+  기준선보다 유의하게 낮음 → CLAP이 이펙트 축과 악기 축을 적극적으로 분리
 
 결과 해석은 이 스크립트가 단정하지 않는다. README의 판정 기준표를 따를 것.
 """
@@ -133,7 +141,24 @@ def bootstrap_projection_ratio(vec, dry_embeddings, family_labels, src_ids, seed
     return float(ratios.mean()), float(np.percentile(ratios, lo_pct)), float(np.percentile(ratios, hi_pct)), int(len(ratios))
 
 
-def plot_subspace_projection(results, out_path):
+def random_unit_vectors(n, dim, seed):
+    rng = np.random.RandomState(seed)
+    v = rng.normal(size=(n, dim))
+    v /= np.linalg.norm(v, axis=1, keepdims=True)
+    return v
+
+
+def random_baseline_ratios(basis, n, seed):
+    dim = basis.shape[0]
+    vecs = random_unit_vectors(n, dim, seed)
+    return np.array([projection_ratio(v, basis) for v in vecs])
+
+
+def percentile_rank(value, dist):
+    return float((dist < value).mean() * 100)
+
+
+def plot_subspace_projection(results, baseline_summary, out_path):
     keys = list(results.keys())
     means = [results[k]["mean"] for k in keys]
     ci_lo = [results[k]["ci_low"] for k in keys]
@@ -145,13 +170,19 @@ def plot_subspace_projection(results, out_path):
     fig, ax = plt.subplots(figsize=(11, 4.5), dpi=150)
     x = np.arange(len(keys))
     ax.bar(x, means, yerr=yerr, capsize=3, color=colors, zorder=3)
+
+    p5, p50, p95 = baseline_summary["percentiles"][5], baseline_summary["percentiles"][50], baseline_summary["percentiles"][95]
+    ax.axhspan(p5, p95, color=INK_SECONDARY, alpha=0.12, zorder=1, label=f"무작위 단위벡터 기준선 5~95% (n={baseline_summary['n_random_vectors']})")
+    ax.axhline(p50, color=INK_SECONDARY, linestyle="--", linewidth=1, zorder=2, label=f"무작위 기준선 중앙값={p50:.3f}")
+
     ax.axhline(0.0, color=GRID_COLOR, linewidth=1)
-    ax.axhline(1.0, color=INK_SECONDARY, linestyle="--", linewidth=1)
+    ax.axhline(1.0, color=INK_SECONDARY, linestyle=":", linewidth=1)
     ax.set_xticks(x)
     ax.set_xticklabels(keys, rotation=45, ha="right", fontsize=8)
     ax.set_ylabel("‖proj_instrument(J[:,i])‖ / ‖J[:,i]‖ (부트스트랩 95% CI)")
-    ax.set_ylim(0, 1.1)
-    ax.set_title("이펙트 방향의 악기 판별 부분공간 투영 비율 (부차 분석)")
+    ax.set_ylim(0, max(1.1, p95 * 1.2))
+    ax.set_title(f"이펙트 방향의 악기 판별 부분공간 투영 비율 (부분공간 차원={baseline_summary['subspace_dim']}/{baseline_summary['embedding_dim']})")
+    ax.legend(frameon=False, fontsize=7, loc="upper right")
     style_axis(ax)
     fig.tight_layout()
     fig.savefig(out_path)
@@ -165,6 +196,7 @@ def main():
     parser.add_argument("--device", type=str, default="cpu", choices=["cpu", "mps", "cuda"])
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--n-boot", type=int, default=300)
+    parser.add_argument("--n-random-baseline", type=int, default=1000)
     args = parser.parse_args()
 
     if args.device == "mps":
@@ -216,15 +248,38 @@ def main():
         mean, lo, hi, n_used = bootstrap_projection_ratio(vec, dry_embeddings_all, dry_families, dry_src_ids, args.seed, n_boot=args.n_boot)
         results[key] = {"mean": mean, "ci_low": lo, "ci_high": hi, "n_boot_used": n_used}
 
+    print("전체 데이터로 LDA 부분공간 적합 (기준선/차원수 기록용)...")
+    full_basis = fit_lda_basis(dry_embeddings_all, dry_families)
+    subspace_dim, embedding_dim = full_basis.shape[1], full_basis.shape[0]
+
+    print(f"무작위 단위벡터 {args.n_random_baseline}개를 같은 부분공간에 투영해 기준선 분포 계산 중...")
+    baseline_ratios = random_baseline_ratios(full_basis, args.n_random_baseline, args.seed)
+    baseline_summary = {
+        "n_random_vectors": int(len(baseline_ratios)),
+        "subspace_dim": int(subspace_dim),
+        "embedding_dim": int(embedding_dim),
+        "expected_sqrt_ratio": float(np.sqrt(subspace_dim / embedding_dim)),
+        "mean": float(baseline_ratios.mean()),
+        "std": float(baseline_ratios.std()),
+        "percentiles": {p: float(np.percentile(baseline_ratios, p)) for p in [1, 5, 25, 50, 75, 95, 99]},
+    }
+
+    for key, r in results.items():
+        r["percentile_rank_in_random_baseline"] = percentile_rank(r["mean"], baseline_ratios)
+        r["z_score_vs_random_baseline"] = float((r["mean"] - baseline_summary["mean"]) / (baseline_summary["std"] + 1e-12))
+
     print("그림 저장 중...")
-    plot_subspace_projection(results, out_dir / "subspace_projection.png")
+    plot_subspace_projection(results, baseline_summary, out_dir / "subspace_projection.png")
 
     results_path = out_dir / "results.json"
     results_json = {}
     if results_path.exists():
         with open(results_path) as f:
             results_json = json.load(f)
-    results_json["subspace"] = {"projection_ratio_by_param": results}
+    results_json["subspace"] = {
+        "projection_ratio_by_param": results,
+        "random_baseline": baseline_summary,
+    }
     with open(results_path, "w") as f:
         json.dump(results_json, f, indent=2, ensure_ascii=False)
 

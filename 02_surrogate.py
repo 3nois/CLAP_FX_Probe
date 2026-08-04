@@ -1,18 +1,31 @@
-"""CLAP FX Probe — 02_surrogate.py (3차)
+"""CLAP FX Probe — 02_surrogate.py (4차 개정: H1~H5 위계 폐기 → 입력 마스킹 ablation)
 
 01_embed.py가 만든 (e_dry, θ, e_wet) 데이터로 residual MLP 대리모델을 학습한다.
 
   e' = e_dry + MLP(e_dry, effect_onehot, θ)
 
-이 대리모델은 미분 가능하므로 03_jacobian.py에서 J = ∂e'/∂θ를 autograd로 계산해
-분석한다. 이 스크립트는 그 전 단계로 (1) 대리모델을 학습하고 (2) H1~H5 위계를
-재구성해 "θ와 e_dry 각각에 얼마나 의존해야 wet을 잘 예측하는가"를 비교한다.
+3차의 H1~H5 "위계"는 폐기한다. H3(θ만, 비선형)가 H2(방향고정+선형 스케일)보다 낮게
+나왔는데(0.650 vs 0.974) H2 ⊂ H3라 이건 포함 관계 위반 — 구현 오류다. 근본적으로도
+H3(J=J(θ), e_dry 무관)와 H4(J=J(e_dry), θ 무관)는 서로를 포함하지 않는다 — 사다리가
+아니라 다이아몬드였다.
 
-  H1  Δ = V·θ + b            (선형, θ만, 소스 무관)           — J = 상수
-  H2  Δ = g(θ)·v              (방향 고정, 크기만 θ 의존)        — J 방향 고정
-  H3  Δ = MLP(θ)               (비선형, θ만, 소스 무관)         — J = J(θ)
-  H4  Δ = M(e_dry)·θ           (θ에 선형, 계수는 e_dry의 함수)   — J = J(e_dry)
-  H5  Δ = MLP(e_dry, effect, θ) (완전 비선형)                   — J = J(e_dry, θ)
+대신 **입력 마스킹 ablation**을 쓴다. 동일 아키텍처·학습설정·시드로, 입력 슬롯만
+0으로 가려서 네 가지를 학습한다:
+
+  M0    MLP(effect_onehot)               θ, e_dry 둘 다 차단
+  M_th  MLP(effect_onehot, θ)            e_dry 차단
+  M_e   MLP(effect_onehot, e_dry)        θ 차단
+  M_the MLP(effect_onehot, e_dry, θ)     전부 사용 (기존 대리모델과 동일)
+
+residual 파라미터화(e' = e_dry + Δ)는 네 모델 모두 유지한다 — Δ 계산에 쓰이는
+"입력"만 가리고, 최종 덧셈은 항상 진짜 e_dry를 쓴다.
+
+분산 분해:
+  d_total = M_the − M0
+  d_th    = M_th  − M0     (파라미터 의존이 버는 몫)
+  d_e     = M_e   − M0     (소스 의존이 버는 몫)
+  d_int   = d_total − d_th − d_e   (상호작용에서만 나오는 몫 — 03_jacobian.py의
+                                     악기 패밀리 코사인 0.62~0.77과 교차 검증됨)
 
 ★ 대리모델은 실제 CLAP의 미분이 아니라 학습된 근사의 미분이다. held-out 코사인이
 낮으면 야코비안 해석 전체가 무의미하다 — surrogate_quality.png로 반드시 확인할 것.
@@ -32,7 +45,6 @@ import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from sklearn.linear_model import Ridge
 
 _KOREAN_FONT_CANDIDATES = ["AppleGothic", "Apple SD Gothic Neo", "NanumGothic", "Malgun Gothic", "Noto Sans CJK KR"]
 _available_fonts = {f.name for f in fm.fontManager.ttflist}
@@ -46,7 +58,7 @@ EFFECTS = ["reverb", "distortion", "highshelf"]
 COLORS = {"reverb": "#2a78d6", "distortion": "#eb6834", "highshelf": "#1baf7a", "baseline": "#898781"}
 INK_SECONDARY = "#52514e"
 GRID_COLOR = "#e1e0d9"
-H_LADDER_COLORS = {"H1": "#86b6ef", "H2": "#5598e7", "H3": "#2a78d6", "H4": "#1c5cab", "H5": "#104281"}
+ABLATION_COLORS = {"M0": "#c3c2b7", "M_th": "#5598e7", "M_e": "#eb6834", "M_the": "#104281"}
 
 
 def style_axis(ax):
@@ -84,13 +96,13 @@ def split_sources(unique_src_ids: np.ndarray, seed: int, test_size: float = 0.3)
     return train_srcs, test_srcs
 
 
-# ---------------------------------------------------------------------------
-# H5 — 완전 비선형 residual MLP (기존 2차 사상 모델과 동일 계열, 입력만 θ 벡터로 확장)
-# ---------------------------------------------------------------------------
-
-
 class SurrogateMLP(nn.Module):
-    """524(e_dry 512 + 이펙트 원핫 3 + θ 9) → 512(Δ). GELU + LayerNorm."""
+    """524(e_dry 512 + 이펙트 원핫 3 + θ 9) → 512(Δ). GELU + LayerNorm.
+
+    마스킹 ablation의 네 변형(M0/M_th/M_e/M_the) 모두 이 클래스를 그대로 쓴다 —
+    아키텍처를 바꾸면 비교가 성립하지 않는다. 차단은 입력 텐서의 해당 슬롯을 0으로
+    채우는 방식으로만 구현한다 (build_masked_input 참고).
+    """
 
     def __init__(self, in_dim, hidden=1024, out_dim=512):
         super().__init__()
@@ -108,65 +120,40 @@ class SurrogateMLP(nn.Module):
         return self.net(x)
 
 
-class HyperLinearHead(nn.Module):
-    """H4: Δ = M(e_dry)·θ, M은 e_dry로부터 예측되는 (512×θ_dim) 행렬. J=J(e_dry), θ에는 선형."""
-
-    def __init__(self, in_dim=512, theta_dim=5, out_dim=512, hidden=256):
-        super().__init__()
-        self.theta_dim = theta_dim
-        self.out_dim = out_dim
-        self.hyper = nn.Sequential(nn.Linear(in_dim, hidden), nn.GELU(), nn.Linear(hidden, out_dim * theta_dim))
-
-    def forward(self, e_dry, theta):
-        b = e_dry.shape[0]
-        m = self.hyper(e_dry).view(b, self.out_dim, self.theta_dim)
-        return torch.bmm(m, theta.unsqueeze(-1)).squeeze(-1)
+def build_masked_input(dry, onehot, theta, use_dry: bool, use_theta: bool):
+    d = dry if use_dry else np.zeros_like(dry)
+    t = theta if use_theta else np.zeros_like(theta)
+    return np.concatenate([d, onehot, t], axis=1).astype(np.float32)
 
 
-class ThetaOnlyMLP(nn.Module):
-    """H3: Δ = MLP(θ), e_dry 미사용. J=J(θ), 소스 무관."""
-
-    def __init__(self, theta_dim, out_dim=512, hidden=256):
-        super().__init__()
-        self.net = nn.Sequential(
-            nn.Linear(theta_dim, hidden), nn.GELU(), nn.Linear(hidden, hidden), nn.GELU(), nn.Linear(hidden, out_dim)
-        )
-
-    def forward(self, theta):
-        return self.net(theta)
+ABLATION_VARIANTS = {
+    "M0": {"use_dry": False, "use_theta": False},
+    "M_th": {"use_dry": False, "use_theta": True},
+    "M_e": {"use_dry": True, "use_theta": False},
+    "M_the": {"use_dry": True, "use_theta": True},
+}
 
 
-def build_effect_dataset(d, dry_by_src, effect_name, theta_slots):
-    mask = d["effect"] == effect_name
-    src_ids = d["src_id"][mask]
-    dry = np.stack([dry_by_src[s] for s in src_ids]).astype(np.float32)
-    wet = d["embeddings"][mask].astype(np.float32)
-    start, end = theta_slots[effect_name]
-    theta = d["theta_norm"][mask][:, start:end].astype(np.float32)
-    return {"dry": dry, "wet": wet, "theta": theta, "src_id": src_ids}
-
-
-def train_torch_model(model, forward_fn, dry, theta, wet, train_mask, test_mask, device, epochs, lr, seed, shuffle_labels=False):
+def train_ablation_variant(x_full, dry_true, wet_all, train_mask, test_mask, device, epochs, lr, seed, shuffle_labels=False):
+    """x_full은 이미 마스킹이 적용된 입력. residual 덧셈은 항상 진짜 dry_true를 쓴다."""
     torch.manual_seed(seed)
     rng = np.random.RandomState(seed)
 
-    wet_train = wet[train_mask].copy()
+    x_tr = torch.tensor(x_full[train_mask], device=device)
+    dry_tr = torch.tensor(dry_true[train_mask], device=device)
+    wet_tr = torch.tensor(wet_all[train_mask], device=device)
     if shuffle_labels:
-        perm = rng.permutation(len(wet_train))
-        wet_train = wet_train[perm]
+        perm = rng.permutation(len(wet_tr))
+        wet_tr = wet_tr[perm]
 
-    dry_tr = torch.tensor(dry[train_mask], device=device)
-    theta_tr = torch.tensor(theta[train_mask], device=device)
-    wet_tr = torch.tensor(wet_train, device=device)
+    x_te = torch.tensor(x_full[test_mask], device=device)
+    dry_te = torch.tensor(dry_true[test_mask], device=device)
+    wet_te = torch.tensor(wet_all[test_mask], device=device)
 
-    dry_te = torch.tensor(dry[test_mask], device=device)
-    theta_te = torch.tensor(theta[test_mask], device=device)
-    wet_te = torch.tensor(wet[test_mask], device=device)
-
-    model = model.to(device)
+    model = SurrogateMLP(in_dim=x_full.shape[1]).to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=lr)
-    n_train = dry_tr.shape[0]
-    batch_size = min(64, max(1, n_train))
+    n_train = x_tr.shape[0]
+    batch_size = min(64, n_train)
 
     model.train()
     for _epoch in range(epochs):
@@ -174,92 +161,59 @@ def train_torch_model(model, forward_fn, dry, theta, wet, train_mask, test_mask,
         for start in range(0, n_train, batch_size):
             idx = perm[start : start + batch_size]
             optimizer.zero_grad()
-            pred = forward_fn(model, dry_tr[idx], theta_tr[idx])
+            delta = model(x_tr[idx])
+            pred = dry_tr[idx] + delta
             mse = F.mse_loss(pred, wet_tr[idx])
             cos_loss = (1 - F.cosine_similarity(pred, wet_tr[idx], dim=1)).mean()
-            loss = mse + cos_loss
-            loss.backward()
+            (mse + cos_loss).backward()
             optimizer.step()
 
     model.eval()
     with torch.no_grad():
-        pred_te = forward_fn(model, dry_te, theta_te)
-        test_cos = F.cosine_similarity(pred_te, wet_te, dim=1).mean().item()
-    return float(test_cos), model
+        pred_te = dry_te + model(x_te)
+        test_cos_overall = float(F.cosine_similarity(pred_te, wet_te, dim=1).mean().item())
+        per_row_cos = F.cosine_similarity(pred_te, wet_te, dim=1).cpu().numpy()
+
+    return test_cos_overall, per_row_cos, model
 
 
-def fit_H1(dry, theta, wet, train_mask, test_mask):
-    """H1: Δ = V·θ + b, e_dry 미사용, θ에 선형 (Ridge multi-output)."""
-    delta_train = wet[train_mask] - dry[train_mask]
-    model = Ridge(alpha=1.0)
-    model.fit(theta[train_mask], delta_train)
-    delta_pred = model.predict(theta[test_mask])
-    pred = dry[test_mask] + delta_pred
-    return float(cosine_rows(pred, wet[test_mask]).mean())
-
-
-def fit_H2(dry, theta, wet, train_mask, test_mask):
-    """H2: Δ = g(θ)·v, v는 학습 delta의 평균 방향(고정), g는 θ에 대한 선형 회귀."""
-    delta_train = wet[train_mask] - dry[train_mask]
-    v = delta_train.mean(axis=0)
-    norm = np.linalg.norm(v)
-    v_unit = v / norm if norm > 1e-12 else v
-    proj_train = delta_train @ v_unit
-    g_model = Ridge(alpha=1.0)
-    g_model.fit(theta[train_mask], proj_train)
-    g_test = g_model.predict(theta[test_mask])
-    pred = dry[test_mask] + g_test[:, None] * v_unit
-    return float(cosine_rows(pred, wet[test_mask]).mean())
-
-
-def run_hierarchy_for_effect(effect_name, dataset, train_srcs, test_srcs, device, epochs, lr, seed):
-    dry, theta, wet, src_id = dataset["dry"], dataset["theta"], dataset["wet"], dataset["src_id"]
-    train_mask = np.array([s in train_srcs for s in src_id])
-    test_mask = np.array([s in test_srcs for s in src_id])
-    theta_dim = theta.shape[1]
-
-    identity_cos = float(cosine_rows(dry[test_mask], wet[test_mask]).mean())
-    h1 = fit_H1(dry, theta, wet, train_mask, test_mask)
-    h2 = fit_H2(dry, theta, wet, train_mask, test_mask)
-
-    h3_model = ThetaOnlyMLP(theta_dim)
-    h3_cos, _ = train_torch_model(
-        h3_model, lambda m, e, t: m(t), dry, theta, wet, train_mask, test_mask, device, epochs, lr, seed
-    )
-
-    h4_model = HyperLinearHead(theta_dim=theta_dim)
-    h4_cos, _ = train_torch_model(
-        h4_model, lambda m, e, t: m(e, t), dry, theta, wet, train_mask, test_mask, device, epochs, lr, seed
-    )
-
-    return {
-        "identity": identity_cos,
-        "H1": h1,
-        "H2": h2,
-        "H3": h3_cos,
-        "H4": h4_cos,
-        "n_test_rows": int(test_mask.sum()),
-        "n_train_rows": int(train_mask.sum()),
-    }
-
-
-def plot_hierarchy(ladder_results, h5_by_effect, shuffle_control, out_path):
+def plot_ablation(ablation_by_effect, decomposition_by_effect, out_path):
+    variants = ["M0", "M_th", "M_e", "M_the"]
     fig, axes = plt.subplots(1, 3, figsize=(13, 4.2), dpi=150, sharey=True)
-    h_levels = ["H1", "H2", "H3", "H4", "H5"]
     for ax, effect_name in zip(axes, EFFECTS):
-        ladder = ladder_results[effect_name]
-        scores = [ladder["H1"], ladder["H2"], ladder["H3"], ladder["H4"], h5_by_effect[effect_name]]
-        x = np.arange(len(h_levels))
-        ax.bar(x, scores, color=[H_LADDER_COLORS[h] for h in h_levels], zorder=3)
-        ax.axhline(ladder["identity"], color=INK_SECONDARY, linestyle="--", linewidth=1.2, zorder=2, label="identity")
-        ax.axhline(shuffle_control, color=COLORS["baseline"], linestyle=":", linewidth=1.2, zorder=2, label="셔플")
+        scores = [ablation_by_effect[effect_name][v] for v in variants]
+        x = np.arange(len(variants))
+        ax.bar(x, scores, color=[ABLATION_COLORS[v] for v in variants], zorder=3)
         ax.set_xticks(x)
-        ax.set_xticklabels(h_levels)
-        ax.set_title(effect_name)
+        ax.set_xticklabels(variants)
+        dec = decomposition_by_effect[effect_name]
+        ax.set_title(f"{effect_name}\nd_th={dec['d_th']:.3f} d_e={dec['d_e']:.3f} d_int={dec['d_int']:.3f}")
         style_axis(ax)
     axes[0].set_ylabel("Held-out cos(e', e_wet)")
-    axes[-1].legend(frameon=False, fontsize=8, loc="lower right")
-    fig.suptitle("H1~H5 위계 사다리 (3차: 결합 θ 기반) — 어느 칸에서 구조가 잡히는가")
+    fig.suptitle("입력 마스킹 ablation — θ/e_dry 각각의 기여 + 상호작용(d_int)")
+    fig.tight_layout()
+    fig.savefig(out_path)
+    plt.close(fig)
+
+
+def plot_variance_decomposition(decomposition_by_effect, out_path):
+    fig, ax = plt.subplots(figsize=(8, 4.5), dpi=150)
+    x = np.arange(len(EFFECTS))
+    width = 0.25
+    d_th = [decomposition_by_effect[e]["d_th"] for e in EFFECTS]
+    d_e = [decomposition_by_effect[e]["d_e"] for e in EFFECTS]
+    d_int = [decomposition_by_effect[e]["d_int"] for e in EFFECTS]
+
+    ax.bar(x - width, d_th, width, label="d_th (θ 의존)", color="#5598e7", zorder=3)
+    ax.bar(x, d_e, width, label="d_e (소스 의존)", color="#eb6834", zorder=3)
+    ax.bar(x + width, d_int, width, label="d_int (상호작용) ★", color="#e34948", zorder=3)
+    ax.axhline(0, color=GRID_COLOR, linewidth=1)
+    ax.set_xticks(x)
+    ax.set_xticklabels(EFFECTS)
+    ax.set_ylabel("held-out cos 기여분")
+    ax.set_title("분산 분해 — d_int가 크면 파라미터·소스가 얽혀 있다는 직접 증거\n(03_jacobian.py 악기 패밀리 코사인과 교차 검증)")
+    ax.legend(frameon=False, fontsize=8)
+    style_axis(ax)
     fig.tight_layout()
     fig.savefig(out_path)
     plt.close(fig)
@@ -267,7 +221,7 @@ def plot_hierarchy(ladder_results, h5_by_effect, shuffle_control, out_path):
 
 def plot_surrogate_quality(real_cos, shuffled_cos, identity_cos, out_path):
     fig, ax = plt.subplots(figsize=(6, 4.5), dpi=150)
-    labels = ["identity\n(e'=e_dry)", "셔플\n(동일 용량)", "대리모델\n(실제 레이블)"]
+    labels = ["identity\n(e'=e_dry)", "셔플\n(동일 용량)", "대리모델\n(M_the, 실제 레이블)"]
     values = [identity_cos, shuffled_cos, real_cos]
     colors = [COLORS["baseline"], "#c3c2b7", "#2a78d6"]
     ax.bar(np.arange(3), values, color=colors, zorder=3)
@@ -283,7 +237,7 @@ def plot_surrogate_quality(real_cos, shuffled_cos, identity_cos, out_path):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="residual MLP 대리모델 학습 + H1~H5 위계 재구성 (3차)")
+    parser = argparse.ArgumentParser(description="residual MLP 대리모델 학습 + 입력 마스킹 ablation (4차)")
     parser.add_argument("--embeddings", type=str, default="out/embeddings.npz")
     parser.add_argument("--out", type=str, default="out")
     parser.add_argument("--device", type=str, default="cpu", choices=["cpu", "mps", "cuda"])
@@ -300,7 +254,7 @@ def main():
 
     emb_path = Path(args.embeddings)
     if not emb_path.exists():
-        raise FileNotFoundError(f"{emb_path}가 없습니다. 먼저 01_embed.py를 실행하세요.")
+        raise FileNotFoundError(f"{emb_path}가 없습니다. 3차 embeddings.npz를 그대로 재사용하세요 (재추출 불필요).")
 
     out_dir = Path(args.out)
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -318,91 +272,76 @@ def main():
 
     device = torch.device(args.device)
 
-    # ---- H5(전체 대리모델) 풀링 학습 — 세 이펙트를 원핫으로 함께 넣는 단일 모델 ----
     non_dry = d["effect"] != "dry"
     src_ids = d["src_id"][non_dry]
     dry_all = np.stack([dry_by_src[s] for s in src_ids]).astype(np.float32)
     wet_all = d["embeddings"][non_dry].astype(np.float32)
     theta_all = d["theta_norm"][non_dry].astype(np.float32)
     effect_names_all = d["effect"][non_dry]
-    onehot = np.zeros((len(effect_names_all), len(EFFECTS)), dtype=np.float32)
+    onehot_all = np.zeros((len(effect_names_all), len(EFFECTS)), dtype=np.float32)
     for i, name in enumerate(EFFECTS):
-        onehot[:, i] = (effect_names_all == name).astype(np.float32)
-    x_full = np.concatenate([dry_all, onehot, theta_all], axis=1)
+        onehot_all[:, i] = (effect_names_all == name).astype(np.float32)
 
     train_mask_all = np.array([s in train_srcs for s in src_ids])
     test_mask_all = np.array([s in test_srcs for s in src_ids])
 
-    print("H5 대리모델(전체 풀링) 학습 중 — 실제 레이블...")
-    # SurrogateMLP는 입력이 (dry+onehot+theta) 통짜라 train_torch_model(별도 dry/theta 인자)과
-    # 시그니처가 달라 전용 루프를 쓴다.
-    torch.manual_seed(args.seed)
-    rng = np.random.RandomState(args.seed)
-    x_tr = torch.tensor(x_full[train_mask_all], device=device)
-    dry_tr_t = torch.tensor(dry_all[train_mask_all], device=device)
-    wet_tr_t = torch.tensor(wet_all[train_mask_all], device=device)
-    x_te = torch.tensor(x_full[test_mask_all], device=device)
-    dry_te_t = torch.tensor(dry_all[test_mask_all], device=device)
-    wet_te_t = torch.tensor(wet_all[test_mask_all], device=device)
+    print("입력 마스킹 ablation 4종 학습 중 (M0, M_th, M_e, M_the — 동일 아키텍처/설정/시드)...")
+    ablation_models = {}
+    ablation_overall = {}
+    ablation_per_row = {}
+    for variant, flags in ABLATION_VARIANTS.items():
+        print(f"  {variant} (use_dry={flags['use_dry']}, use_theta={flags['use_theta']}) 학습 중...")
+        x_full = build_masked_input(dry_all, onehot_all, theta_all, flags["use_dry"], flags["use_theta"])
+        cos_overall, per_row_cos, model = train_ablation_variant(
+            x_full, dry_all, wet_all, train_mask_all, test_mask_all, device, args.epochs, args.lr, args.seed
+        )
+        ablation_models[variant] = model
+        ablation_overall[variant] = cos_overall
+        ablation_per_row[variant] = per_row_cos
+        if variant == "M_the":
+            x_full_the = x_full  # surrogate_model.pt 저장용 in_dim 기록
 
-    def train_h5(shuffle_labels):
-        model = SurrogateMLP(in_dim=x_full.shape[1]).to(device)
-        optimizer = torch.optim.Adam(model.parameters(), lr=args.lr)
-        wet_target = wet_tr_t.clone()
-        if shuffle_labels:
-            perm = torch.tensor(rng.permutation(len(wet_target)))
-            wet_target = wet_target[perm]
-        n_train = x_tr.shape[0]
-        batch_size = min(64, n_train)
-        model.train()
-        for _epoch in range(args.epochs):
-            perm = torch.randperm(n_train)
-            for start in range(0, n_train, batch_size):
-                idx = perm[start : start + batch_size]
-                optimizer.zero_grad()
-                delta = model(x_tr[idx])
-                pred = dry_tr_t[idx] + delta
-                mse = F.mse_loss(pred, wet_target[idx])
-                cos_loss = (1 - F.cosine_similarity(pred, wet_target[idx], dim=1)).mean()
-                (mse + cos_loss).backward()
-                optimizer.step()
-        model.eval()
-        with torch.no_grad():
-            pred_te = dry_te_t + model(x_te)
-            test_cos = F.cosine_similarity(pred_te, wet_te_t, dim=1).mean().item()
-        return float(test_cos), model
-
-    real_cos, h5_model = train_h5(shuffle_labels=False)
-    print("H5 대리모델 셔플 통제 학습 중...")
-    shuffled_cos, _ = train_h5(shuffle_labels=True)
+    print("M_the 셔플 통제 학습 중 (동일 용량)...")
+    x_full_the_masked = build_masked_input(dry_all, onehot_all, theta_all, True, True)
+    shuffled_cos, _shuffled_per_row, _ = train_ablation_variant(
+        x_full_the_masked, dry_all, wet_all, train_mask_all, test_mask_all, device, args.epochs, args.lr, args.seed, shuffle_labels=True
+    )
     identity_cos_pooled = float(cosine_rows(dry_all[test_mask_all], wet_all[test_mask_all]).mean())
+    real_cos = ablation_overall["M_the"]
 
-    # 이펙트별 H5 held-out 코사인 (같은 풀링 모델을 이펙트별로 슬라이스해 평가)
-    h5_by_effect = {}
-    with torch.no_grad():
+    # 이펙트별 held-out 코사인 슬라이스 + 분산 분해
+    print("이펙트별 분산 분해 계산 중...")
+    ablation_by_effect = {e: {} for e in EFFECTS}
+    decomposition_by_effect = {}
+    test_effect_names = effect_names_all[test_mask_all]
+    for variant, model in ablation_models.items():
         for e in EFFECTS:
-            e_test = test_mask_all & (effect_names_all == e)
-            x_e = torch.tensor(x_full[e_test], device=device)
-            dry_e = torch.tensor(dry_all[e_test], device=device)
-            wet_e = torch.tensor(wet_all[e_test], device=device)
-            pred_e = dry_e + h5_model(x_e)
-            h5_by_effect[e] = float(F.cosine_similarity(pred_e, wet_e, dim=1).mean().item())
+            e_local_mask = test_effect_names == e
+            ablation_by_effect[e][variant] = float(ablation_per_row[variant][e_local_mask].mean())
 
-    print("H1~H4 사다리(이펙트별) 계산 중...")
-    ladder_results = {}
     for e in EFFECTS:
-        dataset = build_effect_dataset(d, dry_by_src, e, theta_slots)
-        ladder_results[e] = run_hierarchy_for_effect(e, dataset, train_srcs, test_srcs, device, args.epochs, args.lr, args.seed)
+        m0 = ablation_by_effect[e]["M0"]
+        m_th = ablation_by_effect[e]["M_th"]
+        m_e = ablation_by_effect[e]["M_e"]
+        m_the = ablation_by_effect[e]["M_the"]
+        d_total = m_the - m0
+        d_th = m_th - m0
+        d_e = m_e - m0
+        d_int = d_total - d_th - d_e
+        decomposition_by_effect[e] = {
+            "d_total": d_total, "d_th": d_th, "d_e": d_e, "d_int": d_int,
+        }
 
     print("그림 저장 중...")
-    plot_hierarchy(ladder_results, h5_by_effect, shuffled_cos, out_dir / "hierarchy.png")
+    plot_ablation(ablation_by_effect, decomposition_by_effect, out_dir / "ablation.png")
+    plot_variance_decomposition(decomposition_by_effect, out_dir / "variance_decomposition.png")
     plot_surrogate_quality(real_cos, shuffled_cos, identity_cos_pooled, out_dir / "surrogate_quality.png")
 
-    # 대리모델 가중치 저장 — 03_jacobian.py / 04_text_alignment.py가 재사용
+    # M_the를 surrogate_model.pt로 저장 — 03/05/06/07이 재사용 (인터페이스 동일 유지)
     torch.save(
         {
-            "state_dict": h5_model.state_dict(),
-            "in_dim": x_full.shape[1],
+            "state_dict": ablation_models["M_the"].state_dict(),
+            "in_dim": x_full_the.shape[1],
             "theta_slots": theta_slots,
             "effects": EFFECTS,
         },
@@ -432,23 +371,13 @@ def main():
     }
     results_json["neutral_check"] = {"cos_by_effect": neutral_check}
 
+    # 3차의 hierarchy_H1_to_H5는 폐기 — 포함 관계가 성립하지 않는 잘못된 설계였다 (README 참고).
+    results_json.pop("hierarchy", None)
     results_json["surrogate"] = {
         "held_out_cos_real": real_cos,
         "held_out_cos_shuffled": shuffled_cos,
         "held_out_cos_identity": identity_cos_pooled,
-        "held_out_cos_by_effect": h5_by_effect,
-        "hierarchy_H1_to_H5": {
-            e: {
-                "identity": ladder_results[e]["identity"],
-                "H1": ladder_results[e]["H1"],
-                "H2": ladder_results[e]["H2"],
-                "H3": ladder_results[e]["H3"],
-                "H4": ladder_results[e]["H4"],
-                "H5": h5_by_effect[e],
-                "shuffle_control": shuffled_cos,
-            }
-            for e in EFFECTS
-        },
+        "held_out_cos_by_effect": {e: ablation_by_effect[e]["M_the"] for e in EFFECTS},
         "epochs": args.epochs,
         "lr": args.lr,
         "seed": args.seed,
@@ -456,10 +385,19 @@ def main():
         "n_train_sources": len(train_srcs),
         "n_test_sources": len(test_srcs),
     }
+
+    results_json["ablation"] = {
+        "note": "3차의 H1~H5 위계를 대체. M0/M_th/M_e/M_the는 동일 아키텍처·학습설정·시드,"
+        " 입력 슬롯만 0으로 마스킹. d_int = d_total - d_th - d_e가 상호작용(파라미터-소스 얽힘)의 직접 증거.",
+        "by_effect": ablation_by_effect,
+        "decomposition": decomposition_by_effect,
+    }
+
     with open(results_path, "w") as f:
         json.dump(results_json, f, indent=2, ensure_ascii=False)
 
-    print(f"완료: {out_dir / 'surrogate_model.pt'}, {results_path}, {out_dir}/hierarchy.png, {out_dir}/surrogate_quality.png")
+    print(f"완료: {out_dir / 'surrogate_model.pt'}, {results_path}, {out_dir}/ablation.png, "
+          f"{out_dir}/variance_decomposition.png, {out_dir}/surrogate_quality.png")
 
 
 if __name__ == "__main__":

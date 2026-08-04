@@ -1,4 +1,4 @@
-"""CLAP FX Probe — 06_reverse.py (3차, 1차부터 계속 미측정)
+"""CLAP FX Probe — 06_reverse.py (4차 개정: 단사성 정의 명확화)
 
 역방향 사상: e_wet → (e_dry, 이펙트 종류, θ). 분류 헤드 + 회귀 헤드 + 재구성 헤드를
 정방향과 동일 용량·동일 src_id 분리로 학습한다.
@@ -10,6 +10,16 @@
 
   단사성 진단: wet 임베딩 공간에서 서로 다른 소스가 최근접 이웃으로 충돌하는 비율.
   충돌이 잦으면 역방향은 원리적으로 불가능하며 이 또한 유효한 결과다.
+
+4차: 3차는 collision_rate=0.018(threshold=0.99)과 nn_cosine_median=0.9953이 함께
+보고되어 모순처럼 보였다 — 중앙값이 threshold를 넘는데 충돌률이 1.8%일 리 없다는
+지적. 실제로는 모순이 아니라 정의가 불충분히 설명된 것이었다: collision은 "최근접
+이웃이 '다른 소스'이면서 유사도가 threshold를 넘는 경우"만 센다. 같은 소스의 다른
+θ끼리 유사도가 높은 것(오히려 정상 — 같은 악기의 다른 이펙트 강도는 임베딩이 가까워야
+자연스럽다)은 collision이 아니다. 즉 nn_cosine_median이 높은 이유는 대부분의 점에서
+최근접 이웃이 "같은 소스의 다른 θ"이기 때문일 수 있다. 이를 same-source/
+different-source로 분리해 명시적으로 보고하고, threshold도 0.95/0.99/0.999 세 값
+모두에서 계산해 단일 threshold 선택에 좌우되지 않게 한다.
 
 결과 해석은 이 스크립트가 단정하지 않는다. README의 판정 기준표를 따를 것.
 """
@@ -107,8 +117,17 @@ def split_sources(unique_src_ids, seed, test_size=0.3):
     return set(shuffled[n_test:].tolist()), set(shuffled[:n_test].tolist())
 
 
-def injectivity_diagnostic(embeddings, src_ids, threshold=0.99, n_sample=3000, seed=0):
-    """wet 임베딩 공간에서 서로 다른 소스가 최근접 이웃으로 충돌하는 비율."""
+def injectivity_diagnostic(embeddings, src_ids, thresholds=(0.95, 0.99, 0.999), n_sample=3000, seed=0):
+    """wet 임베딩 공간에서의 단사성(injectivity) 진단.
+
+    ★ collision의 정의: 한 점의 "최근접 이웃"이 (a) 자신과 "다른 소스"이고, (b) 코사인
+    유사도가 threshold를 넘는 경우만을 collision으로 센다. 같은 소스(같은 악기)의 다른
+    θ끼리 최근접 이웃으로 잡히는 것은 collision이 아니다 — 오히려 정상적으로 기대되는
+    구조다 (같은 악기의 다른 이펙트 강도는 임베딩이 서로 가까워야 자연스럽다).
+    nn_cosine_median이 threshold보다 높다고 해서 collision_rate가 높아야 하는 것은
+    아니다: 최근접 이웃 "대부분"이 같은 소스의 다른 θ일 수 있기 때문이다. 이를
+    same-source/different-source로 분리해 별도로 보고한다.
+    """
     rng = np.random.RandomState(seed)
     n = min(n_sample, len(embeddings))
     idx = rng.choice(len(embeddings), size=n, replace=False)
@@ -121,15 +140,69 @@ def injectivity_diagnostic(embeddings, src_ids, threshold=0.99, n_sample=3000, s
     nn_idx = sim.argmax(axis=1)
     nn_sim = sim[np.arange(n), nn_idx]
     different_source = srcs != srcs[nn_idx]
-    collision = (nn_sim > threshold) & different_source
+
+    same_source_sim = nn_sim[~different_source]
+    diff_source_sim = nn_sim[different_source]
+
+    collision_by_threshold = {}
+    for t in thresholds:
+        collision_by_threshold[str(t)] = {
+            "collision_rate": float(((nn_sim > t) & different_source).mean()),
+            "same_source_neighbor_rate_above_threshold": float(((nn_sim > t) & ~different_source).mean()),
+        }
 
     return {
-        "collision_rate": float(collision.mean()),
-        "threshold": threshold,
-        "nn_cosine_mean": float(nn_sim.mean()),
-        "nn_cosine_median": float(np.median(nn_sim)),
+        "definition_note": "collision = 최근접 이웃이 '다른 소스'이면서 유사도>threshold인 경우만. "
+        "같은 소스의 다른 θ가 최근접 이웃인 것은 collision이 아니다.",
+        "thresholds": [float(t) for t in thresholds],
+        "collision_by_threshold": collision_by_threshold,
+        "nn_cosine_mean_overall": float(nn_sim.mean()),
+        "nn_cosine_median_overall": float(np.median(nn_sim)),
+        "nn_cosine_median_same_source": float(np.median(same_source_sim)) if len(same_source_sim) else None,
+        "nn_cosine_median_diff_source": float(np.median(diff_source_sim)) if len(diff_source_sim) else None,
+        "frac_nearest_neighbor_is_same_source": float((~different_source).mean()),
         "n_sampled": int(n),
     }
+
+
+def plot_injectivity(injectivity, out_path):
+    thresholds = injectivity["thresholds"]
+    collision_rates = [injectivity["collision_by_threshold"][str(t)]["collision_rate"] for t in thresholds]
+    same_src_rates = [injectivity["collision_by_threshold"][str(t)]["same_source_neighbor_rate_above_threshold"] for t in thresholds]
+
+    fig, axes = plt.subplots(1, 2, figsize=(10, 4.5), dpi=150)
+
+    ax = axes[0]
+    x = np.arange(len(thresholds))
+    width = 0.35
+    ax.bar(x - width / 2, collision_rates, width, label="충돌률 (다른 소스, 유사도>threshold)", color="#eb6834", zorder=3)
+    ax.bar(x + width / 2, same_src_rates, width, label="같은 소스인데 유사도>threshold", color=COLORS["baseline"], zorder=3)
+    ax.set_xticks(x)
+    ax.set_xticklabels([str(t) for t in thresholds])
+    ax.set_xlabel("threshold")
+    ax.set_ylabel("비율")
+    ax.set_title("Threshold별 충돌률")
+    ax.legend(frameon=False, fontsize=7)
+    style_axis(ax)
+
+    ax = axes[1]
+    labels = ["전체", "같은 소스", "다른 소스"]
+    vals = [
+        injectivity["nn_cosine_median_overall"],
+        injectivity["nn_cosine_median_same_source"],
+        injectivity["nn_cosine_median_diff_source"],
+    ]
+    ax.bar(np.arange(3), vals, color=[COLORS["baseline"], "#2a78d6", "#eb6834"], zorder=3)
+    ax.set_xticks(np.arange(3))
+    ax.set_xticklabels(labels)
+    ax.set_ylabel("최근접 이웃 코사인 중앙값")
+    ax.set_ylim(0, 1.05)
+    ax.set_title(f"최근접 이웃 성격 분리 (같은 소스 비율={injectivity['frac_nearest_neighbor_is_same_source']:.2f})")
+    style_axis(ax)
+
+    fig.tight_layout()
+    fig.savefig(out_path)
+    plt.close(fig)
 
 
 def plot_cycle_consistency(cycle_by_effect, baseline_by_effect, out_path):
@@ -293,6 +366,7 @@ def main():
 
     print("그림 저장 중...")
     plot_cycle_consistency(cycle_by_effect, baseline_by_effect, out_dir / "cycle_consistency.png")
+    plot_injectivity(injectivity, out_dir / "injectivity.png")
 
     results_path = out_dir / "results.json"
     results_json = {}
@@ -308,8 +382,7 @@ def main():
         "cycle_baseline": baseline_by_effect,
         "cycle_note": "cycle_consistency가 cycle_baseline(=cos(e_dry,e_wet), 아무 처리도 안 했을 때의 값)을 "
         "넘지 못하면 역방향 모델이 무의미하다. highshelf는 baseline 자체가 이미 천장이라 개선 여지가 거의 없다.",
-        "injectivity_collision_rate": injectivity["collision_rate"],
-        "injectivity_detail": injectivity,
+        "injectivity": injectivity,
         "epochs": args.epochs,
         "lr": args.lr,
         "seed": args.seed,
@@ -318,8 +391,9 @@ def main():
     with open(results_path, "w") as f:
         json.dump(results_json, f, indent=2, ensure_ascii=False)
 
-    print(f"완료: {results_path}, {out_dir}/cycle_consistency.png")
-    print(f"이펙트 종류 분류 정확도: {effect_acc:.3f}, 단사성 충돌률: {injectivity['collision_rate']:.4f}")
+    print(f"완료: {results_path}, {out_dir}/cycle_consistency.png, {out_dir}/injectivity.png")
+    coll_99 = injectivity["collision_by_threshold"]["0.99"]["collision_rate"]
+    print(f"이펙트 종류 분류 정확도: {effect_acc:.3f}, 단사성 충돌률(threshold=0.99): {coll_99:.4f}")
 
 
 if __name__ == "__main__":

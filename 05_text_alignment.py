@@ -1,4 +1,4 @@
-"""CLAP FX Probe — 05_text_alignment.py (3차)
+"""CLAP FX Probe — 05_text_alignment.py (4차 개정: 부트스트랩 CI 추가)
 
 캡션 가설(CLAP은 캡션에 흔한 개념만 인코딩한다)을 CLAP 자신의 cross-modal 성질로
 검증한다. 텍스트 방향 u = e_text("distorted guitar") − e_text("guitar")와, 대리모델
@@ -13,6 +13,12 @@
 통제 2종:
   (a) 무작위 텍스트 방향 — 오디오 이펙트와 무관한 수식어 쌍. 우연 수준 기준선.
   (b) 교차 정렬 — cos(v_distortion, u_reverb) 등. 자기 정렬도가 교차보다 높아야 한다.
+
+4차: 3차는 정렬도에 CI가 없어 유의성을 판정할 수 없었다. 텍스트 쌍을 복원추출로
+부트스트랩해 정렬도·통제 각각의 CI, 그리고 "격차"(정렬도 − 통제)의 CI를 낸다 — 격차의
+CI가 0을 포함하지 않아야 유의하다고 볼 수 있다. 3차에서 highshelf의 "bright" 방향이
+자기 오디오 방향(0.031)보다 distortion 오디오 방향(0.138)과 더 잘 맞는 역전이 있었는데,
+이게 CI 기준으로도 유의한지 자동으로 확인한다(reversal_check).
 
 결과 해석은 이 스크립트가 단정하지 않는다. README의 판정 기준표를 따를 것.
 """
@@ -144,7 +150,7 @@ def audio_direction_for_param(model, effect_name, param_name, param_order, theta
 
 
 def load_text_directions(text_npz_path: Path):
-    """그룹별 평균 텍스트 방향 u = mean(e_pos - e_neg)."""
+    """그룹별 평균 텍스트 방향 u = mean(e_pos - e_neg), 그리고 부트스트랩용 원 쌍별 diff 벡터."""
     data = np.load(text_npz_path, allow_pickle=False)
     embeddings = data["embeddings"]
     groups = data["pair_group"]
@@ -152,25 +158,75 @@ def load_text_directions(text_npz_path: Path):
     neg_idx = data["pair_neg_idx"]
 
     directions = {}
+    diffs_by_group = {}
     for group in sorted(set(groups.tolist())):
         mask = groups == group
         diffs = embeddings[pos_idx[mask]] - embeddings[neg_idx[mask]]
+        diffs_by_group[group] = diffs
         directions[group] = diffs.mean(axis=0)
-    return directions
+    return directions, diffs_by_group
 
 
 def cosine(a, b):
     return float(np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b) + 1e-12))
 
 
-def plot_text_alignment(self_align, random_control, cross_align, out_path):
+N_BOOTSTRAP = 2000
+CI_PERCENTILES = [2.5, 97.5]
+
+
+def bootstrap_cosine_dist(audio_vec, diffs, rng, n_boot=N_BOOTSTRAP):
+    """텍스트 쌍을 복원추출로 재표집해 매번 평균 방향을 다시 내고, audio_vec과의 코사인 분포를 반환.
+
+    diffs: (n_pairs, 512) 이 그룹에 속한 개별 쌍의 e_pos - e_neg. n_pairs가 작으므로(20~30)
+    전체 재표집 인덱스를 한 번에 만들어 벡터화한다.
+    """
+    n = diffs.shape[0]
+    idx = rng.integers(0, n, size=(n_boot, n))
+    boot_dirs = diffs[idx].mean(axis=1)  # (n_boot, 512)
+    num = boot_dirs @ audio_vec
+    denom = np.linalg.norm(boot_dirs, axis=1) * np.linalg.norm(audio_vec) + 1e-12
+    return num / denom
+
+
+def ci_summary(point_estimate, dist):
+    lo, hi = np.percentile(dist, CI_PERCENTILES)
+    return {
+        "point": float(point_estimate),
+        "boot_mean": float(np.mean(dist)),
+        "ci_lo": float(lo),
+        "ci_hi": float(hi),
+    }
+
+
+def gap_ci_summary(self_dist, control_dist):
+    """자기 정렬 − 통제. 두 분포는 서로 다른(독립적인) 재표집이므로 그대로 뺀다.
+    CI가 0을 포함하지 않아야(특히 하한이 0보다 커야) 격차가 유의하다고 볼 수 있다."""
+    gap_dist = self_dist - control_dist
+    lo, hi = np.percentile(gap_dist, CI_PERCENTILES)
+    return {
+        "point": float(np.mean(self_dist) - np.mean(control_dist)),
+        "ci_lo": float(lo),
+        "ci_hi": float(hi),
+        "significant_positive": bool(lo > 0),
+    }
+
+
+def plot_text_alignment(self_align_ci, random_control_ci_by_effect, cross_align_ci, out_path):
     fig, ax = plt.subplots(figsize=(8, 5), dpi=150)
-    labels = [f"{e}\n(자기 정렬)" for e in EFFECTS] + ["무작위 텍스트\n(통제)"]
-    values = [self_align[e] for e in EFFECTS] + [random_control]
-    colors = [COLORS[e] for e in EFFECTS] + [COLORS["baseline"]]
+    labels = [f"{e}\n(자기 정렬)" for e in EFFECTS] + [f"{e}\n(통제)" for e in EFFECTS]
+    values = [self_align_ci[e]["point"] for e in EFFECTS] + [random_control_ci_by_effect[e]["point"] for e in EFFECTS]
+    err_lo = [self_align_ci[e]["point"] - self_align_ci[e]["ci_lo"] for e in EFFECTS] + [
+        random_control_ci_by_effect[e]["point"] - random_control_ci_by_effect[e]["ci_lo"] for e in EFFECTS
+    ]
+    err_hi = [self_align_ci[e]["ci_hi"] - self_align_ci[e]["point"] for e in EFFECTS] + [
+        random_control_ci_by_effect[e]["ci_hi"] - random_control_ci_by_effect[e]["point"] for e in EFFECTS
+    ]
+    colors = [COLORS[e] for e in EFFECTS] + [COLORS["baseline"]] * len(EFFECTS)
 
     x = np.arange(len(labels))
-    ax.bar(x, values, color=colors, zorder=3, label="자기 정렬 / 통제")
+    ax.bar(x, values, color=colors, zorder=3, label="자기 정렬 / 통제 (95% CI)")
+    ax.errorbar(x, values, yerr=[err_lo, err_hi], fmt="none", ecolor=INK_SECONDARY, elinewidth=1.2, capsize=4, zorder=4)
 
     # 교차 정렬은 옅은 색으로 겹쳐 그린다 (자기 정렬 옆에 비교되도록)
     cross_x, cross_y = [], []
@@ -179,14 +235,14 @@ def plot_text_alignment(self_align, random_control, cross_align, out_path):
             if other == e:
                 continue
             cross_x.append(i)
-            cross_y.append(cross_align[f"{e}_vs_{other}"])
-    ax.scatter(cross_x, cross_y, color=INK_SECONDARY, marker="x", s=40, zorder=4, label="교차 정렬 (다른 이펙트 텍스트)")
+            cross_y.append(cross_align_ci[f"{e}_vs_{other}"]["point"])
+    ax.scatter(cross_x, cross_y, color="#111111", marker="x", s=40, zorder=5, label="교차 정렬 (다른 이펙트 텍스트)")
 
     ax.axhline(0, color=GRID_COLOR, linewidth=1)
     ax.set_xticks(x)
     ax.set_xticklabels(labels)
     ax.set_ylabel("cos(오디오 방향 v, 텍스트 방향 u)")
-    ax.set_title("텍스트-오디오 방향 정렬 검증")
+    ax.set_title("텍스트-오디오 방향 정렬 검증 (오차막대 = 부트스트랩 95% CI)")
     ax.legend(frameon=False, fontsize=8)
     style_axis(ax)
     fig.tight_layout()
@@ -228,8 +284,9 @@ def main():
     dry_by_src = dict(zip(d["src_id"][dry_mask].tolist(), d["embeddings"][dry_mask]))
 
     print("텍스트 방향 로딩 중...")
-    text_directions = load_text_directions(text_path)
+    text_directions, text_diffs = load_text_directions(text_path)
     random_direction = text_directions.get("random_control")
+    random_diffs = text_diffs.get("random_control")
     if random_direction is None:
         raise RuntimeError("text_embeddings.npz에 random_control 그룹이 없습니다.")
 
@@ -251,9 +308,53 @@ def main():
                 continue
             cross_align[f"{e}_vs_{other}"] = cosine(audio_directions[e], text_directions[other])
 
+    print(f"부트스트랩 CI 계산 중 (n_boot={N_BOOTSTRAP}, 텍스트 쌍 복원추출)...")
+    boot_rng = np.random.default_rng(args.seed)
+
+    self_boot_dist = {e: bootstrap_cosine_dist(audio_directions[e], text_diffs[e], boot_rng) for e in EFFECTS}
+    control_boot_dist = {e: bootstrap_cosine_dist(audio_directions[e], random_diffs, boot_rng) for e in EFFECTS}
+    cross_boot_dist = {}
+    for e in EFFECTS:
+        for other in EFFECTS:
+            if other == e:
+                continue
+            cross_boot_dist[f"{e}_vs_{other}"] = bootstrap_cosine_dist(audio_directions[e], text_diffs[other], boot_rng)
+
+    self_align_ci = {e: ci_summary(self_align[e], self_boot_dist[e]) for e in EFFECTS}
+    random_control_ci = {e: ci_summary(random_control_align[e], control_boot_dist[e]) for e in EFFECTS}
+    cross_align_ci = {k: ci_summary(cross_align[k], cross_boot_dist[k]) for k in cross_align}
+
+    # 격차(자기 정렬 − 통제) CI — 이게 유의성 판정 기준이다.
+    gap_ci = {e: gap_ci_summary(self_boot_dist[e], control_boot_dist[e]) for e in EFFECTS}
+
+    # 역전 검사: 이펙트 e의 오디오 방향이 자기 텍스트 방향보다 "다른" 이펙트의 텍스트 방향과
+    # 더 잘 맞는 경우가 있는지 모든 (e, other) 쌍에 대해 자동 확인한다. 3차의 highshelf
+    # (자기 정렬 0.031 vs distortion 텍스트 방향 0.138)가 여기 해당한다.
+    reversal_check = {}
+    for e in EFFECTS:
+        best_other, best_cross_val = None, -np.inf
+        for other in EFFECTS:
+            if other == e:
+                continue
+            v = cross_align[f"{e}_vs_{other}"]
+            if v > best_cross_val:
+                best_other, best_cross_val = other, v
+        if best_cross_val > self_align[e]:
+            diff_dist = cross_boot_dist[f"{e}_vs_{best_other}"] - self_boot_dist[e]
+            lo, hi = np.percentile(diff_dist, CI_PERCENTILES)
+            reversal_check[e] = {
+                "self_align": self_align[e],
+                "best_cross_effect": best_other,
+                "best_cross_align": best_cross_val,
+                "cross_minus_self_ci_lo": float(lo),
+                "cross_minus_self_ci_hi": float(hi),
+                "reversal_significant": bool(lo > 0),
+            }
+        else:
+            reversal_check[e] = {"self_align": self_align[e], "reversal_detected": False}
+
     print("그림 저장 중...")
-    random_control_mean = float(np.mean(list(random_control_align.values())))
-    plot_text_alignment(self_align, random_control_mean, cross_align, out_dir / "text_alignment.png")
+    plot_text_alignment(self_align_ci, random_control_ci, cross_align_ci, out_dir / "text_alignment.png")
 
     results_path = out_dir / "results.json"
     results_json = {}
@@ -261,14 +362,22 @@ def main():
         with open(results_path) as f:
             results_json = json.load(f)
 
+    random_control_mean = float(np.mean(list(random_control_align.values())))
     results_json["text_alignment"] = {
         "representative_param": REPRESENTATIVE_PARAM,
         "highshelf_note": "highshelf에 대응하는 정확한 캡션 관용구가 없어 'bright/crisp' 계열로 근사함 — 불완전한 근사임에 유의",
+        "n_bootstrap": N_BOOTSTRAP,
+        "ci_method": "텍스트 쌍(pair)을 그룹 내에서 복원추출로 재표집 → 평균 방향 재계산 → 코사인 재계산, 95% 백분위수 CI",
         "cos_by_effect": self_align,
+        "cos_by_effect_ci": self_align_ci,
         "cos_random_control_by_effect": random_control_align,
+        "cos_random_control_by_effect_ci": random_control_ci,
         "cos_random_control_mean": random_control_mean,
         "cos_random_control": random_control_mean,
+        "gap_self_minus_control_ci": gap_ci,
         "cos_cross_effect": cross_align,
+        "cos_cross_effect_ci": cross_align_ci,
+        "reversal_check": reversal_check,
     }
     with open(results_path, "w") as f:
         json.dump(results_json, f, indent=2, ensure_ascii=False)

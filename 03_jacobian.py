@@ -1,4 +1,4 @@
-"""CLAP FX Probe — 03_jacobian.py (3차 핵심)
+"""CLAP FX Probe — 03_jacobian.py (4차 개정)
 
 02_surrogate.py가 학습한 residual MLP 대리모델의 야코비안 J = ∂e'/∂θ를 autograd로
 계산해 분석한다.
@@ -7,6 +7,9 @@
       작동하는지: ‖∂f/∂damping‖, ‖∂f/∂room_size‖, ‖∂f/∂width‖가 wet_level에
       단조 증가해야 한다 (Spearman ρ). 확인되면 야코비안 접근 자체가 검증된 것이고,
       안 되면 대리모델이 구조를 학습하지 못한 것이다.
+      4차: 3차는 wet_level을 25구간으로 나누고 합성 무작위 조합으로 채웠다(실효 표본
+      ~25개, damping p=0.07로 비유의). 이번엔 테스트셋의 모든 (e_dry, θ) 원시 점을
+      그대로 써서 표본을 수천 개로 늘리고, 선형회귀 기울기·R²도 함께 낸다.
 
   (b) 악기 패밀리별 손잡이 차이 — 이 프로젝트의 원래 질문. 파라미터별로 패밀리 간
       J 코사인의 평균/분산을 낸다. 높으면(>0.8) 공통 손잡이로 충분, 낮으면(<0.5)
@@ -143,46 +146,52 @@ def extract_oat_curve(model, effect_name, theta_slots, theta_width, device, para
 # ---------------------------------------------------------------------------
 
 
-def gate_structure_analysis(model, theta_slots, theta_width, dry_by_src, device, seed, n_wet_bins=25, n_param_draws=12, n_dry_samples=20):
+def gate_structure_analysis(model, theta_slots, theta_width, d, dry_by_src, test_srcs, device, seed, max_points=6000):
+    """4차 개정: 구간으로 묶지 않고 테스트셋의 모든 (e_dry, θ) 원시 점에서 J를 평가한다.
+
+    3차는 wet_level을 25구간으로 나누고 구간마다 room_size/damping/width/freeze_mode를
+    합성 무작위 조합으로 채워 넣었다 — 실효 표본이 25개 수준이라 검정력이 부족했고
+    (damping rho=0.37, p=0.07), 실제 LHS 결합분포도 반영하지 못했다. 이번엔 테스트셋에
+    실제로 존재하는 (θ, e_dry) 조합을 그대로 쓴다.
+    """
     effect_name = "reverb"
-    param_order = ["wet_level", "room_size", "damping", "width", "freeze_mode"]
     f = build_forward_fn(model, effect_name, theta_slots, theta_width, device)
 
+    mask = (d["effect"] == effect_name) & np.isin(d["src_id"], list(test_srcs))
+    src_ids = d["src_id"][mask]
+    start, end = theta_slots[effect_name]
+    theta_raw = d["theta_norm"][mask][:, start:end].astype(np.float32)
+    wet_level = theta_raw[:, 0].copy()
+    dry_arr = np.stack([dry_by_src[s] for s in src_ids]).astype(np.float32)
+
     rng = np.random.RandomState(seed)
-    unique_srcs = np.array(sorted(dry_by_src.keys()))
-    chosen_srcs = rng.choice(unique_srcs, size=min(n_dry_samples, len(unique_srcs)), replace=False)
-    dry_samples = np.stack([dry_by_src[s] for s in chosen_srcs]).astype(np.float32)
+    n = len(src_ids)
+    if n > max_points:
+        idx = rng.choice(n, size=max_points, replace=False)
+        theta_raw, dry_arr, wet_level = theta_raw[idx], dry_arr[idx], wet_level[idx]
 
-    wet_levels = np.linspace(0.0, 1.0, n_wet_bins)
+    theta_t = torch.tensor(theta_raw, device=device)
+    dry_t = torch.tensor(dry_arr, device=device)
+    J = batched_jacobian(f, theta_t, dry_t)  # (N, 512, 5), 원시 점 N개 전부
+
     targets = {"room_size": 1, "damping": 2, "width": 3}
-    norm_by_target = {name: [] for name in targets}
-
-    for wl in wet_levels:
-        other = rng.uniform(0, 1, size=(n_param_draws, 3))  # room_size, damping, width
-        freeze = rng.randint(0, 2, size=(n_param_draws,)).astype(np.float32)
-
-        theta_rows, dry_rows = [], []
-        for pi in range(n_param_draws):
-            for dry_vec in dry_samples:
-                theta_rows.append([wl, other[pi, 0], other[pi, 1], other[pi, 2], freeze[pi]])
-                dry_rows.append(dry_vec)
-        theta_t = torch.tensor(np.array(theta_rows, dtype=np.float32), device=device)
-        dry_t = torch.tensor(np.array(dry_rows, dtype=np.float32), device=device)
-        J = batched_jacobian(f, theta_t, dry_t)  # (N, 512, 5)
-
-        for name, idx in targets.items():
-            col_norms = J[:, :, idx].norm(dim=1)
-            norm_by_target[name].append(float(col_norms.mean().item()))
-
-    result = {}
-    for name in targets:
-        rho, pvalue = spearmanr(wet_levels, norm_by_target[name])
+    result = {"n_points": int(len(wet_level))}
+    for name, idx_p in targets.items():
+        norms = J[:, :, idx_p].norm(dim=1).detach().cpu().numpy()
+        rho, pvalue = spearmanr(wet_level, norms)
+        slope, intercept = np.polyfit(wet_level, norms, 1)
+        pred = slope * wet_level + intercept
+        ss_res = float(np.sum((norms - pred) ** 2))
+        ss_tot = float(np.sum((norms - norms.mean()) ** 2))
+        r2 = 1 - ss_res / ss_tot if ss_tot > 1e-12 else None
         result[name] = {
-            "norm_by_wet_level": norm_by_target[name],
             "spearman_vs_wet_level": float(rho),
             "spearman_pvalue": float(pvalue),
+            "linear_slope": float(slope),
+            "linear_r2": r2,
+            "_wet_level": wet_level,
+            "_norms": norms,
         }
-    result["wet_levels"] = wet_levels.tolist()
     return result
 
 
@@ -278,17 +287,23 @@ def theta_dependence_analysis(model, theta_slots, theta_width, param_order_by_ef
 
 
 def plot_jacobian_gate(gate_result, out_path):
+    """원시 점 산점도 + 선형회귀선. 3차의 25구간 평균 라인플롯을 대체 — 실효 표본이
+    이제 테스트셋 크기(수천)만큼 늘어난다."""
     fig, axes = plt.subplots(1, 3, figsize=(13, 4.2), dpi=150)
-    wet_levels = gate_result["wet_levels"]
+    n_points = gate_result["n_points"]
     for ax, name in zip(axes, ["room_size", "damping", "width"]):
         r = gate_result[name]
-        ax.plot(wet_levels, r["norm_by_wet_level"], color=GATE_TARGET_COLORS[name], linewidth=2, marker="o", markersize=3)
+        wl, norms = r["_wet_level"], r["_norms"]
+        ax.scatter(wl, norms, s=6, alpha=0.15, color=GATE_TARGET_COLORS[name], edgecolors="none")
+        x_line = np.array([wl.min(), wl.max()])
+        ax.plot(x_line, r["linear_slope"] * x_line + (norms.mean() - r["linear_slope"] * wl.mean()), color=INK_SECONDARY, linewidth=1.5, linestyle="--")
         tag = " (음성 통제)" if name == "width" else ""
-        ax.set_title(f"‖∂f/∂{name}‖{tag}\nSpearman ρ={r['spearman_vs_wet_level']:.2f}")
+        r2_str = f"{r['linear_r2']:.2f}" if r["linear_r2"] is not None else "N/A"
+        ax.set_title(f"‖∂f/∂{name}‖{tag}\nSpearman ρ={r['spearman_vs_wet_level']:.2f} (p={r['spearman_pvalue']:.3f}), 선형 R²={r2_str}")
         ax.set_xlabel("wet_level (정규화)")
         style_axis(ax)
-    axes[0].set_ylabel("야코비안 열 노름 (다른 파라미터/소스 평균)")
-    fig.suptitle("게이트 구조 검증 — wet_level이 커질수록 다른 파라미터의 영향력도 커져야 한다")
+    axes[0].set_ylabel("야코비안 열 노름 (원시 점, 테스트셋)")
+    fig.suptitle(f"게이트 구조 검증 (원시 점 n={n_points}) — wet_level이 커질수록 다른 파라미터의 영향력도 커져야 한다")
     fig.tight_layout()
     fig.savefig(out_path)
     plt.close(fig)
@@ -320,12 +335,21 @@ def plot_jacobian_by_family(family_result, param_order_by_effect, negative_contr
     plt.close(fig)
 
 
+def split_sources(unique_src_ids: np.ndarray, seed: int, test_size: float = 0.3):
+    """02_surrogate.py와 동일한 split — 게이트 분석을 "테스트셋"에서 하려면 같은 분할이 필요하다."""
+    rng = np.random.RandomState(seed)
+    shuffled = rng.permutation(unique_src_ids)
+    n_test = max(1, int(round(len(shuffled) * test_size)))
+    return set(shuffled[:n_test].tolist())
+
+
 def main():
-    parser = argparse.ArgumentParser(description="대리모델 야코비안 분석 (3차 핵심)")
+    parser = argparse.ArgumentParser(description="대리모델 야코비안 분석 (4차)")
     parser.add_argument("--embeddings", type=str, default="out/embeddings.npz")
     parser.add_argument("--out", type=str, default="out")
     parser.add_argument("--device", type=str, default="cpu", choices=["cpu", "mps", "cuda"])
     parser.add_argument("--seed", type=int, default=0)
+    parser.add_argument("--test-size", type=float, default=0.3)
     args = parser.parse_args()
 
     if args.device == "mps":
@@ -353,8 +377,11 @@ def main():
     dry_mask = d["effect"] == "dry"
     dry_by_src = dict(zip(d["src_id"][dry_mask].tolist(), d["embeddings"][dry_mask]))
 
-    print("게이트 구조 분석 중 (reverb wet_level)...")
-    gate_result = gate_structure_analysis(model, theta_slots, theta_width, dry_by_src, device, args.seed)
+    unique_srcs = np.unique(d["src_id"])
+    test_srcs = split_sources(unique_srcs, args.seed, args.test_size)
+
+    print(f"게이트 구조 분석 중 (reverb wet_level, 테스트셋 {len(test_srcs)}개 소스의 원시 점 전부)...")
+    gate_result = gate_structure_analysis(model, theta_slots, theta_width, d, dry_by_src, test_srcs, device, args.seed)
 
     print("악기 패밀리별 야코비안 비교 중...")
     family_result = family_jacobian_analysis(model, theta_slots, theta_width, param_order_by_effect, d, dry_by_src, device, args.seed)
@@ -387,9 +414,18 @@ def main():
             entry["gate_spearman_vs_wet_level"] = gate_result[pname]["spearman_vs_wet_level"] if pname in gate_result else None
 
     results_json["jacobian_gate_analysis"] = {
-        k: {"spearman_vs_wet_level": v["spearman_vs_wet_level"], "spearman_pvalue": v["spearman_pvalue"]}
-        for k, v in gate_result.items()
-        if k != "wet_levels"
+        "n_points": gate_result["n_points"],
+        "method": "raw points from held-out test set (no binning)",
+        "by_param": {
+            k: {
+                "spearman_vs_wet_level": v["spearman_vs_wet_level"],
+                "spearman_pvalue": v["spearman_pvalue"],
+                "linear_slope": v["linear_slope"],
+                "linear_r2": v["linear_r2"],
+            }
+            for k, v in gate_result.items()
+            if k != "n_points"
+        },
     }
 
     with open(results_path, "w") as f:

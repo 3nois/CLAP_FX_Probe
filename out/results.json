@@ -58,41 +58,12 @@
   },
   "surrogate": {
     "held_out_cos_real": 0.9848175644874573,
-    "held_out_cos_shuffled": 0.5121887922286987,
+    "held_out_cos_shuffled": 0.5321537852287292,
     "held_out_cos_identity": 0.9698055386543274,
     "held_out_cos_by_effect": {
       "reverb": 0.9848124980926514,
-      "distortion": 0.9622060060501099,
+      "distortion": 0.9622061252593994,
       "highshelf": 0.9961334466934204
-    },
-    "hierarchy_H1_to_H5": {
-      "reverb": {
-        "identity": 0.9682468175888062,
-        "H1": 0.9752000570297241,
-        "H2": 0.9738866686820984,
-        "H3": 0.6504085659980774,
-        "H4": 0.9451834559440613,
-        "H5": 0.9848124980926514,
-        "shuffle_control": 0.5121887922286987
-      },
-      "distortion": {
-        "identity": 0.9266675114631653,
-        "H1": 0.942587673664093,
-        "H2": 0.9421485662460327,
-        "H3": 0.6449236273765564,
-        "H4": 0.8312019109725952,
-        "H5": 0.9622060060501099,
-        "shuffle_control": 0.5121887922286987
-      },
-      "highshelf": {
-        "identity": 0.9944918751716614,
-        "H1": 0.995107889175415,
-        "H2": 0.9945454001426697,
-        "H3": 0.6418203711509705,
-        "H4": 0.9920915961265564,
-        "H5": 0.9961334466934204,
-        "shuffle_control": 0.5121887922286987
-      }
     },
     "epochs": 300,
     "lr": 0.001,
@@ -132,7 +103,8 @@
       ],
       "probe_r2_ci_method": "source-level bootstrap (resample src_id with replacement, OOB test)",
       "probe_r2_shuffled": -0.010207411467744398,
-      "probe_r2_shuffled_std": 0.002021414271323672
+      "probe_r2_shuffled_std": 0.002021414271323672,
+      "measurability": "resolution 이상"
     },
     "reverb.room_size": {
       "effect": "reverb",
@@ -153,7 +125,7 @@
         "n_family_pairs": 45,
         "n_families": 10
       },
-      "gate_spearman_vs_wet_level": 0.44230769230769235,
+      "gate_spearman_vs_wet_level": 0.1365730260781393,
       "probe_r2": 0.15491434259667722,
       "probe_r2_std": 0.004194886055109587,
       "probe_r2_ci_low": 0.11643353279175399,
@@ -164,7 +136,8 @@
       ],
       "probe_r2_ci_method": "source-level bootstrap (resample src_id with replacement, OOB test)",
       "probe_r2_shuffled": -0.005346111625573036,
-      "probe_r2_shuffled_std": 0.0015550871703020061
+      "probe_r2_shuffled_std": 0.0015550871703020061,
+      "measurability": "resolution 이상"
     },
     "reverb.damping": {
       "effect": "reverb",
@@ -185,7 +158,7 @@
         "n_family_pairs": 45,
         "n_families": 10
       },
-      "gate_spearman_vs_wet_level": 0.3676923076923077,
+      "gate_spearman_vs_wet_level": 0.1120347926922439,
       "probe_r2": 0.009942268518864062,
       "probe_r2_std": 0.0010908483048870927,
       "probe_r2_ci_low": 0.000940757223527575,
@@ -196,7 +169,8 @@
       ],
       "probe_r2_ci_method": "source-level bootstrap (resample src_id with replacement, OOB test)",
       "probe_r2_shuffled": -0.008281698249837443,
-      "probe_r2_shuffled_std": 0.0011749014867857839
+      "probe_r2_shuffled_std": 0.0011749014867857839,
+      "measurability": "resolution 이상"
     },
     "reverb.width": {
       "effect": "reverb",
@@ -217,7 +191,7 @@
         "n_family_pairs": 45,
         "n_families": 10
       },
-      "gate_spearman_vs_wet_level": 0.15615384615384614,
+      "gate_spearman_vs_wet_level": 0.1428882076821257,
       "probe_r2": 0.008695947061068998,
       "probe_r2_std": 0.0006075464862489401,
       "probe_r2_ci_low": 0.0012915735927605313,
@@ -228,7 +202,8 @@
       ],
       "probe_r2_ci_method": "source-level bootstrap (resample src_id with replacement, OOB test)",
       "probe_r2_shuffled": -0.005527586026468479,
-      "probe_r2_shuffled_std": 0.002406026472862276
+      "probe_r2_shuffled_std": 0.002406026472862276,
+      "measurability": "측정 불가(below resolution)"
     },
     "reverb.freeze_mode": {
       "effect": "reverb",
@@ -257,7 +232,8 @@
       ],
       "probe_r2_ci_method": "source-level bootstrap (resample src_id with replacement, OOB test)",
       "probe_r2_shuffled": -0.009122041968274486,
-      "probe_r2_shuffled_std": 0.0016624517146600591
+      "probe_r2_shuffled_std": 0.0016624517146600591,
+      "measurability": "resolution 이상"
     },
     "distortion.drive_db": {
       "effect": "distortion",
@@ -289,7 +265,8 @@
       ],
       "probe_r2_ci_method": "source-level bootstrap (resample src_id with replacement, OOB test)",
       "probe_r2_shuffled": -0.026221173167517663,
-      "probe_r2_shuffled_std": 0.004583436960316791
+      "probe_r2_shuffled_std": 0.004583436960316791,
+      "measurability": "resolution 이상"
     },
     "highshelf.gain_db": {
       "effect": "highshelf",
@@ -321,7 +298,8 @@
       ],
       "probe_r2_ci_method": "source-level bootstrap (resample src_id with replacement, OOB test)",
       "probe_r2_shuffled": -0.011043817857312588,
-      "probe_r2_shuffled_std": 0.0038606727266414865
+      "probe_r2_shuffled_std": 0.0038606727266414865,
+      "measurability": "resolution 이상"
     },
     "highshelf.cutoff_frequency_hz": {
       "effect": "highshelf",
@@ -353,7 +331,8 @@
       ],
       "probe_r2_ci_method": "source-level bootstrap (resample src_id with replacement, OOB test)",
       "probe_r2_shuffled": -0.012911134857690599,
-      "probe_r2_shuffled_std": 0.0029974671764953363
+      "probe_r2_shuffled_std": 0.0029974671764953363,
+      "measurability": "측정 불가(below resolution)"
     },
     "highshelf.q": {
       "effect": "highshelf",
@@ -385,21 +364,32 @@
       ],
       "probe_r2_ci_method": "source-level bootstrap (resample src_id with replacement, OOB test)",
       "probe_r2_shuffled": -0.008958791918905673,
-      "probe_r2_shuffled_std": 0.0024429050027662065
+      "probe_r2_shuffled_std": 0.0024429050027662065,
+      "measurability": "resolution 이상"
     }
   },
   "jacobian_gate_analysis": {
-    "room_size": {
-      "spearman_vs_wet_level": 0.44230769230769235,
-      "spearman_pvalue": 0.026833254515162278
-    },
-    "damping": {
-      "spearman_vs_wet_level": 0.3676923076923077,
-      "spearman_pvalue": 0.07056170286653744
-    },
-    "width": {
-      "spearman_vs_wet_level": 0.15615384615384614,
-      "spearman_pvalue": 0.4560374306078927
+    "n_points": 6000,
+    "method": "raw points from held-out test set (no binning)",
+    "by_param": {
+      "room_size": {
+        "spearman_vs_wet_level": 0.1365730260781393,
+        "spearman_pvalue": 2.2432288982765584e-26,
+        "linear_slope": 0.2507965591421706,
+        "linear_r2": 0.028163038627951775
+      },
+      "damping": {
+        "spearman_vs_wet_level": 0.1120347926922439,
+        "spearman_pvalue": 3.2100148757739347e-18,
+        "linear_slope": 0.023081026381646372,
+        "linear_r2": 0.013649002463292703
+      },
+      "width": {
+        "spearman_vs_wet_level": 0.1428882076821257,
+        "spearman_pvalue": 9.708249852073312e-29,
+        "linear_slope": 0.019148481714476515,
+        "linear_r2": 0.0082024755754464
+      }
     }
   },
   "controls": {
@@ -452,18 +442,80 @@
       "highshelf": "gain_db"
     },
     "highshelf_note": "highshelf에 대응하는 정확한 캡션 관용구가 없어 'bright/crisp' 계열로 근사함 — 불완전한 근사임에 유의",
+    "n_bootstrap": 2000,
+    "ci_method": "텍스트 쌍(pair)을 그룹 내에서 복원추출로 재표집 → 평균 방향 재계산 → 코사인 재계산, 95% 백분위수 CI",
     "cos_by_effect": {
       "reverb": 0.16002876970632102,
       "distortion": 0.2866725651082802,
       "highshelf": 0.031394911798979235
+    },
+    "cos_by_effect_ci": {
+      "reverb": {
+        "point": 0.16002876970632102,
+        "boot_mean": 0.15550696849822998,
+        "ci_lo": 0.09207938630133868,
+        "ci_hi": 0.21103702932596202
+      },
+      "distortion": {
+        "point": 0.2866725651082802,
+        "boot_mean": 0.2720504701137543,
+        "ci_lo": 0.20296654105186462,
+        "ci_hi": 0.3324127294123172
+      },
+      "highshelf": {
+        "point": 0.031394911798979235,
+        "boot_mean": 0.027596667408943176,
+        "ci_lo": -0.07544766049832105,
+        "ci_hi": 0.11475344933569429
+      }
     },
     "cos_random_control_by_effect": {
       "reverb": -0.06079564939639971,
       "distortion": 0.12912419987898424,
       "highshelf": 0.07240869606848119
     },
+    "cos_random_control_by_effect_ci": {
+      "reverb": {
+        "point": -0.06079564939639971,
+        "boot_mean": -0.05960641801357269,
+        "ci_lo": -0.10058922432363034,
+        "ci_hi": -0.016547417221590897
+      },
+      "distortion": {
+        "point": 0.12912419987898424,
+        "boot_mean": 0.12480476498603821,
+        "ci_lo": 0.07525650802999735,
+        "ci_hi": 0.17228499613702292
+      },
+      "highshelf": {
+        "point": 0.07240869606848119,
+        "boot_mean": 0.06843234598636627,
+        "ci_lo": 0.004435658897273243,
+        "ci_hi": 0.12627540193498132
+      }
+    },
     "cos_random_control_mean": 0.04691241551702191,
     "cos_random_control": 0.04691241551702191,
+    "gap_self_minus_control_ci": {
+      "reverb": {
+        "point": 0.21511338651180267,
+        "ci_lo": 0.13818542659282684,
+        "ci_hi": 0.28551999181509,
+        "significant_positive": true
+      },
+      "distortion": {
+        "point": 0.14724570512771606,
+        "ci_lo": 0.06357822604477406,
+        "ci_hi": 0.22620392255485056,
+        "significant_positive": true
+      },
+      "highshelf": {
+        "point": -0.040835678577423096,
+        "ci_lo": -0.16190058030188084,
+        "ci_hi": 0.06852130983024834,
+        "significant_positive": false
+      }
+    },
     "cos_cross_effect": {
       "reverb_vs_distortion": 0.014942939201904079,
       "reverb_vs_highshelf": -0.07256336086785466,
@@ -471,6 +523,62 @@
       "distortion_vs_highshelf": 0.0681969294518564,
       "highshelf_vs_reverb": -0.20832470770935418,
       "highshelf_vs_distortion": 0.13792259876755517
+    },
+    "cos_cross_effect_ci": {
+      "reverb_vs_distortion": {
+        "point": 0.014942939201904079,
+        "boot_mean": 0.014587907120585442,
+        "ci_lo": -0.046314047928899524,
+        "ci_hi": 0.06615368034690616
+      },
+      "reverb_vs_highshelf": {
+        "point": -0.07256336086785466,
+        "boot_mean": -0.06546759605407715,
+        "ci_lo": -0.12224135976284742,
+        "ci_hi": 0.003708620183169841
+      },
+      "distortion_vs_reverb": {
+        "point": -0.008706834534698152,
+        "boot_mean": -0.01082800142467022,
+        "ci_lo": -0.09055017717182637,
+        "ci_hi": 0.06540635544806712
+      },
+      "distortion_vs_highshelf": {
+        "point": 0.0681969294518564,
+        "boot_mean": 0.061057642102241516,
+        "ci_lo": -0.016674254136160017,
+        "ci_hi": 0.1392678450793027
+      },
+      "highshelf_vs_reverb": {
+        "point": -0.20832470770935418,
+        "boot_mean": -0.20151689648628235,
+        "ci_lo": -0.24516488164663314,
+        "ci_hi": -0.1595297757536173
+      },
+      "highshelf_vs_distortion": {
+        "point": 0.13792259876755517,
+        "boot_mean": 0.1313183605670929,
+        "ci_lo": 0.03943823948502541,
+        "ci_hi": 0.20928492620587344
+      }
+    },
+    "reversal_check": {
+      "reverb": {
+        "self_align": 0.16002876970632102,
+        "reversal_detected": false
+      },
+      "distortion": {
+        "self_align": 0.2866725651082802,
+        "reversal_detected": false
+      },
+      "highshelf": {
+        "self_align": 0.031394911798979235,
+        "best_cross_effect": "distortion",
+        "best_cross_align": 0.13792259876755517,
+        "cross_minus_self_ci_lo": -0.020842871256172655,
+        "cross_minus_self_ci_hi": 0.23265311568975416,
+        "reversal_significant": false
+      }
     }
   },
   "reverse_model": {
@@ -502,12 +610,32 @@
       "highshelf": 0.9944918751716614
     },
     "cycle_note": "cycle_consistency가 cycle_baseline(=cos(e_dry,e_wet), 아무 처리도 안 했을 때의 값)을 넘지 못하면 역방향 모델이 무의미하다. highshelf는 baseline 자체가 이미 천장이라 개선 여지가 거의 없다.",
-    "injectivity_collision_rate": 0.018,
-    "injectivity_detail": {
-      "collision_rate": 0.018,
-      "threshold": 0.99,
-      "nn_cosine_mean": 0.9839183555694959,
-      "nn_cosine_median": 0.995349365379667,
+    "injectivity": {
+      "definition_note": "collision = 최근접 이웃이 '다른 소스'이면서 유사도>threshold인 경우만. 같은 소스의 다른 θ가 최근접 이웃인 것은 collision이 아니다.",
+      "thresholds": [
+        0.95,
+        0.99,
+        0.999
+      ],
+      "collision_by_threshold": {
+        "0.95": {
+          "collision_rate": 0.074,
+          "same_source_neighbor_rate_above_threshold": 0.8346666666666667
+        },
+        "0.99": {
+          "collision_rate": 0.018,
+          "same_source_neighbor_rate_above_threshold": 0.6296666666666667
+        },
+        "0.999": {
+          "collision_rate": 0.009333333333333334,
+          "same_source_neighbor_rate_above_threshold": 0.27266666666666667
+        }
+      },
+      "nn_cosine_mean_overall": 0.9839183555694959,
+      "nn_cosine_median_overall": 0.995349365379667,
+      "nn_cosine_median_same_source": 0.9963482291375494,
+      "nn_cosine_median_diff_source": 0.9558317092424401,
+      "frac_nearest_neighbor_is_same_source": 0.8673333333333333,
       "n_sampled": 3000
     },
     "epochs": 300,
@@ -521,56 +649,258 @@
         "mean": 0.00635428776464131,
         "ci_low": 0.0030008327990358945,
         "ci_high": 0.012283980199732555,
-        "n_boot_used": 300
+        "n_boot_used": 300,
+        "percentile_rank_in_random_baseline": 0.0,
+        "z_score_vs_random_baseline": -4.004055556622709
       },
       "reverb.room_size": {
         "mean": 0.006128238890643453,
         "ci_low": 0.0029144028483582135,
         "ci_high": 0.011226018078365077,
-        "n_boot_used": 300
+        "n_boot_used": 300,
+        "percentile_rank_in_random_baseline": 0.0,
+        "z_score_vs_random_baseline": -4.011368294242646
       },
       "reverb.damping": {
         "mean": 0.0077051135192552364,
         "ci_low": 0.0036073234820369637,
         "ci_high": 0.014026307708145924,
-        "n_boot_used": 300
+        "n_boot_used": 300,
+        "percentile_rank_in_random_baseline": 0.0,
+        "z_score_vs_random_baseline": -3.9603560055520015
       },
       "reverb.width": {
         "mean": 0.007169374487222268,
         "ci_low": 0.003023269607183092,
         "ci_high": 0.013239690435396849,
-        "n_boot_used": 300
+        "n_boot_used": 300,
+        "percentile_rank_in_random_baseline": 0.0,
+        "z_score_vs_random_baseline": -3.977687297253341
       },
       "reverb.freeze_mode": {
         "mean": 0.005843329678331881,
         "ci_low": 0.002599702251682888,
         "ci_high": 0.010338751824558692,
-        "n_boot_used": 300
+        "n_boot_used": 300,
+        "percentile_rank_in_random_baseline": 0.0,
+        "z_score_vs_random_baseline": -4.020585178530941
       },
       "distortion.drive_db": {
         "mean": 0.007095884266436485,
         "ci_low": 0.0034137648126501235,
         "ci_high": 0.012269015334012003,
-        "n_boot_used": 300
+        "n_boot_used": 300,
+        "percentile_rank_in_random_baseline": 0.0,
+        "z_score_vs_random_baseline": -3.980064724279334
       },
       "highshelf.gain_db": {
         "mean": 0.003722451362894976,
         "ci_low": 0.0017603859330315235,
         "ci_high": 0.006812563766323221,
-        "n_boot_used": 300
+        "n_boot_used": 300,
+        "percentile_rank_in_random_baseline": 0.0,
+        "z_score_vs_random_baseline": -4.089196122572854
       },
       "highshelf.cutoff_frequency_hz": {
         "mean": 0.008005802626852292,
         "ci_low": 0.003731715279974925,
         "ci_high": 0.01466244910333611,
-        "n_boot_used": 300
+        "n_boot_used": 300,
+        "percentile_rank_in_random_baseline": 0.0,
+        "z_score_vs_random_baseline": -3.950628637703882
       },
       "highshelf.q": {
         "mean": 0.006496796981451333,
         "ci_low": 0.003121261284866179,
         "ci_high": 0.01133106053582791,
-        "n_boot_used": 300
+        "n_boot_used": 300,
+        "percentile_rank_in_random_baseline": 0.0,
+        "z_score_vs_random_baseline": -3.9994453478102368
       }
+    },
+    "random_baseline": {
+      "n_random_vectors": 1000,
+      "subspace_dim": 9,
+      "embedding_dim": 512,
+      "expected_sqrt_ratio": 0.13258252147247765,
+      "mean": 0.13012629997683348,
+      "std": 0.03091166205310742,
+      "percentiles": {
+        "1": 0.0646355318845096,
+        "5": 0.08161484265097611,
+        "25": 0.10870786893536052,
+        "50": 0.12926786985060235,
+        "75": 0.15075289759595709,
+        "95": 0.1829821668510983,
+        "99": 0.20679467310940292
+      }
+    }
+  },
+  "quality_stratification": {
+    "n_sources": 800,
+    "n_examples_json_match_missing": 0,
+    "tag_distribution": {
+      "bright": {
+        "count": 123,
+        "fraction": 0.15375
+      },
+      "dark": {
+        "count": 139,
+        "fraction": 0.17375
+      },
+      "distortion": {
+        "count": 181,
+        "fraction": 0.22625
+      },
+      "fast_decay": {
+        "count": 120,
+        "fraction": 0.15
+      },
+      "long_release": {
+        "count": 127,
+        "fraction": 0.15875
+      },
+      "multiphonic": {
+        "count": 38,
+        "fraction": 0.0475
+      },
+      "nonlinear_env": {
+        "count": 90,
+        "fraction": 0.1125
+      },
+      "percussive": {
+        "count": 59,
+        "fraction": 0.07375
+      },
+      "reverb": {
+        "count": 203,
+        "fraction": 0.25375
+      },
+      "tempo-synced": {
+        "count": 21,
+        "fraction": 0.02625
+      }
+    },
+    "stratified_probes": {
+      "reverb.reverb.wet_level": {
+        "tag": "reverb",
+        "effect": "reverb",
+        "param": "wet_level",
+        "has_tag": {
+          "n_sources": 203,
+          "n_rows": 6496,
+          "probe_r2": 0.04029595629731146,
+          "probe_r2_ci_low": -0.00960490028704991,
+          "probe_r2_ci_high": 0.04963284946500455,
+          "note": null
+        },
+        "no_tag": {
+          "n_sources": 597,
+          "n_rows": 19104,
+          "probe_r2": 0.061429806559551034,
+          "probe_r2_ci_low": 0.04116234346769572,
+          "probe_r2_ci_high": 0.07179167419786875,
+          "note": null
+        },
+        "gap_no_minus_has": 0.021133850262239573
+      },
+      "distortion.distortion.drive_db": {
+        "tag": "distortion",
+        "effect": "distortion",
+        "param": "drive_db",
+        "has_tag": {
+          "n_sources": 181,
+          "n_rows": 1448,
+          "probe_r2": 0.6865574025379623,
+          "probe_r2_ci_low": 0.5772910607692732,
+          "probe_r2_ci_high": 0.7528342661985832,
+          "note": null
+        },
+        "no_tag": {
+          "n_sources": 619,
+          "n_rows": 4952,
+          "probe_r2": 0.7206694242667039,
+          "probe_r2_ci_low": 0.6641431779587129,
+          "probe_r2_ci_high": 0.7508942531163421,
+          "note": null
+        },
+        "gap_no_minus_has": 0.034112021728741615
+      },
+      "bright.highshelf.gain_db": {
+        "tag": "bright",
+        "effect": "highshelf",
+        "param": "gain_db",
+        "has_tag": {
+          "n_sources": 123,
+          "n_rows": 1968,
+          "probe_r2": 0.2217111813435937,
+          "probe_r2_ci_low": -0.15969944747356538,
+          "probe_r2_ci_high": 0.31506808384672036,
+          "note": null
+        },
+        "no_tag": {
+          "n_sources": 677,
+          "n_rows": 10832,
+          "probe_r2": 0.35704434733477164,
+          "probe_r2_ci_low": 0.2451448869199132,
+          "probe_r2_ci_high": 0.38476919701944756,
+          "note": null
+        },
+        "gap_no_minus_has": 0.13533316599117795
+      }
+    }
+  },
+  "ablation": {
+    "note": "3차의 H1~H5 위계를 대체. M0/M_th/M_e/M_the는 동일 아키텍처·학습설정·시드, 입력 슬롯만 0으로 마스킹. d_int = d_total - d_th - d_e가 상호작용(파라미터-소스 얽힘)의 직접 증거.",
+    "by_effect": {
+      "reverb": {
+        "M0": 0.9721547365188599,
+        "M_th": 0.9768089652061462,
+        "M_e": 0.9761215448379517,
+        "M_the": 0.9848124980926514
+      },
+      "distortion": {
+        "M0": 0.9386153817176819,
+        "M_th": 0.9444440007209778,
+        "M_e": 0.957015335559845,
+        "M_the": 0.9622061252593994
+      },
+      "highshelf": {
+        "M0": 0.9942739009857178,
+        "M_th": 0.9952946901321411,
+        "M_e": 0.9942044019699097,
+        "M_the": 0.9961334466934204
+      }
+    },
+    "decomposition": {
+      "reverb": {
+        "d_total": 0.012657761573791504,
+        "d_th": 0.004654228687286377,
+        "d_e": 0.003966808319091797,
+        "d_int": 0.00403672456741333
+      },
+      "distortion": {
+        "d_total": 0.02359074354171753,
+        "d_th": 0.0058286190032958984,
+        "d_e": 0.018399953842163086,
+        "d_int": -0.0006378293037414551
+      },
+      "highshelf": {
+        "d_total": 0.0018595457077026367,
+        "d_th": 0.0010207891464233398,
+        "d_e": -6.949901580810547e-05,
+        "d_int": 0.0009082555770874023
+      }
+    }
+  },
+  "resolution_floor": {
+    "value": 0.009628838994760351,
+    "definition": "음성 통제 파라미터(negative_control_params)들의 held-out R² 부트스트랩 95% CI 상단값 중 최댓값. 이 값 아래 R²는 통계적으로 잡음과 구분되지 않으므로 '약함'이 아니라 '측정 불가'로 봐야 한다.",
+    "based_on_params": [
+      "reverb.width"
+    ],
+    "based_on_ci_highs": {
+      "reverb.width": 0.009628838994760351
     }
   }
 }
