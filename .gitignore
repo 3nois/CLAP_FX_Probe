@@ -124,3 +124,6 @@ media/output/
 
 # pdm-related file.
 .pdm-python
+
+# macOS
+.DS_Store
