@@ -1,0 +1,171 @@
+{
+  "meta": {
+    "split": {
+      "bass": {
+        "n_total": 120,
+        "n_train": 96,
+        "n_val": 12,
+        "n_test": 12
+      },
+      "brass": {
+        "n_total": 120,
+        "n_train": 96,
+        "n_val": 12,
+        "n_test": 12
+      },
+      "flute": {
+        "n_total": 120,
+        "n_train": 96,
+        "n_val": 12,
+        "n_test": 12
+      },
+      "guitar": {
+        "n_total": 120,
+        "n_train": 96,
+        "n_val": 12,
+        "n_test": 12
+      },
+      "keyboard": {
+        "n_total": 120,
+        "n_train": 96,
+        "n_val": 12,
+        "n_test": 12
+      },
+      "mallet": {
+        "n_total": 120,
+        "n_train": 96,
+        "n_val": 12,
+        "n_test": 12
+      },
+      "organ": {
+        "n_total": 120,
+        "n_train": 96,
+        "n_val": 12,
+        "n_test": 12
+      },
+      "reed": {
+        "n_total": 120,
+        "n_train": 96,
+        "n_val": 12,
+        "n_test": 12
+      },
+      "string": {
+        "n_total": 120,
+        "n_train": 96,
+        "n_val": 12,
+        "n_test": 12
+      },
+      "vocal": {
+        "n_total": 120,
+        "n_train": 96,
+        "n_val": 12,
+        "n_test": 12
+      }
+    },
+    "seed": 0,
+    "max_epochs": 300,
+    "patience": 30,
+    "source_npz": "out/caches/oat_emb_ts.npz",
+    "note": "정방향+B2, MLP만(8차와 동일 구조·시드)"
+  },
+  "depends_on_surrogate": "none",
+  "forward_ts": {
+    "reverb": {
+      "cos_mean": 0.7751976433396339,
+      "cos_ci": [
+        0.7553540080785751,
+        0.7934938937425613
+      ],
+      "cos_median": 0.7859829664230347,
+      "val_cos": 0.7631532549858093,
+      "epochs_used": 287,
+      "n_test": 120
+    },
+    "distortion": {
+      "cos_mean": 0.8387305254340172,
+      "cos_ci": [
+        0.8214683130383491,
+        0.8543166592717171
+      ],
+      "cos_median": 0.8613541126251221,
+      "val_cos": 0.8468209505081177,
+      "epochs_used": 300,
+      "n_test": 120
+    },
+    "highshelf": {
+      "cos_mean": 0.8190801895856857,
+      "cos_ci": [
+        0.8011571884155273,
+        0.8380252167582511
+      ],
+      "cos_median": 0.8426164984703064,
+      "val_cos": 0.819590151309967,
+      "epochs_used": 300,
+      "n_test": 120
+    }
+  },
+  "b2_ts": {
+    "reverb": {
+      "cos_mean": 0.711561272919178,
+      "cos_ci": [
+        0.6887141197919846,
+        0.7319621443748474
+      ],
+      "cos_median": 0.7364902496337891,
+      "val_cos": 0.7034213542938232,
+      "epochs_used": 300,
+      "n_test": 240
+    },
+    "distortion": {
+      "cos_mean": 0.8153684039711953,
+      "cos_ci": [
+        0.7992232218384743,
+        0.8317523300647736
+      ],
+      "cos_median": 0.8317305445671082,
+      "val_cos": 0.8134328126907349,
+      "epochs_used": 300,
+      "n_test": 240
+    },
+    "highshelf": {
+      "cos_mean": 0.8115878484845162,
+      "cos_ci": [
+        0.7933268263936043,
+        0.8301399409770965
+      ],
+      "cos_median": 0.8308407068252563,
+      "val_cos": 0.8153359293937683,
+      "epochs_used": 300,
+      "n_test": 240
+    }
+  },
+  "comparison_with_phase8": {
+    "reverb": {
+      "forward_ts": 0.7751976433396339,
+      "forward_phase8": 0.7759,
+      "forward_diff": -0.0007023566603661102,
+      "b2_ts": 0.711561272919178,
+      "b2_phase8": 0.7144,
+      "b2_diff": -0.002838727080822001,
+      "large_difference_flag": false
+    },
+    "distortion": {
+      "forward_ts": 0.8387305254340172,
+      "forward_phase8": 0.8599,
+      "forward_diff": -0.021169474565982838,
+      "b2_ts": 0.8153684039711953,
+      "b2_phase8": 0.823,
+      "b2_diff": -0.007631596028804699,
+      "large_difference_flag": false
+    },
+    "highshelf": {
+      "forward_ts": 0.8190801895856857,
+      "forward_phase8": 0.8232,
+      "forward_diff": -0.004119810414314307,
+      "b2_ts": 0.8115878484845162,
+      "b2_phase8": 0.8134,
+      "b2_diff": -0.0018121515154838619,
+      "large_difference_flag": false
+    }
+  }
+}

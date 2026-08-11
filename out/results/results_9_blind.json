@@ -1,0 +1,391 @@
+{
+  "meta": {
+    "n_pairs_answered": 24,
+    "responses_path": "out/audio/blind/blind_responses.json"
+  },
+  "depends_on_surrogate": "none",
+  "overall": {
+    "n": 24,
+    "n_correct": 10,
+    "accuracy": 0.4166666666666667,
+    "binomial_test_p": 0.8462718725204468,
+    "significance": "유의하지 않음",
+    "threshold_for_p05_at_n24": "17/24 이상"
+  },
+  "by_stratum": {
+    "high": {
+      "n": 8,
+      "n_correct": 6,
+      "accuracy": 0.75
+    },
+    "mid": {
+      "n": 8,
+      "n_correct": 3,
+      "accuracy": 0.375
+    },
+    "low": {
+      "n": 8,
+      "n_correct": 1,
+      "accuracy": 0.125
+    }
+  },
+  "stratum_accuracy_monotonic_with_metric": true,
+  "metric_validation_verdict": "층별 정답률이 지표(high>mid>low)와 같은 방향으로 움직임 — 지표가 검증됨. 향후 청취 없이 지표만으로 대규모 평가 가능",
+  "directional_agreement_vs_correctness_pointbiserial": {
+    "r": 0.5730416391301324,
+    "p": 0.0034228591584294973
+  },
+  "naturalness_distribution_overall": {
+    "상": 5,
+    "중": 9,
+    "하": 10
+  },
+  "naturalness_distribution_by_family": {
+    "reed": {
+      "상": 0,
+      "중": 0,
+      "하": 2
+    },
+    "organ": {
+      "상": 0,
+      "중": 3,
+      "하": 0
+    },
+    "string": {
+      "상": 0,
+      "중": 1,
+      "하": 1
+    },
+    "guitar": {
+      "상": 1,
+      "중": 1,
+      "하": 1
+    },
+    "brass": {
+      "상": 0,
+      "중": 1,
+      "하": 3
+    },
+    "vocal": {
+      "상": 1,
+      "중": 0,
+      "하": 1
+    },
+    "keyboard": {
+      "상": 1,
+      "중": 2,
+      "하": 0
+    },
+    "bass": {
+      "상": 0,
+      "중": 1,
+      "하": 1
+    },
+    "flute": {
+      "상": 1,
+      "중": 0,
+      "하": 0
+    },
+    "mallet": {
+      "상": 1,
+      "중": 0,
+      "하": 1
+    }
+  },
+  "listen_count_vs_accuracy": {
+    "median_listen_count": 2.0,
+    "accuracy_low_listen_count": 0.3888888888888889,
+    "accuracy_high_listen_count": 0.5,
+    "note": "listen_count가 높은(많이 들어야 했던) 쌍에서 정답률이 낮으면 지표가 '듣기 어려운 정도'까지 예측한다는 뜻"
+  },
+  "rows": [
+    {
+      "pair_id": 1,
+      "correct": true,
+      "choice": "B",
+      "answer": "B",
+      "naturalness": "하",
+      "listen_count": 5,
+      "family": "reed",
+      "effect": "reverb",
+      "stratum": "high",
+      "directional_agreement": 0.1265816684173848
+    },
+    {
+      "pair_id": 2,
+      "correct": true,
+      "choice": "B",
+      "answer": "B",
+      "naturalness": "중",
+      "listen_count": 2,
+      "family": "organ",
+      "effect": "reverb",
+      "stratum": "high",
+      "directional_agreement": 0.16533489972940135
+    },
+    {
+      "pair_id": 3,
+      "correct": true,
+      "choice": "B",
+      "answer": "B",
+      "naturalness": "하",
+      "listen_count": 5,
+      "family": "string",
+      "effect": "highshelf",
+      "stratum": "high",
+      "directional_agreement": 0.20041744003898138
+    },
+    {
+      "pair_id": 4,
+      "correct": true,
+      "choice": "A",
+      "answer": "A",
+      "naturalness": "중",
+      "listen_count": 5,
+      "family": "string",
+      "effect": "reverb",
+      "stratum": "mid",
+      "directional_agreement": 0.0099093874884714
+    },
+    {
+      "pair_id": 5,
+      "correct": true,
+      "choice": "B",
+      "answer": "B",
+      "naturalness": "상",
+      "listen_count": 2,
+      "family": "guitar",
+      "effect": "distortion",
+      "stratum": "high",
+      "directional_agreement": 0.08734613335826638
+    },
+    {
+      "pair_id": 6,
+      "correct": false,
+      "choice": "B",
+      "answer": "A",
+      "naturalness": "하",
+      "listen_count": 2,
+      "family": "brass",
+      "effect": "reverb",
+      "stratum": "mid",
+      "directional_agreement": -0.007770628910197456
+    },
+    {
+      "pair_id": 7,
+      "correct": false,
+      "choice": "B",
+      "answer": "A",
+      "naturalness": "중",
+      "listen_count": 2,
+      "family": "brass",
+      "effect": "reverb",
+      "stratum": "low",
+      "directional_agreement": -0.13815312046774225
+    },
+    {
+      "pair_id": 8,
+      "correct": false,
+      "choice": "B",
+      "answer": "A",
+      "naturalness": "하",
+      "listen_count": 2,
+      "family": "vocal",
+      "effect": "highshelf",
+      "stratum": "mid",
+      "directional_agreement": -0.009217574231179401
+    },
+    {
+      "pair_id": 9,
+      "correct": true,
+      "choice": "B",
+      "answer": "B",
+      "naturalness": "상",
+      "listen_count": 2,
+      "family": "keyboard",
+      "effect": "highshelf",
+      "stratum": "high",
+      "directional_agreement": 0.19355743594511793
+    },
+    {
+      "pair_id": 10,
+      "correct": false,
+      "choice": "A",
+      "answer": "B",
+      "naturalness": "중",
+      "listen_count": 2,
+      "family": "guitar",
+      "effect": "reverb",
+      "stratum": "low",
+      "directional_agreement": -0.04552995140918521
+    },
+    {
+      "pair_id": 11,
+      "correct": true,
+      "choice": "B",
+      "answer": "B",
+      "naturalness": "하",
+      "listen_count": 2,
+      "family": "bass",
+      "effect": "highshelf",
+      "stratum": "mid",
+      "directional_agreement": 0.0421078279121057
+    },
+    {
+      "pair_id": 12,
+      "correct": false,
+      "choice": "B",
+      "answer": "A",
+      "naturalness": "하",
+      "listen_count": 2,
+      "family": "guitar",
+      "effect": "reverb",
+      "stratum": "low",
+      "directional_agreement": -0.06213205566507062
+    },
+    {
+      "pair_id": 13,
+      "correct": false,
+      "choice": "A",
+      "answer": "B",
+      "naturalness": "하",
+      "listen_count": 3,
+      "family": "brass",
+      "effect": "distortion",
+      "stratum": "high",
+      "directional_agreement": 0.10978686821010245
+    },
+    {
+      "pair_id": 14,
+      "correct": false,
+      "choice": "A",
+      "answer": "B",
+      "naturalness": "중",
+      "listen_count": 3,
+      "family": "keyboard",
+      "effect": "highshelf",
+      "stratum": "mid",
+      "directional_agreement": -0.03537789829845061
+    },
+    {
+      "pair_id": 15,
+      "correct": false,
+      "choice": "A",
+      "answer": "B",
+      "naturalness": "중",
+      "listen_count": 3,
+      "family": "organ",
+      "effect": "highshelf",
+      "stratum": "low",
+      "directional_agreement": -0.17390087716808184
+    },
+    {
+      "pair_id": 16,
+      "correct": true,
+      "choice": "A",
+      "answer": "A",
+      "naturalness": "하",
+      "listen_count": 2,
+      "family": "brass",
+      "effect": "reverb",
+      "stratum": "mid",
+      "directional_agreement": 0.038291600241578565
+    },
+    {
+      "pair_id": 17,
+      "correct": false,
+      "choice": "A",
+      "answer": "B",
+      "naturalness": "상",
+      "listen_count": 2,
+      "family": "flute",
+      "effect": "distortion",
+      "stratum": "low",
+      "directional_agreement": -0.19624708367726268
+    },
+    {
+      "pair_id": 18,
+      "correct": true,
+      "choice": "B",
+      "answer": "B",
+      "naturalness": "상",
+      "listen_count": 2,
+      "family": "mallet",
+      "effect": "highshelf",
+      "stratum": "low",
+      "directional_agreement": -0.1003503017399709
+    },
+    {
+      "pair_id": 19,
+      "correct": false,
+      "choice": "A",
+      "answer": "B",
+      "naturalness": "하",
+      "listen_count": 2,
+      "family": "mallet",
+      "effect": "distortion",
+      "stratum": "mid",
+      "directional_agreement": 0.07428284604224641
+    },
+    {
+      "pair_id": 20,
+      "correct": false,
+      "choice": "B",
+      "answer": "A",
+      "naturalness": "중",
+      "listen_count": 2,
+      "family": "bass",
+      "effect": "reverb",
+      "stratum": "high",
+      "directional_agreement": 0.11437588836575051
+    },
+    {
+      "pair_id": 21,
+      "correct": false,
+      "choice": "A",
+      "answer": "B",
+      "naturalness": "중",
+      "listen_count": 2,
+      "family": "organ",
+      "effect": "distortion",
+      "stratum": "mid",
+      "directional_agreement": 0.0485789480736816
+    },
+    {
+      "pair_id": 22,
+      "correct": false,
+      "choice": "B",
+      "answer": "A",
+      "naturalness": "중",
+      "listen_count": 2,
+      "family": "keyboard",
+      "effect": "distortion",
+      "stratum": "low",
+      "directional_agreement": -0.14216189656662018
+    },
+    {
+      "pair_id": 23,
+      "correct": false,
+      "choice": "A",
+      "answer": "B",
+      "naturalness": "하",
+      "listen_count": 2,
+      "family": "reed",
+      "effect": "highshelf",
+      "stratum": "low",
+      "directional_agreement": -0.1200799215439898
+    },
+    {
+      "pair_id": 24,
+      "correct": true,
+      "choice": "B",
+      "answer": "B",
+      "naturalness": "상",
+      "listen_count": 2,
+      "family": "vocal",
+      "effect": "highshelf",
+      "stratum": "high",
+      "directional_agreement": 0.2044478608645274
+    }
+  ]
+}

@@ -1,0 +1,2292 @@
+{
+  "meta": {
+    "source_axis": {
+      "reverb": {
+        "swept_param": "room_size",
+        "levels": [
+          1200,
+          3,
+          3,
+          512
+        ],
+        "note": "wet_level=0.4/dry_level=0.6/freeze_mode=0 고정"
+      },
+      "distortion": {
+        "swept_param": "drive_db"
+      },
+      "highshelf": {
+        "swept_param": "gain_db",
+        "note": "cutoff=4000Hz 고정, q 기본값"
+      }
+    },
+    "n_sources_total": 1200,
+    "n_sources_per_family_target": null,
+    "n_excluded_zero_norm": {
+      "reverb": 0,
+      "distortion": 0,
+      "highshelf": 0
+    },
+    "condition": "A (조건C 아님 — 1~5차와 비교 가능하도록)",
+    "highshelf_half_swing_cos_pos_neg": 0.7637354299678071,
+    "seed": 0,
+    "n_boot": 300,
+    "n_splithalf_reps": 100
+  },
+  "depends_on_surrogate": "none",
+  "nonlinearity": {
+    "reverb": {
+      "cos_d1_d2_median": 0.6640464067459106,
+      "cos_d1_d2_mean": 0.6378267407417297,
+      "cos_d1_d2_std": 0.15092816948890686,
+      "n": 1200,
+      "depends_on_surrogate": "none"
+    },
+    "distortion": {
+      "cos_d1_d2_median": 0.5113887786865234,
+      "cos_d1_d2_mean": 0.486685574054718,
+      "cos_d1_d2_std": 0.15958335995674133,
+      "n": 1200,
+      "depends_on_surrogate": "none"
+    },
+    "highshelf": {
+      "cos_d1_d2_median": 0.7803255915641785,
+      "cos_d1_d2_mean": 0.7637354731559753,
+      "cos_d1_d2_std": 0.10371844470500946,
+      "n": 1200,
+      "depends_on_surrogate": "none"
+    }
+  },
+  "within_between": {
+    "reverb": {
+      "n_sources": 1200,
+      "within_point_mean": 0.3344455063343048,
+      "within_point_n_pairs": 71400,
+      "between_point_mean": 0.237065389752388,
+      "between_point_n_pairs": 648000,
+      "within_boot_mean": 0.3399951125184695,
+      "within_boot_ci": [
+        0.33100172951817514,
+        0.3504478894174099
+      ],
+      "between_boot_mean": 0.2367383524775505,
+      "between_boot_ci": [
+        0.22994954995810984,
+        0.24364201202988625
+      ],
+      "gap_boot_mean": 0.10325676004091898,
+      "gap_boot_ci": [
+        0.09708082862198353,
+        0.1095881599932909
+      ],
+      "random_baseline_mean": 0.000175505875209905,
+      "random_baseline_std": 0.044364111932762795,
+      "verdict": "within > between — 악기 패밀리 구조 실재"
+    },
+    "distortion": {
+      "n_sources": 1200,
+      "within_point_mean": 0.3883979320526123,
+      "within_point_n_pairs": 71400,
+      "between_point_mean": 0.28523170948028564,
+      "between_point_n_pairs": 648000,
+      "within_boot_mean": 0.3937897250056267,
+      "within_boot_ci": [
+        0.38458165526390076,
+        0.4025710701942444
+      ],
+      "between_boot_mean": 0.28527553101380665,
+      "between_boot_ci": [
+        0.27934150844812394,
+        0.29229905679821966
+      ],
+      "gap_boot_mean": 0.10851419399182002,
+      "gap_boot_ci": [
+        0.10271924436092376,
+        0.11568899154663086
+      ],
+      "random_baseline_mean": 0.000175505875209905,
+      "random_baseline_std": 0.044364111932762795,
+      "verdict": "within > between — 악기 패밀리 구조 실재"
+    },
+    "highshelf": {
+      "n_sources": 1200,
+      "within_point_mean": 0.37430837750434875,
+      "within_point_n_pairs": 71400,
+      "between_point_mean": 0.26113277673721313,
+      "between_point_n_pairs": 648000,
+      "within_boot_mean": 0.3800470178325971,
+      "within_boot_ci": [
+        0.3721310988068581,
+        0.3902440220117569
+      ],
+      "between_boot_mean": 0.26134743173917135,
+      "between_boot_ci": [
+        0.2548628680408001,
+        0.2685880921781063
+      ],
+      "gap_boot_mean": 0.11869958609342575,
+      "gap_boot_ci": [
+        0.11156588569283485,
+        0.1268542677164078
+      ],
+      "random_baseline_mean": 0.000175505875209905,
+      "random_baseline_std": 0.044364111932762795,
+      "verdict": "within > between — 악기 패밀리 구조 실재"
+    },
+    "depends_on_surrogate": "none"
+  },
+  "family_cosine": {
+    "reverb": {
+      "self_cosine": {
+        "bass": {
+          "mean": 0.9641303450578171,
+          "ci": [
+            0.941893431486923,
+            0.9786694560776515
+          ],
+          "n_sources": 120
+        },
+        "brass": {
+          "mean": 0.9708841123212547,
+          "ci": [
+            0.9499533183700737,
+            0.9831835389468218
+          ],
+          "n_sources": 120
+        },
+        "flute": {
+          "mean": 0.9793587613145911,
+          "ci": [
+            0.9659158235355896,
+            0.9889845205542173
+          ],
+          "n_sources": 120
+        },
+        "guitar": {
+          "mean": 0.969132165793844,
+          "ci": [
+            0.9480408994030245,
+            0.9828337023281176
+          ],
+          "n_sources": 120
+        },
+        "keyboard": {
+          "mean": 0.9573959982214799,
+          "ci": [
+            0.9292385815503507,
+            0.9750692281706349
+          ],
+          "n_sources": 120
+        },
+        "mallet": {
+          "mean": 0.9565854479722595,
+          "ci": [
+            0.9221303839195599,
+            0.9746654480539189
+          ],
+          "n_sources": 120
+        },
+        "organ": {
+          "mean": 0.97967998339761,
+          "ci": [
+            0.9652142580262371,
+            0.9891843615390107
+          ],
+          "n_sources": 120
+        },
+        "reed": {
+          "mean": 0.967609644163232,
+          "ci": [
+            0.9424076574143296,
+            0.9812874355374336
+          ],
+          "n_sources": 120
+        },
+        "string": {
+          "mean": 0.9748001887860849,
+          "ci": [
+            0.9444786508384292,
+            0.9879023001897307
+          ],
+          "n_sources": 120
+        },
+        "vocal": {
+          "mean": 0.9558472032557216,
+          "ci": [
+            0.9159531136886871,
+            0.9768483024809392
+          ],
+          "n_sources": 120
+        }
+      },
+      "low_reliability_families_self_below_0.7": [],
+      "pairwise": {
+        "bass|brass": {
+          "cross_cosine_raw": 0.6088587568477687,
+          "corrected_mean": 0.6293659301260001,
+          "corrected_ci": [
+            0.6229738145021363,
+            0.6404340436089823
+          ]
+        },
+        "bass|flute": {
+          "cross_cosine_raw": 0.6435314315431578,
+          "corrected_mean": 0.6623065807200955,
+          "corrected_ci": [
+            0.6546393640873601,
+            0.6709356412937636
+          ]
+        },
+        "bass|guitar": {
+          "cross_cosine_raw": 0.8468640618823737,
+          "corrected_mean": 0.8761780567299777,
+          "corrected_ci": [
+            0.8656246509316309,
+            0.8916134826911014
+          ]
+        },
+        "bass|keyboard": {
+          "cross_cosine_raw": 0.8999124328879766,
+          "corrected_mean": 0.9367790887013361,
+          "corrected_ci": [
+            0.9256148113289415,
+            0.951374388393285
+          ]
+        },
+        "bass|mallet": {
+          "cross_cosine_raw": 0.7844453250726401,
+          "corrected_mean": 0.8169481837798781,
+          "corrected_ci": [
+            0.8054485140095169,
+            0.8374990307351768
+          ]
+        },
+        "bass|organ": {
+          "cross_cosine_raw": 0.6298547076064693,
+          "corrected_mean": 0.6481233384042914,
+          "corrected_ci": [
+            0.641967144801007,
+            0.6554894220670267
+          ]
+        },
+        "bass|reed": {
+          "cross_cosine_raw": 0.6871764295885912,
+          "corrected_mean": 0.711530020642426,
+          "corrected_ci": [
+            0.7028075986130091,
+            0.7229454810825044
+          ]
+        },
+        "bass|string": {
+          "cross_cosine_raw": 0.779140147890622,
+          "corrected_mean": 0.8037793376802117,
+          "corrected_ci": [
+            0.7942480835027648,
+            0.821970735018119
+          ]
+        },
+        "bass|vocal": {
+          "cross_cosine_raw": 0.6010785257010596,
+          "corrected_mean": 0.6262314869264854,
+          "corrected_ci": [
+            0.6173316677083546,
+            0.6406599082979344
+          ]
+        },
+        "brass|flute": {
+          "cross_cosine_raw": 0.8248747373137014,
+          "corrected_mean": 0.8459722863447873,
+          "corrected_ci": [
+            0.8385738472132429,
+            0.8553249583268363
+          ]
+        },
+        "brass|guitar": {
+          "cross_cosine_raw": 0.6238908648445838,
+          "corrected_mean": 0.6432291197113278,
+          "corrected_ci": [
+            0.6370844849843262,
+            0.654246941230682
+          ]
+        },
+        "brass|keyboard": {
+          "cross_cosine_raw": 0.6774368029658857,
+          "corrected_mean": 0.7027235470053981,
+          "corrected_ci": [
+            0.6939920266304146,
+            0.7150209064370431
+          ]
+        },
+        "brass|mallet": {
+          "cross_cosine_raw": 0.45349947585773787,
+          "corrected_mean": 0.4706392999487948,
+          "corrected_ci": [
+            0.4648726700102353,
+            0.48244500542914476
+          ]
+        },
+        "brass|organ": {
+          "cross_cosine_raw": 0.7160983805194108,
+          "corrected_mean": 0.7342938742256108,
+          "corrected_ci": [
+            0.7286805160334883,
+            0.7451408532764133
+          ]
+        },
+        "brass|reed": {
+          "cross_cosine_raw": 0.8553427060445014,
+          "corrected_mean": 0.8825651522703398,
+          "corrected_ci": [
+            0.8722113573296213,
+            0.8996644783602689
+          ]
+        },
+        "brass|string": {
+          "cross_cosine_raw": 0.7427496626764211,
+          "corrected_mean": 0.7635649894418828,
+          "corrected_ci": [
+            0.7563331973865158,
+            0.7789691710871545
+          ]
+        },
+        "brass|vocal": {
+          "cross_cosine_raw": 0.7155870036449137,
+          "corrected_mean": 0.7429278320815499,
+          "corrected_ci": [
+            0.7323629623713728,
+            0.7583636080618633
+          ]
+        },
+        "flute|guitar": {
+          "cross_cosine_raw": 0.7113707109034756,
+          "corrected_mean": 0.7302234863677063,
+          "corrected_ci": [
+            0.7224955447648358,
+            0.7390751270197192
+          ]
+        },
+        "flute|keyboard": {
+          "cross_cosine_raw": 0.73118516036995,
+          "corrected_mean": 0.7551754382738978,
+          "corrected_ci": [
+            0.7463834416189479,
+            0.7693046139063889
+          ]
+        },
+        "flute|mallet": {
+          "cross_cosine_raw": 0.48215710377503873,
+          "corrected_mean": 0.4981967108560747,
+          "corrected_ci": [
+            0.49262769301212406,
+            0.5067771250965045
+          ]
+        },
+        "flute|organ": {
+          "cross_cosine_raw": 0.8929595978828979,
+          "corrected_mean": 0.9116580738721498,
+          "corrected_ci": [
+            0.9043232794473532,
+            0.9224323134382557
+          ]
+        },
+        "flute|reed": {
+          "cross_cosine_raw": 0.764986878781558,
+          "corrected_mean": 0.7858861272925307,
+          "corrected_ci": [
+            0.7789360323767122,
+            0.7971562501847086
+          ]
+        },
+        "flute|string": {
+          "cross_cosine_raw": 0.629343979610039,
+          "corrected_mean": 0.6441567020637673,
+          "corrected_ci": [
+            0.6378825480322249,
+            0.6546249500384541
+          ]
+        },
+        "flute|vocal": {
+          "cross_cosine_raw": 0.7192524502974698,
+          "corrected_mean": 0.7434782525804838,
+          "corrected_ci": [
+            0.733919165065713,
+            0.761399445354514
+          ]
+        },
+        "guitar|keyboard": {
+          "cross_cosine_raw": 0.9119305753608413,
+          "corrected_mean": 0.9468264085488264,
+          "corrected_ci": [
+            0.9347745346880443,
+            0.962595255443461
+          ]
+        },
+        "guitar|mallet": {
+          "cross_cosine_raw": 0.6917124428708327,
+          "corrected_mean": 0.7184988322416465,
+          "corrected_ci": [
+            0.7095105430937402,
+            0.7323222210594974
+          ]
+        },
+        "guitar|organ": {
+          "cross_cosine_raw": 0.7131918725849625,
+          "corrected_mean": 0.7319732145364047,
+          "corrected_ci": [
+            0.7252140328478474,
+            0.7404112610039127
+          ]
+        },
+        "guitar|reed": {
+          "cross_cosine_raw": 0.6951395968770291,
+          "corrected_mean": 0.717907638964518,
+          "corrected_ci": [
+            0.7091973623336885,
+            0.7311425140210707
+          ]
+        },
+        "guitar|string": {
+          "cross_cosine_raw": 0.6354607566220027,
+          "corrected_mean": 0.6538537943066233,
+          "corrected_ci": [
+            0.6473173644764826,
+            0.6647832759329932
+          ]
+        },
+        "guitar|vocal": {
+          "cross_cosine_raw": 0.6639589542865809,
+          "corrected_mean": 0.6899519024193996,
+          "corrected_ci": [
+            0.6800495389110227,
+            0.7077005910369065
+          ]
+        },
+        "keyboard|mallet": {
+          "cross_cosine_raw": 0.808999204386428,
+          "corrected_mean": 0.8454888881550418,
+          "corrected_ci": [
+            0.8345379572000944,
+            0.8675536073778437
+          ]
+        },
+        "keyboard|organ": {
+          "cross_cosine_raw": 0.7083100623586033,
+          "corrected_mean": 0.7314299945635108,
+          "corrected_ci": [
+            0.7234616317689815,
+            0.7445022576350017
+          ]
+        },
+        "keyboard|reed": {
+          "cross_cosine_raw": 0.7792034966069583,
+          "corrected_mean": 0.8096629631379456,
+          "corrected_ci": [
+            0.8010841799150219,
+            0.8259527613485327
+          ]
+        },
+        "keyboard|string": {
+          "cross_cosine_raw": 0.7387214681084289,
+          "corrected_mean": 0.7647740025714524,
+          "corrected_ci": [
+            0.7548381153668811,
+            0.7805249835969188
+          ]
+        },
+        "keyboard|vocal": {
+          "cross_cosine_raw": 0.6789120105594989,
+          "corrected_mean": 0.7098178017098975,
+          "corrected_ci": [
+            0.7007780847210897,
+            0.7268041161017461
+          ]
+        },
+        "mallet|organ": {
+          "cross_cosine_raw": 0.45559485881692496,
+          "corrected_mean": 0.47067480675057416,
+          "corrected_ci": [
+            0.46528079414421564,
+            0.47957896638024594
+          ]
+        },
+        "mallet|reed": {
+          "cross_cosine_raw": 0.6051130101966097,
+          "corrected_mean": 0.629052574551371,
+          "corrected_ci": [
+            0.6205896372225131,
+            0.643615934280343
+          ]
+        },
+        "mallet|string": {
+          "cross_cosine_raw": 0.6399510903682443,
+          "corrected_mean": 0.6628117015074545,
+          "corrected_ci": [
+            0.6546969510805783,
+            0.6811688877445616
+          ]
+        },
+        "mallet|vocal": {
+          "cross_cosine_raw": 0.47757995127568853,
+          "corrected_mean": 0.4995484832455789,
+          "corrected_ci": [
+            0.4919509997902794,
+            0.5124017995634697
+          ]
+        },
+        "organ|reed": {
+          "cross_cosine_raw": 0.6578244821653338,
+          "corrected_mean": 0.6756896771358126,
+          "corrected_ci": [
+            0.6687239162413754,
+            0.6863152625934348
+          ]
+        },
+        "organ|string": {
+          "cross_cosine_raw": 0.5931006754269493,
+          "corrected_mean": 0.6069615240093127,
+          "corrected_ci": [
+            0.6016994120186198,
+            0.6184679627286612
+          ]
+        },
+        "organ|vocal": {
+          "cross_cosine_raw": 0.7506301891573871,
+          "corrected_mean": 0.7757924140608526,
+          "corrected_ci": [
+            0.7661865486557754,
+            0.7932562314769824
+          ]
+        },
+        "reed|string": {
+          "cross_cosine_raw": 0.762284861803325,
+          "corrected_mean": 0.7849808773314453,
+          "corrected_ci": [
+            0.77703781005603,
+            0.8032523498642705
+          ]
+        },
+        "reed|vocal": {
+          "cross_cosine_raw": 0.6656085033879444,
+          "corrected_mean": 0.6922189834081752,
+          "corrected_ci": [
+            0.682366847900069,
+            0.7075765294008528
+          ]
+        },
+        "string|vocal": {
+          "cross_cosine_raw": 0.5673953763472538,
+          "corrected_mean": 0.5878961520161371,
+          "corrected_ci": [
+            0.5804758251447143,
+            0.6025467818219306
+          ]
+        }
+      },
+      "corrected_mean_all_pairs": 0.7171499011381997,
+      "corrected_mean_excl_low_reliability": 0.7171499011381997,
+      "raw_cross_cosine_mean_all_pairs": 0.6938271283128016
+    },
+    "distortion": {
+      "self_cosine": {
+        "bass": {
+          "mean": 0.9646766462071331,
+          "ci": [
+            0.940240830492686,
+            0.9810956473495248
+          ],
+          "n_sources": 120
+        },
+        "brass": {
+          "mean": 0.9727633228504229,
+          "ci": [
+            0.9436644706048256,
+            0.9865086797805863
+          ],
+          "n_sources": 120
+        },
+        "flute": {
+          "mean": 0.976851178551577,
+          "ci": [
+            0.9485930353841041,
+            0.99003753537197
+          ],
+          "n_sources": 120
+        },
+        "guitar": {
+          "mean": 0.9783453339605604,
+          "ci": [
+            0.9609120730678917,
+            0.9892662302068902
+          ],
+          "n_sources": 120
+        },
+        "keyboard": {
+          "mean": 0.9682237428469161,
+          "ci": [
+            0.9431804677751295,
+            0.9814221447623435
+          ],
+          "n_sources": 120
+        },
+        "mallet": {
+          "mean": 0.9807994044897042,
+          "ci": [
+            0.966866430706067,
+            0.9898506914052161
+          ],
+          "n_sources": 120
+        },
+        "organ": {
+          "mean": 0.9756299914901018,
+          "ci": [
+            0.9605067570643702,
+            0.9866447689632204
+          ],
+          "n_sources": 120
+        },
+        "reed": {
+          "mean": 0.9708347585261419,
+          "ci": [
+            0.937238070098632,
+            0.9856233000919264
+          ],
+          "n_sources": 120
+        },
+        "string": {
+          "mean": 0.9779483449373052,
+          "ci": [
+            0.9545672070800509,
+            0.9887070636688386
+          ],
+          "n_sources": 120
+        },
+        "vocal": {
+          "mean": 0.9744934241571115,
+          "ci": [
+            0.9474048901346102,
+            0.9883910209802852
+          ],
+          "n_sources": 120
+        }
+      },
+      "low_reliability_families_self_below_0.7": [],
+      "pairwise": {
+        "bass|brass": {
+          "cross_cosine_raw": 0.5799008828100533,
+          "corrected_mean": 0.5986890206696068,
+          "corrected_ci": [
+            0.5916290653257148,
+            0.6101823108226969
+          ]
+        },
+        "bass|flute": {
+          "cross_cosine_raw": 0.6220814740260986,
+          "corrected_mean": 0.6408872009946464,
+          "corrected_ci": [
+            0.6335389257426349,
+            0.6546123376553772
+          ]
+        },
+        "bass|guitar": {
+          "cross_cosine_raw": 0.8829265997640009,
+          "corrected_mean": 0.9088988058798769,
+          "corrected_ci": [
+            0.8983252688433507,
+            0.9213261289388104
+          ]
+        },
+        "bass|keyboard": {
+          "cross_cosine_raw": 0.7926933319153857,
+          "corrected_mean": 0.8202824624734184,
+          "corrected_ci": [
+            0.8106521515773942,
+            0.8338422409810439
+          ]
+        },
+        "bass|mallet": {
+          "cross_cosine_raw": 0.6572493778001732,
+          "corrected_mean": 0.6757332969130112,
+          "corrected_ci": [
+            0.6692453217664266,
+            0.6848944283695673
+          ]
+        },
+        "bass|organ": {
+          "cross_cosine_raw": 0.6136625135129835,
+          "corrected_mean": 0.6325921871515306,
+          "corrected_ci": [
+            0.6262100836120903,
+            0.6429672773505941
+          ]
+        },
+        "bass|reed": {
+          "cross_cosine_raw": 0.5975333210107235,
+          "corrected_mean": 0.6175067772641315,
+          "corrected_ci": [
+            0.6095515909530302,
+            0.6290718198162707
+          ]
+        },
+        "bass|string": {
+          "cross_cosine_raw": 0.6767172445040005,
+          "corrected_mean": 0.6967761984268467,
+          "corrected_ci": [
+            0.6892535245709839,
+            0.7090047342182594
+          ]
+        },
+        "bass|vocal": {
+          "cross_cosine_raw": 0.5707493424080398,
+          "corrected_mean": 0.5887166563571299,
+          "corrected_ci": [
+            0.5812334032200253,
+            0.5997485390423303
+          ]
+        },
+        "brass|flute": {
+          "cross_cosine_raw": 0.8072490173644867,
+          "corrected_mean": 0.8281957198979158,
+          "corrected_ci": [
+            0.8178942730213296,
+            0.8455449028107661
+          ]
+        },
+        "brass|guitar": {
+          "cross_cosine_raw": 0.709354290614828,
+          "corrected_mean": 0.7271831637463763,
+          "corrected_ci": [
+            0.7204073770192959,
+            0.7386692648293074
+          ]
+        },
+        "brass|keyboard": {
+          "cross_cosine_raw": 0.7641686390762098,
+          "corrected_mean": 0.7874811639353382,
+          "corrected_ci": [
+            0.7777844245457852,
+            0.8004407165345195
+          ]
+        },
+        "brass|mallet": {
+          "cross_cosine_raw": 0.6538308556142803,
+          "corrected_mean": 0.6694242714254683,
+          "corrected_ci": [
+            0.6636015040324196,
+            0.682057426672407
+          ]
+        },
+        "brass|organ": {
+          "cross_cosine_raw": 0.7674649003814734,
+          "corrected_mean": 0.7878507424952715,
+          "corrected_ci": [
+            0.7803921184469215,
+            0.7993845212925096
+          ]
+        },
+        "brass|reed": {
+          "cross_cosine_raw": 0.8820990433222039,
+          "corrected_mean": 0.9077951713640381,
+          "corrected_ci": [
+            0.8961842895966932,
+            0.92415846153904
+          ]
+        },
+        "brass|string": {
+          "cross_cosine_raw": 0.842800885745315,
+          "corrected_mean": 0.864179670485236,
+          "corrected_ci": [
+            0.8553708201950818,
+            0.8791531253717928
+          ]
+        },
+        "brass|vocal": {
+          "cross_cosine_raw": 0.7655979135008079,
+          "corrected_mean": 0.7864126056635102,
+          "corrected_ci": [
+            0.7786540778080931,
+            0.8006225712668824
+          ]
+        },
+        "flute|guitar": {
+          "cross_cosine_raw": 0.6976174969696768,
+          "corrected_mean": 0.7136515868249167,
+          "corrected_ci": [
+            0.7070581616938912,
+            0.7247804083355381
+          ]
+        },
+        "flute|keyboard": {
+          "cross_cosine_raw": 0.7128734304878354,
+          "corrected_mean": 0.7330780577870545,
+          "corrected_ci": [
+            0.7248792881476628,
+            0.7483718614961176
+          ]
+        },
+        "flute|mallet": {
+          "cross_cosine_raw": 0.6522290545888595,
+          "corrected_mean": 0.6663788165110138,
+          "corrected_ci": [
+            0.6607553726114115,
+            0.6768910780813283
+          ]
+        },
+        "flute|organ": {
+          "cross_cosine_raw": 0.8696833526550997,
+          "corrected_mean": 0.8909065066341801,
+          "corrected_ci": [
+            0.8832428233637729,
+            0.906436478692457
+          ]
+        },
+        "flute|reed": {
+          "cross_cosine_raw": 0.756427445927345,
+          "corrected_mean": 0.7768244785428295,
+          "corrected_ci": [
+            0.7678412004158635,
+            0.7916651000931336
+          ]
+        },
+        "flute|string": {
+          "cross_cosine_raw": 0.7775240386706936,
+          "corrected_mean": 0.7955656423100734,
+          "corrected_ci": [
+            0.7874706203636358,
+            0.8102596363190858
+          ]
+        },
+        "flute|vocal": {
+          "cross_cosine_raw": 0.6895602932375865,
+          "corrected_mean": 0.7068223080428848,
+          "corrected_ci": [
+            0.6988018057058454,
+            0.719888025353012
+          ]
+        },
+        "guitar|keyboard": {
+          "cross_cosine_raw": 0.9210087976291359,
+          "corrected_mean": 0.946366634099247,
+          "corrected_ci": [
+            0.9381128007792301,
+            0.9640848573380378
+          ]
+        },
+        "guitar|mallet": {
+          "cross_cosine_raw": 0.804980854226224,
+          "corrected_mean": 0.8217982923394236,
+          "corrected_ci": [
+            0.8154521446204629,
+            0.8309640176945762
+          ]
+        },
+        "guitar|organ": {
+          "cross_cosine_raw": 0.7156159955941418,
+          "corrected_mean": 0.7325015778679125,
+          "corrected_ci": [
+            0.7268007901358525,
+            0.7388055281953346
+          ]
+        },
+        "guitar|reed": {
+          "cross_cosine_raw": 0.7158359970436199,
+          "corrected_mean": 0.7345613628123004,
+          "corrected_ci": [
+            0.7269325052730271,
+            0.746425446192919
+          ]
+        },
+        "guitar|string": {
+          "cross_cosine_raw": 0.7391687611796729,
+          "corrected_mean": 0.755727552528224,
+          "corrected_ci": [
+            0.7487773540698142,
+            0.7655165885441867
+          ]
+        },
+        "guitar|vocal": {
+          "cross_cosine_raw": 0.6199411868865207,
+          "corrected_mean": 0.6349597228094471,
+          "corrected_ci": [
+            0.6289149932438114,
+            0.6451091719003589
+          ]
+        },
+        "keyboard|mallet": {
+          "cross_cosine_raw": 0.857268647167482,
+          "corrected_mean": 0.879759175937477,
+          "corrected_ci": [
+            0.8721217543980951,
+            0.891149753435887
+          ]
+        },
+        "keyboard|organ": {
+          "cross_cosine_raw": 0.7511802246925913,
+          "corrected_mean": 0.7729347419622029,
+          "corrected_ci": [
+            0.76508356223839,
+            0.7833400625946548
+          ]
+        },
+        "keyboard|reed": {
+          "cross_cosine_raw": 0.7639635045032241,
+          "corrected_mean": 0.7880516707721774,
+          "corrected_ci": [
+            0.7790451871262002,
+            0.8022168270571548
+          ]
+        },
+        "keyboard|string": {
+          "cross_cosine_raw": 0.7928420880771088,
+          "corrected_mean": 0.8148588897024872,
+          "corrected_ci": [
+            0.805593247168239,
+            0.8326553169991898
+          ]
+        },
+        "keyboard|vocal": {
+          "cross_cosine_raw": 0.6844471404858912,
+          "corrected_mean": 0.7047004153749995,
+          "corrected_ci": [
+            0.6968429109686249,
+            0.7186725831712704
+          ]
+        },
+        "mallet|organ": {
+          "cross_cosine_raw": 0.6578490066482162,
+          "corrected_mean": 0.67252393853656,
+          "corrected_ci": [
+            0.667457543225841,
+            0.6784649690423584
+          ]
+        },
+        "mallet|reed": {
+          "cross_cosine_raw": 0.5984126676333028,
+          "corrected_mean": 0.6132934402454862,
+          "corrected_ci": [
+            0.6077173944635688,
+            0.6233359818367608
+          ]
+        },
+        "mallet|string": {
+          "cross_cosine_raw": 0.6508196075243408,
+          "corrected_mean": 0.6645612205566589,
+          "corrected_ci": [
+            0.6593782965129796,
+            0.6727350877163559
+          ]
+        },
+        "mallet|vocal": {
+          "cross_cosine_raw": 0.5897194417907534,
+          "corrected_mean": 0.6032465211018412,
+          "corrected_ci": [
+            0.5975196804037276,
+            0.6126336655658948
+          ]
+        },
+        "organ|reed": {
+          "cross_cosine_raw": 0.7673349176661421,
+          "corrected_mean": 0.7885042638724075,
+          "corrected_ci": [
+            0.7801604024143204,
+            0.8015836641467434
+          ]
+        },
+        "organ|string": {
+          "cross_cosine_raw": 0.7626625199251429,
+          "corrected_mean": 0.7808303005230711,
+          "corrected_ci": [
+            0.7751599742061508,
+            0.7902446210724867
+          ]
+        },
+        "organ|vocal": {
+          "cross_cosine_raw": 0.7733439471357381,
+          "corrected_mean": 0.7931801164064838,
+          "corrected_ci": [
+            0.7844954628122801,
+            0.8072816307051309
+          ]
+        },
+        "reed|string": {
+          "cross_cosine_raw": 0.7916059043626413,
+          "corrected_mean": 0.812490229595985,
+          "corrected_ci": [
+            0.8042273126148073,
+            0.8250677936033124
+          ]
+        },
+        "reed|vocal": {
+          "cross_cosine_raw": 0.7730258520202729,
+          "corrected_mean": 0.794838414233763,
+          "corrected_ci": [
+            0.7858010886196262,
+            0.8098699148792304
+          ]
+        },
+        "string|vocal": {
+          "cross_cosine_raw": 0.6945864451792165,
+          "corrected_mean": 0.7115664853378197,
+          "corrected_ci": [
+            0.704276861712528,
+            0.7218700507979178
+          ]
+        }
+      },
+      "corrected_mean_all_pairs": 0.7476241661869396,
+      "corrected_mean_excl_low_reliability": 0.7476241661869396,
+      "raw_cross_cosine_mean_all_pairs": 0.7281690722951009
+    },
+    "highshelf": {
+      "self_cosine": {
+        "bass": {
+          "mean": 0.9668272103820147,
+          "ci": [
+            0.9388237239626521,
+            0.9799199362488943
+          ],
+          "n_sources": 120
+        },
+        "brass": {
+          "mean": 0.9753923212906878,
+          "ci": [
+            0.9515508225841369,
+            0.9884928647840614
+          ],
+          "n_sources": 120
+        },
+        "flute": {
+          "mean": 0.9729245250107295,
+          "ci": [
+            0.9498230365720216,
+            0.9872876713872384
+          ],
+          "n_sources": 120
+        },
+        "guitar": {
+          "mean": 0.9780666136400782,
+          "ci": [
+            0.9661403942601307,
+            0.9882944199059311
+          ],
+          "n_sources": 120
+        },
+        "keyboard": {
+          "mean": 0.9720193702894582,
+          "ci": [
+            0.9546016171526562,
+            0.9823219821821989
+          ],
+          "n_sources": 120
+        },
+        "mallet": {
+          "mean": 0.9703757740926717,
+          "ci": [
+            0.94672438693181,
+            0.9832105741896052
+          ],
+          "n_sources": 120
+        },
+        "organ": {
+          "mean": 0.9653755311246459,
+          "ci": [
+            0.9462044113419069,
+            0.9808786378805423
+          ],
+          "n_sources": 120
+        },
+        "reed": {
+          "mean": 0.9776496196661266,
+          "ci": [
+            0.9629649394867138,
+            0.9877571641332598
+          ],
+          "n_sources": 120
+        },
+        "string": {
+          "mean": 0.9777485597441113,
+          "ci": [
+            0.9468857471685832,
+            0.9890853978472623
+          ],
+          "n_sources": 120
+        },
+        "vocal": {
+          "mean": 0.963308406222655,
+          "ci": [
+            0.9320409836121039,
+            0.981890863193448
+          ],
+          "n_sources": 120
+        }
+      },
+      "low_reliability_families_self_below_0.7": [],
+      "pairwise": {
+        "bass|brass": {
+          "cross_cosine_raw": 0.6831197878936869,
+          "corrected_mean": 0.7035090317882456,
+          "corrected_ci": [
+            0.6956455717882485,
+            0.7176347512998699
+          ]
+        },
+        "bass|flute": {
+          "cross_cosine_raw": 0.7637415847468588,
+          "corrected_mean": 0.7875344962668084,
+          "corrected_ci": [
+            0.7770771614447047,
+            0.7996660962974121
+          ]
+        },
+        "bass|guitar": {
+          "cross_cosine_raw": 0.9241858177583535,
+          "corrected_mean": 0.9504462727493818,
+          "corrected_ci": [
+            0.9404920683640471,
+            0.9665316172258388
+          ]
+        },
+        "bass|keyboard": {
+          "cross_cosine_raw": 0.9100759854068143,
+          "corrected_mean": 0.9388420580281225,
+          "corrected_ci": [
+            0.9300836797213627,
+            0.950752677730354
+          ]
+        },
+        "bass|mallet": {
+          "cross_cosine_raw": 0.806751237785512,
+          "corrected_mean": 0.8329725689621509,
+          "corrected_ci": [
+            0.8230101994153054,
+            0.8476552567785187
+          ]
+        },
+        "bass|organ": {
+          "cross_cosine_raw": 0.7965520424772203,
+          "corrected_mean": 0.8245688200418964,
+          "corrected_ci": [
+            0.8155201271156978,
+            0.838550896832978
+          ]
+        },
+        "bass|reed": {
+          "cross_cosine_raw": 0.532563372601972,
+          "corrected_mean": 0.5478119711093332,
+          "corrected_ci": [
+            0.5423014284341051,
+            0.5559980722806599
+          ]
+        },
+        "bass|string": {
+          "cross_cosine_raw": 0.6824940731248115,
+          "corrected_mean": 0.7020264119127892,
+          "corrected_ci": [
+            0.6942516139690688,
+            0.7152651984153643
+          ]
+        },
+        "bass|vocal": {
+          "cross_cosine_raw": 0.48858685881386243,
+          "corrected_mean": 0.5063374776293057,
+          "corrected_ci": [
+            0.4991075498949178,
+            0.5155857276707806
+          ]
+        },
+        "brass|flute": {
+          "cross_cosine_raw": 0.8112561011524028,
+          "corrected_mean": 0.8328472452505473,
+          "corrected_ci": [
+            0.8224021655561364,
+            0.8454112912007189
+          ]
+        },
+        "brass|guitar": {
+          "cross_cosine_raw": 0.6442577688534835,
+          "corrected_mean": 0.6596455510965095,
+          "corrected_ci": [
+            0.6533534444754378,
+            0.6696900461669109
+          ]
+        },
+        "brass|keyboard": {
+          "cross_cosine_raw": 0.7100782093717428,
+          "corrected_mean": 0.7292989166433423,
+          "corrected_ci": [
+            0.7217670132776183,
+            0.7400269299136105
+          ]
+        },
+        "brass|mallet": {
+          "cross_cosine_raw": 0.5952076655784624,
+          "corrected_mean": 0.6118451640169993,
+          "corrected_ci": [
+            0.6055393421683242,
+            0.6231457085810257
+          ]
+        },
+        "brass|organ": {
+          "cross_cosine_raw": 0.6734591799129467,
+          "corrected_mean": 0.6940739461407393,
+          "corrected_ci": [
+            0.6862102573070846,
+            0.7041425842832879
+          ]
+        },
+        "brass|reed": {
+          "cross_cosine_raw": 0.7586291529378313,
+          "corrected_mean": 0.7769137570177119,
+          "corrected_ci": [
+            0.768867528015824,
+            0.786592126864481
+          ]
+        },
+        "brass|string": {
+          "cross_cosine_raw": 0.6906027417091161,
+          "corrected_mean": 0.7072380529110925,
+          "corrected_ci": [
+            0.6990925135100304,
+            0.7197919474632344
+          ]
+        },
+        "brass|vocal": {
+          "cross_cosine_raw": 0.5399895001897803,
+          "corrected_mean": 0.5571389531630792,
+          "corrected_ci": [
+            0.5496801906583622,
+            0.568359738558759
+          ]
+        },
+        "flute|guitar": {
+          "cross_cosine_raw": 0.7440851532307552,
+          "corrected_mean": 0.7628226368420221,
+          "corrected_ci": [
+            0.7547062035509564,
+            0.7742647467171901
+          ]
+        },
+        "flute|keyboard": {
+          "cross_cosine_raw": 0.8133650358912398,
+          "corrected_mean": 0.836442173035497,
+          "corrected_ci": [
+            0.8274627943060293,
+            0.8482217680558872
+          ]
+        },
+        "flute|mallet": {
+          "cross_cosine_raw": 0.6946240146161511,
+          "corrected_mean": 0.7149463361627064,
+          "corrected_ci": [
+            0.7069404234363755,
+            0.7274726724991163
+          ]
+        },
+        "flute|organ": {
+          "cross_cosine_raw": 0.8077586560473805,
+          "corrected_mean": 0.8335453171072029,
+          "corrected_ci": [
+            0.8226537740975276,
+            0.8469011211099899
+          ]
+        },
+        "flute|reed": {
+          "cross_cosine_raw": 0.7572697606784233,
+          "corrected_mean": 0.7765045029679257,
+          "corrected_ci": [
+            0.7695363327297826,
+            0.786344938560757
+          ]
+        },
+        "flute|string": {
+          "cross_cosine_raw": 0.7175838505673561,
+          "corrected_mean": 0.7357984429442135,
+          "corrected_ci": [
+            0.7277108552515836,
+            0.745961432902883
+          ]
+        },
+        "flute|vocal": {
+          "cross_cosine_raw": 0.588335951247437,
+          "corrected_mean": 0.607797447472699,
+          "corrected_ci": [
+            0.5986991597046678,
+            0.6199632787369136
+          ]
+        },
+        "guitar|keyboard": {
+          "cross_cosine_raw": 0.9498922103873434,
+          "corrected_mean": 0.9742475310363383,
+          "corrected_ci": [
+            0.9665237059941124,
+            0.9856428666738769
+          ]
+        },
+        "guitar|mallet": {
+          "cross_cosine_raw": 0.8504546786453636,
+          "corrected_mean": 0.8730087168261,
+          "corrected_ci": [
+            0.8639192215558361,
+            0.8831302990140331
+          ]
+        },
+        "guitar|organ": {
+          "cross_cosine_raw": 0.7829964841401839,
+          "corrected_mean": 0.8058423975885178,
+          "corrected_ci": [
+            0.7979794751307865,
+            0.816340197728727
+          ]
+        },
+        "guitar|reed": {
+          "cross_cosine_raw": 0.5639358365988686,
+          "corrected_mean": 0.5767248462144297,
+          "corrected_ci": [
+            0.5718281653663823,
+            0.5822678922263034
+          ]
+        },
+        "guitar|string": {
+          "cross_cosine_raw": 0.6589590990618832,
+          "corrected_mean": 0.6738921772996846,
+          "corrected_ci": [
+            0.6676582505793679,
+            0.6840071497223215
+          ]
+        },
+        "guitar|vocal": {
+          "cross_cosine_raw": 0.43875301172988695,
+          "corrected_mean": 0.45205920287358387,
+          "corrected_ci": [
+            0.44653706501328166,
+            0.4609013530639305
+          ]
+        },
+        "keyboard|mallet": {
+          "cross_cosine_raw": 0.8715162616783204,
+          "corrected_mean": 0.8974118309914745,
+          "corrected_ci": [
+            0.8886207067591335,
+            0.9087425425069495
+          ]
+        },
+        "keyboard|organ": {
+          "cross_cosine_raw": 0.8005569107843927,
+          "corrected_mean": 0.8264762111116798,
+          "corrected_ci": [
+            0.8187418757657711,
+            0.8371301336173271
+          ]
+        },
+        "keyboard|reed": {
+          "cross_cosine_raw": 0.6335279624089867,
+          "corrected_mean": 0.6499084395114454,
+          "corrected_ci": [
+            0.6449553030217564,
+            0.6566757422237813
+          ]
+        },
+        "keyboard|string": {
+          "cross_cosine_raw": 0.7111326741924467,
+          "corrected_mean": 0.7295130695406941,
+          "corrected_ci": [
+            0.7227686199920845,
+            0.7416292603242127
+          ]
+        },
+        "keyboard|vocal": {
+          "cross_cosine_raw": 0.47512449578698074,
+          "corrected_mean": 0.4910564747208879,
+          "corrected_ci": [
+            0.4850717673080531,
+            0.5009839268476137
+          ]
+        },
+        "mallet|organ": {
+          "cross_cosine_raw": 0.6934517701018669,
+          "corrected_mean": 0.716518458204954,
+          "corrected_ci": [
+            0.7100435749568357,
+            0.7270232176808817
+          ]
+        },
+        "mallet|reed": {
+          "cross_cosine_raw": 0.5197666482561907,
+          "corrected_mean": 0.5336655505082096,
+          "corrected_ci": [
+            0.5288073834398237,
+            0.5412904417548609
+          ]
+        },
+        "mallet|string": {
+          "cross_cosine_raw": 0.579538751767272,
+          "corrected_mean": 0.5950261614488692,
+          "corrected_ci": [
+            0.5891225361554109,
+            0.6058731475551179
+          ]
+        },
+        "mallet|vocal": {
+          "cross_cosine_raw": 0.450984613617205,
+          "corrected_mean": 0.4665092815239468,
+          "corrected_ci": [
+            0.46031942700272216,
+            0.47580228782651096
+          ]
+        },
+        "organ|reed": {
+          "cross_cosine_raw": 0.5850719679099906,
+          "corrected_mean": 0.602273585174887,
+          "corrected_ci": [
+            0.5952456158411457,
+            0.6118989999446717
+          ]
+        },
+        "organ|string": {
+          "cross_cosine_raw": 0.6710117267805568,
+          "corrected_mean": 0.69072810110419,
+          "corrected_ci": [
+            0.682777112967497,
+            0.7043756541356017
+          ]
+        },
+        "organ|vocal": {
+          "cross_cosine_raw": 0.48336528369062787,
+          "corrected_mean": 0.5012947319332158,
+          "corrected_ci": [
+            0.494150602492216,
+            0.5096473754202454
+          ]
+        },
+        "reed|string": {
+          "cross_cosine_raw": 0.8010193325041273,
+          "corrected_mean": 0.819349017849985,
+          "corrected_ci": [
+            0.811459681470102,
+            0.8327984734823455
+          ]
+        },
+        "reed|vocal": {
+          "cross_cosine_raw": 0.5906826204297192,
+          "corrected_mean": 0.6087281607907831,
+          "corrected_ci": [
+            0.601138590755885,
+            0.6203262051914648
+          ]
+        },
+        "string|vocal": {
+          "cross_cosine_raw": 0.6310838274306607,
+          "corrected_mean": 0.6503520738991662,
+          "corrected_ci": [
+            0.6411271365392187,
+            0.6643593508189896
+          ]
+        }
+      },
+      "corrected_mean_all_pairs": 0.7058998571425192,
+      "corrected_mean_excl_low_reliability": 0.7058998571425192,
+      "raw_cross_cosine_mean_all_pairs": 0.6861644371221438
+    },
+    "depends_on_surrogate": "none"
+  },
+  "family_cosine_matrix": {
+    "reverb": {
+      "families": [
+        "bass",
+        "brass",
+        "flute",
+        "guitar",
+        "keyboard",
+        "mallet",
+        "organ",
+        "reed",
+        "string",
+        "vocal"
+      ],
+      "raw": [
+        [
+          1.0,
+          0.6088587568477687,
+          0.6435314315431578,
+          0.8468640618823737,
+          0.8999124328879766,
+          0.7844453250726401,
+          0.6298547076064693,
+          0.6871764295885912,
+          0.779140147890622,
+          0.6010785257010596
+        ],
+        [
+          0.6088587568477687,
+          1.0,
+          0.8248747373137014,
+          0.6238908648445838,
+          0.6774368029658857,
+          0.45349947585773787,
+          0.7160983805194108,
+          0.8553427060445014,
+          0.7427496626764211,
+          0.7155870036449137
+        ],
+        [
+          0.6435314315431578,
+          0.8248747373137014,
+          1.0,
+          0.7113707109034756,
+          0.73118516036995,
+          0.48215710377503873,
+          0.8929595978828979,
+          0.764986878781558,
+          0.629343979610039,
+          0.7192524502974698
+        ],
+        [
+          0.8468640618823737,
+          0.6238908648445838,
+          0.7113707109034756,
+          1.0,
+          0.9119305753608413,
+          0.6917124428708327,
+          0.7131918725849625,
+          0.6951395968770291,
+          0.6354607566220027,
+          0.6639589542865809
+        ],
+        [
+          0.8999124328879766,
+          0.6774368029658857,
+          0.73118516036995,
+          0.9119305753608413,
+          1.0,
+          0.808999204386428,
+          0.7083100623586033,
+          0.7792034966069583,
+          0.7387214681084289,
+          0.6789120105594989
+        ],
+        [
+          0.7844453250726401,
+          0.45349947585773787,
+          0.48215710377503873,
+          0.6917124428708327,
+          0.808999204386428,
+          1.0,
+          0.45559485881692496,
+          0.6051130101966097,
+          0.6399510903682443,
+          0.47757995127568853
+        ],
+        [
+          0.6298547076064693,
+          0.7160983805194108,
+          0.8929595978828979,
+          0.7131918725849625,
+          0.7083100623586033,
+          0.45559485881692496,
+          1.0,
+          0.6578244821653338,
+          0.5931006754269493,
+          0.7506301891573871
+        ],
+        [
+          0.6871764295885912,
+          0.8553427060445014,
+          0.764986878781558,
+          0.6951395968770291,
+          0.7792034966069583,
+          0.6051130101966097,
+          0.6578244821653338,
+          1.0,
+          0.762284861803325,
+          0.6656085033879444
+        ],
+        [
+          0.779140147890622,
+          0.7427496626764211,
+          0.629343979610039,
+          0.6354607566220027,
+          0.7387214681084289,
+          0.6399510903682443,
+          0.5931006754269493,
+          0.762284861803325,
+          1.0,
+          0.5673953763472538
+        ],
+        [
+          0.6010785257010596,
+          0.7155870036449137,
+          0.7192524502974698,
+          0.6639589542865809,
+          0.6789120105594989,
+          0.47757995127568853,
+          0.7506301891573871,
+          0.6656085033879444,
+          0.5673953763472538,
+          1.0
+        ]
+      ],
+      "corrected": [
+        [
+          1.0,
+          0.6293659301260001,
+          0.6623065807200955,
+          0.8761780567299777,
+          0.9367790887013361,
+          0.8169481837798781,
+          0.6481233384042914,
+          0.711530020642426,
+          0.8037793376802117,
+          0.6262314869264854
+        ],
+        [
+          0.6293659301260001,
+          1.0,
+          0.8459722863447873,
+          0.6432291197113278,
+          0.7027235470053981,
+          0.4706392999487948,
+          0.7342938742256108,
+          0.8825651522703398,
+          0.7635649894418828,
+          0.7429278320815499
+        ],
+        [
+          0.6623065807200955,
+          0.8459722863447873,
+          1.0,
+          0.7302234863677063,
+          0.7551754382738978,
+          0.4981967108560747,
+          0.9116580738721498,
+          0.7858861272925307,
+          0.6441567020637673,
+          0.7434782525804838
+        ],
+        [
+          0.8761780567299777,
+          0.6432291197113278,
+          0.7302234863677063,
+          1.0,
+          0.9468264085488264,
+          0.7184988322416465,
+          0.7319732145364047,
+          0.717907638964518,
+          0.6538537943066233,
+          0.6899519024193996
+        ],
+        [
+          0.9367790887013361,
+          0.7027235470053981,
+          0.7551754382738978,
+          0.9468264085488264,
+          1.0,
+          0.8454888881550418,
+          0.7314299945635108,
+          0.8096629631379456,
+          0.7647740025714524,
+          0.7098178017098975
+        ],
+        [
+          0.8169481837798781,
+          0.4706392999487948,
+          0.4981967108560747,
+          0.7184988322416465,
+          0.8454888881550418,
+          1.0,
+          0.47067480675057416,
+          0.629052574551371,
+          0.6628117015074545,
+          0.4995484832455789
+        ],
+        [
+          0.6481233384042914,
+          0.7342938742256108,
+          0.9116580738721498,
+          0.7319732145364047,
+          0.7314299945635108,
+          0.47067480675057416,
+          1.0,
+          0.6756896771358126,
+          0.6069615240093127,
+          0.7757924140608526
+        ],
+        [
+          0.711530020642426,
+          0.8825651522703398,
+          0.7858861272925307,
+          0.717907638964518,
+          0.8096629631379456,
+          0.629052574551371,
+          0.6756896771358126,
+          1.0,
+          0.7849808773314453,
+          0.6922189834081752
+        ],
+        [
+          0.8037793376802117,
+          0.7635649894418828,
+          0.6441567020637673,
+          0.6538537943066233,
+          0.7647740025714524,
+          0.6628117015074545,
+          0.6069615240093127,
+          0.7849808773314453,
+          1.0,
+          0.5878961520161371
+        ],
+        [
+          0.6262314869264854,
+          0.7429278320815499,
+          0.7434782525804838,
+          0.6899519024193996,
+          0.7098178017098975,
+          0.4995484832455789,
+          0.7757924140608526,
+          0.6922189834081752,
+          0.5878961520161371,
+          1.0
+        ]
+      ]
+    },
+    "distortion": {
+      "families": [
+        "bass",
+        "brass",
+        "flute",
+        "guitar",
+        "keyboard",
+        "mallet",
+        "organ",
+        "reed",
+        "string",
+        "vocal"
+      ],
+      "raw": [
+        [
+          1.0,
+          0.5799008828100533,
+          0.6220814740260986,
+          0.8829265997640009,
+          0.7926933319153857,
+          0.6572493778001732,
+          0.6136625135129835,
+          0.5975333210107235,
+          0.6767172445040005,
+          0.5707493424080398
+        ],
+        [
+          0.5799008828100533,
+          1.0,
+          0.8072490173644867,
+          0.709354290614828,
+          0.7641686390762098,
+          0.6538308556142803,
+          0.7674649003814734,
+          0.8820990433222039,
+          0.842800885745315,
+          0.7655979135008079
+        ],
+        [
+          0.6220814740260986,
+          0.8072490173644867,
+          1.0,
+          0.6976174969696768,
+          0.7128734304878354,
+          0.6522290545888595,
+          0.8696833526550997,
+          0.756427445927345,
+          0.7775240386706936,
+          0.6895602932375865
+        ],
+        [
+          0.8829265997640009,
+          0.709354290614828,
+          0.6976174969696768,
+          1.0,
+          0.9210087976291359,
+          0.804980854226224,
+          0.7156159955941418,
+          0.7158359970436199,
+          0.7391687611796729,
+          0.6199411868865207
+        ],
+        [
+          0.7926933319153857,
+          0.7641686390762098,
+          0.7128734304878354,
+          0.9210087976291359,
+          1.0,
+          0.857268647167482,
+          0.7511802246925913,
+          0.7639635045032241,
+          0.7928420880771088,
+          0.6844471404858912
+        ],
+        [
+          0.6572493778001732,
+          0.6538308556142803,
+          0.6522290545888595,
+          0.804980854226224,
+          0.857268647167482,
+          1.0,
+          0.6578490066482162,
+          0.5984126676333028,
+          0.6508196075243408,
+          0.5897194417907534
+        ],
+        [
+          0.6136625135129835,
+          0.7674649003814734,
+          0.8696833526550997,
+          0.7156159955941418,
+          0.7511802246925913,
+          0.6578490066482162,
+          1.0,
+          0.7673349176661421,
+          0.7626625199251429,
+          0.7733439471357381
+        ],
+        [
+          0.5975333210107235,
+          0.8820990433222039,
+          0.756427445927345,
+          0.7158359970436199,
+          0.7639635045032241,
+          0.5984126676333028,
+          0.7673349176661421,
+          1.0,
+          0.7916059043626413,
+          0.7730258520202729
+        ],
+        [
+          0.6767172445040005,
+          0.842800885745315,
+          0.7775240386706936,
+          0.7391687611796729,
+          0.7928420880771088,
+          0.6508196075243408,
+          0.7626625199251429,
+          0.7916059043626413,
+          1.0,
+          0.6945864451792165
+        ],
+        [
+          0.5707493424080398,
+          0.7655979135008079,
+          0.6895602932375865,
+          0.6199411868865207,
+          0.6844471404858912,
+          0.5897194417907534,
+          0.7733439471357381,
+          0.7730258520202729,
+          0.6945864451792165,
+          1.0
+        ]
+      ],
+      "corrected": [
+        [
+          1.0,
+          0.5986890206696068,
+          0.6408872009946464,
+          0.9088988058798769,
+          0.8202824624734184,
+          0.6757332969130112,
+          0.6325921871515306,
+          0.6175067772641315,
+          0.6967761984268467,
+          0.5887166563571299
+        ],
+        [
+          0.5986890206696068,
+          1.0,
+          0.8281957198979158,
+          0.7271831637463763,
+          0.7874811639353382,
+          0.6694242714254683,
+          0.7878507424952715,
+          0.9077951713640381,
+          0.864179670485236,
+          0.7864126056635102
+        ],
+        [
+          0.6408872009946464,
+          0.8281957198979158,
+          1.0,
+          0.7136515868249167,
+          0.7330780577870545,
+          0.6663788165110138,
+          0.8909065066341801,
+          0.7768244785428295,
+          0.7955656423100734,
+          0.7068223080428848
+        ],
+        [
+          0.9088988058798769,
+          0.7271831637463763,
+          0.7136515868249167,
+          1.0,
+          0.946366634099247,
+          0.8217982923394236,
+          0.7325015778679125,
+          0.7345613628123004,
+          0.755727552528224,
+          0.6349597228094471
+        ],
+        [
+          0.8202824624734184,
+          0.7874811639353382,
+          0.7330780577870545,
+          0.946366634099247,
+          1.0,
+          0.879759175937477,
+          0.7729347419622029,
+          0.7880516707721774,
+          0.8148588897024872,
+          0.7047004153749995
+        ],
+        [
+          0.6757332969130112,
+          0.6694242714254683,
+          0.6663788165110138,
+          0.8217982923394236,
+          0.879759175937477,
+          1.0,
+          0.67252393853656,
+          0.6132934402454862,
+          0.6645612205566589,
+          0.6032465211018412
+        ],
+        [
+          0.6325921871515306,
+          0.7878507424952715,
+          0.8909065066341801,
+          0.7325015778679125,
+          0.7729347419622029,
+          0.67252393853656,
+          1.0,
+          0.7885042638724075,
+          0.7808303005230711,
+          0.7931801164064838
+        ],
+        [
+          0.6175067772641315,
+          0.9077951713640381,
+          0.7768244785428295,
+          0.7345613628123004,
+          0.7880516707721774,
+          0.6132934402454862,
+          0.7885042638724075,
+          1.0,
+          0.812490229595985,
+          0.794838414233763
+        ],
+        [
+          0.6967761984268467,
+          0.864179670485236,
+          0.7955656423100734,
+          0.755727552528224,
+          0.8148588897024872,
+          0.6645612205566589,
+          0.7808303005230711,
+          0.812490229595985,
+          1.0,
+          0.7115664853378197
+        ],
+        [
+          0.5887166563571299,
+          0.7864126056635102,
+          0.7068223080428848,
+          0.6349597228094471,
+          0.7047004153749995,
+          0.6032465211018412,
+          0.7931801164064838,
+          0.794838414233763,
+          0.7115664853378197,
+          1.0
+        ]
+      ]
+    },
+    "highshelf": {
+      "families": [
+        "bass",
+        "brass",
+        "flute",
+        "guitar",
+        "keyboard",
+        "mallet",
+        "organ",
+        "reed",
+        "string",
+        "vocal"
+      ],
+      "raw": [
+        [
+          1.0,
+          0.6831197878936869,
+          0.7637415847468588,
+          0.9241858177583535,
+          0.9100759854068143,
+          0.806751237785512,
+          0.7965520424772203,
+          0.532563372601972,
+          0.6824940731248115,
+          0.48858685881386243
+        ],
+        [
+          0.6831197878936869,
+          1.0,
+          0.8112561011524028,
+          0.6442577688534835,
+          0.7100782093717428,
+          0.5952076655784624,
+          0.6734591799129467,
+          0.7586291529378313,
+          0.6906027417091161,
+          0.5399895001897803
+        ],
+        [
+          0.7637415847468588,
+          0.8112561011524028,
+          1.0,
+          0.7440851532307552,
+          0.8133650358912398,
+          0.6946240146161511,
+          0.8077586560473805,
+          0.7572697606784233,
+          0.7175838505673561,
+          0.588335951247437
+        ],
+        [
+          0.9241858177583535,
+          0.6442577688534835,
+          0.7440851532307552,
+          1.0,
+          0.9498922103873434,
+          0.8504546786453636,
+          0.7829964841401839,
+          0.5639358365988686,
+          0.6589590990618832,
+          0.43875301172988695
+        ],
+        [
+          0.9100759854068143,
+          0.7100782093717428,
+          0.8133650358912398,
+          0.9498922103873434,
+          1.0,
+          0.8715162616783204,
+          0.8005569107843927,
+          0.6335279624089867,
+          0.7111326741924467,
+          0.47512449578698074
+        ],
+        [
+          0.806751237785512,
+          0.5952076655784624,
+          0.6946240146161511,
+          0.8504546786453636,
+          0.8715162616783204,
+          1.0,
+          0.6934517701018669,
+          0.5197666482561907,
+          0.579538751767272,
+          0.450984613617205
+        ],
+        [
+          0.7965520424772203,
+          0.6734591799129467,
+          0.8077586560473805,
+          0.7829964841401839,
+          0.8005569107843927,
+          0.6934517701018669,
+          1.0,
+          0.5850719679099906,
+          0.6710117267805568,
+          0.48336528369062787
+        ],
+        [
+          0.532563372601972,
+          0.7586291529378313,
+          0.7572697606784233,
+          0.5639358365988686,
+          0.6335279624089867,
+          0.5197666482561907,
+          0.5850719679099906,
+          1.0,
+          0.8010193325041273,
+          0.5906826204297192
+        ],
+        [
+          0.6824940731248115,
+          0.6906027417091161,
+          0.7175838505673561,
+          0.6589590990618832,
+          0.7111326741924467,
+          0.579538751767272,
+          0.6710117267805568,
+          0.8010193325041273,
+          1.0,
+          0.6310838274306607
+        ],
+        [
+          0.48858685881386243,
+          0.5399895001897803,
+          0.588335951247437,
+          0.43875301172988695,
+          0.47512449578698074,
+          0.450984613617205,
+          0.48336528369062787,
+          0.5906826204297192,
+          0.6310838274306607,
+          1.0
+        ]
+      ],
+      "corrected": [
+        [
+          1.0,
+          0.7035090317882456,
+          0.7875344962668084,
+          0.9504462727493818,
+          0.9388420580281225,
+          0.8329725689621509,
+          0.8245688200418964,
+          0.5478119711093332,
+          0.7020264119127892,
+          0.5063374776293057
+        ],
+        [
+          0.7035090317882456,
+          1.0,
+          0.8328472452505473,
+          0.6596455510965095,
+          0.7292989166433423,
+          0.6118451640169993,
+          0.6940739461407393,
+          0.7769137570177119,
+          0.7072380529110925,
+          0.5571389531630792
+        ],
+        [
+          0.7875344962668084,
+          0.8328472452505473,
+          1.0,
+          0.7628226368420221,
+          0.836442173035497,
+          0.7149463361627064,
+          0.8335453171072029,
+          0.7765045029679257,
+          0.7357984429442135,
+          0.607797447472699
+        ],
+        [
+          0.9504462727493818,
+          0.6596455510965095,
+          0.7628226368420221,
+          1.0,
+          0.9742475310363383,
+          0.8730087168261,
+          0.8058423975885178,
+          0.5767248462144297,
+          0.6738921772996846,
+          0.45205920287358387
+        ],
+        [
+          0.9388420580281225,
+          0.7292989166433423,
+          0.836442173035497,
+          0.9742475310363383,
+          1.0,
+          0.8974118309914745,
+          0.8264762111116798,
+          0.6499084395114454,
+          0.7295130695406941,
+          0.4910564747208879
+        ],
+        [
+          0.8329725689621509,
+          0.6118451640169993,
+          0.7149463361627064,
+          0.8730087168261,
+          0.8974118309914745,
+          1.0,
+          0.716518458204954,
+          0.5336655505082096,
+          0.5950261614488692,
+          0.4665092815239468
+        ],
+        [
+          0.8245688200418964,
+          0.6940739461407393,
+          0.8335453171072029,
+          0.8058423975885178,
+          0.8264762111116798,
+          0.716518458204954,
+          1.0,
+          0.602273585174887,
+          0.69072810110419,
+          0.5012947319332158
+        ],
+        [
+          0.5478119711093332,
+          0.7769137570177119,
+          0.7765045029679257,
+          0.5767248462144297,
+          0.6499084395114454,
+          0.5336655505082096,
+          0.602273585174887,
+          1.0,
+          0.819349017849985,
+          0.6087281607907831
+        ],
+        [
+          0.7020264119127892,
+          0.7072380529110925,
+          0.7357984429442135,
+          0.6738921772996846,
+          0.7295130695406941,
+          0.5950261614488692,
+          0.69072810110419,
+          0.819349017849985,
+          1.0,
+          0.6503520738991662
+        ],
+        [
+          0.5063374776293057,
+          0.5571389531630792,
+          0.607797447472699,
+          0.45205920287358387,
+          0.4910564747208879,
+          0.4665092815239468,
+          0.5012947319332158,
+          0.6087281607907831,
+          0.6503520738991662,
+          1.0
+        ]
+      ]
+    }
+  },
+  "comparison_with_3rd": {
+    "reverb": {
+      "3rd_round_representative_param": "reverb.room_size",
+      "3rd_round_cosine_mean": 0.7258884623659743,
+      "3rd_round_basis": "surrogate Jacobian (jacrev), 대리모델 의존 — 불신 판정",
+      "6th_round_oat_raw_mean": 0.6938271283128016,
+      "6th_round_oat_corrected_mean": 0.7171499011381997,
+      "6th_round_basis": "OAT 차이벡터(레벨 극단값), 대리모델·야코비안 미사용"
+    },
+    "distortion": {
+      "3rd_round_representative_param": "distortion.drive_db",
+      "3rd_round_cosine_mean": 0.7250518232967396,
+      "3rd_round_basis": "surrogate Jacobian (jacrev), 대리모델 의존 — 불신 판정",
+      "6th_round_oat_raw_mean": 0.7281690722951009,
+      "6th_round_oat_corrected_mean": 0.7476241661869396,
+      "6th_round_basis": "OAT 차이벡터(레벨 극단값), 대리모델·야코비안 미사용"
+    },
+    "highshelf": {
+      "3rd_round_representative_param": "highshelf.gain_db",
+      "3rd_round_cosine_mean": 0.7020987391873967,
+      "3rd_round_basis": "surrogate Jacobian (jacrev), 대리모델 의존 — 불신 판정",
+      "6th_round_oat_raw_mean": 0.6861644371221438,
+      "6th_round_oat_corrected_mean": 0.7058998571425192,
+      "6th_round_basis": "OAT 차이벡터(레벨 극단값), 대리모델·야코비안 미사용"
+    }
+  }
+}

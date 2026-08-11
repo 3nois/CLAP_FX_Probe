@@ -1,0 +1,261 @@
+{
+  "meta": {
+    "proj_dim": 1024,
+    "seed": 0,
+    "source_npz": "out/caches/oat_emb_ts.npz"
+  },
+  "depends_on_surrogate": "none",
+  "attenuation": {
+    "reverb": {
+      "r_clap_mean": 0.21610766649246216,
+      "r_proj_mean": 0.30751097202301025,
+      "attenuation_ratio_mean": 1.4623953104019165,
+      "attenuation_ratio_ci": [
+        1.4411986887454986,
+        1.4834156662225724
+      ]
+    },
+    "distortion": {
+      "r_clap_mean": 0.4442445933818817,
+      "r_proj_mean": 0.6062152981758118,
+      "attenuation_ratio_mean": 1.3765907287597656,
+      "attenuation_ratio_ci": [
+        1.3577262073755265,
+        1.3957239866256714
+      ]
+    },
+    "highshelf": {
+      "r_clap_mean": 0.1969170719385147,
+      "r_proj_mean": 0.3166046738624573,
+      "attenuation_ratio_mean": 1.6247915029525757,
+      "attenuation_ratio_ci": [
+        1.599116826057434,
+        1.6489746958017348
+      ]
+    }
+  },
+  "attenuation_by_family": {
+    "reverb": {
+      "bass": 1.4921163320541382,
+      "brass": 1.4372366666793823,
+      "flute": 1.456482172012329,
+      "guitar": 1.7246578931808472,
+      "keyboard": 1.379165530204773,
+      "mallet": 1.3872472047805786,
+      "organ": 1.3819817304611206,
+      "reed": 1.4673078060150146,
+      "string": 1.2724751234054565,
+      "vocal": 1.6252830028533936
+    },
+    "distortion": {
+      "bass": 1.4683467149734497,
+      "brass": 1.3112210035324097,
+      "flute": 1.397559404373169,
+      "guitar": 1.4995073080062866,
+      "keyboard": 1.3841204643249512,
+      "mallet": 1.2987611293792725,
+      "organ": 1.3481167554855347,
+      "reed": 1.3877549171447754,
+      "string": 1.1936284303665161,
+      "vocal": 1.476892113685608
+    },
+    "highshelf": {
+      "bass": 1.6600979566574097,
+      "brass": 1.4981861114501953,
+      "flute": 1.792115569114685,
+      "guitar": 1.6703110933303833,
+      "keyboard": 1.5783363580703735,
+      "mallet": 1.4317060708999634,
+      "organ": 1.6162264347076416,
+      "reed": 1.6594103574752808,
+      "string": 1.3242535591125488,
+      "vocal": 2.0172712802886963
+    }
+  },
+  "cosine_before_after": {
+    "reverb": {
+      "cos_before_mean": 0.9732437133789062,
+      "cos_before_ci": [
+        0.9718972727656364,
+        0.9744373321533203
+      ],
+      "cos_after_mean": 0.9495632648468018,
+      "cos_after_ci": [
+        0.9473281875252724,
+        0.951889269053936
+      ]
+    },
+    "distortion": {
+      "cos_before_mean": 0.894475519657135,
+      "cos_before_ci": [
+        0.8913973361253739,
+        0.8975039094686508
+      ],
+      "cos_after_mean": 0.8172227144241333,
+      "cos_after_ci": [
+        0.8108525171875953,
+        0.8231699600815773
+      ]
+    },
+    "highshelf": {
+      "cos_before_mean": 0.9795225262641907,
+      "cos_before_ci": [
+        0.9789022848010063,
+        0.9801023796200752
+      ],
+      "cos_after_mean": 0.9516159296035767,
+      "cos_after_ci": [
+        0.9499376520514489,
+        0.9533304929733276
+      ]
+    }
+  },
+  "probe_before_after": {
+    "effect_r2": {
+      "reverb": {
+        "before": {
+          "probe_r2": 0.4201068909617251,
+          "probe_r2_std": 0.024628762329609755,
+          "probe_r2_ci_low": 0.40319743775845257,
+          "probe_r2_ci_high": 0.4620351644720414,
+          "n_rows": 3600,
+          "n_sources": 1200,
+          "n_boot": 500
+        },
+        "after": {
+          "probe_r2": 0.2475215578121422,
+          "probe_r2_std": 0.033061193489255895,
+          "probe_r2_ci_low": 0.015609554182167175,
+          "probe_r2_ci_high": 0.23150519025577398,
+          "n_rows": 3600,
+          "n_sources": 1200,
+          "n_boot": 500
+        },
+        "drop": 0.1725853331495829
+      },
+      "distortion": {
+        "before": {
+          "probe_r2": 0.7475041785544888,
+          "probe_r2_std": 0.012986831453134342,
+          "probe_r2_ci_low": 0.7312389159681559,
+          "probe_r2_ci_high": 0.7752178692020413,
+          "n_rows": 3600,
+          "n_sources": 1200,
+          "n_boot": 500
+        },
+        "after": {
+          "probe_r2": 0.7025137617575102,
+          "probe_r2_std": 0.008084023189354162,
+          "probe_r2_ci_low": 0.6205581333850703,
+          "probe_r2_ci_high": 0.7148211773244976,
+          "n_rows": 3600,
+          "n_sources": 1200,
+          "n_boot": 500
+        },
+        "drop": 0.04499041679697857
+      },
+      "highshelf": {
+        "before": {
+          "probe_r2": 0.41093241558351756,
+          "probe_r2_std": 0.012323717373563647,
+          "probe_r2_ci_low": 0.39185784900046094,
+          "probe_r2_ci_high": 0.4535997303302834,
+          "n_rows": 3600,
+          "n_sources": 1200,
+          "n_boot": 500
+        },
+        "after": {
+          "probe_r2": 0.25991203554178666,
+          "probe_r2_std": 0.06656072178091699,
+          "probe_r2_ci_low": 0.05029501227093661,
+          "probe_r2_ci_high": 0.3022001372035371,
+          "n_rows": 3600,
+          "n_sources": 1200,
+          "n_boot": 500
+        },
+        "drop": 0.1510203800417309
+      }
+    },
+    "family": {
+      "before": {
+        "accuracy_mean": 0.8541666666666666,
+        "accuracy_ci": [
+          0.824861111111111,
+          0.8931250000000001
+        ],
+        "nmi_mean": 0.8011927885236378,
+        "nmi_ci": [
+          0.763004735744066,
+          0.8431021248011996
+        ],
+        "n_reps": 20
+      },
+      "after": {
+        "accuracy_mean": 0.9519444444444444,
+        "accuracy_ci": [
+          0.9374305555555555,
+          0.9653472222222222
+        ],
+        "nmi_mean": 0.9183122733226947,
+        "nmi_ci": [
+          0.8965956973949004,
+          0.9410103964376108
+        ],
+        "n_reps": 20
+      },
+      "acc_drop": -0.09777777777777774,
+      "nmi_drop": -0.11711948479905687
+    },
+    "verdict": {
+      "effect_r2_before_mean": 0.5261811616999105,
+      "effect_r2_after_mean": 0.4033157850371463,
+      "effect_relative_drop": 0.23350394427956114,
+      "family_nmi_relative_drop": -0.1461814016258526,
+      "verdict": "projection이 원인이 아님 — 이펙트 R²가 크게 안 떨어짐. transformer 쪽을 의심해야 함(범위 밖)"
+    }
+  },
+  "subspace_before_after": {
+    "reverb": {
+      "projection_ratio_before": 0.003697524834219046,
+      "z_before": -4.087474603765545,
+      "projection_ratio_after": 0.001335366018333119,
+      "z_after": -4.005393176763917,
+      "random_baseline_before": {
+        "mean": 0.13118207593632558,
+        "std": 0.031189074785850087
+      },
+      "random_baseline_after": {
+        "mean": 0.09082110328143576,
+        "std": 0.022341311655052296
+      }
+    },
+    "distortion": {
+      "projection_ratio_before": 0.0029390173065014864,
+      "z_before": -4.111794258417875,
+      "projection_ratio_after": 0.0010456934493819682,
+      "z_after": -4.018358958425427,
+      "random_baseline_before": {
+        "mean": 0.13118207593632558,
+        "std": 0.031189074785850087
+      },
+      "random_baseline_after": {
+        "mean": 0.09082110328143576,
+        "std": 0.022341311655052296
+      }
+    },
+    "highshelf": {
+      "projection_ratio_before": 0.002529542094815026,
+      "z_before": -4.124923061195707,
+      "projection_ratio_after": 0.0010094490194616798,
+      "z_after": -4.01998126379764,
+      "random_baseline_before": {
+        "mean": 0.13118207593632558,
+        "std": 0.031189074785850087
+      },
+      "random_baseline_after": {
+        "mean": 0.09082110328143576,
+        "std": 0.022341311655052296
+      }
+    }
+  }
+}

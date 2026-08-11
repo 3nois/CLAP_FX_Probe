@@ -1,0 +1,198 @@
+{
+  "completed_at": "2026-08-07T02:47:06.677Z",
+  "n_pairs": 24,
+  "responses": [
+    {
+      "pair_id": 1,
+      "choice": "B",
+      "naturalness": "하",
+      "played_a": true,
+      "played_b": true,
+      "listen_count": 5
+    },
+    {
+      "pair_id": 2,
+      "choice": "B",
+      "naturalness": "중",
+      "played_a": true,
+      "played_b": true,
+      "listen_count": 2
+    },
+    {
+      "pair_id": 3,
+      "choice": "B",
+      "naturalness": "하",
+      "played_a": true,
+      "played_b": true,
+      "listen_count": 5
+    },
+    {
+      "pair_id": 4,
+      "choice": "A",
+      "naturalness": "중",
+      "played_a": true,
+      "played_b": true,
+      "listen_count": 5
+    },
+    {
+      "pair_id": 5,
+      "choice": "B",
+      "naturalness": "상",
+      "played_a": true,
+      "played_b": true,
+      "listen_count": 2
+    },
+    {
+      "pair_id": 6,
+      "choice": "B",
+      "naturalness": "하",
+      "played_a": true,
+      "played_b": true,
+      "listen_count": 2
+    },
+    {
+      "pair_id": 7,
+      "choice": "B",
+      "naturalness": "중",
+      "played_a": true,
+      "played_b": true,
+      "listen_count": 2
+    },
+    {
+      "pair_id": 8,
+      "choice": "B",
+      "naturalness": "하",
+      "played_a": true,
+      "played_b": true,
+      "listen_count": 2
+    },
+    {
+      "pair_id": 9,
+      "choice": "B",
+      "naturalness": "상",
+      "played_a": true,
+      "played_b": true,
+      "listen_count": 2
+    },
+    {
+      "pair_id": 10,
+      "choice": "A",
+      "naturalness": "중",
+      "played_a": true,
+      "played_b": true,
+      "listen_count": 2
+    },
+    {
+      "pair_id": 11,
+      "choice": "B",
+      "naturalness": "하",
+      "played_a": true,
+      "played_b": true,
+      "listen_count": 2
+    },
+    {
+      "pair_id": 12,
+      "choice": "B",
+      "naturalness": "하",
+      "played_a": true,
+      "played_b": true,
+      "listen_count": 2
+    },
+    {
+      "pair_id": 13,
+      "choice": "A",
+      "naturalness": "하",
+      "played_a": true,
+      "played_b": true,
+      "listen_count": 3
+    },
+    {
+      "pair_id": 14,
+      "choice": "A",
+      "naturalness": "중",
+      "played_a": true,
+      "played_b": true,
+      "listen_count": 3
+    },
+    {
+      "pair_id": 15,
+      "choice": "A",
+      "naturalness": "중",
+      "played_a": true,
+      "played_b": true,
+      "listen_count": 3
+    },
+    {
+      "pair_id": 16,
+      "choice": "A",
+      "naturalness": "하",
+      "played_a": true,
+      "played_b": true,
+      "listen_count": 2
+    },
+    {
+      "pair_id": 17,
+      "choice": "A",
+      "naturalness": "상",
+      "played_a": true,
+      "played_b": true,
+      "listen_count": 2
+    },
+    {
+      "pair_id": 18,
+      "choice": "B",
+      "naturalness": "상",
+      "played_a": true,
+      "played_b": true,
+      "listen_count": 2
+    },
+    {
+      "pair_id": 19,
+      "choice": "A",
+      "naturalness": "하",
+      "played_a": true,
+      "played_b": true,
+      "listen_count": 2
+    },
+    {
+      "pair_id": 20,
+      "choice": "B",
+      "naturalness": "중",
+      "played_a": true,
+      "played_b": true,
+      "listen_count": 2
+    },
+    {
+      "pair_id": 21,
+      "choice": "A",
+      "naturalness": "중",
+      "played_a": true,
+      "played_b": true,
+      "listen_count": 2
+    },
+    {
+      "pair_id": 22,
+      "choice": "B",
+      "naturalness": "중",
+      "played_a": true,
+      "played_b": true,
+      "listen_count": 2
+    },
+    {
+      "pair_id": 23,
+      "choice": "A",
+      "naturalness": "하",
+      "played_a": true,
+      "played_b": true,
+      "listen_count": 2
+    },
+    {
+      "pair_id": 24,
+      "choice": "B",
+      "naturalness": "상",
+      "played_a": true,
+      "played_b": true,
+      "listen_count": 2
+    }
+  ]
+}

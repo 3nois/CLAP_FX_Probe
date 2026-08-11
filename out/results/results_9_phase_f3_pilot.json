@@ -1,0 +1,531 @@
+{
+  "meta": {
+    "n_pilot_sources": 8,
+    "effect": "highshelf",
+    "gain_db": 9.0,
+    "seed": 42,
+    "old_midi": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/tokensynth_paper/media/input_midi.mid",
+    "n_variants": 3,
+    "elapsed_sec": 211.1017940044403
+  },
+  "depends_on_surrogate": "none",
+  "rows": [
+    {
+      "family": "bass",
+      "filename": "bass_synthetic_034-062-100.wav",
+      "pitch": 62,
+      "velocity": 100,
+      "variants_info": {
+        "0": {
+          "pitches": [
+            57,
+            61,
+            62,
+            64
+          ],
+          "shape": "ascending",
+          "path": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/tokensynth_bridge/generated_midi/bass_62_v0.mid",
+          "last_note_end": 2.5500000000000003,
+          "trailing_silence": 2.4499999999999997,
+          "n_notes": 4,
+          "note_dur": 0.6,
+          "gap": 0.05
+        },
+        "1": {
+          "pitches": [
+            64,
+            62,
+            61,
+            57
+          ],
+          "shape": "descending",
+          "path": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/tokensynth_bridge/generated_midi/bass_62_v1.mid",
+          "last_note_end": 2.5500000000000003,
+          "trailing_silence": 2.4499999999999997,
+          "n_notes": 4,
+          "note_dur": 0.6,
+          "gap": 0.05
+        },
+        "2": {
+          "pitches": [
+            57,
+            64,
+            61,
+            62
+          ],
+          "shape": "zigzag",
+          "path": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/tokensynth_bridge/generated_midi/bass_62_v2.mid",
+          "last_note_end": 2.5500000000000003,
+          "trailing_silence": 2.4499999999999997,
+          "n_notes": 4,
+          "note_dur": 0.6,
+          "gap": 0.05
+        }
+      },
+      "midi_old_cos_to_wet": 0.43328529596285403,
+      "midi_old_wav": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/out/audio/phase_f3_bass_midi_old.wav",
+      "midi_new_v0_cos_to_wet": 0.6082207560533163,
+      "midi_new_v0_wav": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/out/audio/phase_f3_bass_midi_new_v0.wav",
+      "midi_new_v1_cos_to_wet": 0.6380857825272854,
+      "midi_new_v1_wav": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/out/audio/phase_f3_bass_midi_new_v1.wav",
+      "midi_new_v2_cos_to_wet": 0.6306000947945964,
+      "midi_new_v2_wav": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/out/audio/phase_f3_bass_midi_new_v2.wav",
+      "midi_new_mean_cos_to_wet": 0.6256355444583993,
+      "midi_new_variant_std": 0.012687658612557202
+    },
+    {
+      "family": "brass",
+      "filename": "brass_acoustic_006-070-100.wav",
+      "pitch": 70,
+      "velocity": 100,
+      "variants_info": {
+        "0": {
+          "pitches": [
+            66,
+            70,
+            74,
+            75
+          ],
+          "shape": "ascending",
+          "path": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/tokensynth_bridge/generated_midi/brass_70_v0.mid",
+          "last_note_end": 2.5500000000000003,
+          "trailing_silence": 2.4499999999999997,
+          "n_notes": 4,
+          "note_dur": 0.6,
+          "gap": 0.05
+        },
+        "1": {
+          "pitches": [
+            75,
+            74,
+            70,
+            66
+          ],
+          "shape": "descending",
+          "path": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/tokensynth_bridge/generated_midi/brass_70_v1.mid",
+          "last_note_end": 2.5500000000000003,
+          "trailing_silence": 2.4499999999999997,
+          "n_notes": 4,
+          "note_dur": 0.6,
+          "gap": 0.05
+        },
+        "2": {
+          "pitches": [
+            66,
+            75,
+            70,
+            74
+          ],
+          "shape": "zigzag",
+          "path": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/tokensynth_bridge/generated_midi/brass_70_v2.mid",
+          "last_note_end": 2.5500000000000003,
+          "trailing_silence": 2.4499999999999997,
+          "n_notes": 4,
+          "note_dur": 0.6,
+          "gap": 0.05
+        }
+      },
+      "midi_old_cos_to_wet": 0.30347304364847855,
+      "midi_old_wav": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/out/audio/phase_f3_brass_midi_old.wav",
+      "midi_new_v0_cos_to_wet": 0.6183660398933688,
+      "midi_new_v0_wav": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/out/audio/phase_f3_brass_midi_new_v0.wav",
+      "midi_new_v1_cos_to_wet": 0.655407825434019,
+      "midi_new_v1_wav": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/out/audio/phase_f3_brass_midi_new_v1.wav",
+      "midi_new_v2_cos_to_wet": 0.6226868775703495,
+      "midi_new_v2_wav": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/out/audio/phase_f3_brass_midi_new_v2.wav",
+      "midi_new_mean_cos_to_wet": 0.6321535809659125,
+      "midi_new_variant_std": 0.0165375799094981
+    },
+    {
+      "family": "flute",
+      "filename": "flute_acoustic_002-077-100.wav",
+      "pitch": 77,
+      "velocity": 100,
+      "variants_info": {
+        "0": {
+          "pitches": [
+            73,
+            74,
+            80,
+            82
+          ],
+          "shape": "ascending",
+          "path": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/tokensynth_bridge/generated_midi/flute_77_v0.mid",
+          "last_note_end": 2.5500000000000003,
+          "trailing_silence": 2.4499999999999997,
+          "n_notes": 4,
+          "note_dur": 0.6,
+          "gap": 0.05
+        },
+        "1": {
+          "pitches": [
+            82,
+            80,
+            74,
+            73
+          ],
+          "shape": "descending",
+          "path": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/tokensynth_bridge/generated_midi/flute_77_v1.mid",
+          "last_note_end": 2.5500000000000003,
+          "trailing_silence": 2.4499999999999997,
+          "n_notes": 4,
+          "note_dur": 0.6,
+          "gap": 0.05
+        },
+        "2": {
+          "pitches": [
+            73,
+            82,
+            74,
+            80
+          ],
+          "shape": "zigzag",
+          "path": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/tokensynth_bridge/generated_midi/flute_77_v2.mid",
+          "last_note_end": 2.5500000000000003,
+          "trailing_silence": 2.4499999999999997,
+          "n_notes": 4,
+          "note_dur": 0.6,
+          "gap": 0.05
+        }
+      },
+      "midi_old_cos_to_wet": 0.37713500124983035,
+      "midi_old_wav": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/out/audio/phase_f3_flute_midi_old.wav",
+      "midi_new_v0_cos_to_wet": 0.6511875779138001,
+      "midi_new_v0_wav": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/out/audio/phase_f3_flute_midi_new_v0.wav",
+      "midi_new_v1_cos_to_wet": 0.6916726827614542,
+      "midi_new_v1_wav": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/out/audio/phase_f3_flute_midi_new_v1.wav",
+      "midi_new_v2_cos_to_wet": 0.6833292057107533,
+      "midi_new_v2_wav": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/out/audio/phase_f3_flute_midi_new_v2.wav",
+      "midi_new_mean_cos_to_wet": 0.6753964887953359,
+      "midi_new_variant_std": 0.01745388069315816
+    },
+    {
+      "family": "guitar",
+      "filename": "guitar_acoustic_010-021-127.wav",
+      "pitch": 21,
+      "velocity": 127,
+      "variants_info": {
+        "0": {
+          "pitches": [
+            17,
+            18,
+            21,
+            26
+          ],
+          "shape": "ascending",
+          "path": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/tokensynth_bridge/generated_midi/guitar_21_v0.mid",
+          "last_note_end": 2.5500000000000003,
+          "trailing_silence": 2.4499999999999997,
+          "n_notes": 4,
+          "note_dur": 0.6,
+          "gap": 0.05
+        },
+        "1": {
+          "pitches": [
+            26,
+            21,
+            18,
+            17
+          ],
+          "shape": "descending",
+          "path": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/tokensynth_bridge/generated_midi/guitar_21_v1.mid",
+          "last_note_end": 2.5500000000000003,
+          "trailing_silence": 2.4499999999999997,
+          "n_notes": 4,
+          "note_dur": 0.6,
+          "gap": 0.05
+        },
+        "2": {
+          "pitches": [
+            17,
+            26,
+            18,
+            21
+          ],
+          "shape": "zigzag",
+          "path": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/tokensynth_bridge/generated_midi/guitar_21_v2.mid",
+          "last_note_end": 2.5500000000000003,
+          "trailing_silence": 2.4499999999999997,
+          "n_notes": 4,
+          "note_dur": 0.6,
+          "gap": 0.05
+        }
+      },
+      "midi_old_cos_to_wet": 0.43520888299951443,
+      "midi_old_wav": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/out/audio/phase_f3_guitar_midi_old.wav",
+      "midi_new_v0_cos_to_wet": 0.4591073393817125,
+      "midi_new_v0_wav": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/out/audio/phase_f3_guitar_midi_new_v0.wav",
+      "midi_new_v1_cos_to_wet": 0.5842602601200615,
+      "midi_new_v1_wav": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/out/audio/phase_f3_guitar_midi_new_v1.wav",
+      "midi_new_v2_cos_to_wet": 0.5535124008068749,
+      "midi_new_v2_wav": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/out/audio/phase_f3_guitar_midi_new_v2.wav",
+      "midi_new_mean_cos_to_wet": 0.5322933334362162,
+      "midi_new_variant_std": 0.053250978128076214
+    },
+    {
+      "family": "keyboard",
+      "filename": "keyboard_acoustic_004-022-050.wav",
+      "pitch": 22,
+      "velocity": 50,
+      "variants_info": {
+        "0": {
+          "pitches": [
+            18,
+            19,
+            25,
+            27
+          ],
+          "shape": "ascending",
+          "path": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/tokensynth_bridge/generated_midi/keyboard_22_v0.mid",
+          "last_note_end": 2.5500000000000003,
+          "trailing_silence": 2.4499999999999997,
+          "n_notes": 4,
+          "note_dur": 0.6,
+          "gap": 0.05
+        },
+        "1": {
+          "pitches": [
+            27,
+            25,
+            19,
+            18
+          ],
+          "shape": "descending",
+          "path": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/tokensynth_bridge/generated_midi/keyboard_22_v1.mid",
+          "last_note_end": 2.5500000000000003,
+          "trailing_silence": 2.4499999999999997,
+          "n_notes": 4,
+          "note_dur": 0.6,
+          "gap": 0.05
+        },
+        "2": {
+          "pitches": [
+            18,
+            27,
+            19,
+            25
+          ],
+          "shape": "zigzag",
+          "path": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/tokensynth_bridge/generated_midi/keyboard_22_v2.mid",
+          "last_note_end": 2.5500000000000003,
+          "trailing_silence": 2.4499999999999997,
+          "n_notes": 4,
+          "note_dur": 0.6,
+          "gap": 0.05
+        }
+      },
+      "midi_old_cos_to_wet": 0.528208255767294,
+      "midi_old_wav": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/out/audio/phase_f3_keyboard_midi_old.wav",
+      "midi_new_v0_cos_to_wet": 0.35546571016276096,
+      "midi_new_v0_wav": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/out/audio/phase_f3_keyboard_midi_new_v0.wav",
+      "midi_new_v1_cos_to_wet": 0.5697589856236831,
+      "midi_new_v1_wav": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/out/audio/phase_f3_keyboard_midi_new_v1.wav",
+      "midi_new_v2_cos_to_wet": 0.6117607355111679,
+      "midi_new_v2_wav": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/out/audio/phase_f3_keyboard_midi_new_v2.wav",
+      "midi_new_mean_cos_to_wet": 0.5123284770992039,
+      "midi_new_variant_std": 0.11223630573220754
+    },
+    {
+      "family": "mallet",
+      "filename": "mallet_acoustic_047-065-025.wav",
+      "pitch": 65,
+      "velocity": 25,
+      "variants_info": {
+        "0": {
+          "pitches": [
+            62,
+            63,
+            64,
+            66
+          ],
+          "shape": "ascending",
+          "path": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/tokensynth_bridge/generated_midi/mallet_65_v0.mid",
+          "last_note_end": 2.5500000000000003,
+          "trailing_silence": 2.4499999999999997,
+          "n_notes": 4,
+          "note_dur": 0.6,
+          "gap": 0.05
+        },
+        "1": {
+          "pitches": [
+            66,
+            64,
+            63,
+            62
+          ],
+          "shape": "descending",
+          "path": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/tokensynth_bridge/generated_midi/mallet_65_v1.mid",
+          "last_note_end": 2.5500000000000003,
+          "trailing_silence": 2.4499999999999997,
+          "n_notes": 4,
+          "note_dur": 0.6,
+          "gap": 0.05
+        },
+        "2": {
+          "pitches": [
+            62,
+            66,
+            63,
+            64
+          ],
+          "shape": "zigzag",
+          "path": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/tokensynth_bridge/generated_midi/mallet_65_v2.mid",
+          "last_note_end": 2.5500000000000003,
+          "trailing_silence": 2.4499999999999997,
+          "n_notes": 4,
+          "note_dur": 0.6,
+          "gap": 0.05
+        }
+      },
+      "midi_old_cos_to_wet": 0.6256182789796294,
+      "midi_old_wav": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/out/audio/phase_f3_mallet_midi_old.wav",
+      "midi_new_v0_cos_to_wet": 0.7782650921652989,
+      "midi_new_v0_wav": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/out/audio/phase_f3_mallet_midi_new_v0.wav",
+      "midi_new_v1_cos_to_wet": 0.8601276278487187,
+      "midi_new_v1_wav": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/out/audio/phase_f3_mallet_midi_new_v1.wav",
+      "midi_new_v2_cos_to_wet": 0.8606829643240904,
+      "midi_new_v2_wav": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/out/audio/phase_f3_mallet_midi_new_v2.wav",
+      "midi_new_mean_cos_to_wet": 0.8330252281127026,
+      "midi_new_variant_std": 0.03872192717641882
+    },
+    {
+      "family": "organ",
+      "filename": "organ_electronic_001-060-100.wav",
+      "pitch": 60,
+      "velocity": 100,
+      "variants_info": {
+        "0": {
+          "pitches": [
+            59,
+            60,
+            62,
+            63
+          ],
+          "shape": "ascending",
+          "path": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/tokensynth_bridge/generated_midi/organ_60_v0.mid",
+          "last_note_end": 2.5500000000000003,
+          "trailing_silence": 2.4499999999999997,
+          "n_notes": 4,
+          "note_dur": 0.6,
+          "gap": 0.05
+        },
+        "1": {
+          "pitches": [
+            63,
+            62,
+            60,
+            59
+          ],
+          "shape": "descending",
+          "path": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/tokensynth_bridge/generated_midi/organ_60_v1.mid",
+          "last_note_end": 2.5500000000000003,
+          "trailing_silence": 2.4499999999999997,
+          "n_notes": 4,
+          "note_dur": 0.6,
+          "gap": 0.05
+        },
+        "2": {
+          "pitches": [
+            59,
+            63,
+            60,
+            62
+          ],
+          "shape": "zigzag",
+          "path": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/tokensynth_bridge/generated_midi/organ_60_v2.mid",
+          "last_note_end": 2.5500000000000003,
+          "trailing_silence": 2.4499999999999997,
+          "n_notes": 4,
+          "note_dur": 0.6,
+          "gap": 0.05
+        }
+      },
+      "midi_old_cos_to_wet": 0.36548127922267604,
+      "midi_old_wav": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/out/audio/phase_f3_organ_midi_old.wav",
+      "midi_new_v0_cos_to_wet": 0.5463282195519837,
+      "midi_new_v0_wav": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/out/audio/phase_f3_organ_midi_new_v0.wav",
+      "midi_new_v1_cos_to_wet": 0.636350035666783,
+      "midi_new_v1_wav": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/out/audio/phase_f3_organ_midi_new_v1.wav",
+      "midi_new_v2_cos_to_wet": 0.5965262651437515,
+      "midi_new_v2_wav": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/out/audio/phase_f3_organ_midi_new_v2.wav",
+      "midi_new_mean_cos_to_wet": 0.5930681734541727,
+      "midi_new_variant_std": 0.03683250957828637
+    },
+    {
+      "family": "vocal",
+      "filename": "vocal_acoustic_000-050-025.wav",
+      "pitch": 50,
+      "velocity": 25,
+      "variants_info": {
+        "0": {
+          "pitches": [
+            48,
+            52,
+            53,
+            54
+          ],
+          "shape": "ascending",
+          "path": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/tokensynth_bridge/generated_midi/vocal_50_v0.mid",
+          "last_note_end": 2.5500000000000003,
+          "trailing_silence": 2.4499999999999997,
+          "n_notes": 4,
+          "note_dur": 0.6,
+          "gap": 0.05
+        },
+        "1": {
+          "pitches": [
+            54,
+            53,
+            52,
+            48
+          ],
+          "shape": "descending",
+          "path": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/tokensynth_bridge/generated_midi/vocal_50_v1.mid",
+          "last_note_end": 2.5500000000000003,
+          "trailing_silence": 2.4499999999999997,
+          "n_notes": 4,
+          "note_dur": 0.6,
+          "gap": 0.05
+        },
+        "2": {
+          "pitches": [
+            48,
+            54,
+            52,
+            53
+          ],
+          "shape": "zigzag",
+          "path": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/tokensynth_bridge/generated_midi/vocal_50_v2.mid",
+          "last_note_end": 2.5500000000000003,
+          "trailing_silence": 2.4499999999999997,
+          "n_notes": 4,
+          "note_dur": 0.6,
+          "gap": 0.05
+        }
+      },
+      "midi_old_cos_to_wet": 0.6576829944653487,
+      "midi_old_wav": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/out/audio/phase_f3_vocal_midi_old.wav",
+      "midi_new_v0_cos_to_wet": 0.8364662430555946,
+      "midi_new_v0_wav": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/out/audio/phase_f3_vocal_midi_new_v0.wav",
+      "midi_new_v1_cos_to_wet": 0.8178476582666598,
+      "midi_new_v1_wav": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/out/audio/phase_f3_vocal_midi_new_v1.wav",
+      "midi_new_v2_cos_to_wet": 0.7703717946998521,
+      "midi_new_v2_wav": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/out/audio/phase_f3_vocal_midi_new_v2.wav",
+      "midi_new_mean_cos_to_wet": 0.8082285653407021,
+      "midi_new_variant_std": 0.0278270160982828
+    }
+  ],
+  "summary": {
+    "mean_old": 0.46576162903695323,
+    "mean_new_avg_of_variants": 0.6515161739578306,
+    "mean_diff": 0.18575454492087745,
+    "n_improved": 7,
+    "n_total": 8,
+    "wilcoxon_stat": 35.0,
+    "wilcoxon_p_greater": 0.0078125,
+    "verdict": "신규 MIDI(3변형 평균)에서 유의하게 상승 — F-4 전체 재생성으로 진행",
+    "variant_std_within_source_mean": 0.03944348199106065,
+    "between_source_std_of_new_mean": 0.10961453268286173,
+    "variance_flag": "MIDI 변형 간 분산이 소스 간 분산보다 작다 — 변형 선택이 결과를 크게 흔들지 않음"
+  }
+}

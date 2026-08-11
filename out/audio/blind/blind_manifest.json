@@ -1,0 +1,124 @@
+{
+  "pairs": [
+    {
+      "id": 1,
+      "a": "blind_01_A.wav",
+      "b": "blind_01_B.wav"
+    },
+    {
+      "id": 2,
+      "a": "blind_02_A.wav",
+      "b": "blind_02_B.wav"
+    },
+    {
+      "id": 3,
+      "a": "blind_03_A.wav",
+      "b": "blind_03_B.wav"
+    },
+    {
+      "id": 4,
+      "a": "blind_04_A.wav",
+      "b": "blind_04_B.wav"
+    },
+    {
+      "id": 5,
+      "a": "blind_05_A.wav",
+      "b": "blind_05_B.wav"
+    },
+    {
+      "id": 6,
+      "a": "blind_06_A.wav",
+      "b": "blind_06_B.wav"
+    },
+    {
+      "id": 7,
+      "a": "blind_07_A.wav",
+      "b": "blind_07_B.wav"
+    },
+    {
+      "id": 8,
+      "a": "blind_08_A.wav",
+      "b": "blind_08_B.wav"
+    },
+    {
+      "id": 9,
+      "a": "blind_09_A.wav",
+      "b": "blind_09_B.wav"
+    },
+    {
+      "id": 10,
+      "a": "blind_10_A.wav",
+      "b": "blind_10_B.wav"
+    },
+    {
+      "id": 11,
+      "a": "blind_11_A.wav",
+      "b": "blind_11_B.wav"
+    },
+    {
+      "id": 12,
+      "a": "blind_12_A.wav",
+      "b": "blind_12_B.wav"
+    },
+    {
+      "id": 13,
+      "a": "blind_13_A.wav",
+      "b": "blind_13_B.wav"
+    },
+    {
+      "id": 14,
+      "a": "blind_14_A.wav",
+      "b": "blind_14_B.wav"
+    },
+    {
+      "id": 15,
+      "a": "blind_15_A.wav",
+      "b": "blind_15_B.wav"
+    },
+    {
+      "id": 16,
+      "a": "blind_16_A.wav",
+      "b": "blind_16_B.wav"
+    },
+    {
+      "id": 17,
+      "a": "blind_17_A.wav",
+      "b": "blind_17_B.wav"
+    },
+    {
+      "id": 18,
+      "a": "blind_18_A.wav",
+      "b": "blind_18_B.wav"
+    },
+    {
+      "id": 19,
+      "a": "blind_19_A.wav",
+      "b": "blind_19_B.wav"
+    },
+    {
+      "id": 20,
+      "a": "blind_20_A.wav",
+      "b": "blind_20_B.wav"
+    },
+    {
+      "id": 21,
+      "a": "blind_21_A.wav",
+      "b": "blind_21_B.wav"
+    },
+    {
+      "id": 22,
+      "a": "blind_22_A.wav",
+      "b": "blind_22_B.wav"
+    },
+    {
+      "id": 23,
+      "a": "blind_23_A.wav",
+      "b": "blind_23_B.wav"
+    },
+    {
+      "id": 24,
+      "a": "blind_24_A.wav",
+      "b": "blind_24_B.wav"
+    }
+  ]
+}

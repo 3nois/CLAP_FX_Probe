@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>블라인드 청취 테스트 — dry 판별</title>
+<style>
+  :root {
+    --bg: #1a1a1e; --panel: #26262c; --line: #3a3a44;
+    --text: #e8e8ec; --dim: #9a9aa6;
+    --accent: #6ba3ff; --accent2: #ffa94d; --ok: #51cf66;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 32px 24px;
+    background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; }
+  h1 { font-size: 20px; margin: 0 0 4px; font-weight: 600; }
+  .sub { color: var(--dim); font-size: 13px; margin-bottom: 24px; line-height: 1.6; }
+  .progress-bar { height: 4px; background: var(--line); border-radius: 2px; overflow: hidden; margin-bottom: 8px; }
+  .progress-fill { height: 100%; background: var(--accent); transition: width 0.2s; }
+  .progress-text { display: flex; justify-content: space-between; font-size: 12px; color: var(--dim); margin-bottom: 28px; }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 24px; margin-bottom: 16px; }
+  .ab-row { display: flex; gap: 12px; margin-bottom: 20px; }
+  .ab-btn {
+    flex: 1; padding: 28px 16px; font-size: 32px; font-weight: 700;
+    background: #32323a; color: var(--text);
+    border: 2px solid var(--line); border-radius: 8px;
+    cursor: pointer; transition: all 0.12s; font-family: inherit;
+  }
+  .ab-btn:hover { border-color: var(--accent); }
+  .ab-btn.playing { background: var(--accent); color: #0d1117; border-color: var(--accent); }
+  .ab-btn .played { display: block; font-size: 11px; font-weight: 400; margin-top: 6px; opacity: 0.7; }
+  .transport { display: flex; gap: 8px; align-items: center; margin-bottom: 4px; }
+  .t-btn { padding: 8px 14px; font-size: 13px; background: #32323a; color: var(--text); border: 1px solid var(--line); border-radius: 6px; cursor: pointer; font-family: inherit; }
+  .t-btn:hover { border-color: var(--dim); }
+  .t-btn.on { background: var(--accent2); color: #1a1a1e; border-color: var(--accent2); }
+  .seek { flex: 1; }
+  input[type=range] { width: 100%; accent-color: var(--accent); }
+  .time { font-size: 12px; color: var(--dim); font-variant-numeric: tabular-nums; min-width: 76px; text-align: right; }
+  .q { font-size: 14px; margin: 22px 0 10px; font-weight: 600; }
+  .q .hint { font-weight: 400; color: var(--dim); font-size: 12px; margin-left: 6px; }
+  .choice-row { display: flex; gap: 10px; }
+  .choice { flex: 1; padding: 14px; font-size: 15px; font-weight: 600; background: #32323a; color: var(--text); border: 2px solid var(--line); border-radius: 8px; cursor: pointer; font-family: inherit; transition: all 0.12s; }
+  .choice:hover:not(:disabled) { border-color: var(--dim); }
+  .choice.sel { background: var(--ok); color: #0d1117; border-color: var(--ok); }
+  .choice:disabled { opacity: 0.35; cursor: not-allowed; }
+  .nat-row { display: flex; gap: 10px; }
+  .nat { flex: 1; padding: 11px; font-size: 14px; background: #32323a; color: var(--text); border: 2px solid var(--line); border-radius: 8px; cursor: pointer; font-family: inherit; transition: all 0.12s; }
+  .nat:hover { border-color: var(--dim); }
+  .nat.sel { background: var(--accent2); color: #1a1a1e; border-color: var(--accent2); }
+  .nav { display: flex; gap: 10px; margin-top: 20px; }
+  .nav button { padding: 12px 20px; font-size: 14px; font-weight: 600; border-radius: 8px; cursor: pointer; font-family: inherit; border: 1px solid var(--line); background: #32323a; color: var(--text); }
+  .nav button:disabled { opacity: 0.3; cursor: not-allowed; }
+  .nav .next { flex: 1; background: var(--accent); color: #0d1117; border-color: var(--accent); }
+  .nav .next:disabled { background: #32323a; color: var(--text); border-color: var(--line); }
+  .keys { margin-top: 22px; font-size: 12px; color: var(--dim); line-height: 1.9; border-top: 1px solid var(--line); padding-top: 16px; }
+  kbd { background: #32323a; border: 1px solid var(--line); border-radius: 4px; padding: 2px 7px; font-size: 11px; font-family: ui-monospace, monospace; }
+  .done { text-align: center; padding: 40px 20px; }
+  .done h2 { font-size: 22px; margin: 0 0 12px; }
+  .done p { color: var(--dim); font-size: 14px; line-height: 1.7; }
+  .dl { display: inline-block; margin-top: 20px; padding: 14px 28px; background: var(--ok); color: #0d1117; font-weight: 700; font-size: 15px; border: none; border-radius: 8px; cursor: pointer; font-family: inherit; }
+  .setup { font-size: 13px; line-height: 1.8; color: var(--dim); }
+  .setup code { background: #32323a; padding: 2px 7px; border-radius: 4px; font-family: ui-monospace, monospace; font-size: 12px; color: var(--text); }
+  .hidden { display: none; }
+  .err { color: #ff8787; font-size: 13px; line-height: 1.7; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>블라인드 청취 테스트</h1>
+  <div class="sub">
+    각 쌍에서 <b>더 dry 하게(잔향·왜곡이 적게) 들리는 쪽</b>을 고르세요.<br>
+    조건은 가려져 있고 A/B 순서는 무작위입니다. 몇 번이든 다시 들을 수 있습니다.
+  </div>
+
+  <div id="setup" class="panel">
+    <div class="setup" id="setupMsg">manifest 를 불러오는 중...</div>
+  </div>
+
+  <div id="test" class="hidden">
+    <div class="progress-bar"><div class="progress-fill" id="pfill"></div></div>
+    <div class="progress-text">
+      <span id="ptext">1 / 24</span>
+      <span id="pdone">응답 0개</span>
+    </div>
+
+    <div class="panel">
+      <div class="ab-row">
+        <button class="ab-btn" id="btnA">A<span class="played" id="playedA">미청취</span></button>
+        <button class="ab-btn" id="btnB">B<span class="played" id="playedB">미청취</span></button>
+      </div>
+
+      <div class="transport">
+        <button class="t-btn" id="btnStop">■ 정지</button>
+        <button class="t-btn" id="btnLoop">↻ 반복</button>
+        <input type="range" class="seek" id="seek" min="0" max="1000" value="0">
+        <span class="time" id="time">0.0 / 0.0</span>
+      </div>
+
+      <div class="q">어느 쪽이 더 dry 한가요?<span class="hint">둘 다 들어야 선택할 수 있습니다</span></div>
+      <div class="choice-row">
+        <button class="choice" id="chA" disabled>A 가 더 dry</button>
+        <button class="choice" id="chB" disabled>B 가 더 dry</button>
+      </div>
+
+      <div class="q">자연스러움<span class="hint">두 소리 전반의 인상</span></div>
+      <div class="nat-row">
+        <button class="nat" data-n="상">상</button>
+        <button class="nat" data-n="중">중</button>
+        <button class="nat" data-n="하">하</button>
+      </div>
+
+      <div class="nav">
+        <button id="btnPrev">← 이전</button>
+        <button class="next" id="btnNext" disabled>다음 →</button>
+      </div>
+
+      <div class="keys">
+        <kbd>A</kbd> A 재생 · <kbd>B</kbd> B 재생 · <kbd>Space</kbd> 정지 · <kbd>L</kbd> 반복<br>
+        <kbd>1</kbd> A 선택 · <kbd>2</kbd> B 선택 · <kbd>←</kbd> <kbd>→</kbd> 이동
+      </div>
+    </div>
+  </div>
+
+  <div id="done" class="panel hidden">
+    <div class="done">
+      <h2>청취 완료</h2>
+      <p id="doneMsg"></p>
+      <button class="dl" id="btnSave">응답 저장 (JSON)</button>
+    </div>
+  </div>
+</div>
+
+<script>
+let pairs = [], responses = [], idx = 0, loop = false, current = null;
+const audioA = new Audio(), audioB = new Audio();
+[audioA, audioB].forEach(el => { el.preload = 'auto'; });
+const $ = id => document.getElementById(id);
+
+async function init() {
+  try {
+    const res = await fetch('blind_manifest.json');
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    pairs = data.pairs;
+    if (!pairs || !pairs.length) throw new Error('pairs 가 비어 있습니다');
+    responses = pairs.map(p => ({
+      pair_id: p.id, choice: null, naturalness: null,
+      played_a: false, played_b: false, listen_count: 0
+    }));
+    $('setup').classList.add('hidden');
+    $('test').classList.remove('hidden');
+    render();
+  } catch (e) {
+    $('setupMsg').innerHTML = `
+      <div class="err"><b>manifest 를 못 읽었습니다.</b> (${e.message})</div><br>
+      이 파일은 <code>blind_manifest.json</code> 및 wav 파일과 같은 폴더에 있어야 하고,
+      로컬 서버로 열어야 합니다.<br><br>
+      <b>실행 방법</b><br>
+      1. 터미널에서 해당 폴더로 이동<br>
+      2. <code>python -m http.server 8000</code><br>
+      3. 브라우저에서 <code>http://localhost:8000/abx_test.html</code>`;
+  }
+}
+
+function play(which) {
+  const from = which === 'a' ? audioB : audioA;
+  const to   = which === 'a' ? audioA : audioB;
+  const pos  = from.currentTime || to.currentTime || 0;
+  from.pause();
+  to.currentTime = Math.min(pos, to.duration || pos);
+  to.loop = loop;
+  to.play();
+  current = which;
+  const r = responses[idx];
+  if (which === 'a') r.played_a = true; else r.played_b = true;
+  r.listen_count++;
+  updateUI();
+}
+
+function stop() { audioA.pause(); audioB.pause(); current = null; updateUI(); }
+
+function render() {
+  const p = pairs[idx];
+  stop();
+  audioA.src = p.a; audioB.src = p.b;
+  audioA.currentTime = 0; audioB.currentTime = 0;
+  updateUI();
+}
+
+function updateUI() {
+  const r = responses[idx], n = pairs.length;
+  $('ptext').textContent = `${idx + 1} / ${n}`;
+  const answered = responses.filter(x => x.choice && x.naturalness).length;
+  $('pdone').textContent = `응답 ${answered}개`;
+  $('pfill').style.width = (answered / n * 100) + '%';
+  $('btnA').classList.toggle('playing', current === 'a');
+  $('btnB').classList.toggle('playing', current === 'b');
+  $('playedA').textContent = r.played_a ? '청취함' : '미청취';
+  $('playedB').textContent = r.played_b ? '청취함' : '미청취';
+  const bothHeard = r.played_a && r.played_b;
+  $('chA').disabled = !bothHeard; $('chB').disabled = !bothHeard;
+  $('chA').classList.toggle('sel', r.choice === 'A');
+  $('chB').classList.toggle('sel', r.choice === 'B');
+  document.querySelectorAll('.nat').forEach(b => b.classList.toggle('sel', r.naturalness === b.dataset.n));
+  $('btnLoop').classList.toggle('on', loop);
+  $('btnPrev').disabled = idx === 0;
+  $('btnNext').disabled = !(r.choice && r.naturalness);
+  $('btnNext').textContent = idx === n - 1 ? '완료 →' : '다음 →';
+}
+
+let seeking = false;
+function tick() {
+  const el = current === 'b' ? audioB : audioA;
+  const d = el.duration || 0, t = el.currentTime || 0;
+  $('time').textContent = `${t.toFixed(1)} / ${d.toFixed(1)}`;
+  if (!seeking) $('seek').value = d ? (t / d * 1000) : 0;
+  requestAnimationFrame(tick);
+}
+
+$('btnA').onclick = () => play('a');
+$('btnB').onclick = () => play('b');
+$('btnStop').onclick = stop;
+$('btnLoop').onclick = () => { loop = !loop; audioA.loop = loop; audioB.loop = loop; updateUI(); };
+$('seek').oninput = () => { seeking = true; };
+$('seek').onchange = e => {
+  const el = current === 'b' ? audioB : audioA;
+  const d = el.duration || 0, t = e.target.value / 1000 * d;
+  audioA.currentTime = Math.min(t, audioA.duration || t);
+  audioB.currentTime = Math.min(t, audioB.duration || t);
+  seeking = false;
+};
+$('chA').onclick = () => { responses[idx].choice = 'A'; updateUI(); };
+$('chB').onclick = () => { responses[idx].choice = 'B'; updateUI(); };
+document.querySelectorAll('.nat').forEach(b => {
+  b.onclick = () => { responses[idx].naturalness = b.dataset.n; updateUI(); };
+});
+$('btnPrev').onclick = () => { if (idx > 0) { idx--; render(); } };
+$('btnNext').onclick = () => { if (idx < pairs.length - 1) { idx++; render(); } else finish(); };
+
+document.addEventListener('keydown', e => {
+  if ($('test').classList.contains('hidden')) return;
+  const k = e.key.toLowerCase();
+  if (k === 'a') { e.preventDefault(); play('a'); }
+  else if (k === 'b') { e.preventDefault(); play('b'); }
+  else if (k === ' ') { e.preventDefault(); stop(); }
+  else if (k === 'l') { e.preventDefault(); $('btnLoop').click(); }
+  else if (k === '1') { if (!$('chA').disabled) $('chA').click(); }
+  else if (k === '2') { if (!$('chB').disabled) $('chB').click(); }
+  else if (k === 'arrowleft') { if (!$('btnPrev').disabled) $('btnPrev').click(); }
+  else if (k === 'arrowright') { if (!$('btnNext').disabled) $('btnNext').click(); }
+});
+
+function finish() {
+  stop();
+  $('test').classList.add('hidden');
+  $('done').classList.remove('hidden');
+  const n = pairs.length;
+  const total = responses.reduce((s, r) => s + r.listen_count, 0);
+  $('doneMsg').innerHTML = `${n}쌍 응답 완료. 총 ${total}회 재생.<br>아래 버튼으로 저장한 뒤 채점 스크립트에 넣으세요.`;
+}
+
+$('btnSave').onclick = () => {
+  const out = { completed_at: new Date().toISOString(), n_pairs: pairs.length, responses: responses };
+  const blob = new Blob([JSON.stringify(out, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'blind_responses.json';
+  a.click();
+};
+
+init();
+requestAnimationFrame(tick);
+</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+{
+  "0.6": {
+    "n_tokens": 439,
+    "duration_sec": 5.0968125,
+    "rms": 0.22838035935537437,
+    "peak": 0.9930675029754639,
+    "gen_time_sec": 14.481267929077148,
+    "wav_path": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/out/audio/phase2_norm_0.6.wav",
+    "cos_to_norm1": 0.9807862043380737
+  },
+  "0.8": {
+    "n_tokens": 439,
+    "duration_sec": 5.0968125,
+    "rms": 0.217891476653399,
+    "peak": 0.9981404542922974,
+    "gen_time_sec": 14.769008874893188,
+    "wav_path": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/out/audio/phase2_norm_0.8.wav",
+    "cos_to_norm1": 0.9771479964256287
+  },
+  "1.0": {
+    "n_tokens": 439,
+    "duration_sec": 5.0968125,
+    "rms": 0.1752667757889994,
+    "peak": 0.9936575889587402,
+    "gen_time_sec": 15.464930057525635,
+    "wav_path": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/out/audio/phase2_norm_1.0.wav",
+    "cos_to_norm1": 1.0
+  },
+  "1.2": {
+    "n_tokens": 439,
+    "duration_sec": 5.0968125,
+    "rms": 0.19799253599526404,
+    "peak": 0.9947205185890198,
+    "gen_time_sec": 14.273900985717773,
+    "wav_path": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/out/audio/phase2_norm_1.2.wav",
+    "cos_to_norm1": 0.9848862290382385
+  },
+  "1.5": {
+    "n_tokens": 439,
+    "duration_sec": 5.0968125,
+    "rms": 0.17820381614123204,
+    "peak": 0.9936656951904297,
+    "gen_time_sec": 14.851064205169678,
+    "wav_path": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/out/audio/phase2_norm_1.5.wav",
+    "cos_to_norm1": 0.9856569766998291
+  },
+  "2.0": {
+    "n_tokens": 439,
+    "duration_sec": 5.0968125,
+    "rms": 0.2505986407687697,
+    "peak": 0.9810147881507874,
+    "gen_time_sec": 14.484992027282715,
+    "wav_path": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/out/audio/phase2_norm_2.0.wav",
+    "cos_to_norm1": 0.7213391661643982
+  }
+}

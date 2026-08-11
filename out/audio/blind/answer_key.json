@@ -1,0 +1,220 @@
+{
+  "pairs": [
+    {
+      "id": 1,
+      "correct": "B",
+      "src_pos": 936,
+      "family": "reed",
+      "effect": "reverb",
+      "stratum": "high",
+      "directional_agreement": 0.1265816684173848
+    },
+    {
+      "id": 2,
+      "correct": "B",
+      "src_pos": 825,
+      "family": "organ",
+      "effect": "reverb",
+      "stratum": "high",
+      "directional_agreement": 0.16533489972940135
+    },
+    {
+      "id": 3,
+      "correct": "B",
+      "src_pos": 1035,
+      "family": "string",
+      "effect": "highshelf",
+      "stratum": "high",
+      "directional_agreement": 0.20041744003898138
+    },
+    {
+      "id": 4,
+      "correct": "A",
+      "src_pos": 1035,
+      "family": "string",
+      "effect": "reverb",
+      "stratum": "mid",
+      "directional_agreement": 0.0099093874884714
+    },
+    {
+      "id": 5,
+      "correct": "B",
+      "src_pos": 412,
+      "family": "guitar",
+      "effect": "distortion",
+      "stratum": "high",
+      "directional_agreement": 0.08734613335826638
+    },
+    {
+      "id": 6,
+      "correct": "A",
+      "src_pos": 203,
+      "family": "brass",
+      "effect": "reverb",
+      "stratum": "mid",
+      "directional_agreement": -0.007770628910197456
+    },
+    {
+      "id": 7,
+      "correct": "A",
+      "src_pos": 236,
+      "family": "brass",
+      "effect": "reverb",
+      "stratum": "low",
+      "directional_agreement": -0.13815312046774225
+    },
+    {
+      "id": 8,
+      "correct": "A",
+      "src_pos": 1184,
+      "family": "vocal",
+      "effect": "highshelf",
+      "stratum": "mid",
+      "directional_agreement": -0.009217574231179401
+    },
+    {
+      "id": 9,
+      "correct": "B",
+      "src_pos": 481,
+      "family": "keyboard",
+      "effect": "highshelf",
+      "stratum": "high",
+      "directional_agreement": 0.19355743594511793
+    },
+    {
+      "id": 10,
+      "correct": "B",
+      "src_pos": 384,
+      "family": "guitar",
+      "effect": "reverb",
+      "stratum": "low",
+      "directional_agreement": -0.04552995140918521
+    },
+    {
+      "id": 11,
+      "correct": "B",
+      "src_pos": 59,
+      "family": "bass",
+      "effect": "highshelf",
+      "stratum": "mid",
+      "directional_agreement": 0.0421078279121057
+    },
+    {
+      "id": 12,
+      "correct": "A",
+      "src_pos": 379,
+      "family": "guitar",
+      "effect": "reverb",
+      "stratum": "low",
+      "directional_agreement": -0.06213205566507062
+    },
+    {
+      "id": 13,
+      "correct": "B",
+      "src_pos": 187,
+      "family": "brass",
+      "effect": "distortion",
+      "stratum": "high",
+      "directional_agreement": 0.10978686821010245
+    },
+    {
+      "id": 14,
+      "correct": "B",
+      "src_pos": 505,
+      "family": "keyboard",
+      "effect": "highshelf",
+      "stratum": "mid",
+      "directional_agreement": -0.03537789829845061
+    },
+    {
+      "id": 15,
+      "correct": "B",
+      "src_pos": 800,
+      "family": "organ",
+      "effect": "highshelf",
+      "stratum": "low",
+      "directional_agreement": -0.17390087716808184
+    },
+    {
+      "id": 16,
+      "correct": "A",
+      "src_pos": 187,
+      "family": "brass",
+      "effect": "reverb",
+      "stratum": "mid",
+      "directional_agreement": 0.038291600241578565
+    },
+    {
+      "id": 17,
+      "correct": "B",
+      "src_pos": 324,
+      "family": "flute",
+      "effect": "distortion",
+      "stratum": "low",
+      "directional_agreement": -0.19624708367726268
+    },
+    {
+      "id": 18,
+      "correct": "B",
+      "src_pos": 654,
+      "family": "mallet",
+      "effect": "highshelf",
+      "stratum": "low",
+      "directional_agreement": -0.1003503017399709
+    },
+    {
+      "id": 19,
+      "correct": "B",
+      "src_pos": 694,
+      "family": "mallet",
+      "effect": "distortion",
+      "stratum": "mid",
+      "directional_agreement": 0.07428284604224641
+    },
+    {
+      "id": 20,
+      "correct": "A",
+      "src_pos": 59,
+      "family": "bass",
+      "effect": "reverb",
+      "stratum": "high",
+      "directional_agreement": 0.11437588836575051
+    },
+    {
+      "id": 21,
+      "correct": "B",
+      "src_pos": 731,
+      "family": "organ",
+      "effect": "distortion",
+      "stratum": "mid",
+      "directional_agreement": 0.0485789480736816
+    },
+    {
+      "id": 22,
+      "correct": "A",
+      "src_pos": 584,
+      "family": "keyboard",
+      "effect": "distortion",
+      "stratum": "low",
+      "directional_agreement": -0.14216189656662018
+    },
+    {
+      "id": 23,
+      "correct": "B",
+      "src_pos": 856,
+      "family": "reed",
+      "effect": "highshelf",
+      "stratum": "low",
+      "directional_agreement": -0.1200799215439898
+    },
+    {
+      "id": 24,
+      "correct": "B",
+      "src_pos": 1087,
+      "family": "vocal",
+      "effect": "highshelf",
+      "stratum": "high",
+      "directional_agreement": 0.2044478608645274
+    }
+  ]
+}

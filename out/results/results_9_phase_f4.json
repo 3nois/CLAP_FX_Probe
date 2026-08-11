@@ -1,0 +1,1852 @@
+{
+  "meta": {
+    "n_combos": 115,
+    "n_variants": 3,
+    "n_jobs": 690,
+    "exclusions": [
+      {
+        "src_pos": 54,
+        "family": "bass",
+        "effect": "reverb",
+        "reason": "저역이 뭉개져 실무에서 잘 안 씀"
+      },
+      {
+        "src_pos": 59,
+        "family": "bass",
+        "effect": "reverb",
+        "reason": "저역이 뭉개져 실무에서 잘 안 씀"
+      },
+      {
+        "src_pos": 77,
+        "family": "bass",
+        "effect": "reverb",
+        "reason": "저역이 뭉개져 실무에서 잘 안 씀"
+      },
+      {
+        "src_pos": 95,
+        "family": "bass",
+        "effect": "reverb",
+        "reason": "저역이 뭉개져 실무에서 잘 안 씀"
+      },
+      {
+        "src_pos": 117,
+        "family": "bass",
+        "effect": "reverb",
+        "reason": "저역이 뭉개져 실무에서 잘 안 씀"
+      },
+      {
+        "src_pos": 154,
+        "family": "brass",
+        "effect": "distortion",
+        "reason": "금관 왜곡은 비주류 조합"
+      },
+      {
+        "src_pos": 187,
+        "family": "brass",
+        "effect": "distortion",
+        "reason": "금관 왜곡은 비주류 조합"
+      },
+      {
+        "src_pos": 203,
+        "family": "brass",
+        "effect": "distortion",
+        "reason": "금관 왜곡은 비주류 조합"
+      },
+      {
+        "src_pos": 209,
+        "family": "brass",
+        "effect": "distortion",
+        "reason": "금관 왜곡은 비주류 조합"
+      },
+      {
+        "src_pos": 236,
+        "family": "brass",
+        "effect": "distortion",
+        "reason": "금관 왜곡은 비주류 조합"
+      },
+      {
+        "src_pos": 248,
+        "family": "flute",
+        "effect": "distortion",
+        "reason": "관악기 왜곡은 비주류 조합"
+      },
+      {
+        "src_pos": 324,
+        "family": "flute",
+        "effect": "distortion",
+        "reason": "관악기 왜곡은 비주류 조합"
+      },
+      {
+        "src_pos": 326,
+        "family": "flute",
+        "effect": "distortion",
+        "reason": "관악기 왜곡은 비주류 조합"
+      },
+      {
+        "src_pos": 336,
+        "family": "flute",
+        "effect": "distortion",
+        "reason": "관악기 왜곡은 비주류 조합"
+      },
+      {
+        "src_pos": 338,
+        "family": "flute",
+        "effect": "distortion",
+        "reason": "관악기 왜곡은 비주류 조합"
+      },
+      {
+        "src_pos": 379,
+        "family": "guitar",
+        "effect": "reverb",
+        "reason": "저역이 뭉개져 실무에서 잘 안 씀"
+      },
+      {
+        "src_pos": 384,
+        "family": "guitar",
+        "effect": "reverb",
+        "reason": "저역이 뭉개져 실무에서 잘 안 씀"
+      },
+      {
+        "src_pos": 391,
+        "family": "guitar",
+        "effect": "reverb",
+        "reason": "저역이 뭉개져 실무에서 잘 안 씀"
+      },
+      {
+        "src_pos": 411,
+        "family": "guitar",
+        "effect": "reverb",
+        "reason": "저역이 뭉개져 실무에서 잘 안 씀"
+      },
+      {
+        "src_pos": 412,
+        "family": "guitar",
+        "effect": "reverb",
+        "reason": "저역이 뭉개져 실무에서 잘 안 씀"
+      },
+      {
+        "src_pos": 654,
+        "family": "mallet",
+        "effect": "distortion",
+        "reason": "타악기 왜곡은 비주류 조합"
+      },
+      {
+        "src_pos": 657,
+        "family": "mallet",
+        "effect": "distortion",
+        "reason": "타악기 왜곡은 비주류 조합"
+      },
+      {
+        "src_pos": 674,
+        "family": "mallet",
+        "effect": "distortion",
+        "reason": "타악기 왜곡은 비주류 조합"
+      },
+      {
+        "src_pos": 694,
+        "family": "mallet",
+        "effect": "distortion",
+        "reason": "타악기 왜곡은 비주류 조합"
+      },
+      {
+        "src_pos": 717,
+        "family": "mallet",
+        "effect": "distortion",
+        "reason": "타악기 왜곡은 비주류 조합"
+      },
+      {
+        "src_pos": 984,
+        "family": "string",
+        "effect": "distortion",
+        "reason": "현악기 왜곡(바이올린 등)은 비주류 조합"
+      },
+      {
+        "src_pos": 1034,
+        "family": "string",
+        "effect": "distortion",
+        "reason": "현악기 왜곡(바이올린 등)은 비주류 조합"
+      },
+      {
+        "src_pos": 1035,
+        "family": "string",
+        "effect": "distortion",
+        "reason": "현악기 왜곡(바이올린 등)은 비주류 조합"
+      },
+      {
+        "src_pos": 1058,
+        "family": "string",
+        "effect": "distortion",
+        "reason": "현악기 왜곡(바이올린 등)은 비주류 조합"
+      },
+      {
+        "src_pos": 1069,
+        "family": "string",
+        "effect": "distortion",
+        "reason": "현악기 왜곡(바이올린 등)은 비주류 조합"
+      },
+      {
+        "src_pos": 1081,
+        "family": "vocal",
+        "effect": "distortion",
+        "reason": "보컬 왜곡은 특수효과이며 표준 조합 아님"
+      },
+      {
+        "src_pos": 1087,
+        "family": "vocal",
+        "effect": "distortion",
+        "reason": "보컬 왜곡은 특수효과이며 표준 조합 아님"
+      },
+      {
+        "src_pos": 1094,
+        "family": "vocal",
+        "effect": "distortion",
+        "reason": "보컬 왜곡은 특수효과이며 표준 조합 아님"
+      },
+      {
+        "src_pos": 1119,
+        "family": "vocal",
+        "effect": "distortion",
+        "reason": "보컬 왜곡은 특수효과이며 표준 조합 아님"
+      },
+      {
+        "src_pos": 1184,
+        "family": "vocal",
+        "effect": "distortion",
+        "reason": "보컬 왜곡은 특수효과이며 표준 조합 아님"
+      }
+    ],
+    "n_excluded": 35,
+    "gen_seed": 42,
+    "select_seed": 1,
+    "top_k": 10,
+    "elapsed_sec": 4216.414011001587
+  },
+  "depends_on_surrogate": "none",
+  "rows": [
+    {
+      "src_pos": 54,
+      "family": "bass",
+      "effect": "distortion",
+      "filename": "bass_synthetic_034-062-100.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.02788952479497836,
+        "1": 0.04249540018661574,
+        "2": -0.03717873697409551
+      },
+      "directional_agreement_mean": 0.011068729335832863,
+      "directional_agreement_std_across_variants": 0.03463328267225776
+    },
+    {
+      "src_pos": 54,
+      "family": "bass",
+      "effect": "highshelf",
+      "filename": "bass_synthetic_034-062-100.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.029964206111638123,
+        "1": 0.031283848972431326,
+        "2": 0.1284535362985491
+      },
+      "directional_agreement_mean": 0.06323386379420619,
+      "directional_agreement_std_across_variants": 0.04612041937869689
+    },
+    {
+      "src_pos": 59,
+      "family": "bass",
+      "effect": "distortion",
+      "filename": "bass_synthetic_068-021-127.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.22883740391189786,
+        "1": 0.40792576786797574,
+        "2": -0.17237062267477996
+      },
+      "directional_agreement_mean": 0.15479751636836456,
+      "directional_agreement_std_across_variants": 0.24262097179184916
+    },
+    {
+      "src_pos": 59,
+      "family": "bass",
+      "effect": "highshelf",
+      "filename": "bass_synthetic_068-021-127.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.14586230027416192,
+        "1": 0.08552012497494264,
+        "2": 0.10163802722684336
+      },
+      "directional_agreement_mean": 0.11100681749198264,
+      "directional_agreement_std_across_variants": 0.025509804693288077
+    },
+    {
+      "src_pos": 77,
+      "family": "bass",
+      "effect": "distortion",
+      "filename": "bass_synthetic_098-023-100.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.3684664161341393,
+        "1": 0.25806554591800474,
+        "2": 0.04412101817738321
+      },
+      "directional_agreement_mean": 0.2235509934098424,
+      "directional_agreement_std_across_variants": 0.1346437894224625
+    },
+    {
+      "src_pos": 77,
+      "family": "bass",
+      "effect": "highshelf",
+      "filename": "bass_synthetic_098-023-100.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.013772320603339773,
+        "1": -0.1423197690313652,
+        "2": 0.09759051578393368
+      },
+      "directional_agreement_mean": -0.019500524616923764,
+      "directional_agreement_std_across_variants": 0.09802668150714677
+    },
+    {
+      "src_pos": 95,
+      "family": "bass",
+      "effect": "distortion",
+      "filename": "bass_synthetic_134-047-050.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.17085389920238767,
+        "1": -0.0019532709220758003,
+        "2": -0.005760632979046536
+      },
+      "directional_agreement_mean": -0.05952260103450333,
+      "directional_agreement_std_across_variants": 0.0787384593248136
+    },
+    {
+      "src_pos": 95,
+      "family": "bass",
+      "effect": "highshelf",
+      "filename": "bass_synthetic_134-047-050.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.1391933134735503,
+        "1": -0.0231518470003627,
+        "2": 0.07055892536958756
+      },
+      "directional_agreement_mean": 0.062200130614258387,
+      "directional_agreement_std_across_variants": 0.06654016265708218
+    },
+    {
+      "src_pos": 117,
+      "family": "bass",
+      "effect": "distortion",
+      "filename": "bass_synthetic_135-098-100.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.0906506824923225,
+        "1": -0.07468465873916161,
+        "2": -0.03374578999181563
+      },
+      "directional_agreement_mean": -0.06636037707443325,
+      "directional_agreement_std_across_variants": 0.023965418788313302
+    },
+    {
+      "src_pos": 117,
+      "family": "bass",
+      "effect": "highshelf",
+      "filename": "bass_synthetic_135-098-100.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.04363895891033786,
+        "1": 0.013506037141739336,
+        "2": -0.012648371204670862
+      },
+      "directional_agreement_mean": -0.014260430991089796,
+      "directional_agreement_std_across_variants": 0.023357178711111797
+    },
+    {
+      "src_pos": 154,
+      "family": "brass",
+      "effect": "reverb",
+      "filename": "brass_acoustic_006-070-100.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.07751852228804136,
+        "1": 0.05126661861342051,
+        "2": -0.07858154673288578
+      },
+      "directional_agreement_mean": -0.034944483469168876,
+      "directional_agreement_std_across_variants": 0.060961999622516604
+    },
+    {
+      "src_pos": 154,
+      "family": "brass",
+      "effect": "highshelf",
+      "filename": "brass_acoustic_006-070-100.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.05598210044861435,
+        "1": 0.10764690652685863,
+        "2": 0.10202597819649631
+      },
+      "directional_agreement_mean": 0.05123026142491353,
+      "directional_agreement_std_across_variants": 0.07584531017230174
+    },
+    {
+      "src_pos": 187,
+      "family": "brass",
+      "effect": "reverb",
+      "filename": "brass_acoustic_016-069-100.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.09682446413397935,
+        "1": 0.19536557564439078,
+        "2": -0.18451262883270472
+      },
+      "directional_agreement_mean": 0.035892470315221796,
+      "directional_agreement_std_across_variants": 0.16095836617426326
+    },
+    {
+      "src_pos": 187,
+      "family": "brass",
+      "effect": "highshelf",
+      "filename": "brass_acoustic_016-069-100.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.3876696113267259,
+        "1": 0.30941563767266955,
+        "2": 0.12155631730605948
+      },
+      "directional_agreement_mean": 0.2728805221018183,
+      "directional_agreement_std_across_variants": 0.11166969841445801
+    },
+    {
+      "src_pos": 203,
+      "family": "brass",
+      "effect": "reverb",
+      "filename": "brass_acoustic_046-067-075.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.22890295346076953,
+        "1": 0.010077310501864249,
+        "2": -0.06841001730480302
+      },
+      "directional_agreement_mean": 0.05685674888594359,
+      "directional_agreement_std_across_variants": 0.12580404746538684
+    },
+    {
+      "src_pos": 203,
+      "family": "brass",
+      "effect": "highshelf",
+      "filename": "brass_acoustic_046-067-075.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.2596965444015707,
+        "1": -0.034581814382642066,
+        "2": -0.10524315366929553
+      },
+      "directional_agreement_mean": 0.03995719211654437,
+      "directional_agreement_std_across_variants": 0.15803437057473305
+    },
+    {
+      "src_pos": 209,
+      "family": "brass",
+      "effect": "reverb",
+      "filename": "brass_acoustic_046-084-100.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.007312602592140719,
+        "1": -0.27713274536945404,
+        "2": -0.1427557902979501
+      },
+      "directional_agreement_mean": -0.1424003794198483,
+      "directional_agreement_std_across_variants": 0.11015389870468086
+    },
+    {
+      "src_pos": 209,
+      "family": "brass",
+      "effect": "highshelf",
+      "filename": "brass_acoustic_046-084-100.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.12746599871294387,
+        "1": -0.2982890979425626,
+        "2": 0.019480426564334293
+      },
+      "directional_agreement_mean": -0.13542489003039074,
+      "directional_agreement_std_across_variants": 0.12985087764967687
+    },
+    {
+      "src_pos": 236,
+      "family": "brass",
+      "effect": "reverb",
+      "filename": "brass_acoustic_059-060-075.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.06088914616444249,
+        "1": 0.09929993082518618,
+        "2": 0.08771872920591864
+      },
+      "directional_agreement_mean": 0.08263593539851577,
+      "directional_agreement_std_across_variants": 0.016087742523008736
+    },
+    {
+      "src_pos": 236,
+      "family": "brass",
+      "effect": "highshelf",
+      "filename": "brass_acoustic_059-060-075.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.046286222958847864,
+        "1": 0.2552694719937442,
+        "2": 0.42524483780552164
+      },
+      "directional_agreement_mean": 0.2422668442527046,
+      "directional_agreement_std_across_variants": 0.15498216927065397
+    },
+    {
+      "src_pos": 248,
+      "family": "flute",
+      "effect": "reverb",
+      "filename": "flute_acoustic_002-077-100.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.011442120505369234,
+        "1": -0.0025683560506165677,
+        "2": 0.021157033766677942
+      },
+      "directional_agreement_mean": 0.00238218573689738,
+      "directional_agreement_std_across_variants": 0.013761228453051817
+    },
+    {
+      "src_pos": 248,
+      "family": "flute",
+      "effect": "highshelf",
+      "filename": "flute_acoustic_002-077-100.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.3207417237770799,
+        "1": 0.21056941135323431,
+        "2": 0.010762646546107651
+      },
+      "directional_agreement_mean": 0.18069126055880727,
+      "directional_agreement_std_across_variants": 0.12829987009973198
+    },
+    {
+      "src_pos": 324,
+      "family": "flute",
+      "effect": "reverb",
+      "filename": "flute_synthetic_000-062-075.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.00677998095754023,
+        "1": -0.12304084155529661,
+        "2": -0.01076103765805188
+      },
+      "directional_agreement_mean": -0.042340632751936086,
+      "directional_agreement_std_across_variants": 0.0575112430121139
+    },
+    {
+      "src_pos": 324,
+      "family": "flute",
+      "effect": "highshelf",
+      "filename": "flute_synthetic_000-062-075.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.047102212475213213,
+        "1": 0.17196589047180924,
+        "2": 0.16920990619009965
+      },
+      "directional_agreement_mean": 0.12942600304570737,
+      "directional_agreement_std_across_variants": 0.058222582862443764
+    },
+    {
+      "src_pos": 326,
+      "family": "flute",
+      "effect": "reverb",
+      "filename": "flute_synthetic_000-064-100.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.031799540623954015,
+        "1": 0.056537788291837816,
+        "2": 0.043901503734057205
+      },
+      "directional_agreement_mean": 0.022879917133980337,
+      "directional_agreement_std_across_variants": 0.0390068476670665
+    },
+    {
+      "src_pos": 326,
+      "family": "flute",
+      "effect": "highshelf",
+      "filename": "flute_synthetic_000-064-100.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.3508236751850492,
+        "1": -0.047148279420199,
+        "2": -0.0403381275955901
+      },
+      "directional_agreement_mean": 0.08777908938975337,
+      "directional_agreement_std_across_variants": 0.18602138789062692
+    },
+    {
+      "src_pos": 336,
+      "family": "flute",
+      "effect": "reverb",
+      "filename": "flute_synthetic_000-079-025.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.10040222958409674,
+        "1": 0.21939022851979262,
+        "2": 0.03755075492530432
+      },
+      "directional_agreement_mean": 0.11911440434306454,
+      "directional_agreement_std_across_variants": 0.07540560391393453
+    },
+    {
+      "src_pos": 336,
+      "family": "flute",
+      "effect": "highshelf",
+      "filename": "flute_synthetic_000-079-025.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.11863549238840573,
+        "1": 0.15565866212229898,
+        "2": -0.25133326915965054
+      },
+      "directional_agreement_mean": 0.007653628450351391,
+      "directional_agreement_std_across_variants": 0.18375407228961643
+    },
+    {
+      "src_pos": 338,
+      "family": "flute",
+      "effect": "reverb",
+      "filename": "flute_synthetic_000-083-050.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.06758333949754199,
+        "1": -0.042166397415405565,
+        "2": -0.10559028419790599
+      },
+      "directional_agreement_mean": -0.02672444737192319,
+      "directional_agreement_std_across_variants": 0.07153608111441484
+    },
+    {
+      "src_pos": 338,
+      "family": "flute",
+      "effect": "highshelf",
+      "filename": "flute_synthetic_000-083-050.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.045465394197506136,
+        "1": -0.08797057111142553,
+        "2": -0.16671419092626627
+      },
+      "directional_agreement_mean": -0.06973978928006189,
+      "directional_agreement_std_across_variants": 0.08757592949534755
+    },
+    {
+      "src_pos": 379,
+      "family": "guitar",
+      "effect": "distortion",
+      "filename": "guitar_acoustic_010-087-127.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.11350560007983099,
+        "1": -0.25894317802752115,
+        "2": 0.40572342991130705
+      },
+      "directional_agreement_mean": 0.011091550601318315,
+      "directional_agreement_std_across_variants": 0.28529372279065046
+    },
+    {
+      "src_pos": 379,
+      "family": "guitar",
+      "effect": "highshelf",
+      "filename": "guitar_acoustic_010-087-127.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.16122051066106594,
+        "1": 0.10708804446369354,
+        "2": -0.0069093066819257785
+      },
+      "directional_agreement_mean": 0.0871330828142779,
+      "directional_agreement_std_across_variants": 0.07007405245295473
+    },
+    {
+      "src_pos": 384,
+      "family": "guitar",
+      "effect": "distortion",
+      "filename": "guitar_acoustic_014-027-050.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.014350744433725917,
+        "1": -0.05484505823484183,
+        "2": -0.29672166413122114
+      },
+      "directional_agreement_mean": -0.12197248893326296,
+      "directional_agreement_std_across_variants": 0.1246672986708512
+    },
+    {
+      "src_pos": 384,
+      "family": "guitar",
+      "effect": "highshelf",
+      "filename": "guitar_acoustic_014-027-050.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.0467314731759799,
+        "1": -0.2389081038986823,
+        "2": -0.024161900979822622
+      },
+      "directional_agreement_mean": -0.07211284390084167,
+      "directional_agreement_std_across_variants": 0.12144123872092515
+    },
+    {
+      "src_pos": 391,
+      "family": "guitar",
+      "effect": "distortion",
+      "filename": "guitar_acoustic_014-056-025.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.018830661531507968,
+        "1": 0.1480248388688036,
+        "2": 0.07387338993495227
+      },
+      "directional_agreement_mean": 0.0676891890907493,
+      "directional_agreement_std_across_variants": 0.0682586881333098
+    },
+    {
+      "src_pos": 391,
+      "family": "guitar",
+      "effect": "highshelf",
+      "filename": "guitar_acoustic_014-056-025.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.043196859892252186,
+        "1": 0.34843278681140427,
+        "2": 0.20724453236071913
+      },
+      "directional_agreement_mean": 0.17082681975995706,
+      "directional_agreement_std_across_variants": 0.1619426490821395
+    },
+    {
+      "src_pos": 411,
+      "family": "guitar",
+      "effect": "distortion",
+      "filename": "guitar_acoustic_015-043-127.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.24110388604959287,
+        "1": 0.00557385934212661,
+        "2": 0.26848118269429305
+      },
+      "directional_agreement_mean": 0.1717196426953375,
+      "directional_agreement_std_across_variants": 0.11801326221356662
+    },
+    {
+      "src_pos": 411,
+      "family": "guitar",
+      "effect": "highshelf",
+      "filename": "guitar_acoustic_015-043-127.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.06340753554286116,
+        "1": 0.05618170001131354,
+        "2": 0.09799578039654994
+      },
+      "directional_agreement_mean": 0.030256648288334104,
+      "directional_agreement_std_across_variants": 0.06839512082592202
+    },
+    {
+      "src_pos": 412,
+      "family": "guitar",
+      "effect": "distortion",
+      "filename": "guitar_acoustic_015-048-025.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.11095194965612568,
+        "1": 0.3427467398075868,
+        "2": 0.09359020733778207
+      },
+      "directional_agreement_mean": 0.10846166582974774,
+      "directional_agreement_std_across_variants": 0.18551998169744635
+    },
+    {
+      "src_pos": 412,
+      "family": "guitar",
+      "effect": "highshelf",
+      "filename": "guitar_acoustic_015-048-025.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.037462424197273005,
+        "1": -0.06334799398984517,
+        "2": 0.43202298772577646
+      },
+      "directional_agreement_mean": 0.11040418984621943,
+      "directional_agreement_std_across_variants": 0.2276642323583718
+    },
+    {
+      "src_pos": 481,
+      "family": "keyboard",
+      "effect": "reverb",
+      "filename": "keyboard_acoustic_004-045-075.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.21172209532442368,
+        "1": 0.13824795489368186,
+        "2": -0.046056695004809876
+      },
+      "directional_agreement_mean": -0.03984361181185057,
+      "directional_agreement_std_across_variants": 0.14294220467141677
+    },
+    {
+      "src_pos": 481,
+      "family": "keyboard",
+      "effect": "distortion",
+      "filename": "keyboard_acoustic_004-045-075.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.2782244725725017,
+        "1": 0.058973305212038314,
+        "2": 0.1556010031278967
+      },
+      "directional_agreement_mean": 0.16426626030414557,
+      "directional_agreement_std_across_variants": 0.08971838759392035
+    },
+    {
+      "src_pos": 481,
+      "family": "keyboard",
+      "effect": "highshelf",
+      "filename": "keyboard_acoustic_004-045-075.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.06935497384759122,
+        "1": 0.2844130766444014,
+        "2": 0.0977822395262761
+      },
+      "directional_agreement_mean": 0.1505167633394229,
+      "directional_agreement_std_across_variants": 0.09538761064201981
+    },
+    {
+      "src_pos": 505,
+      "family": "keyboard",
+      "effect": "reverb",
+      "filename": "keyboard_electronic_001-108-050.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.09429232898633812,
+        "1": -0.056598099778213166,
+        "2": -0.007264718071476133
+      },
+      "directional_agreement_mean": 0.010143170378882939,
+      "directional_agreement_std_across_variants": 0.0628185551590857
+    },
+    {
+      "src_pos": 505,
+      "family": "keyboard",
+      "effect": "distortion",
+      "filename": "keyboard_electronic_001-108-050.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.11964654740275882,
+        "1": 0.4079134302760052,
+        "2": 0.498063991808683
+      },
+      "directional_agreement_mean": 0.3418746564958157,
+      "directional_agreement_std_across_variants": 0.16139140887806672
+    },
+    {
+      "src_pos": 505,
+      "family": "keyboard",
+      "effect": "highshelf",
+      "filename": "keyboard_electronic_001-108-050.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.07028970621431209,
+        "1": 0.08030122393262222,
+        "2": -0.12042887350923002
+      },
+      "directional_agreement_mean": -0.036805785263639965,
+      "directional_agreement_std_across_variants": 0.08529956125884439
+    },
+    {
+      "src_pos": 535,
+      "family": "keyboard",
+      "effect": "reverb",
+      "filename": "keyboard_electronic_003-062-025.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.01206048082840346,
+        "1": 0.021494591551267758,
+        "2": -0.002372759708292458
+      },
+      "directional_agreement_mean": 0.01039410422379292,
+      "directional_agreement_std_across_variants": 0.009814792314939822
+    },
+    {
+      "src_pos": 535,
+      "family": "keyboard",
+      "effect": "distortion",
+      "filename": "keyboard_electronic_003-062-025.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.06470791603842116,
+        "1": 0.10408805337169938,
+        "2": -0.013673711726331092
+      },
+      "directional_agreement_mean": 0.008568808535649043,
+      "directional_agreement_std_across_variants": 0.07068270464066409
+    },
+    {
+      "src_pos": 535,
+      "family": "keyboard",
+      "effect": "highshelf",
+      "filename": "keyboard_electronic_003-062-025.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.09706640489197985,
+        "1": -0.007289222785647065,
+        "2": -0.18901143896526712
+      },
+      "directional_agreement_mean": -0.09778902221429801,
+      "directional_agreement_std_across_variants": 0.07418954371587246
+    },
+    {
+      "src_pos": 577,
+      "family": "keyboard",
+      "effect": "reverb",
+      "filename": "keyboard_electronic_098-088-050.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.19035214940275938,
+        "1": -0.4074432849183239,
+        "2": -0.19029257150437887
+      },
+      "directional_agreement_mean": -0.1357945690066478,
+      "directional_agreement_std_across_variants": 0.24707268772699958
+    },
+    {
+      "src_pos": 577,
+      "family": "keyboard",
+      "effect": "distortion",
+      "filename": "keyboard_electronic_098-088-050.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.30431688396362616,
+        "1": 0.023870862872142025,
+        "2": 0.1744918335919968
+      },
+      "directional_agreement_mean": 0.1675598601425883,
+      "directional_agreement_std_across_variants": 0.11459648592180237
+    },
+    {
+      "src_pos": 577,
+      "family": "keyboard",
+      "effect": "highshelf",
+      "filename": "keyboard_electronic_098-088-050.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.31678645424546564,
+        "1": 0.06096652682021717,
+        "2": 0.029852915202626205
+      },
+      "directional_agreement_mean": -0.07532233740754075,
+      "directional_agreement_std_across_variants": 0.171212740953493
+    },
+    {
+      "src_pos": 584,
+      "family": "keyboard",
+      "effect": "reverb",
+      "filename": "keyboard_synthetic_000-045-025.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.10725099297796017,
+        "1": 0.04290811344688409,
+        "2": 0.0580116196679031
+      },
+      "directional_agreement_mean": -0.002110419954390997,
+      "directional_agreement_std_across_variants": 0.07460086704963266
+    },
+    {
+      "src_pos": 584,
+      "family": "keyboard",
+      "effect": "distortion",
+      "filename": "keyboard_synthetic_000-045-025.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.23312331325394559,
+        "1": -0.33915176095261174,
+        "2": -0.014950249906865063
+      },
+      "directional_agreement_mean": -0.19574177470447415,
+      "directional_agreement_std_across_variants": 0.13496836545237942
+    },
+    {
+      "src_pos": 584,
+      "family": "keyboard",
+      "effect": "highshelf",
+      "filename": "keyboard_synthetic_000-045-025.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.074417929312644,
+        "1": 0.02448231704128967,
+        "2": -0.01250436062107447
+      },
+      "directional_agreement_mean": -0.020813324297476267,
+      "directional_agreement_std_across_variants": 0.04080109345143433
+    },
+    {
+      "src_pos": 654,
+      "family": "mallet",
+      "effect": "reverb",
+      "filename": "mallet_acoustic_062-028-127.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.15154127709185067,
+        "1": -0.10180216467104591,
+        "2": 0.13266834576916364
+      },
+      "directional_agreement_mean": -0.04022503199791098,
+      "directional_agreement_std_across_variants": 0.12392897127759284
+    },
+    {
+      "src_pos": 654,
+      "family": "mallet",
+      "effect": "highshelf",
+      "filename": "mallet_acoustic_062-028-127.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.18006815365964263,
+        "1": -0.01670990107736932,
+        "2": -0.15385823836069476
+      },
+      "directional_agreement_mean": 0.003166671407192854,
+      "directional_agreement_std_across_variants": 0.13704747941797532
+    },
+    {
+      "src_pos": 657,
+      "family": "mallet",
+      "effect": "reverb",
+      "filename": "mallet_acoustic_062-033-100.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.09702334979653254,
+        "1": -0.3339203111646142,
+        "2": -0.047866942716889786
+      },
+      "directional_agreement_mean": -0.1596035345593455,
+      "directional_agreement_std_across_variants": 0.12488352451726968
+    },
+    {
+      "src_pos": 657,
+      "family": "mallet",
+      "effect": "highshelf",
+      "filename": "mallet_acoustic_062-033-100.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.0775640782527058,
+        "1": -0.08009016700984997,
+        "2": 0.05340677622895974
+      },
+      "directional_agreement_mean": -0.03474915634453201,
+      "directional_agreement_std_across_variants": 0.0623441877377983
+    },
+    {
+      "src_pos": 674,
+      "family": "mallet",
+      "effect": "reverb",
+      "filename": "mallet_acoustic_062-052-127.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.12646025963813481,
+        "1": 0.03803454937192879,
+        "2": -0.18433084441146522
+      },
+      "directional_agreement_mean": -0.09091885155922375,
+      "directional_agreement_std_across_variants": 0.0941947834871434
+    },
+    {
+      "src_pos": 674,
+      "family": "mallet",
+      "effect": "highshelf",
+      "filename": "mallet_acoustic_062-052-127.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.08720636265608817,
+        "1": -0.19074353294243448,
+        "2": -0.022166817757453133
+      },
+      "directional_agreement_mean": -0.10003890445199193,
+      "directional_agreement_std_across_variants": 0.06941677425688642
+    },
+    {
+      "src_pos": 694,
+      "family": "mallet",
+      "effect": "reverb",
+      "filename": "mallet_acoustic_062-081-127.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.08173154611029208,
+        "1": 0.042977656186985645,
+        "2": 0.15920791086733596
+      },
+      "directional_agreement_mean": 0.04015134031467651,
+      "directional_agreement_std_across_variants": 0.09838342180207028
+    },
+    {
+      "src_pos": 694,
+      "family": "mallet",
+      "effect": "highshelf",
+      "filename": "mallet_acoustic_062-081-127.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.05603929773850492,
+        "1": -0.08328466209854395,
+        "2": -0.07732909240445413
+      },
+      "directional_agreement_mean": -0.072217684080501,
+      "directional_agreement_std_across_variants": 0.011695364924289572
+    },
+    {
+      "src_pos": 717,
+      "family": "mallet",
+      "effect": "reverb",
+      "filename": "mallet_acoustic_062-105-100.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.009313871388213256,
+        "1": 0.03280324970145756,
+        "2": 0.126186323487148
+      },
+      "directional_agreement_mean": 0.05610114819227294,
+      "directional_agreement_std_across_variants": 0.050476968810674455
+    },
+    {
+      "src_pos": 717,
+      "family": "mallet",
+      "effect": "highshelf",
+      "filename": "mallet_acoustic_062-105-100.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.26271014029131645,
+        "1": 0.14190426807911496,
+        "2": -0.002864342833301464
+      },
+      "directional_agreement_mean": -0.04122340501516765,
+      "directional_agreement_std_across_variants": 0.16739527692230502
+    },
+    {
+      "src_pos": 731,
+      "family": "organ",
+      "effect": "reverb",
+      "filename": "organ_electronic_001-087-025.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.04585000774477235,
+        "1": -0.27040554784926946,
+        "2": -0.028818802954991875
+      },
+      "directional_agreement_mean": -0.08445811435316299,
+      "directional_agreement_std_across_variants": 0.13497208067021618
+    },
+    {
+      "src_pos": 731,
+      "family": "organ",
+      "effect": "distortion",
+      "filename": "organ_electronic_001-087-025.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.20612200089867252,
+        "1": 0.011668531338767498,
+        "2": 0.29585925841272565
+      },
+      "directional_agreement_mean": 0.17121659688338856,
+      "directional_agreement_std_across_variants": 0.11861670135583463
+    },
+    {
+      "src_pos": 731,
+      "family": "organ",
+      "effect": "highshelf",
+      "filename": "organ_electronic_001-087-025.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.04346171722732226,
+        "1": -0.06823881779042502,
+        "2": -0.17586554216554864
+      },
+      "directional_agreement_mean": -0.09585535906109866,
+      "directional_agreement_std_across_variants": 0.05747288188577426
+    },
+    {
+      "src_pos": 788,
+      "family": "organ",
+      "effect": "reverb",
+      "filename": "organ_electronic_028-096-025.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.22962612431118706,
+        "1": 0.15744054757187928,
+        "2": -0.11459102620247308
+      },
+      "directional_agreement_mean": -0.06225886764726029,
+      "directional_agreement_std_across_variants": 0.16229426614423625
+    },
+    {
+      "src_pos": 788,
+      "family": "organ",
+      "effect": "distortion",
+      "filename": "organ_electronic_028-096-025.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.1336768363102339,
+        "1": 0.014192635849602753,
+        "2": 0.285914772334246
+      },
+      "directional_agreement_mean": 0.14459474816469423,
+      "directional_agreement_std_across_variants": 0.11119841264871573
+    },
+    {
+      "src_pos": 788,
+      "family": "organ",
+      "effect": "highshelf",
+      "filename": "organ_electronic_028-096-025.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.15232147263606252,
+        "1": 0.06654958991890231,
+        "2": 0.26408316756646766
+      },
+      "directional_agreement_mean": 0.05943709494976915,
+      "directional_agreement_std_across_variants": 0.17007086127859392
+    },
+    {
+      "src_pos": 800,
+      "family": "organ",
+      "effect": "reverb",
+      "filename": "organ_electronic_057-053-025.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.2297972890401212,
+        "1": -0.12762059051789712,
+        "2": 0.10665627532001766
+      },
+      "directional_agreement_mean": 0.06961099128074726,
+      "directional_agreement_std_across_variants": 0.14824787791421093
+    },
+    {
+      "src_pos": 800,
+      "family": "organ",
+      "effect": "distortion",
+      "filename": "organ_electronic_057-053-025.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.10306750901069664,
+        "1": 0.17354605762661351,
+        "2": 0.1135119630422217
+      },
+      "directional_agreement_mean": 0.13004184322651063,
+      "directional_agreement_std_across_variants": 0.031056230270610226
+    },
+    {
+      "src_pos": 800,
+      "family": "organ",
+      "effect": "highshelf",
+      "filename": "organ_electronic_057-053-025.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.0033806392269188665,
+        "1": 0.07454899113423785,
+        "2": 0.09742853369235636
+      },
+      "directional_agreement_mean": 0.05619896186655845,
+      "directional_agreement_std_across_variants": 0.04315217272830806
+    },
+    {
+      "src_pos": 817,
+      "family": "organ",
+      "effect": "reverb",
+      "filename": "organ_electronic_104-070-075.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.040413976014528064,
+        "1": -0.08225554988214415,
+        "2": -0.01896825271766256
+      },
+      "directional_agreement_mean": -0.020269942195092882,
+      "directional_agreement_std_across_variants": 0.05008808203255756
+    },
+    {
+      "src_pos": 817,
+      "family": "organ",
+      "effect": "distortion",
+      "filename": "organ_electronic_104-070-075.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.2515021514587598,
+        "1": 0.28706644504678563,
+        "2": 0.2776011552713672
+      },
+      "directional_agreement_mean": 0.10438848295313101,
+      "directional_agreement_std_across_variants": 0.25168234698286746
+    },
+    {
+      "src_pos": 817,
+      "family": "organ",
+      "effect": "highshelf",
+      "filename": "organ_electronic_104-070-075.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.029389485178727078,
+        "1": 0.09684745692258043,
+        "2": 0.015175424263568315
+      },
+      "directional_agreement_mean": 0.047137455454958614,
+      "directional_agreement_std_across_variants": 0.03562604914345853
+    },
+    {
+      "src_pos": 825,
+      "family": "organ",
+      "effect": "reverb",
+      "filename": "organ_electronic_113-039-025.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.07931128760491403,
+        "1": -0.12312231477536913,
+        "2": 0.01902624484966189
+      },
+      "directional_agreement_mean": -0.008261594106931069,
+      "directional_agreement_std_across_variants": 0.08486581745852434
+    },
+    {
+      "src_pos": 825,
+      "family": "organ",
+      "effect": "distortion",
+      "filename": "organ_electronic_113-039-025.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.03646279334682123,
+        "1": 0.18871464905626745,
+        "2": 0.0059072103912094255
+      },
+      "directional_agreement_mean": 0.07702821759809937,
+      "directional_agreement_std_across_variants": 0.07995334114900755
+    },
+    {
+      "src_pos": 825,
+      "family": "organ",
+      "effect": "highshelf",
+      "filename": "organ_electronic_113-039-025.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.013236718781715798,
+        "1": -0.06127152788913127,
+        "2": 0.101080375600469
+      },
+      "directional_agreement_mean": 0.017681855497684508,
+      "directional_agreement_std_across_variants": 0.06635437474646697
+    },
+    {
+      "src_pos": 856,
+      "family": "reed",
+      "effect": "reverb",
+      "filename": "reed_acoustic_011-060-075.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.09721566112080629,
+        "1": 0.02614517860553496,
+        "2": 0.0638282545092535
+      },
+      "directional_agreement_mean": 0.06239636474519825,
+      "directional_agreement_std_across_variants": 0.029032063911712935
+    },
+    {
+      "src_pos": 856,
+      "family": "reed",
+      "effect": "distortion",
+      "filename": "reed_acoustic_011-060-075.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.2151649469064921,
+        "1": 0.03309046236103211,
+        "2": -0.10394630501852199
+      },
+      "directional_agreement_mean": -0.09534026318799399,
+      "directional_agreement_std_across_variants": 0.10153237586976246
+    },
+    {
+      "src_pos": 856,
+      "family": "reed",
+      "effect": "highshelf",
+      "filename": "reed_acoustic_011-060-075.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.009369966032262828,
+        "1": -0.2917199690426137,
+        "2": 0.12264496197337485
+      },
+      "directional_agreement_mean": -0.05323501367899202,
+      "directional_agreement_std_across_variants": 0.17486015674905517
+    },
+    {
+      "src_pos": 860,
+      "family": "reed",
+      "effect": "reverb",
+      "filename": "reed_acoustic_011-064-075.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.11489953887010573,
+        "1": 0.12104660861839096,
+        "2": 0.0652651526350143
+      },
+      "directional_agreement_mean": 0.100403766707837,
+      "directional_agreement_std_across_variants": 0.02497316247283139
+    },
+    {
+      "src_pos": 860,
+      "family": "reed",
+      "effect": "distortion",
+      "filename": "reed_acoustic_011-064-075.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.08088960604488095,
+        "1": -0.2804999975771428,
+        "2": 0.20760959529563147
+      },
+      "directional_agreement_mean": 0.0026664012544565427,
+      "directional_agreement_std_across_variants": 0.20680408762783173
+    },
+    {
+      "src_pos": 860,
+      "family": "reed",
+      "effect": "highshelf",
+      "filename": "reed_acoustic_011-064-075.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.13082371911924004,
+        "1": 0.059427205924858326,
+        "2": 2.8888323542107932e-05
+      },
+      "directional_agreement_mean": 0.06342660445588015,
+      "directional_agreement_std_across_variants": 0.053471602009392286
+    },
+    {
+      "src_pos": 864,
+      "family": "reed",
+      "effect": "reverb",
+      "filename": "reed_acoustic_011-067-127.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.03022053204143676,
+        "1": 0.09697442813205517,
+        "2": 0.09664715741357642
+      },
+      "directional_agreement_mean": 0.0544670178347316,
+      "directional_agreement_std_across_variants": 0.05988328984812692
+    },
+    {
+      "src_pos": 864,
+      "family": "reed",
+      "effect": "distortion",
+      "filename": "reed_acoustic_011-067-127.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.06111352884906691,
+        "1": 0.1406448333084739,
+        "2": 0.12161596409384905
+      },
+      "directional_agreement_mean": 0.06704908951775201,
+      "directional_agreement_std_across_variants": 0.09095701191909644
+    },
+    {
+      "src_pos": 864,
+      "family": "reed",
+      "effect": "highshelf",
+      "filename": "reed_acoustic_011-067-127.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.3377926592115434,
+        "1": 0.2612785573290185,
+        "2": -0.24161592276110014
+      },
+      "directional_agreement_mean": 0.11915176459315391,
+      "directional_agreement_std_across_variants": 0.25700660837927225
+    },
+    {
+      "src_pos": 902,
+      "family": "reed",
+      "effect": "reverb",
+      "filename": "reed_acoustic_023-044-127.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.03183789698517496,
+        "1": -0.05312601764543068,
+        "2": 0.04200305154321235
+      },
+      "directional_agreement_mean": 0.006904976960985544,
+      "directional_agreement_std_across_variants": 0.04265069617934254
+    },
+    {
+      "src_pos": 902,
+      "family": "reed",
+      "effect": "distortion",
+      "filename": "reed_acoustic_023-044-127.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.14041258317709387,
+        "1": -0.14190238158844237,
+        "2": 0.14465428331810623
+      },
+      "directional_agreement_mean": 0.04772149496891925,
+      "directional_agreement_std_across_variants": 0.13409551055249813
+    },
+    {
+      "src_pos": 902,
+      "family": "reed",
+      "effect": "highshelf",
+      "filename": "reed_acoustic_023-044-127.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.25536697806847847,
+        "1": 0.19772092622905593,
+        "2": -0.1190885592217515
+      },
+      "directional_agreement_mean": 0.11133311502526098,
+      "directional_agreement_std_across_variants": 0.16462356614463514
+    },
+    {
+      "src_pos": 936,
+      "family": "reed",
+      "effect": "reverb",
+      "filename": "reed_acoustic_037-035-025.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.16659619778080517,
+        "1": 0.02078562716871379,
+        "2": -0.07573632858254696
+      },
+      "directional_agreement_mean": 0.03721516545565733,
+      "directional_agreement_std_across_variants": 0.09961161454921742
+    },
+    {
+      "src_pos": 936,
+      "family": "reed",
+      "effect": "distortion",
+      "filename": "reed_acoustic_037-035-025.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.05543179459623519,
+        "1": 0.11416655282820634,
+        "2": -0.20411914821976207
+      },
+      "directional_agreement_mean": -0.048461463329263633,
+      "directional_agreement_std_across_variants": 0.13003303685699177
+    },
+    {
+      "src_pos": 936,
+      "family": "reed",
+      "effect": "highshelf",
+      "filename": "reed_acoustic_037-035-025.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.08859118729851238,
+        "1": -0.005333293477951873,
+        "2": 0.1559235054572964
+      },
+      "directional_agreement_mean": 0.020666341560277385,
+      "directional_agreement_std_across_variants": 0.1015015418929116
+    },
+    {
+      "src_pos": 984,
+      "family": "string",
+      "effect": "reverb",
+      "filename": "string_acoustic_014-040-050.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.24981584970109408,
+        "1": -0.1448508768574231,
+        "2": -0.02195026314414334
+      },
+      "directional_agreement_mean": -0.13887232990088685,
+      "directional_agreement_std_across_variants": 0.09312174344022071
+    },
+    {
+      "src_pos": 984,
+      "family": "string",
+      "effect": "highshelf",
+      "filename": "string_acoustic_014-040-050.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.10712958950636572,
+        "1": 0.10232357204713233,
+        "2": -0.08273708194317611
+      },
+      "directional_agreement_mean": 0.04223869320344065,
+      "directional_agreement_std_across_variants": 0.08839299644609067
+    },
+    {
+      "src_pos": 1034,
+      "family": "string",
+      "effect": "reverb",
+      "filename": "string_acoustic_057-075-075.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.2070355792952268,
+        "1": 0.03736731833510185,
+        "2": 0.14778098092142158
+      },
+      "directional_agreement_mean": 0.13072795951725008,
+      "directional_agreement_std_across_variants": 0.07030852887365617
+    },
+    {
+      "src_pos": 1034,
+      "family": "string",
+      "effect": "highshelf",
+      "filename": "string_acoustic_057-075-075.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.017233021563530643,
+        "1": -0.21692587795941648,
+        "2": 0.1681986317144973
+      },
+      "directional_agreement_mean": -0.021986755936149942,
+      "directional_agreement_std_across_variants": 0.15726235082552806
+    },
+    {
+      "src_pos": 1035,
+      "family": "string",
+      "effect": "reverb",
+      "filename": "string_acoustic_057-077-100.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.15557191551882918,
+        "1": -0.23689944181172015,
+        "2": -0.0867634694230478
+      },
+      "directional_agreement_mean": -0.15974494225119903,
+      "directional_agreement_std_across_variants": 0.06136374154908772
+    },
+    {
+      "src_pos": 1035,
+      "family": "string",
+      "effect": "highshelf",
+      "filename": "string_acoustic_057-077-100.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.03743997662748552,
+        "1": 0.1310061724999439,
+        "2": -0.01154614723129892
+      },
+      "directional_agreement_mean": 0.05230000063204349,
+      "directional_agreement_std_across_variants": 0.05913772738419838
+    },
+    {
+      "src_pos": 1058,
+      "family": "string",
+      "effect": "reverb",
+      "filename": "string_acoustic_071-055-050.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.0368412457592657,
+        "1": 0.27299863803850033,
+        "2": 0.24212006098018038
+      },
+      "directional_agreement_mean": 0.15942581775313833,
+      "directional_agreement_std_across_variants": 0.1393531288851532
+    },
+    {
+      "src_pos": 1058,
+      "family": "string",
+      "effect": "highshelf",
+      "filename": "string_acoustic_071-055-050.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.18840538139735818,
+        "1": 0.2548208107008228,
+        "2": 0.09368326737557886
+      },
+      "directional_agreement_mean": 0.1789698198245866,
+      "directional_agreement_std_across_variants": 0.06612160178473643
+    },
+    {
+      "src_pos": 1069,
+      "family": "string",
+      "effect": "reverb",
+      "filename": "string_acoustic_080-040-100.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.04187152957623511,
+        "1": 0.22162722434275292,
+        "2": -0.1711458974971029
+      },
+      "directional_agreement_mean": 0.002869932423138303,
+      "directional_agreement_std_across_variants": 0.16344016260054237
+    },
+    {
+      "src_pos": 1069,
+      "family": "string",
+      "effect": "highshelf",
+      "filename": "string_acoustic_080-040-100.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.10658380285513712,
+        "1": 0.023820220291972505,
+        "2": -0.05148987333476921
+      },
+      "directional_agreement_mean": 0.026304716604113477,
+      "directional_agreement_std_across_variants": 0.06455721657306084
+    },
+    {
+      "src_pos": 1081,
+      "family": "vocal",
+      "effect": "reverb",
+      "filename": "vocal_acoustic_000-052-127.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.02158621601631815,
+        "1": 0.12790138956601,
+        "2": 0.03848617875213774
+      },
+      "directional_agreement_mean": 0.06265792811148863,
+      "directional_agreement_std_across_variants": 0.046647144478833384
+    },
+    {
+      "src_pos": 1081,
+      "family": "vocal",
+      "effect": "highshelf",
+      "filename": "vocal_acoustic_000-052-127.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.16393774979700074,
+        "1": -0.05525360112947187,
+        "2": 0.06453641666286224
+      },
+      "directional_agreement_mean": 0.0577401884434637,
+      "directional_agreement_std_across_variants": 0.08961344251376066
+    },
+    {
+      "src_pos": 1087,
+      "family": "vocal",
+      "effect": "reverb",
+      "filename": "vocal_acoustic_000-058-127.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.17619006953615007,
+        "1": 0.08706500952392059,
+        "2": 0.17212728975581723
+      },
+      "directional_agreement_mean": 0.14512745627196263,
+      "directional_agreement_std_across_variants": 0.04108983926846785
+    },
+    {
+      "src_pos": 1087,
+      "family": "vocal",
+      "effect": "highshelf",
+      "filename": "vocal_acoustic_000-058-127.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.11395216179166094,
+        "1": 0.3958427588916261,
+        "2": 0.4271548215874936
+      },
+      "directional_agreement_mean": 0.31231658075692686,
+      "directional_agreement_std_across_variants": 0.14084611780506684
+    },
+    {
+      "src_pos": 1094,
+      "family": "vocal",
+      "effect": "reverb",
+      "filename": "vocal_acoustic_000-064-127.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.20644839794651074,
+        "1": -0.19870768896351473,
+        "2": -0.11678389510318071
+      },
+      "directional_agreement_mean": -0.1739799940044021,
+      "directional_agreement_std_across_variants": 0.04056702224737543
+    },
+    {
+      "src_pos": 1094,
+      "family": "vocal",
+      "effect": "highshelf",
+      "filename": "vocal_acoustic_000-064-127.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.42102725183810685,
+        "1": -0.1664976144703958,
+        "2": 0.43369508620376146
+      },
+      "directional_agreement_mean": 0.22940824119049083,
+      "directional_agreement_std_across_variants": 0.27999548022163145
+    },
+    {
+      "src_pos": 1119,
+      "family": "vocal",
+      "effect": "reverb",
+      "filename": "vocal_synthetic_003-042-127.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.018953237548095053,
+        "1": 0.06570811590398319,
+        "2": 0.11584988461331153
+      },
+      "directional_agreement_mean": 0.054201587656399895,
+      "directional_agreement_std_across_variants": 0.055631349557302076
+    },
+    {
+      "src_pos": 1119,
+      "family": "vocal",
+      "effect": "highshelf",
+      "filename": "vocal_synthetic_003-042-127.wav",
+      "directional_agreement_by_variant": {
+        "0": 0.07937237790112064,
+        "1": 0.22895664882399663,
+        "2": 0.17454731974219795
+      },
+      "directional_agreement_mean": 0.16095878215577175,
+      "directional_agreement_std_across_variants": 0.06181882017738276
+    },
+    {
+      "src_pos": 1184,
+      "family": "vocal",
+      "effect": "reverb",
+      "filename": "vocal_synthetic_003-096-100.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.07277279233982618,
+        "1": -0.2839580333925961,
+        "2": 0.18017929920540396
+      },
+      "directional_agreement_mean": -0.05885050884233945,
+      "directional_agreement_std_across_variants": 0.1897388351763812
+    },
+    {
+      "src_pos": 1184,
+      "family": "vocal",
+      "effect": "highshelf",
+      "filename": "vocal_synthetic_003-096-100.wav",
+      "directional_agreement_by_variant": {
+        "0": -0.16565961641679589,
+        "1": 0.21993949903299678,
+        "2": 0.04507500893809867
+      },
+      "directional_agreement_mean": 0.03311829718476652,
+      "directional_agreement_std_across_variants": 0.15764705658713252
+    }
+  ],
+  "directional_agreement": {
+    "overall": {
+      "mean": 0.034059634687613714,
+      "ci95": [
+        0.01468615625823619,
+        0.054403200598943484
+      ],
+      "n": 115
+    },
+    "by_effect": {
+      "reverb": {
+        "mean": -0.0024760466390434293,
+        "ci95": [
+          -0.02873584471856441,
+          0.023392959847559038
+        ],
+        "n": 40
+      },
+      "distortion": {
+        "mean": 0.06351827116449646,
+        "ci95": [
+          0.014934884083087229,
+          0.11168206366173343
+        ],
+        "n": 25
+      },
+      "highshelf": {
+        "mean": 0.04855886151049805,
+        "ci95": [
+          0.021607963941488992,
+          0.0779235447225112
+        ],
+        "n": 50
+      }
+    },
+    "by_family": {
+      "bass": {
+        "mean": 0.04662141172975369,
+        "ci95": [
+          -0.008158396384149693,
+          0.10140121984365706
+        ],
+        "n": 10
+      },
+      "brass": {
+        "mean": 0.04689502215762541,
+        "ci95": [
+          -0.05084170379779322,
+          0.1364165485139009
+        ],
+        "n": 10
+      },
+      "flute": {
+        "mean": 0.04111216192546404,
+        "ci95": [
+          -0.00680746969084878,
+          0.0746450990971657
+        ],
+        "n": 10
+      },
+      "guitar": {
+        "mean": 0.056349745609183675,
+        "ci95": [
+          -0.026516550941075044,
+          0.11167400200370185
+        ],
+        "n": 10
+      },
+      "keyboard": {
+        "mean": 0.016606851917331928,
+        "ci95": [
+          -0.042569353539599675,
+          0.0761166284806692
+        ],
+        "n": 15
+      },
+      "mallet": {
+        "mean": -0.043955740809453046,
+        "ci95": [
+          -0.08076792544209045,
+          -0.007143556176815653
+        ],
+        "n": 10
+      },
+      "organ": {
+        "mean": 0.040415491367466395,
+        "ci95": [
+          0.016382556139172035,
+          0.06568399095488657
+        ],
+        "n": 15
+      },
+      "reed": {
+        "mean": 0.03309102419225735,
+        "ci95": [
+          -0.0005632547155369802,
+          0.06535259171218587
+        ],
+        "n": 15
+      },
+      "string": {
+        "mean": 0.027223291186947506,
+        "ci95": [
+          -0.03681712026842424,
+          0.10272944796168289
+        ],
+        "n": 10
+      },
+      "vocal": {
+        "mean": 0.08226985589245293,
+        "ci95": [
+          0.017979018761198395,
+          0.1613873153793778
+        ],
+        "n": 10
+      }
+    },
+    "verdict": "CI가 0을 넘고 양수 — 조건화가 의도한 방향으로 작동"
+  },
+  "variance_decomposition": {
+    "ss_total": 8.757251910812045,
+    "ss_source_between": 3.7140011814562373,
+    "ss_midi_variant": 0.015307380998413701,
+    "ss_residual": 5.027943348357393,
+    "pct_source_between": 0.42410578333036036,
+    "pct_midi_variant": 0.0017479662746157402,
+    "pct_residual": 0.5741462503950239,
+    "n_combos": 115,
+    "n_variants": 3
+  }
+}

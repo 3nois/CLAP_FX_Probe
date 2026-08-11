@@ -1,0 +1,1782 @@
+{
+  "meta": {
+    "task1_seed": 0,
+    "task1_n_boot": 1000,
+    "task1_n_reverb_total": 25600,
+    "task1_n_freeze0": 13137,
+    "task1_n_freeze1": 12463,
+    "task1_n_distortion": 6400,
+    "task1_n_highshelf": 12800,
+    "task1_n_matched": 6400,
+    "task1_resolution_floor_ref_from_results5": 0.009628838994760351,
+    "task2_seed": 0,
+    "task2_n_sources": 100,
+    "task2_n_theta_per_source": 5,
+    "task2_n_points": 500,
+    "task2_peak_target_c": 0.3,
+    "task2_peak_target_a": 0.7,
+    "task2_h_used": 0.02,
+    "task2_n_render_jobs": 15728,
+    "task2_elapsed_sec": 1012.4460389614105,
+    "task2_family_point_distribution": {
+      "bass": 50,
+      "brass": 50,
+      "flute": 50,
+      "guitar": 50,
+      "keyboard": 50,
+      "mallet": 50,
+      "organ": 50,
+      "reed": 50,
+      "string": 50,
+      "vocal": 50
+    },
+    "task2_families": [
+      "bass",
+      "brass",
+      "flute",
+      "guitar",
+      "keyboard",
+      "mallet",
+      "organ",
+      "reed",
+      "string",
+      "vocal"
+    ],
+    "task2_selected_src_ids": [
+      42,
+      150,
+      228,
+      230,
+      280,
+      459,
+      470,
+      512,
+      654,
+      718,
+      56,
+      274,
+      290,
+      427,
+      518,
+      523,
+      539,
+      578,
+      648,
+      762,
+      149,
+      169,
+      247,
+      248,
+      306,
+      410,
+      419,
+      479,
+      507,
+      598,
+      273,
+      309,
+      387,
+      485,
+      567,
+      617,
+      713,
+      731,
+      781,
+      794,
+      202,
+      318,
+      358,
+      414,
+      513,
+      521,
+      557,
+      592,
+      671,
+      687,
+      277,
+      396,
+      439,
+      457,
+      499,
+      516,
+      550,
+      555,
+      566,
+      615,
+      37,
+      68,
+      159,
+      188,
+      238,
+      286,
+      676,
+      732,
+      755,
+      766,
+      34,
+      57,
+      111,
+      339,
+      352,
+      362,
+      418,
+      447,
+      582,
+      756,
+      50,
+      87,
+      158,
+      179,
+      187,
+      266,
+      282,
+      315,
+      366,
+      437,
+      23,
+      71,
+      464,
+      471,
+      501,
+      540,
+      554,
+      573,
+      652,
+      686
+    ],
+    "task2_axes_C": [
+      "reverb.wet_level",
+      "reverb.room_size",
+      "reverb.damping",
+      "reverb.width",
+      "distortion.drive_db",
+      "highshelf.gain_db",
+      "highshelf.cutoff_frequency_hz",
+      "highshelf.q",
+      "highshelf.ultrasonic_12k_gain_db",
+      "highshelf.ultrasonic_15k_gain_db"
+    ],
+    "task2_axes_A": [
+      "reverb.wet_level",
+      "reverb.room_size",
+      "reverb.damping",
+      "reverb.width"
+    ],
+    "task3_seed": 0,
+    "task3_elapsed_sec": 198.78117513656616,
+    "task3_n_points": 500,
+    "task4_seed": 0,
+    "task4_elapsed_sec": 45.25091099739075,
+    "task4_n_boot": 1000,
+    "task4r_seed": 0,
+    "task4r_elapsed_sec": 44.47786808013916,
+    "task4r_n_boot": 1000,
+    "task4r_n_reps_subsample": 100,
+    "task4r_base_emb_path": "out/phase3_base_emb.npz",
+    "task4r7_seed": 0,
+    "task4r7_elapsed_sec": 112.28722810745239,
+    "task4r7_n_boot": 1000,
+    "task4r7_solo_emb_path": "out/phase3_solo_emb.npz",
+    "task4r8_seed": 0,
+    "task4r8_elapsed_sec": 3227.737298965454,
+    "task4r8_n_boot": 1000,
+    "task4r8_n_points": 12800,
+    "task4r8_n_sources": 800,
+    "task4r8_npz_path": "out/ultrasonic_null_largeN.npz"
+  },
+  "task1_freeze_stratified_probe": {
+    "reverb_pooled_4cont_only": {
+      "wet_level": {
+        "probe_r2": 0.05644470860309869,
+        "probe_r2_std": 0.005604455281383544,
+        "probe_r2_ci_low": 0.039886069906108025,
+        "probe_r2_ci_high": 0.06150459593788788,
+        "probe_r2_shuffled": -0.010207411467744398,
+        "n_rows": 25600,
+        "n_sources": 800,
+        "n_boot_used": 1000
+      },
+      "room_size": {
+        "probe_r2": 0.15491434259667722,
+        "probe_r2_std": 0.004194886055109587,
+        "probe_r2_ci_low": 0.11643353279175399,
+        "probe_r2_ci_high": 0.16085494573753575,
+        "probe_r2_shuffled": -0.005346111625573036,
+        "n_rows": 25600,
+        "n_sources": 800,
+        "n_boot_used": 1000
+      },
+      "damping": {
+        "probe_r2": 0.009942268518864062,
+        "probe_r2_std": 0.0010908483048870927,
+        "probe_r2_ci_low": 0.000940757223527575,
+        "probe_r2_ci_high": 0.010487355644093931,
+        "probe_r2_shuffled": -0.008281698249837443,
+        "n_rows": 25600,
+        "n_sources": 800,
+        "n_boot_used": 1000
+      },
+      "width": {
+        "probe_r2": 0.008695947061068998,
+        "probe_r2_std": 0.0006075464862489401,
+        "probe_r2_ci_low": 0.0012915735927605313,
+        "probe_r2_ci_high": 0.009628838994760351,
+        "probe_r2_shuffled": -0.005527586026468479,
+        "n_rows": 25600,
+        "n_sources": 800,
+        "n_boot_used": 1000
+      }
+    },
+    "reverb_freeze0": {
+      "wet_level": {
+        "probe_r2": 0.2714113734608346,
+        "probe_r2_std": 0.01741848749312747,
+        "probe_r2_ci_low": 0.2291292082952533,
+        "probe_r2_ci_high": 0.2968940477936973,
+        "probe_r2_shuffled": -0.011230020615106718,
+        "n_rows": 13137,
+        "n_sources": 800,
+        "n_boot_used": 1000
+      },
+      "room_size": {
+        "probe_r2": 0.5199075324593407,
+        "probe_r2_std": 0.006443680329080699,
+        "probe_r2_ci_low": 0.4802227241272425,
+        "probe_r2_ci_high": 0.5449530356697977,
+        "probe_r2_shuffled": -0.010266837095742965,
+        "n_rows": 13137,
+        "n_sources": 800,
+        "n_boot_used": 1000
+      },
+      "damping": {
+        "probe_r2": 0.0463964893219555,
+        "probe_r2_std": 0.005340806958302316,
+        "probe_r2_ci_low": 0.026183561114013695,
+        "probe_r2_ci_high": 0.05415265164078218,
+        "probe_r2_shuffled": -0.013439074654525606,
+        "n_rows": 13137,
+        "n_sources": 800,
+        "n_boot_used": 1000
+      },
+      "width": {
+        "probe_r2": 0.06613109372308676,
+        "probe_r2_std": 0.0034470523381621033,
+        "probe_r2_ci_low": 0.04079662521219579,
+        "probe_r2_ci_high": 0.07066692735218631,
+        "probe_r2_shuffled": -0.015289945946997374,
+        "n_rows": 13137,
+        "n_sources": 800,
+        "n_boot_used": 1000
+      }
+    },
+    "reverb_freeze1": {
+      "wet_level": {
+        "probe_r2": -0.008144050694136507,
+        "probe_r2_std": 0.0019198142601568058,
+        "probe_r2_ci_low": -0.014587358515638115,
+        "probe_r2_ci_high": -0.005259906901632318,
+        "probe_r2_shuffled": -0.01434036731016044,
+        "n_rows": 12463,
+        "n_sources": 800,
+        "n_boot_used": 1000
+      },
+      "room_size": {
+        "probe_r2": -0.004573468681539916,
+        "probe_r2_std": 0.002055844507998167,
+        "probe_r2_ci_low": -0.01196113823673828,
+        "probe_r2_ci_high": -0.0036308374369871345,
+        "probe_r2_shuffled": -0.015165891163285572,
+        "n_rows": 12463,
+        "n_sources": 800,
+        "n_boot_used": 1000
+      },
+      "damping": {
+        "probe_r2": -0.005433657303700068,
+        "probe_r2_std": 0.0018022763755386822,
+        "probe_r2_ci_low": -0.01335162273894534,
+        "probe_r2_ci_high": -0.005052739987583711,
+        "probe_r2_shuffled": -0.01326019046467839,
+        "n_rows": 12463,
+        "n_sources": 800,
+        "n_boot_used": 1000
+      },
+      "width": {
+        "probe_r2": -0.006193595762966542,
+        "probe_r2_std": 0.002802130330499877,
+        "probe_r2_ci_low": -0.014334612910711024,
+        "probe_r2_ci_high": -0.005182236207566161,
+        "probe_r2_shuffled": -0.013569297940196812,
+        "n_rows": 12463,
+        "n_sources": 800,
+        "n_boot_used": 1000
+      }
+    },
+    "distortion_full": {
+      "drive_db": {
+        "probe_r2": 0.6989630673075045,
+        "probe_r2_std": 0.014323839767042478,
+        "probe_r2_ci_low": 0.661618273960343,
+        "probe_r2_ci_high": 0.731265805013748,
+        "probe_r2_shuffled": -0.026221173167517663,
+        "n_rows": 6400,
+        "n_sources": 800,
+        "n_boot_used": 1000
+      }
+    },
+    "highshelf_full": {
+      "gain_db": {
+        "probe_r2": 0.3140132826840082,
+        "probe_r2_std": 0.01745514983310065,
+        "probe_r2_ci_low": 0.21245322865493693,
+        "probe_r2_ci_high": 0.3512147394755751,
+        "probe_r2_shuffled": -0.011043817857312588,
+        "n_rows": 12800,
+        "n_sources": 800,
+        "n_boot_used": 1000
+      },
+      "cutoff_frequency_hz": {
+        "probe_r2": 0.0038592080287802146,
+        "probe_r2_std": 0.0002979051681789427,
+        "probe_r2_ci_low": 0.00029575696882005217,
+        "probe_r2_ci_high": 0.005220818169821267,
+        "probe_r2_shuffled": -0.012911134857690599,
+        "n_rows": 12800,
+        "n_sources": 800,
+        "n_boot_used": 1000
+      },
+      "q": {
+        "probe_r2": 0.014157889154506508,
+        "probe_r2_std": 0.0026652185287322438,
+        "probe_r2_ci_low": 0.0025657301620178336,
+        "probe_r2_ci_high": 0.017905192318492053,
+        "probe_r2_shuffled": -0.008958791918905673,
+        "n_rows": 12800,
+        "n_sources": 800,
+        "n_boot_used": 1000
+      }
+    },
+    "matched_N": {
+      "n_matched": 6400,
+      "reverb_freeze0": {
+        "wet_level": {
+          "probe_r2": 0.2487508300158451,
+          "probe_r2_std": 0.021350319130728827,
+          "probe_r2_ci_low": 0.20524128942190492,
+          "probe_r2_ci_high": 0.2779548567537749,
+          "probe_r2_shuffled": -0.014239394262945071,
+          "n_rows": 6400,
+          "n_sources": 800,
+          "n_boot_used": 1000
+        },
+        "room_size": {
+          "probe_r2": 0.4911388697257898,
+          "probe_r2_std": 0.004702373761080877,
+          "probe_r2_ci_low": 0.44654377396826456,
+          "probe_r2_ci_high": 0.520264825488642,
+          "probe_r2_shuffled": -0.01994994877136467,
+          "n_rows": 6400,
+          "n_sources": 800,
+          "n_boot_used": 1000
+        },
+        "damping": {
+          "probe_r2": 0.04296358016956301,
+          "probe_r2_std": 0.008001414947857347,
+          "probe_r2_ci_low": 0.010927812627644085,
+          "probe_r2_ci_high": 0.052350916305152574,
+          "probe_r2_shuffled": -0.016812425397608168,
+          "n_rows": 6400,
+          "n_sources": 800,
+          "n_boot_used": 1000
+        },
+        "width": {
+          "probe_r2": 0.05456632703664599,
+          "probe_r2_std": 0.00783713387209776,
+          "probe_r2_ci_low": 0.02117404116863552,
+          "probe_r2_ci_high": 0.06513993797677887,
+          "probe_r2_shuffled": -0.017468715700450055,
+          "n_rows": 6400,
+          "n_sources": 800,
+          "n_boot_used": 1000
+        }
+      },
+      "distortion": {
+        "drive_db": {
+          "probe_r2": 0.6989630673075045,
+          "probe_r2_std": 0.014323839767042478,
+          "probe_r2_ci_low": 0.661618273960343,
+          "probe_r2_ci_high": 0.731265805013748,
+          "probe_r2_shuffled": -0.026221173167517663,
+          "n_rows": 6400,
+          "n_sources": 800,
+          "n_boot_used": 1000
+        }
+      },
+      "highshelf": {
+        "gain_db": {
+          "probe_r2": 0.2910297251260868,
+          "probe_r2_std": 0.014532006990671751,
+          "probe_r2_ci_low": 0.19832023723903805,
+          "probe_r2_ci_high": 0.3311195814638518,
+          "probe_r2_shuffled": -0.019129520762914076,
+          "n_rows": 6400,
+          "n_sources": 800,
+          "n_boot_used": 1000
+        },
+        "cutoff_frequency_hz": {
+          "probe_r2": -0.006363469395983134,
+          "probe_r2_std": 0.003707500913151591,
+          "probe_r2_ci_low": -0.01902578027774848,
+          "probe_r2_ci_high": -0.002402088632832678,
+          "probe_r2_shuffled": -0.020457990956896176,
+          "n_rows": 6400,
+          "n_sources": 800,
+          "n_boot_used": 1000
+        },
+        "q": {
+          "probe_r2": 0.008824809480511142,
+          "probe_r2_std": 0.005691270979150235,
+          "probe_r2_ci_low": -0.015750440272704135,
+          "probe_r2_ci_high": 0.011167892119867656,
+          "probe_r2_shuffled": -0.015494482098341634,
+          "n_rows": 6400,
+          "n_sources": 800,
+          "n_boot_used": 1000
+        }
+      }
+    },
+    "effect_order": {
+      "before_freeze_split_pooled_vs_full": [
+        "distortion",
+        "highshelf",
+        "reverb(pooled,3차와동일조건)"
+      ],
+      "after_freeze0_vs_full": [
+        "distortion",
+        "reverb(freeze=0)",
+        "highshelf"
+      ],
+      "matched_N": [
+        "distortion(matched)",
+        "reverb(freeze=0,matched)",
+        "highshelf(matched)"
+      ]
+    }
+  },
+  "task2_render": {
+    "cache_path": "out/phase3_fd_cache.npz",
+    "clipping_rate_C": 0.004,
+    "clipping_headroom_warning": false,
+    "peak_after_effect_C_stats": {
+      "reverb": {
+        "mean": 0.6072658896446228,
+        "max": 0.8516510725021362
+      },
+      "distortion": {
+        "mean": 0.615452229976654,
+        "max": 0.9308950901031494
+      },
+      "highshelf": {
+        "mean": 0.32524511218070984,
+        "max": 1.1884287595748901
+      },
+      "overall_max": 1.1884287595748901
+    },
+    "onesided_ratio_C": {
+      "reverb.wet_level": 0.034,
+      "reverb.room_size": 0.038,
+      "reverb.damping": 0.036,
+      "reverb.width": 0.044,
+      "distortion.drive_db": 0.032,
+      "highshelf.gain_db": 0.048,
+      "highshelf.cutoff_frequency_hz": 0.04,
+      "highshelf.q": 0.038,
+      "highshelf.ultrasonic_12k_gain_db": 0.048,
+      "highshelf.ultrasonic_15k_gain_db": 0.034
+    },
+    "onesided_ratio_A": {
+      "reverb.wet_level": 0.034,
+      "reverb.room_size": 0.038,
+      "reverb.damping": 0.036,
+      "reverb.width": 0.044
+    }
+  },
+  "task3_polarity_probe": {
+    "by_effect": {
+      "reverb": {
+        "held_out_accuracy_mean": 0.5,
+        "held_out_accuracy_std": 0.0,
+        "n_splits_used": 10,
+        "nmi_kmeans2": 6.53946578433451e-16,
+        "cos_emb_pos_vs_neg": {
+          "mean": 1.00000002872844,
+          "median": 0.9999999999989999,
+          "min": 0.9999999999989999
+        },
+        "waveform_relative_asymmetry": {
+          "mean": 0.0,
+          "median": 0.0,
+          "max": 0.0,
+          "note": "‖wet(y)+wet(-y)‖/(‖wet(y)‖+‖wet(-y)‖). 0에 가까우면 pipeline(-y)==-pipeline(y) (대칭)."
+        }
+      },
+      "distortion": {
+        "held_out_accuracy_mean": 0.5,
+        "held_out_accuracy_std": 0.0,
+        "n_splits_used": 10,
+        "nmi_kmeans2": 0.0,
+        "cos_emb_pos_vs_neg": {
+          "mean": 1.0000000280131844,
+          "median": 0.9999999999989999,
+          "min": 0.9999999999989999
+        },
+        "waveform_relative_asymmetry": {
+          "mean": 0.0,
+          "median": 0.0,
+          "max": 0.0,
+          "note": "‖wet(y)+wet(-y)‖/(‖wet(y)‖+‖wet(-y)‖). 0에 가까우면 pipeline(-y)==-pipeline(y) (대칭)."
+        }
+      },
+      "highshelf": {
+        "held_out_accuracy_mean": 0.5,
+        "held_out_accuracy_std": 0.0,
+        "n_splits_used": 10,
+        "nmi_kmeans2": 0.0,
+        "cos_emb_pos_vs_neg": {
+          "mean": 1.000000027417138,
+          "median": 0.9999999999989999,
+          "min": 0.9999999999989999
+        },
+        "waveform_relative_asymmetry": {
+          "mean": 0.0,
+          "median": 0.0,
+          "max": 0.0,
+          "note": "‖wet(y)+wet(-y)‖/(‖wet(y)‖+‖wet(-y)‖). 0에 가까우면 pipeline(-y)==-pipeline(y) (대칭)."
+        }
+      }
+    },
+    "verdict_by_effect": {
+      "reverb": "symmetric",
+      "distortion": "symmetric",
+      "highshelf": "symmetric"
+    },
+    "overall_verdict": "전 이펙트 대칭 — 파이프라인 정상",
+    "resolution_floor_role": "제외 — 극성 반전은 해상도 바닥에 포함하지 않는다 (README 참고)"
+  },
+  "task4_resolution_floor": {
+    "highshelf_probe_condition_C": {
+      "gain_db": {
+        "probe_r2": 0.27449529364138975,
+        "probe_r2_std": 0.013477371300973224,
+        "probe_r2_ci_low": 0.08061209597073726,
+        "probe_r2_ci_high": 0.34604854730951545,
+        "n_rows": 500,
+        "n_sources": 100,
+        "n_boot_used": 1000
+      },
+      "cutoff_frequency_hz": {
+        "probe_r2": -0.010111860439444387,
+        "probe_r2_std": 0.006046319228611377,
+        "probe_r2_ci_low": -0.04451066969910346,
+        "probe_r2_ci_high": -0.0016375975878740983,
+        "n_rows": 500,
+        "n_sources": 100,
+        "n_boot_used": 1000
+      },
+      "q": {
+        "probe_r2": -0.003863460163524102,
+        "probe_r2_std": 0.004490547233520909,
+        "probe_r2_ci_low": -0.05869320157456213,
+        "probe_r2_ci_high": 0.006215774408934161,
+        "n_rows": 500,
+        "n_sources": 100,
+        "n_boot_used": 1000
+      },
+      "ultrasonic_12k_gain_db": {
+        "probe_r2": -0.014661365483814226,
+        "probe_r2_std": 0.011124167907140768,
+        "probe_r2_ci_low": -0.03955681913151652,
+        "probe_r2_ci_high": -0.0047305124694170374,
+        "n_rows": 500,
+        "n_sources": 100,
+        "n_boot_used": 1000
+      },
+      "ultrasonic_15k_gain_db": {
+        "probe_r2": -0.005690921987260777,
+        "probe_r2_std": 0.0046818218233226384,
+        "probe_r2_ci_low": -0.0352113133326578,
+        "probe_r2_ci_high": -0.0017220625765651857,
+        "n_rows": 500,
+        "n_sources": 100,
+        "n_boot_used": 1000
+      }
+    },
+    "resolution_floor": -0.0017220625765651857,
+    "resolution_floor_definition": "max(ultrasonic_12k_gain_db R² CI상단, ultrasonic_15k_gain_db R² CI상단), 조건 C, n=500",
+    "ultrasonic_12k_ci_high": -0.0047305124694170374,
+    "ultrasonic_15k_ci_high": -0.0017220625765651857,
+    "transition_band_leak_flag": false,
+    "old_floor_4th_round": 0.009628838994760351,
+    "old_floor_withdrawn_reason": "reverb.width가 음성 통제가 아님이 과제 1에서 확인됨",
+    "effect_order_matched_N": {
+      "distortion(matched)": 0.6989630673075045,
+      "reverb(freeze=0,matched)": 0.20935490173696097,
+      "highshelf(matched)": 0.09783035507020493
+    },
+    "effect_order_verdict": "highshelf(matched)가 새 바닥을 초과 — reverb > highshelf 순서 주장 가능",
+    "reclassification": {
+      "reverb.wet_level (freeze=0, 조건A, 과제1)": {
+        "probe_r2": 0.2714113734608346,
+        "old_label": null,
+        "new_label": "resolution 이상"
+      },
+      "reverb.room_size (freeze=0, 조건A, 과제1)": {
+        "probe_r2": 0.5199075324593407,
+        "old_label": null,
+        "new_label": "resolution 이상"
+      },
+      "reverb.damping (freeze=0, 조건A, 과제1)": {
+        "probe_r2": 0.0463964893219555,
+        "old_label": null,
+        "new_label": "resolution 이상"
+      },
+      "reverb.width (freeze=0, 조건A, 과제1)": {
+        "probe_r2": 0.06613109372308676,
+        "old_label": null,
+        "new_label": "resolution 이상"
+      },
+      "reverb.wet_level (4차, 조건A, 원본range)": {
+        "probe_r2": 0.05644470860309869,
+        "old_label": "resolution 이상",
+        "new_label": "resolution 이상"
+      },
+      "reverb.room_size (4차, 조건A, 원본range)": {
+        "probe_r2": 0.15491434259667722,
+        "old_label": "resolution 이상",
+        "new_label": "resolution 이상"
+      },
+      "reverb.damping (4차, 조건A, 원본range)": {
+        "probe_r2": 0.009942268518864062,
+        "old_label": "resolution 이상",
+        "new_label": "resolution 이상"
+      },
+      "reverb.width (4차, 조건A, 원본range)": {
+        "probe_r2": 0.008695947061068998,
+        "old_label": "측정 불가(below resolution)",
+        "new_label": "resolution 이상"
+      },
+      "reverb.freeze_mode (4차, 조건A, 원본range)": {
+        "probe_r2": 0.4189981475037981,
+        "old_label": "resolution 이상",
+        "new_label": "resolution 이상"
+      },
+      "distortion.drive_db (4차, 조건A, 원본range)": {
+        "probe_r2": 0.6989630673075045,
+        "old_label": "resolution 이상",
+        "new_label": "resolution 이상"
+      },
+      "highshelf.gain_db (4차, 조건A, 원본range)": {
+        "probe_r2": 0.3140132826840082,
+        "old_label": "resolution 이상",
+        "new_label": "resolution 이상"
+      },
+      "highshelf.cutoff_frequency_hz (4차, 조건A, 원본range)": {
+        "probe_r2": 0.0038592080287802146,
+        "old_label": "측정 불가(below resolution)",
+        "new_label": "resolution 이상"
+      },
+      "highshelf.q (4차, 조건A, 원본range)": {
+        "probe_r2": 0.014157889154506508,
+        "old_label": "resolution 이상",
+        "new_label": "resolution 이상"
+      },
+      "highshelf.gain_db (6차, 조건C, cutoff range 500-4000)": {
+        "probe_r2": 0.27449529364138975,
+        "old_label": null,
+        "new_label": "resolution 이상"
+      },
+      "highshelf.cutoff_frequency_hz (6차, 조건C, cutoff range 500-4000)": {
+        "probe_r2": -0.010111860439444387,
+        "old_label": null,
+        "new_label": "측정 불가(below resolution)"
+      },
+      "highshelf.q (6차, 조건C, cutoff range 500-4000)": {
+        "probe_r2": -0.003863460163524102,
+        "old_label": null,
+        "new_label": "측정 불가(below resolution)"
+      },
+      "highshelf.ultrasonic_12k_gain_db (6차, 조건C, cutoff range 500-4000)": {
+        "probe_r2": -0.014661365483814226,
+        "old_label": null,
+        "new_label": "측정 불가(below resolution)"
+      },
+      "highshelf.ultrasonic_15k_gain_db (6차, 조건C, cutoff range 500-4000)": {
+        "probe_r2": -0.005690921987260777,
+        "old_label": null,
+        "new_label": "측정 불가(below resolution)"
+      }
+    },
+    "transition_band_leak_abs_diff": 0.0030084498928518518,
+    "transition_band_leak_ratio_of_abs": 2.7470038161171155
+  },
+  "task4_resolution_floor_v2": {
+    "method_note": "4-R1~4-R5: reverb->distortion->highshelf 통합 체인, 조건C, N=500, 10축 동일 절차 프로브. 판정 근거는 CI 중첩(4-R3), 스칼라 바닥은 참고용.",
+    "condition_C_probe_N500": {
+      "reverb.wet_level": {
+        "probe_r2": 0.07984910225018785,
+        "probe_r2_std": 0.05530880642667774,
+        "probe_r2_ci_low": -0.045919604651986135,
+        "probe_r2_ci_high": 0.14366328496135866,
+        "boot_mean": 0.06809806827218096,
+        "n_rows": 500,
+        "n_sources": 100,
+        "n_boot_used": 1000
+      },
+      "reverb.room_size": {
+        "probe_r2": 0.3407719864793265,
+        "probe_r2_std": 0.02548230068554264,
+        "probe_r2_ci_low": 0.21019026989077685,
+        "probe_r2_ci_high": 0.42050667536014347,
+        "boot_mean": 0.327443961598073,
+        "n_rows": 500,
+        "n_sources": 100,
+        "n_boot_used": 1000
+      },
+      "reverb.damping": {
+        "probe_r2": -0.020582737740694988,
+        "probe_r2_std": 0.009625406871659409,
+        "probe_r2_ci_low": -0.08727861306334864,
+        "probe_r2_ci_high": -0.009047251063022281,
+        "boot_mean": -0.041415651788774814,
+        "n_rows": 500,
+        "n_sources": 100,
+        "n_boot_used": 1000
+      },
+      "reverb.width": {
+        "probe_r2": -0.020576812986349013,
+        "probe_r2_std": 0.011867576651678905,
+        "probe_r2_ci_low": -0.09299608643612044,
+        "probe_r2_ci_high": -0.0053433659466545,
+        "boot_mean": -0.042116128784086826,
+        "n_rows": 500,
+        "n_sources": 100,
+        "n_boot_used": 1000
+      },
+      "distortion.drive_db": {
+        "probe_r2": 0.4297268115270915,
+        "probe_r2_std": 0.07784977118776777,
+        "probe_r2_ci_low": 0.3336070908821535,
+        "probe_r2_ci_high": 0.5495991140869683,
+        "boot_mean": 0.4498751719571346,
+        "n_rows": 500,
+        "n_sources": 100,
+        "n_boot_used": 1000
+      },
+      "highshelf.gain_db": {
+        "probe_r2": 0.18663801612851028,
+        "probe_r2_std": 0.018298921270682247,
+        "probe_r2_ci_low": 0.06320282797357288,
+        "probe_r2_ci_high": 0.2660441241933969,
+        "boot_mean": 0.17750859465904084,
+        "n_rows": 500,
+        "n_sources": 100,
+        "n_boot_used": 1000
+      },
+      "highshelf.cutoff_frequency_hz": {
+        "probe_r2": -0.02666567800559134,
+        "probe_r2_std": 0.008539560913349347,
+        "probe_r2_ci_low": -0.0932170562960255,
+        "probe_r2_ci_high": -0.008709011751533033,
+        "boot_mean": -0.044071140375082946,
+        "n_rows": 500,
+        "n_sources": 100,
+        "n_boot_used": 1000
+      },
+      "highshelf.q": {
+        "probe_r2": -0.025895041663769103,
+        "probe_r2_std": 0.008764306018376203,
+        "probe_r2_ci_low": -0.0932376538150121,
+        "probe_r2_ci_high": -0.0008282335092573359,
+        "boot_mean": -0.03940309145214188,
+        "n_rows": 500,
+        "n_sources": 100,
+        "n_boot_used": 1000
+      },
+      "highshelf.ultrasonic_12k_gain_db": {
+        "probe_r2": -0.019243936702324316,
+        "probe_r2_std": 0.010875672841241123,
+        "probe_r2_ci_low": -0.08683558615984663,
+        "probe_r2_ci_high": 2.279700852382217e-05,
+        "boot_mean": -0.036844853022555524,
+        "n_rows": 500,
+        "n_sources": 100,
+        "n_boot_used": 1000
+      },
+      "highshelf.ultrasonic_15k_gain_db": {
+        "probe_r2": -0.013722763976088936,
+        "probe_r2_std": 0.0063664770045678025,
+        "probe_r2_ci_low": -0.08488008796386992,
+        "probe_r2_ci_high": -0.0057280907327400266,
+        "boot_mean": -0.038901160227717155,
+        "n_rows": 500,
+        "n_sources": 100,
+        "n_boot_used": 1000
+      }
+    },
+    "null_pool": {
+      "columns": [
+        "highshelf.ultrasonic_12k_gain_db",
+        "highshelf.ultrasonic_15k_gain_db"
+      ],
+      "n_pooled": 2000,
+      "ci_low": -0.08582173461657494,
+      "ci_high": -0.0026538292096088003
+    },
+    "scalar_floor_reference_not_for_verdict": 2.279700852382217e-05,
+    "ci_overlap_verdict": {
+      "reverb.wet_level": {
+        "ci_low": -0.045919604651986135,
+        "ci_high": 0.14366328496135866,
+        "overlaps_null": true,
+        "verdict": "널과 구분 안 됨 (측정 불가)"
+      },
+      "reverb.room_size": {
+        "ci_low": 0.21019026989077685,
+        "ci_high": 0.42050667536014347,
+        "overlaps_null": false,
+        "verdict": "널과 유의하게 다름 (신호 있음)"
+      },
+      "reverb.damping": {
+        "ci_low": -0.08727861306334864,
+        "ci_high": -0.009047251063022281,
+        "overlaps_null": true,
+        "verdict": "널과 구분 안 됨 (측정 불가)"
+      },
+      "reverb.width": {
+        "ci_low": -0.09299608643612044,
+        "ci_high": -0.0053433659466545,
+        "overlaps_null": true,
+        "verdict": "널과 구분 안 됨 (측정 불가)"
+      },
+      "distortion.drive_db": {
+        "ci_low": 0.3336070908821535,
+        "ci_high": 0.5495991140869683,
+        "overlaps_null": false,
+        "verdict": "널과 유의하게 다름 (신호 있음)"
+      },
+      "highshelf.gain_db": {
+        "ci_low": 0.06320282797357288,
+        "ci_high": 0.2660441241933969,
+        "overlaps_null": false,
+        "verdict": "널과 유의하게 다름 (신호 있음)"
+      },
+      "highshelf.cutoff_frequency_hz": {
+        "ci_low": -0.0932170562960255,
+        "ci_high": -0.008709011751533033,
+        "overlaps_null": true,
+        "verdict": "널과 구분 안 됨 (측정 불가)"
+      },
+      "highshelf.q": {
+        "ci_low": -0.0932376538150121,
+        "ci_high": -0.0008282335092573359,
+        "overlaps_null": true,
+        "verdict": "널과 구분 안 됨 (측정 불가)"
+      }
+    },
+    "condition_A_n_matched_subsample": {
+      "reverb.wet_level": {
+        "n_reps": 100,
+        "mean": 0.12631113526242135,
+        "median": 0.12509060215964868,
+        "pct2_5": 0.01504520757871549,
+        "pct97_5": 0.2134613281684379,
+        "n_rows_target": 500,
+        "n_rows_actual_mean": 500.0
+      },
+      "reverb.room_size": {
+        "n_reps": 100,
+        "mean": 0.3077591801082689,
+        "median": 0.31116937473954454,
+        "pct2_5": 0.18838707803865753,
+        "pct97_5": 0.41424686179202874,
+        "n_rows_target": 500,
+        "n_rows_actual_mean": 500.0
+      },
+      "reverb.damping": {
+        "n_reps": 100,
+        "mean": -0.02733337551002617,
+        "median": -0.02830273785316042,
+        "pct2_5": -0.08705501388059686,
+        "pct97_5": 0.035874780001846324,
+        "n_rows_target": 500,
+        "n_rows_actual_mean": 500.0
+      },
+      "reverb.width": {
+        "n_reps": 100,
+        "mean": -0.01769285030394142,
+        "median": -0.018587433336763864,
+        "pct2_5": -0.0996583940930477,
+        "pct97_5": 0.05578544127069877,
+        "n_rows_target": 500,
+        "n_rows_actual_mean": 500.0
+      },
+      "distortion.drive_db": {
+        "n_reps": 100,
+        "mean": 0.5620611991109769,
+        "median": 0.5697116881567268,
+        "pct2_5": 0.4599102576873875,
+        "pct97_5": 0.6474018273730751,
+        "n_rows_target": 500,
+        "n_rows_actual_mean": 500.0
+      },
+      "highshelf.gain_db": {
+        "n_reps": 100,
+        "mean": 0.14147625895965774,
+        "median": 0.14948761875322142,
+        "pct2_5": 0.03786492902572445,
+        "pct97_5": 0.22053655530568866,
+        "n_rows_target": 500,
+        "n_rows_actual_mean": 500.0
+      },
+      "highshelf.cutoff_frequency_hz": {
+        "n_reps": 100,
+        "mean": -0.04567008220742538,
+        "median": -0.04235502055070155,
+        "pct2_5": -0.09558117788942663,
+        "pct97_5": -0.011270005621887083,
+        "n_rows_target": 500,
+        "n_rows_actual_mean": 500.0
+      },
+      "highshelf.q": {
+        "n_reps": 100,
+        "mean": -0.04112967202369262,
+        "median": -0.040564791758200866,
+        "pct2_5": -0.09637870270131728,
+        "pct97_5": 4.6283003630299556e-05,
+        "n_rows_target": 500,
+        "n_rows_actual_mean": 500.0
+      }
+    },
+    "condition_A_vs_C_null_overlap_reference_only": {
+      "reverb.wet_level": {
+        "overlaps_C_null": false,
+        "note": "조건 A(3·4차 원본, range도 4차와 동일) N=500 매칭 분포 vs 조건 C 널 — 조건 자체는 다름, 참고용"
+      },
+      "reverb.room_size": {
+        "overlaps_C_null": false,
+        "note": "조건 A(3·4차 원본, range도 4차와 동일) N=500 매칭 분포 vs 조건 C 널 — 조건 자체는 다름, 참고용"
+      },
+      "reverb.damping": {
+        "overlaps_C_null": true,
+        "note": "조건 A(3·4차 원본, range도 4차와 동일) N=500 매칭 분포 vs 조건 C 널 — 조건 자체는 다름, 참고용"
+      },
+      "reverb.width": {
+        "overlaps_C_null": true,
+        "note": "조건 A(3·4차 원본, range도 4차와 동일) N=500 매칭 분포 vs 조건 C 널 — 조건 자체는 다름, 참고용"
+      },
+      "distortion.drive_db": {
+        "overlaps_C_null": false,
+        "note": "조건 A(3·4차 원본, range도 4차와 동일) N=500 매칭 분포 vs 조건 C 널 — 조건 자체는 다름, 참고용"
+      },
+      "highshelf.gain_db": {
+        "overlaps_C_null": false,
+        "note": "조건 A(3·4차 원본, range도 4차와 동일) N=500 매칭 분포 vs 조건 C 널 — 조건 자체는 다름, 참고용"
+      },
+      "highshelf.cutoff_frequency_hz": {
+        "overlaps_C_null": true,
+        "note": "조건 A(3·4차 원본, range도 4차와 동일) N=500 매칭 분포 vs 조건 C 널 — 조건 자체는 다름, 참고용"
+      },
+      "highshelf.q": {
+        "overlaps_C_null": true,
+        "note": "조건 A(3·4차 원본, range도 4차와 동일) N=500 매칭 분포 vs 조건 C 널 — 조건 자체는 다름, 참고용"
+      }
+    },
+    "effect_order": {
+      "condition_C_N500": [
+        "distortion",
+        "reverb",
+        "highshelf"
+      ],
+      "condition_C_N500_means": {
+        "distortion": 0.4297268115270915,
+        "reverb": 0.09486538450061759,
+        "highshelf": 0.044692432153049945
+      },
+      "condition_A_matched_N500": [
+        "distortion",
+        "reverb",
+        "highshelf"
+      ],
+      "condition_A_matched_N500_means": {
+        "distortion": 0.5620611991109769,
+        "reverb": 0.09726102238918068,
+        "highshelf": 0.01822550157617991
+      },
+      "rank_consistent_across_conditions": true
+    },
+    "old_4th_round_below_floor_items_reassessment": {
+      "reverb.width (4차, 조건A, N=25600, range 0~1)": {
+        "status": "재측정 필요",
+        "reason": "조건·N·range가 조건C(4-R2)와 달라 직접 재분류 불가",
+        "reference_condition_A_matched_N500": {
+          "n_reps": 100,
+          "mean": -0.01769285030394142,
+          "median": -0.018587433336763864,
+          "pct2_5": -0.0996583940930477,
+          "pct97_5": 0.05578544127069877,
+          "n_rows_target": 500,
+          "n_rows_actual_mean": 500.0
+        },
+        "reference_condition_C_N500_range_current": {
+          "ci_low": -0.09299608643612044,
+          "ci_high": -0.0053433659466545,
+          "overlaps_null": true,
+          "verdict": "널과 구분 안 됨 (측정 불가)"
+        }
+      },
+      "highshelf.cutoff_frequency_hz (4차, 조건A, N=12800, range 500~8000)": {
+        "status": "재측정 필요",
+        "reason": "range가 조건C(500~4000)와 달라 직접 재분류 불가",
+        "reference_condition_A_matched_N500": {
+          "n_reps": 100,
+          "mean": -0.04567008220742538,
+          "median": -0.04235502055070155,
+          "pct2_5": -0.09558117788942663,
+          "pct97_5": -0.011270005621887083,
+          "n_rows_target": 500,
+          "n_rows_actual_mean": 500.0
+        },
+        "reference_condition_C_N500_range_500_4000": {
+          "ci_low": -0.0932170562960255,
+          "ci_high": -0.008709011751533033,
+          "overlaps_null": true,
+          "verdict": "널과 구분 안 됨 (측정 불가)"
+        }
+      }
+    }
+  },
+  "task4_r7_composition": {
+    "method_note": "단독(이펙트별 독립 렌더) 조건C N=500 프로브(4-R6)를 신규 산출하고, 단독A(원본N, 과제1)/단독A(N=500 서브샘플)/체인C(4-R2)와 4방향 비교(4-R7). 주 판정 근거는 단독C_500 — 구성·조건·N이 1~4차 구조 + 이번 라운드 조건과 모두 일치하는 유일한 지점.",
+    "solo_probe_condition_C_N500": {
+      "reverb.wet_level": {
+        "probe_r2": 0.08739780450706344,
+        "probe_r2_std": 0.04809697607647868,
+        "probe_r2_ci_low": -0.05091997873534021,
+        "probe_r2_ci_high": 0.15494512819197936,
+        "n_rows": 500,
+        "n_sources": 100,
+        "n_boot_used": 1000
+      },
+      "reverb.room_size": {
+        "probe_r2": 0.332823807249631,
+        "probe_r2_std": 0.024019328059463954,
+        "probe_r2_ci_low": 0.209014361889872,
+        "probe_r2_ci_high": 0.430033754624923,
+        "n_rows": 500,
+        "n_sources": 100,
+        "n_boot_used": 1000
+      },
+      "reverb.damping": {
+        "probe_r2": -0.006795010564735771,
+        "probe_r2_std": 0.006328143767274046,
+        "probe_r2_ci_low": -0.05815775213977132,
+        "probe_r2_ci_high": 0.0003118668018215326,
+        "n_rows": 500,
+        "n_sources": 100,
+        "n_boot_used": 1000
+      },
+      "reverb.width": {
+        "probe_r2": -0.007228178071450442,
+        "probe_r2_std": 0.006481642274306656,
+        "probe_r2_ci_low": -0.05319474525904757,
+        "probe_r2_ci_high": 0.0010463187444917101,
+        "n_rows": 500,
+        "n_sources": 100,
+        "n_boot_used": 1000
+      },
+      "distortion.drive_db": {
+        "probe_r2": 0.4847584548828376,
+        "probe_r2_std": 0.05470033011700925,
+        "probe_r2_ci_low": 0.3414249843016553,
+        "probe_r2_ci_high": 0.6628992152572244,
+        "n_rows": 500,
+        "n_sources": 100,
+        "n_boot_used": 1000
+      },
+      "highshelf.gain_db": {
+        "probe_r2": 0.27449529364138975,
+        "probe_r2_std": 0.013477371300973224,
+        "probe_r2_ci_low": 0.08061209597073726,
+        "probe_r2_ci_high": 0.34604854730951545,
+        "n_rows": 500,
+        "n_sources": 100,
+        "n_boot_used": 1000
+      },
+      "highshelf.cutoff_frequency_hz": {
+        "probe_r2": -0.010111860439444387,
+        "probe_r2_std": 0.006046319228611377,
+        "probe_r2_ci_low": -0.04451066969910346,
+        "probe_r2_ci_high": -0.0016375975878740983,
+        "n_rows": 500,
+        "n_sources": 100,
+        "n_boot_used": 1000
+      },
+      "highshelf.q": {
+        "probe_r2": -0.003863460163524102,
+        "probe_r2_std": 0.004490547233520909,
+        "probe_r2_ci_low": -0.05869320157456213,
+        "probe_r2_ci_high": 0.006215774408934161,
+        "n_rows": 500,
+        "n_sources": 100,
+        "n_boot_used": 1000
+      },
+      "highshelf.ultrasonic_12k_gain_db": {
+        "probe_r2": -0.014661365483814226,
+        "probe_r2_std": 0.011124167907140768,
+        "probe_r2_ci_low": -0.03955681913151652,
+        "probe_r2_ci_high": -0.0047305124694170374,
+        "n_rows": 500,
+        "n_sources": 100,
+        "n_boot_used": 1000
+      },
+      "highshelf.ultrasonic_15k_gain_db": {
+        "probe_r2": -0.005690921987260777,
+        "probe_r2_std": 0.0046818218233226384,
+        "probe_r2_ci_low": -0.0352113133326578,
+        "probe_r2_ci_high": -0.0017220625765651857,
+        "n_rows": 500,
+        "n_sources": 100,
+        "n_boot_used": 1000
+      }
+    },
+    "solo_null_pool": {
+      "columns": [
+        "highshelf.ultrasonic_12k_gain_db",
+        "highshelf.ultrasonic_15k_gain_db"
+      ],
+      "n_pooled": 2000,
+      "ci_low": -0.037516761600386285,
+      "ci_high": -0.0028737726626697183
+    },
+    "ci_overlap_solo_C_500": {
+      "reverb.wet_level": {
+        "ci_low": -0.05091997873534021,
+        "ci_high": 0.15494512819197936,
+        "overlaps_null": true,
+        "verdict": "널과 구분 안 됨 (측정 불가)"
+      },
+      "reverb.room_size": {
+        "ci_low": 0.209014361889872,
+        "ci_high": 0.430033754624923,
+        "overlaps_null": false,
+        "verdict": "널과 유의하게 다름 (신호 있음)"
+      },
+      "reverb.damping": {
+        "ci_low": -0.05815775213977132,
+        "ci_high": 0.0003118668018215326,
+        "overlaps_null": true,
+        "verdict": "널과 구분 안 됨 (측정 불가)"
+      },
+      "reverb.width": {
+        "ci_low": -0.05319474525904757,
+        "ci_high": 0.0010463187444917101,
+        "overlaps_null": true,
+        "verdict": "널과 구분 안 됨 (측정 불가)"
+      },
+      "distortion.drive_db": {
+        "ci_low": 0.3414249843016553,
+        "ci_high": 0.6628992152572244,
+        "overlaps_null": false,
+        "verdict": "널과 유의하게 다름 (신호 있음)"
+      },
+      "highshelf.gain_db": {
+        "ci_low": 0.08061209597073726,
+        "ci_high": 0.34604854730951545,
+        "overlaps_null": false,
+        "verdict": "널과 유의하게 다름 (신호 있음)"
+      },
+      "highshelf.cutoff_frequency_hz": {
+        "ci_low": -0.04451066969910346,
+        "ci_high": -0.0016375975878740983,
+        "overlaps_null": true,
+        "verdict": "널과 구분 안 됨 (측정 불가)"
+      },
+      "highshelf.q": {
+        "ci_low": -0.05869320157456213,
+        "ci_high": 0.006215774408934161,
+        "overlaps_null": true,
+        "verdict": "널과 구분 안 됨 (측정 불가)"
+      }
+    },
+    "four_way_comparison": {
+      "reverb.wet_level": {
+        "단독A_원본N": {
+          "probe_r2": 0.2714113734608346,
+          "ci_low": 0.2291292082952533,
+          "ci_high": 0.2968940477936973,
+          "n": 13137,
+          "construction": "단독",
+          "condition": "A",
+          "note": "freeze=0만(유효 표본), N은 축별 상이 — pooled(48.7% 무효 포함)는 오염된 대조군이라 배제"
+        },
+        "단독A_500": {
+          "probe_r2": 0.12631113526242135,
+          "ci_low": 0.01504520757871549,
+          "ci_high": 0.2134613281684379,
+          "n": 500,
+          "construction": "단독",
+          "condition": "A",
+          "note": "src_id 단위 100회 서브샘플 분포"
+        },
+        "단독C_500": {
+          "probe_r2": 0.08739780450706344,
+          "ci_low": -0.05091997873534021,
+          "ci_high": 0.15494512819197936,
+          "n": 500,
+          "construction": "단독",
+          "condition": "C",
+          "note": ""
+        },
+        "체인C_500": {
+          "probe_r2": 0.07984910225018785,
+          "ci_low": -0.045919604651986135,
+          "ci_high": 0.14366328496135866,
+          "n": 500,
+          "construction": "체인",
+          "condition": "C",
+          "note": ""
+        }
+      },
+      "reverb.room_size": {
+        "단독A_원본N": {
+          "probe_r2": 0.5199075324593407,
+          "ci_low": 0.4802227241272425,
+          "ci_high": 0.5449530356697977,
+          "n": 13137,
+          "construction": "단독",
+          "condition": "A",
+          "note": "freeze=0만(유효 표본), N은 축별 상이 — pooled(48.7% 무효 포함)는 오염된 대조군이라 배제"
+        },
+        "단독A_500": {
+          "probe_r2": 0.3077591801082689,
+          "ci_low": 0.18838707803865753,
+          "ci_high": 0.41424686179202874,
+          "n": 500,
+          "construction": "단독",
+          "condition": "A",
+          "note": "src_id 단위 100회 서브샘플 분포"
+        },
+        "단독C_500": {
+          "probe_r2": 0.332823807249631,
+          "ci_low": 0.209014361889872,
+          "ci_high": 0.430033754624923,
+          "n": 500,
+          "construction": "단독",
+          "condition": "C",
+          "note": ""
+        },
+        "체인C_500": {
+          "probe_r2": 0.3407719864793265,
+          "ci_low": 0.21019026989077685,
+          "ci_high": 0.42050667536014347,
+          "n": 500,
+          "construction": "체인",
+          "condition": "C",
+          "note": ""
+        }
+      },
+      "reverb.damping": {
+        "단독A_원본N": {
+          "probe_r2": 0.0463964893219555,
+          "ci_low": 0.026183561114013695,
+          "ci_high": 0.05415265164078218,
+          "n": 13137,
+          "construction": "단독",
+          "condition": "A",
+          "note": "freeze=0만(유효 표본), N은 축별 상이 — pooled(48.7% 무효 포함)는 오염된 대조군이라 배제"
+        },
+        "단독A_500": {
+          "probe_r2": -0.02733337551002617,
+          "ci_low": -0.08705501388059686,
+          "ci_high": 0.035874780001846324,
+          "n": 500,
+          "construction": "단독",
+          "condition": "A",
+          "note": "src_id 단위 100회 서브샘플 분포"
+        },
+        "단독C_500": {
+          "probe_r2": -0.006795010564735771,
+          "ci_low": -0.05815775213977132,
+          "ci_high": 0.0003118668018215326,
+          "n": 500,
+          "construction": "단독",
+          "condition": "C",
+          "note": ""
+        },
+        "체인C_500": {
+          "probe_r2": -0.020582737740694988,
+          "ci_low": -0.08727861306334864,
+          "ci_high": -0.009047251063022281,
+          "n": 500,
+          "construction": "체인",
+          "condition": "C",
+          "note": ""
+        }
+      },
+      "reverb.width": {
+        "단독A_원본N": {
+          "probe_r2": 0.06613109372308676,
+          "ci_low": 0.04079662521219579,
+          "ci_high": 0.07066692735218631,
+          "n": 13137,
+          "construction": "단독",
+          "condition": "A",
+          "note": "freeze=0만(유효 표본), N은 축별 상이 — pooled(48.7% 무효 포함)는 오염된 대조군이라 배제"
+        },
+        "단독A_500": {
+          "probe_r2": -0.01769285030394142,
+          "ci_low": -0.0996583940930477,
+          "ci_high": 0.05578544127069877,
+          "n": 500,
+          "construction": "단독",
+          "condition": "A",
+          "note": "src_id 단위 100회 서브샘플 분포"
+        },
+        "단독C_500": {
+          "probe_r2": -0.007228178071450442,
+          "ci_low": -0.05319474525904757,
+          "ci_high": 0.0010463187444917101,
+          "n": 500,
+          "construction": "단독",
+          "condition": "C",
+          "note": ""
+        },
+        "체인C_500": {
+          "probe_r2": -0.020576812986349013,
+          "ci_low": -0.09299608643612044,
+          "ci_high": -0.0053433659466545,
+          "n": 500,
+          "construction": "체인",
+          "condition": "C",
+          "note": ""
+        }
+      },
+      "distortion.drive_db": {
+        "단독A_원본N": {
+          "probe_r2": 0.6989630673075045,
+          "ci_low": 0.661618273960343,
+          "ci_high": 0.731265805013748,
+          "n": 6400,
+          "construction": "단독",
+          "condition": "A",
+          "note": ""
+        },
+        "단독A_500": {
+          "probe_r2": 0.5620611991109769,
+          "ci_low": 0.4599102576873875,
+          "ci_high": 0.6474018273730751,
+          "n": 500,
+          "construction": "단독",
+          "condition": "A",
+          "note": "src_id 단위 100회 서브샘플 분포"
+        },
+        "단독C_500": {
+          "probe_r2": 0.4847584548828376,
+          "ci_low": 0.3414249843016553,
+          "ci_high": 0.6628992152572244,
+          "n": 500,
+          "construction": "단독",
+          "condition": "C",
+          "note": ""
+        },
+        "체인C_500": {
+          "probe_r2": 0.4297268115270915,
+          "ci_low": 0.3336070908821535,
+          "ci_high": 0.5495991140869683,
+          "n": 500,
+          "construction": "체인",
+          "condition": "C",
+          "note": ""
+        }
+      },
+      "highshelf.gain_db": {
+        "단독A_원본N": {
+          "probe_r2": 0.3140132826840082,
+          "ci_low": 0.21245322865493693,
+          "ci_high": 0.3512147394755751,
+          "n": 12800,
+          "construction": "단독",
+          "condition": "A",
+          "note": ""
+        },
+        "단독A_500": {
+          "probe_r2": 0.14147625895965774,
+          "ci_low": 0.03786492902572445,
+          "ci_high": 0.22053655530568866,
+          "n": 500,
+          "construction": "단독",
+          "condition": "A",
+          "note": "src_id 단위 100회 서브샘플 분포"
+        },
+        "단독C_500": {
+          "probe_r2": 0.27449529364138975,
+          "ci_low": 0.08061209597073726,
+          "ci_high": 0.34604854730951545,
+          "n": 500,
+          "construction": "단독",
+          "condition": "C",
+          "note": ""
+        },
+        "체인C_500": {
+          "probe_r2": 0.18663801612851028,
+          "ci_low": 0.06320282797357288,
+          "ci_high": 0.2660441241933969,
+          "n": 500,
+          "construction": "체인",
+          "condition": "C",
+          "note": ""
+        }
+      },
+      "highshelf.cutoff_frequency_hz": {
+        "단독A_원본N": {
+          "probe_r2": 0.0038592080287802146,
+          "ci_low": 0.00029575696882005217,
+          "ci_high": 0.005220818169821267,
+          "n": 12800,
+          "construction": "단독",
+          "condition": "A",
+          "note": "range 500~8000 (조건C는 500~4000)"
+        },
+        "단독A_500": {
+          "probe_r2": -0.04567008220742538,
+          "ci_low": -0.09558117788942663,
+          "ci_high": -0.011270005621887083,
+          "n": 500,
+          "construction": "단독",
+          "condition": "A",
+          "note": "src_id 단위 100회 서브샘플 분포"
+        },
+        "단독C_500": {
+          "probe_r2": -0.010111860439444387,
+          "ci_low": -0.04451066969910346,
+          "ci_high": -0.0016375975878740983,
+          "n": 500,
+          "construction": "단독",
+          "condition": "C",
+          "note": "range 500~4000"
+        },
+        "체인C_500": {
+          "probe_r2": -0.02666567800559134,
+          "ci_low": -0.0932170562960255,
+          "ci_high": -0.008709011751533033,
+          "n": 500,
+          "construction": "체인",
+          "condition": "C",
+          "note": ""
+        }
+      },
+      "highshelf.q": {
+        "단독A_원본N": {
+          "probe_r2": 0.014157889154506508,
+          "ci_low": 0.0025657301620178336,
+          "ci_high": 0.017905192318492053,
+          "n": 12800,
+          "construction": "단독",
+          "condition": "A",
+          "note": ""
+        },
+        "단독A_500": {
+          "probe_r2": -0.04112967202369262,
+          "ci_low": -0.09637870270131728,
+          "ci_high": 4.6283003630299556e-05,
+          "n": 500,
+          "construction": "단독",
+          "condition": "A",
+          "note": "src_id 단위 100회 서브샘플 분포"
+        },
+        "단독C_500": {
+          "probe_r2": -0.003863460163524102,
+          "ci_low": -0.05869320157456213,
+          "ci_high": 0.006215774408934161,
+          "n": 500,
+          "construction": "단독",
+          "condition": "C",
+          "note": ""
+        },
+        "체인C_500": {
+          "probe_r2": -0.025895041663769103,
+          "ci_low": -0.0932376538150121,
+          "ci_high": -0.0008282335092573359,
+          "n": 500,
+          "construction": "체인",
+          "condition": "C",
+          "note": ""
+        }
+      },
+      "highshelf.ultrasonic_12k_gain_db": {
+        "단독C_500": {
+          "probe_r2": -0.014661365483814226,
+          "ci_low": -0.03955681913151652,
+          "ci_high": -0.0047305124694170374,
+          "n": 500,
+          "construction": "단독",
+          "condition": "C",
+          "note": "[널]"
+        },
+        "체인C_500": {
+          "probe_r2": -0.019243936702324316,
+          "ci_low": -0.08683558615984663,
+          "ci_high": 2.279700852382217e-05,
+          "n": 500,
+          "construction": "체인",
+          "condition": "C",
+          "note": "[널]"
+        }
+      },
+      "highshelf.ultrasonic_15k_gain_db": {
+        "단독C_500": {
+          "probe_r2": -0.005690921987260777,
+          "ci_low": -0.0352113133326578,
+          "ci_high": -0.0017220625765651857,
+          "n": 500,
+          "construction": "단독",
+          "condition": "C",
+          "note": "[널]"
+        },
+        "체인C_500": {
+          "probe_r2": -0.013722763976088936,
+          "ci_low": -0.08488008796386992,
+          "ci_high": -0.0057280907327400266,
+          "n": 500,
+          "construction": "체인",
+          "condition": "C",
+          "note": "[널]"
+        }
+      }
+    },
+    "decomposition": {
+      "reverb.wet_level": {
+        "조건효과_C500_minus_A500": -0.03891333075535791,
+        "N효과_A500_minus_A원본N": -0.14510023819841325,
+        "체인효과_체인C500_minus_단독C500": -0.007548702256875595
+      },
+      "reverb.room_size": {
+        "조건효과_C500_minus_A500": 0.025064627141362095,
+        "N효과_A500_minus_A원본N": -0.21214835235107182,
+        "체인효과_체인C500_minus_단독C500": 0.007948179229695485
+      },
+      "reverb.damping": {
+        "조건효과_C500_minus_A500": 0.020538364945290398,
+        "N효과_A500_minus_A원본N": -0.07372986483198167,
+        "체인효과_체인C500_minus_단독C500": -0.013787727175959217
+      },
+      "reverb.width": {
+        "조건효과_C500_minus_A500": 0.010464672232490979,
+        "N효과_A500_minus_A원본N": -0.08382394402702818,
+        "체인효과_체인C500_minus_단독C500": -0.013348634914898572
+      },
+      "distortion.drive_db": {
+        "조건효과_C500_minus_A500": -0.07730274422813926,
+        "N효과_A500_minus_A원본N": -0.1369018681965276,
+        "체인효과_체인C500_minus_단독C500": -0.05503164335574606
+      },
+      "highshelf.gain_db": {
+        "조건효과_C500_minus_A500": 0.133019034681732,
+        "N효과_A500_minus_A원본N": -0.17253702372435045,
+        "체인효과_체인C500_minus_단독C500": -0.08785727751287947
+      },
+      "highshelf.cutoff_frequency_hz": {
+        "조건효과_C500_minus_A500": 0.035558221767981,
+        "N효과_A500_minus_A원본N": -0.0495292902362056,
+        "체인효과_체인C500_minus_단독C500": -0.016553817566146954
+      },
+      "highshelf.q": {
+        "조건효과_C500_minus_A500": 0.03726621186016852,
+        "N효과_A500_minus_A원본N": -0.055287561178199135,
+        "체인효과_체인C500_minus_단독C500": -0.022031581500245
+      },
+      "highshelf.ultrasonic_12k_gain_db": {
+        "체인효과_체인C500_minus_단독C500": -0.004582571218510091
+      },
+      "highshelf.ultrasonic_15k_gain_db": {
+        "체인효과_체인C500_minus_단독C500": -0.00803184198882816
+      }
+    },
+    "chain_effect_large_flag_by_axis": {
+      "reverb.wet_level": false,
+      "reverb.room_size": false,
+      "reverb.damping": false,
+      "reverb.width": false,
+      "distortion.drive_db": true,
+      "highshelf.gain_db": true,
+      "highshelf.cutoff_frequency_hz": false,
+      "highshelf.q": false,
+      "highshelf.ultrasonic_12k_gain_db": false,
+      "highshelf.ultrasonic_15k_gain_db": false
+    },
+    "wet_level_recovery_check": {
+      "solo_C_500": 0.08739780450706344,
+      "solo_A_500": 0.12631113526242135,
+      "solo_A_original_pooled_note": 0.2714113734608346,
+      "recovered": true,
+      "diagnosis": "회복됨 — 체인이 원인이었다는 가설과 일치"
+    },
+    "effect_order_solo_C_500": {
+      "order": [
+        "distortion",
+        "reverb",
+        "highshelf"
+      ],
+      "means": {
+        "distortion": 0.4847584548828376,
+        "reverb": 0.10154960578012708,
+        "highshelf": 0.08683999101280708
+      }
+    },
+    "damping_width_verdict_solo_C_500": {
+      "reverb.damping": {
+        "ci_low": -0.05815775213977132,
+        "ci_high": 0.0003118668018215326,
+        "overlaps_null": true,
+        "verdict": "널과 구분 안 됨 (측정 불가)"
+      },
+      "reverb.width": {
+        "ci_low": -0.05319474525904757,
+        "ci_high": 0.0010463187444917101,
+        "overlaps_null": true,
+        "verdict": "널과 구분 안 됨 (측정 불가)"
+      }
+    }
+  },
+  "task4_r8_largeN_null": {
+    "method_note": "초음파 12k/15k만 800소스x16θ=12,800점, 조건A(피크0.7), 단독 적용(체인 아님), 3차/과제1과 동일 프로브 절차(Ridge alpha=1.0, GroupShuffleSplit, source-level 부트스트랩). N=500 CI-중첩 검정(4-R2/4-R6)의 검정력 부족 문제를 해결하기 위한 큰 N 널.",
+    "probe_result": {
+      "ultrasonic_12k_gain_db": {
+        "probe_r2": 0.001393722575581635,
+        "probe_r2_std": 0.0001433266566752146,
+        "probe_r2_ci_low": 1.9324292688427633e-05,
+        "probe_r2_ci_high": 0.0016258814999330629,
+        "n_rows": 12800,
+        "n_sources": 800,
+        "n_boot_used": 1000
+      },
+      "ultrasonic_15k_gain_db": {
+        "probe_r2": 4.2221360241123666e-06,
+        "probe_r2_std": 1.6851497363342035e-05,
+        "probe_r2_ci_low": -9.901165790739407e-05,
+        "probe_r2_ci_high": 5.201784755822225e-05,
+        "n_rows": 12800,
+        "n_sources": 800,
+        "n_boot_used": 1000
+      }
+    },
+    "null_pool": {
+      "n_points": 12800,
+      "n_pooled_boot": 2000,
+      "ci_low": -9.407316720257959e-05,
+      "ci_high": 0.0015516881222545297
+    },
+    "reassessment_vs_largeN_null": {
+      "reverb.wet_level": {
+        "probe_r2": 0.2714113734608346,
+        "ci_low": 0.2291292082952533,
+        "ci_high": 0.2968940477936973,
+        "n_rows": 13137,
+        "condition": "A",
+        "construction": "단독",
+        "source": "과제1 freeze=0",
+        "overlaps_null": false,
+        "verdict": "널과 유의하게 다름 (신호 있음)"
+      },
+      "reverb.room_size": {
+        "probe_r2": 0.5199075324593407,
+        "ci_low": 0.4802227241272425,
+        "ci_high": 0.5449530356697977,
+        "n_rows": 13137,
+        "condition": "A",
+        "construction": "단독",
+        "source": "과제1 freeze=0",
+        "overlaps_null": false,
+        "verdict": "널과 유의하게 다름 (신호 있음)"
+      },
+      "reverb.damping": {
+        "probe_r2": 0.0463964893219555,
+        "ci_low": 0.026183561114013695,
+        "ci_high": 0.05415265164078218,
+        "n_rows": 13137,
+        "condition": "A",
+        "construction": "단독",
+        "source": "과제1 freeze=0",
+        "overlaps_null": false,
+        "verdict": "널과 유의하게 다름 (신호 있음)"
+      },
+      "reverb.width": {
+        "probe_r2": 0.06613109372308676,
+        "ci_low": 0.04079662521219579,
+        "ci_high": 0.07066692735218631,
+        "n_rows": 13137,
+        "condition": "A",
+        "construction": "단독",
+        "source": "과제1 freeze=0",
+        "overlaps_null": false,
+        "verdict": "널과 유의하게 다름 (신호 있음)"
+      },
+      "distortion.drive_db": {
+        "probe_r2": 0.6989630673075045,
+        "ci_low": 0.661618273960343,
+        "ci_high": 0.731265805013748,
+        "n_rows": 6400,
+        "condition": "A",
+        "construction": "단독",
+        "source": "3차 전체",
+        "overlaps_null": false,
+        "verdict": "널과 유의하게 다름 (신호 있음)"
+      },
+      "highshelf.gain_db": {
+        "probe_r2": 0.3140132826840082,
+        "ci_low": 0.21245322865493693,
+        "ci_high": 0.3512147394755751,
+        "n_rows": 12800,
+        "condition": "A",
+        "construction": "단독",
+        "source": "3차 전체",
+        "overlaps_null": false,
+        "verdict": "널과 유의하게 다름 (신호 있음)"
+      },
+      "highshelf.cutoff_frequency_hz": {
+        "probe_r2": 0.0038592080287802146,
+        "ci_low": 0.00029575696882005217,
+        "ci_high": 0.005220818169821267,
+        "n_rows": 12800,
+        "condition": "A",
+        "construction": "단독",
+        "source": "3차 전체",
+        "overlaps_null": true,
+        "verdict": "널과 구분 안 됨 (측정 불가)"
+      },
+      "highshelf.q": {
+        "probe_r2": 0.014157889154506508,
+        "ci_low": 0.0025657301620178336,
+        "ci_high": 0.017905192318492053,
+        "n_rows": 12800,
+        "condition": "A",
+        "construction": "단독",
+        "source": "3차 전체",
+        "overlaps_null": false,
+        "verdict": "널과 유의하게 다름 (신호 있음)"
+      }
+    },
+    "effect_order": {
+      "order": [
+        "distortion",
+        "reverb",
+        "highshelf"
+      ],
+      "means": {
+        "distortion": 0.6989630673075045,
+        "reverb": 0.2259616222413044,
+        "highshelf": 0.1106767932890983
+      }
+    },
+    "condition_C_N500_results_status": "폐기하지 않음 — 저검정력 참고값, 조건효과/체인효과 분리(4-R7)에는 유효"
+  }
+}

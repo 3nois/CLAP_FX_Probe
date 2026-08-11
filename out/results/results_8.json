@@ -1,0 +1,968 @@
+{
+  "meta": {
+    "split": {
+      "train_frac": 0.8,
+      "val_frac": 0.1,
+      "test_frac": 0.1,
+      "seed": 0,
+      "n_train": 960,
+      "n_val": 120,
+      "n_test": 120,
+      "per_family": {
+        "bass": {
+          "n_total": 120,
+          "n_train": 96,
+          "n_val": 12,
+          "n_test": 12
+        },
+        "brass": {
+          "n_total": 120,
+          "n_train": 96,
+          "n_val": 12,
+          "n_test": 12
+        },
+        "flute": {
+          "n_total": 120,
+          "n_train": 96,
+          "n_val": 12,
+          "n_test": 12
+        },
+        "guitar": {
+          "n_total": 120,
+          "n_train": 96,
+          "n_val": 12,
+          "n_test": 12
+        },
+        "keyboard": {
+          "n_total": 120,
+          "n_train": 96,
+          "n_val": 12,
+          "n_test": 12
+        },
+        "mallet": {
+          "n_total": 120,
+          "n_train": 96,
+          "n_val": 12,
+          "n_test": 12
+        },
+        "organ": {
+          "n_total": 120,
+          "n_train": 96,
+          "n_val": 12,
+          "n_test": 12
+        },
+        "reed": {
+          "n_total": 120,
+          "n_train": 96,
+          "n_val": 12,
+          "n_test": 12
+        },
+        "string": {
+          "n_total": 120,
+          "n_train": 96,
+          "n_val": 12,
+          "n_test": 12
+        },
+        "vocal": {
+          "n_total": 120,
+          "n_train": 96,
+          "n_val": 12,
+          "n_test": 12
+        }
+      }
+    },
+    "model_config": {
+      "max_epochs": 300,
+      "patience": 30,
+      "lambda_mag": 0.3,
+      "linear_weight_decay": 0.01,
+      "mlp_weight_decay": 0.0001,
+      "mlp_hidden": 1024,
+      "mlp_dropout": 0.1,
+      "seed": 0
+    },
+    "source_npz": "out/caches/oat_emb.npz"
+  },
+  "depends_on_surrogate": "none",
+  "baselines": {
+    "global_mean_reference_from_7th": 0.24,
+    "family_mean_reference_from_7th": 0.34,
+    "note": "이 스크립트가 독립적으로 재계산한 값은 forward[effect][global_mean|family_mean_oracle].cos_mean"
+  },
+  "forward": {
+    "reverb": {
+      "global_mean": {
+        "val_cos": null,
+        "epochs_used": null,
+        "cos_mean": 0.501701297312975,
+        "cos_median": 0.5216988325119019,
+        "cos_ci": [
+          0.48195829913020133,
+          0.5201611801981926
+        ],
+        "mag_rel_err_median": 0.4903002977371216,
+        "mag_rel_err_mean": 0.4808787703514099,
+        "mag_r2": -2.113149838717851
+      },
+      "family_mean_oracle": {
+        "val_cos": null,
+        "epochs_used": null,
+        "cos_mean": 0.5769632126092911,
+        "cos_median": 0.5666091442108154,
+        "cos_ci": [
+          0.5543452635407448,
+          0.5987174540758133
+        ],
+        "mag_rel_err_median": 0.42263373732566833,
+        "mag_rel_err_mean": 0.3999307453632355,
+        "mag_r2": -1.2943088030477359
+      },
+      "linear": {
+        "val_cos": 0.7290377020835876,
+        "epochs_used": 130,
+        "cos_mean": 0.7404569662809372,
+        "cos_median": 0.7439172267913818,
+        "cos_ci": [
+          0.7202392667531967,
+          0.7597390353679657
+        ],
+        "mag_rel_err_median": 0.3553618788719177,
+        "mag_rel_err_mean": 0.5594703555107117,
+        "mag_r2": -0.8610782914316104
+      },
+      "mlp": {
+        "val_cos": 0.7615655660629272,
+        "epochs_used": 296,
+        "cos_mean": 0.7759043671488762,
+        "cos_median": 0.7822906970977783,
+        "cos_ci": [
+          0.7544087186455727,
+          0.7954879358410836
+        ],
+        "mag_rel_err_median": 0.08960577845573425,
+        "mag_rel_err_mean": 0.11878417432308197,
+        "mag_r2": 0.798852978049885
+      }
+    },
+    "distortion": {
+      "global_mean": {
+        "val_cos": null,
+        "epochs_used": null,
+        "cos_mean": 0.5371924914121627,
+        "cos_median": 0.5363248586654663,
+        "cos_ci": [
+          0.5169782906770706,
+          0.5571439459919929
+        ],
+        "mag_rel_err_median": 0.42944610118865967,
+        "mag_rel_err_mean": 0.42152661085128784,
+        "mag_r2": -4.9173378289106635
+      },
+      "family_mean_oracle": {
+        "val_cos": null,
+        "epochs_used": null,
+        "cos_mean": 0.6022792452573776,
+        "cos_median": 0.6102182269096375,
+        "cos_ci": [
+          0.579594574868679,
+          0.6236917570233345
+        ],
+        "mag_rel_err_median": 0.3529418408870697,
+        "mag_rel_err_mean": 0.34020671248435974,
+        "mag_r2": -3.0430956107107017
+      },
+      "linear": {
+        "val_cos": 0.8218809962272644,
+        "epochs_used": 176,
+        "cos_mean": 0.8169520882964134,
+        "cos_median": 0.8289474248886108,
+        "cos_ci": [
+          0.8020954445004463,
+          0.8316509395837783
+        ],
+        "mag_rel_err_median": 0.11210545152425766,
+        "mag_rel_err_mean": 0.13491325080394745,
+        "mag_r2": 0.2759904794715191
+      },
+      "mlp": {
+        "val_cos": 0.864554226398468,
+        "epochs_used": 279,
+        "cos_mean": 0.8598646596670151,
+        "cos_median": 0.8754533529281616,
+        "cos_ci": [
+          0.845663982629776,
+          0.8732737854123116
+        ],
+        "mag_rel_err_median": 0.08586932718753815,
+        "mag_rel_err_mean": 0.10371135920286179,
+        "mag_r2": 0.5074847106212896
+      }
+    },
+    "highshelf": {
+      "global_mean": {
+        "val_cos": null,
+        "epochs_used": null,
+        "cos_mean": 0.521306519061327,
+        "cos_median": 0.5519789457321167,
+        "cos_ci": [
+          0.4980828732252121,
+          0.5449432313442231
+        ],
+        "mag_rel_err_median": 0.45869606733322144,
+        "mag_rel_err_mean": 0.45138728618621826,
+        "mag_r2": -4.69452457774207
+      },
+      "family_mean_oracle": {
+        "val_cos": null,
+        "epochs_used": null,
+        "cos_mean": 0.6078972183465957,
+        "cos_median": 0.6349966526031494,
+        "cos_ci": [
+          0.5842685639858246,
+          0.6308197364211082
+        ],
+        "mag_rel_err_median": 0.3740747272968292,
+        "mag_rel_err_mean": 0.37168437242507935,
+        "mag_r2": -2.547952157929624
+      },
+      "linear": {
+        "val_cos": 0.7824488282203674,
+        "epochs_used": 229,
+        "cos_mean": 0.7805970093011856,
+        "cos_median": 0.7980350255966187,
+        "cos_ci": [
+          0.7639144614338875,
+          0.7992520213127137
+        ],
+        "mag_rel_err_median": 0.13688737154006958,
+        "mag_rel_err_mean": 0.17303678393363953,
+        "mag_r2": -0.015037920987813536
+      },
+      "mlp": {
+        "val_cos": 0.824929416179657,
+        "epochs_used": 300,
+        "cos_mean": 0.8231694888472557,
+        "cos_median": 0.8429038524627686,
+        "cos_ci": [
+          0.806296868622303,
+          0.8410297155380249
+        ],
+        "mag_rel_err_median": 0.08243471384048462,
+        "mag_rel_err_mean": 0.10448698699474335,
+        "mag_r2": 0.6080171503594058
+      }
+    }
+  },
+  "reverse_b1": {
+    "reverb": {
+      "global_mean": {
+        "val_cos": null,
+        "epochs_used": null,
+        "cos_mean": 0.501701297312975,
+        "cos_median": 0.5216988325119019,
+        "cos_ci": [
+          0.48195829913020133,
+          0.5201611801981926
+        ],
+        "mag_rel_err_median": 0.4903002977371216,
+        "mag_rel_err_mean": 0.4808787703514099,
+        "mag_r2": -2.113149838717851
+      },
+      "family_mean_oracle": {
+        "val_cos": null,
+        "epochs_used": null,
+        "cos_mean": 0.5769632126092911,
+        "cos_median": 0.5666091442108154,
+        "cos_ci": [
+          0.5543452635407448,
+          0.5987174540758133
+        ],
+        "mag_rel_err_median": 0.42263373732566833,
+        "mag_rel_err_mean": 0.3999307453632355,
+        "mag_r2": -1.2943088030477359
+      },
+      "linear": {
+        "val_cos": 0.7148739099502563,
+        "epochs_used": 210,
+        "cos_mean": 0.7260811344385147,
+        "cos_median": 0.7319622039794922,
+        "cos_ci": [
+          0.7039458855986596,
+          0.7455203890800476
+        ],
+        "mag_rel_err_median": 0.19032658636569977,
+        "mag_rel_err_mean": 0.2765730023384094,
+        "mag_r2": 0.16956398752539759
+      },
+      "mlp": {
+        "val_cos": 0.7571757435798645,
+        "epochs_used": 300,
+        "cos_mean": 0.7650376108288764,
+        "cos_median": 0.7639133930206299,
+        "cos_ci": [
+          0.7425944402813911,
+          0.784387469291687
+        ],
+        "mag_rel_err_median": 0.09817248582839966,
+        "mag_rel_err_mean": 0.11924668401479721,
+        "mag_r2": 0.7628345334660962
+      }
+    },
+    "distortion": {
+      "global_mean": {
+        "val_cos": null,
+        "epochs_used": null,
+        "cos_mean": 0.5371924914121627,
+        "cos_median": 0.5363248586654663,
+        "cos_ci": [
+          0.5169782906770706,
+          0.5571439459919929
+        ],
+        "mag_rel_err_median": 0.42944610118865967,
+        "mag_rel_err_mean": 0.42152661085128784,
+        "mag_r2": -4.9173378289106635
+      },
+      "family_mean_oracle": {
+        "val_cos": null,
+        "epochs_used": null,
+        "cos_mean": 0.6022792452573776,
+        "cos_median": 0.6102182269096375,
+        "cos_ci": [
+          0.579594574868679,
+          0.6236917570233345
+        ],
+        "mag_rel_err_median": 0.3529418408870697,
+        "mag_rel_err_mean": 0.34020671248435974,
+        "mag_r2": -3.0430956107107017
+      },
+      "linear": {
+        "val_cos": 0.8027013540267944,
+        "epochs_used": 175,
+        "cos_mean": 0.7993391361236573,
+        "cos_median": 0.8188577890396118,
+        "cos_ci": [
+          0.7830561637878418,
+          0.8150830566883087
+        ],
+        "mag_rel_err_median": 0.10982809215784073,
+        "mag_rel_err_mean": 0.13636106252670288,
+        "mag_r2": 0.25934102526380265
+      },
+      "mlp": {
+        "val_cos": 0.8517709970474243,
+        "epochs_used": 300,
+        "cos_mean": 0.8494086762666703,
+        "cos_median": 0.8686890602111816,
+        "cos_ci": [
+          0.8339401468634605,
+          0.8640734136104584
+        ],
+        "mag_rel_err_median": 0.05902436748147011,
+        "mag_rel_err_mean": 0.08127794414758682,
+        "mag_r2": 0.6892859593877083
+      }
+    },
+    "highshelf": {
+      "global_mean": {
+        "val_cos": null,
+        "epochs_used": null,
+        "cos_mean": 0.521306519061327,
+        "cos_median": 0.5519789457321167,
+        "cos_ci": [
+          0.4980828732252121,
+          0.5449432313442231
+        ],
+        "mag_rel_err_median": 0.45869606733322144,
+        "mag_rel_err_mean": 0.45138728618621826,
+        "mag_r2": -4.69452457774207
+      },
+      "family_mean_oracle": {
+        "val_cos": null,
+        "epochs_used": null,
+        "cos_mean": 0.6078972183465957,
+        "cos_median": 0.6349966526031494,
+        "cos_ci": [
+          0.5842685639858246,
+          0.6308197364211082
+        ],
+        "mag_rel_err_median": 0.3740747272968292,
+        "mag_rel_err_mean": 0.37168437242507935,
+        "mag_r2": -2.547952157929624
+      },
+      "linear": {
+        "val_cos": 0.7858613729476929,
+        "epochs_used": 232,
+        "cos_mean": 0.7855439995527267,
+        "cos_median": 0.8025493621826172,
+        "cos_ci": [
+          0.7686316385865212,
+          0.80361368060112
+        ],
+        "mag_rel_err_median": 0.1380937397480011,
+        "mag_rel_err_mean": 0.1728539913892746,
+        "mag_r2": -0.02223787998165605
+      },
+      "mlp": {
+        "val_cos": 0.8270629644393921,
+        "epochs_used": 300,
+        "cos_mean": 0.824494673550129,
+        "cos_median": 0.8415021896362305,
+        "cos_ci": [
+          0.8077043443918228,
+          0.8422937467694283
+        ],
+        "mag_rel_err_median": 0.10657429695129395,
+        "mag_rel_err_mean": 0.11468543857336044,
+        "mag_r2": 0.5371449385160043
+      }
+    }
+  },
+  "reverse_b2": {
+    "reverb": {
+      "global_mean": {
+        "val_cos": null,
+        "epochs_used": null,
+        "cos_mean": 0.4535059026479721,
+        "cos_median": 0.4569234251976013,
+        "cos_ci": [
+          0.43452720865607264,
+          0.4715321406722069
+        ],
+        "mag_rel_err_median": 0.5169587135314941,
+        "mag_rel_err_mean": 0.47263622283935547,
+        "mag_r2": -0.9641806023468094
+      },
+      "family_mean_oracle": {
+        "val_cos": null,
+        "epochs_used": null,
+        "cos_mean": 0.5265884221792221,
+        "cos_median": 0.5354630947113037,
+        "cos_ci": [
+          0.5033488392829895,
+          0.5502526506781578
+        ],
+        "mag_rel_err_median": 0.4026709198951721,
+        "mag_rel_err_mean": 0.417591392993927,
+        "mag_r2": -0.6048055359708475
+      },
+      "linear": {
+        "val_cos": 0.6623614430427551,
+        "epochs_used": 150,
+        "cos_mean": 0.6718724275231361,
+        "cos_median": 0.6912665367126465,
+        "cos_ci": [
+          0.6497844263911248,
+          0.692835983633995
+        ],
+        "mag_rel_err_median": 0.7423819303512573,
+        "mag_rel_err_mean": 1.1426329612731934,
+        "mag_r2": -1.0039630552522198
+      },
+      "mlp": {
+        "val_cos": 0.7007912993431091,
+        "epochs_used": 300,
+        "cos_mean": 0.7144131690263749,
+        "cos_median": 0.7370510697364807,
+        "cos_ci": [
+          0.6917610749602318,
+          0.7351254850625992
+        ],
+        "mag_rel_err_median": 0.21870389580726624,
+        "mag_rel_err_mean": 0.28518933057785034,
+        "mag_r2": 0.6322687068861979
+      }
+    },
+    "distortion": {
+      "global_mean": {
+        "val_cos": null,
+        "epochs_used": null,
+        "cos_mean": 0.5277144041061401,
+        "cos_median": 0.5338616371154785,
+        "cos_ci": [
+          0.5080132782459259,
+          0.5462550774216652
+        ],
+        "mag_rel_err_median": 0.4385966658592224,
+        "mag_rel_err_mean": 0.39456671476364136,
+        "mag_r2": -1.569617852133348
+      },
+      "family_mean_oracle": {
+        "val_cos": null,
+        "epochs_used": null,
+        "cos_mean": 0.5855250996351242,
+        "cos_median": 0.5833771228790283,
+        "cos_ci": [
+          0.5646751821041107,
+          0.6065269872546196
+        ],
+        "mag_rel_err_median": 0.375724732875824,
+        "mag_rel_err_mean": 0.34228047728538513,
+        "mag_r2": -1.0239316252721586
+      },
+      "linear": {
+        "val_cos": 0.7792112827301025,
+        "epochs_used": 277,
+        "cos_mean": 0.7806424508690835,
+        "cos_median": 0.79497230052948,
+        "cos_ci": [
+          0.7659678906202316,
+          0.7948449715971947
+        ],
+        "mag_rel_err_median": 0.2845260500907898,
+        "mag_rel_err_mean": 0.30457603931427,
+        "mag_r2": -0.07471381380024322
+      },
+      "mlp": {
+        "val_cos": 0.8233414888381958,
+        "epochs_used": 300,
+        "cos_mean": 0.822998602092266,
+        "cos_median": 0.8381209373474121,
+        "cos_ci": [
+          0.8088355526328087,
+          0.8369472429156304
+        ],
+        "mag_rel_err_median": 0.10368405282497406,
+        "mag_rel_err_mean": 0.12754958868026733,
+        "mag_r2": 0.7845268545333332
+      }
+    },
+    "highshelf": {
+      "global_mean": {
+        "val_cos": null,
+        "epochs_used": null,
+        "cos_mean": 0.5130626988112926,
+        "cos_median": 0.5364080667495728,
+        "cos_ci": [
+          0.49001113325357437,
+          0.5352197319269181
+        ],
+        "mag_rel_err_median": 0.4552132487297058,
+        "mag_rel_err_mean": 0.41821813583374023,
+        "mag_r2": -1.6564496506251691
+      },
+      "family_mean_oracle": {
+        "val_cos": null,
+        "epochs_used": null,
+        "cos_mean": 0.5971721563935279,
+        "cos_median": 0.6188076734542847,
+        "cos_ci": [
+          0.5747955426573753,
+          0.6192070066928863
+        ],
+        "mag_rel_err_median": 0.3548962473869324,
+        "mag_rel_err_mean": 0.3459523916244507,
+        "mag_r2": -0.9574706704446496
+      },
+      "linear": {
+        "val_cos": 0.7721636295318604,
+        "epochs_used": 282,
+        "cos_mean": 0.7715411052107811,
+        "cos_median": 0.789874255657196,
+        "cos_ci": [
+          0.753763435781002,
+          0.790350629389286
+        ],
+        "mag_rel_err_median": 0.3002997040748596,
+        "mag_rel_err_mean": 0.35927554965019226,
+        "mag_r2": -0.11759531461650274
+      },
+      "mlp": {
+        "val_cos": 0.8155636191368103,
+        "epochs_used": 300,
+        "cos_mean": 0.8134167615175247,
+        "cos_median": 0.8313377499580383,
+        "cos_ci": [
+          0.7963185995817185,
+          0.831287893652916
+        ],
+        "mag_rel_err_median": 0.16528648138046265,
+        "mag_rel_err_mean": 0.21496528387069702,
+        "mag_r2": 0.4102737534649715
+      }
+    }
+  },
+  "reverse_b2_by_level": {
+    "reverb": {
+      "level1": {
+        "cos_mean": 0.6689286828041077,
+        "mag_mean": 0.10038255155086517,
+        "n": 120
+      },
+      "level2": {
+        "cos_mean": 0.7538591623306274,
+        "mag_mean": 0.22420784831047058,
+        "n": 120
+      }
+    },
+    "distortion": {
+      "level1": {
+        "cos_mean": 0.8036699295043945,
+        "mag_mean": 0.2764643728733063,
+        "n": 120
+      },
+      "level2": {
+        "cos_mean": 0.844055712223053,
+        "mag_mean": 0.5032055377960205,
+        "n": 120
+      }
+    },
+    "highshelf": {
+      "level1": {
+        "cos_mean": 0.8082026243209839,
+        "mag_mean": 0.1070314273238182,
+        "n": 120
+      },
+      "level2": {
+        "cos_mean": 0.8256567120552063,
+        "mag_mean": 0.19949033856391907,
+        "n": 120
+      }
+    }
+  },
+  "prereg_checks": {
+    "P26": {
+      "reverb": {
+        "best_learned_cos": 0.7759043671488762,
+        "threshold": 0.34,
+        "exceeds_family_baseline": true
+      },
+      "distortion": {
+        "best_learned_cos": 0.8598646596670151,
+        "threshold": 0.34,
+        "exceeds_family_baseline": true
+      },
+      "highshelf": {
+        "best_learned_cos": 0.8231694888472557,
+        "threshold": 0.34,
+        "exceeds_family_baseline": true
+      }
+    },
+    "P27": {
+      "reverb": {
+        "b1_cos": 0.7650376108288764,
+        "b2_cos": 0.7144131690263749,
+        "gap": 0.050624441802501585,
+        "b1_greater": true
+      },
+      "distortion": {
+        "b1_cos": 0.8494086762666703,
+        "b2_cos": 0.822998602092266,
+        "gap": 0.02641007417440422,
+        "b1_greater": true
+      },
+      "highshelf": {
+        "b1_cos": 0.824494673550129,
+        "b2_cos": 0.8134167615175247,
+        "gap": 0.01107791203260422,
+        "b1_greater": true
+      }
+    },
+    "P28": {
+      "reverb": {
+        "b2_direction_cos": 0.7144131690263749,
+        "b3_magnitude_r2": 0.7038365402550819,
+        "direction_greater": true
+      },
+      "distortion": {
+        "b2_direction_cos": 0.822998602092266,
+        "b3_magnitude_r2": 0.7267563989066897,
+        "direction_greater": true
+      },
+      "highshelf": {
+        "b2_direction_cos": 0.8134167615175247,
+        "b3_magnitude_r2": 0.26428123647472335,
+        "direction_greater": true
+      }
+    },
+    "P29": {
+      "reverb": {
+        "lofo_mean": 0.5720109343528748,
+        "stratified_mean": 0.7759043671488762,
+        "lofo_less_than_stratified": true
+      },
+      "distortion": {
+        "lofo_mean": 0.6569680571556091,
+        "stratified_mean": 0.8598646596670151,
+        "lofo_less_than_stratified": true
+      },
+      "highshelf": {
+        "lofo_mean": 0.5882806181907654,
+        "stratified_mean": 0.8231694888472557,
+        "lofo_less_than_stratified": true
+      }
+    }
+  },
+  "reverse_b3": {
+    "reverb": {
+      "mag_r2": 0.7038365402550819,
+      "mag_rel_err_median": 0.18848851323127747,
+      "mag_rel_err_mean": 0.24867628514766693,
+      "one_minus_rel_err_boot_mean": 0.7523135999441147,
+      "one_minus_rel_err_ci": [
+        0.7128601700067521,
+        0.7870409488677979
+      ],
+      "n": 240,
+      "note": "B2(레벨1+2 혼합) 모델의 크기 헤드를 그대로 평가 — 별도 모델 아님"
+    },
+    "distortion": {
+      "mag_r2": 0.7267563989066897,
+      "mag_rel_err_median": 0.1307603120803833,
+      "mag_rel_err_mean": 0.14666062593460083,
+      "one_minus_rel_err_boot_mean": 0.8532902166843415,
+      "one_minus_rel_err_ci": [
+        0.8383392959833145,
+        0.8686129748821259
+      ],
+      "n": 240,
+      "note": "B2(레벨1+2 혼합) 모델의 크기 헤드를 그대로 평가 — 별도 모델 아님"
+    },
+    "highshelf": {
+      "mag_r2": 0.26428123647472335,
+      "mag_rel_err_median": 0.21151313185691833,
+      "mag_rel_err_mean": 0.23800519108772278,
+      "one_minus_rel_err_boot_mean": 0.7616150122880936,
+      "one_minus_rel_err_ci": [
+        0.7374368339776993,
+        0.7852068588137626
+      ],
+      "n": 240,
+      "note": "B2(레벨1+2 혼합) 모델의 크기 헤드를 그대로 평가 — 별도 모델 아님"
+    }
+  },
+  "reconstruction": {
+    "reverb": {
+      "b2_practical": {
+        "reconstruction_cos_mean": 0.9913714436888694,
+        "reconstruction_cos_ci": [
+          0.9902297258377075,
+          0.9923309981822968
+        ],
+        "baseline_do_nothing_cos_mean": 0.982883421242237,
+        "baseline_do_nothing_cos_ci": [
+          0.9804686516523361,
+          0.9850911945104599
+        ],
+        "improvement": 0.008488022446632382,
+        "exceeds_baseline": true
+      },
+      "b1_upper_bound": {
+        "reconstruction_cos_mean": 0.988247048676014,
+        "reconstruction_cos_ci": [
+          0.9865327477455139,
+          0.989674499630928
+        ],
+        "baseline_do_nothing_cos_mean": 0.9716425188779831,
+        "baseline_do_nothing_cos_ci": [
+          0.9676766961812973,
+          0.9752904176712036
+        ],
+        "improvement": 0.016604529798030843,
+        "exceeds_baseline": true
+      }
+    },
+    "distortion": {
+      "b2_practical": {
+        "reconstruction_cos_mean": 0.972636956691742,
+        "reconstruction_cos_ci": [
+          0.9695358857512474,
+          0.9754650250077248
+        ],
+        "baseline_do_nothing_cos_mean": 0.9139180340766907,
+        "baseline_do_nothing_cos_ci": [
+          0.9080403819680214,
+          0.9200591802597046
+        ],
+        "improvement": 0.058718922615051294,
+        "exceeds_baseline": true
+      },
+      "b1_upper_bound": {
+        "reconstruction_cos_mean": 0.9600307956337929,
+        "reconstruction_cos_ci": [
+          0.955251282453537,
+          0.9644668400287628
+        ],
+        "baseline_do_nothing_cos_mean": 0.8683613544106483,
+        "baseline_do_nothing_cos_ci": [
+          0.8593387335538865,
+          0.8776621744036674
+        ],
+        "improvement": 0.09166944122314458,
+        "exceeds_baseline": true
+      }
+    },
+    "highshelf": {
+      "b2_practical": {
+        "reconstruction_cos_mean": 0.9953850032687187,
+        "reconstruction_cos_ci": [
+          0.9949504092335701,
+          0.9958041504025459
+        ],
+        "baseline_do_nothing_cos_mean": 0.9865673647522927,
+        "baseline_do_nothing_cos_ci": [
+          0.9855603158473969,
+          0.98762187063694
+        ],
+        "improvement": 0.00881763851642603,
+        "exceeds_baseline": true
+      },
+      "b1_upper_bound": {
+        "reconstruction_cos_mean": 0.9933415061831474,
+        "reconstruction_cos_ci": [
+          0.9926128208637237,
+          0.9940253987908363
+        ],
+        "baseline_do_nothing_cos_mean": 0.9791016646623611,
+        "baseline_do_nothing_cos_ci": [
+          0.9774491921067238,
+          0.980772215127945
+        ],
+        "improvement": 0.014239841520786278,
+        "exceeds_baseline": true
+      }
+    }
+  },
+  "lofo": {
+    "reverb": {
+      "bass": {
+        "cos_mean": 0.5866512060165405,
+        "n": 120
+      },
+      "brass": {
+        "cos_mean": 0.5760362148284912,
+        "n": 120
+      },
+      "flute": {
+        "cos_mean": 0.6027171611785889,
+        "n": 120
+      },
+      "guitar": {
+        "cos_mean": 0.624622642993927,
+        "n": 120
+      },
+      "keyboard": {
+        "cos_mean": 0.5783823728561401,
+        "n": 120
+      },
+      "mallet": {
+        "cos_mean": 0.4855988323688507,
+        "n": 120
+      },
+      "organ": {
+        "cos_mean": 0.5543860197067261,
+        "n": 120
+      },
+      "reed": {
+        "cos_mean": 0.6071457266807556,
+        "n": 120
+      },
+      "string": {
+        "cos_mean": 0.6588839292526245,
+        "n": 120
+      },
+      "vocal": {
+        "cos_mean": 0.44568538665771484,
+        "n": 120
+      },
+      "_overall": {
+        "lofo_mean_cos": 0.5720109343528748,
+        "stratified_test_cos_ref": 0.7759043671488762,
+        "gap_stratified_minus_lofo": 0.20389343279600147
+      }
+    },
+    "distortion": {
+      "bass": {
+        "cos_mean": 0.6143201589584351,
+        "n": 120
+      },
+      "brass": {
+        "cos_mean": 0.6597615480422974,
+        "n": 120
+      },
+      "flute": {
+        "cos_mean": 0.6429426670074463,
+        "n": 120
+      },
+      "guitar": {
+        "cos_mean": 0.7238757610321045,
+        "n": 120
+      },
+      "keyboard": {
+        "cos_mean": 0.6630787253379822,
+        "n": 120
+      },
+      "mallet": {
+        "cos_mean": 0.6128072142601013,
+        "n": 120
+      },
+      "organ": {
+        "cos_mean": 0.6420922875404358,
+        "n": 120
+      },
+      "reed": {
+        "cos_mean": 0.6601982116699219,
+        "n": 120
+      },
+      "string": {
+        "cos_mean": 0.7134664058685303,
+        "n": 120
+      },
+      "vocal": {
+        "cos_mean": 0.637137234210968,
+        "n": 120
+      },
+      "_overall": {
+        "lofo_mean_cos": 0.6569680571556091,
+        "stratified_test_cos_ref": 0.8598646596670151,
+        "gap_stratified_minus_lofo": 0.20289660251140595
+      }
+    },
+    "highshelf": {
+      "bass": {
+        "cos_mean": 0.6120061874389648,
+        "n": 120
+      },
+      "brass": {
+        "cos_mean": 0.5708321332931519,
+        "n": 120
+      },
+      "flute": {
+        "cos_mean": 0.6109505891799927,
+        "n": 120
+      },
+      "guitar": {
+        "cos_mean": 0.6748489141464233,
+        "n": 120
+      },
+      "keyboard": {
+        "cos_mean": 0.6423993706703186,
+        "n": 120
+      },
+      "mallet": {
+        "cos_mean": 0.5720446705818176,
+        "n": 120
+      },
+      "organ": {
+        "cos_mean": 0.5253335237503052,
+        "n": 120
+      },
+      "reed": {
+        "cos_mean": 0.5603175759315491,
+        "n": 120
+      },
+      "string": {
+        "cos_mean": 0.6128729581832886,
+        "n": 120
+      },
+      "vocal": {
+        "cos_mean": 0.5012006759643555,
+        "n": 120
+      },
+      "_overall": {
+        "lofo_mean_cos": 0.5882806181907654,
+        "stratified_test_cos_ref": 0.8231694888472557,
+        "gap_stratified_minus_lofo": 0.23488887065649033
+      }
+    }
+  }
+}

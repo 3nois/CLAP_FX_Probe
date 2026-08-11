@@ -1,0 +1,62 @@
+{
+  "render_spec": {
+    "note": "7차(19_oat_render.py)와 동일 렌더링·시드. 임베딩 추출만 TokenSynth 공간(16k<->48k 왕복)으로 교체.",
+    "n_sources_final": 1200,
+    "n_silent_excluded": 0,
+    "family_counts_actual": {
+      "bass": 120,
+      "brass": 120,
+      "flute": 120,
+      "guitar": 120,
+      "keyboard": 120,
+      "mallet": 120,
+      "organ": 120,
+      "reed": 120,
+      "string": 120,
+      "vocal": 120
+    },
+    "excluded_families": [],
+    "condition": "A (피크 0.7 정규화, 이펙트 후 peak>1.0이면 0.99/peak 재정규화)",
+    "embedding_space": "TokenSynth (16kHz 다운샘플 -> 48kHz 업샘플 후 CLAP, clap.py encode_audio()와 동치 확인됨 cos=0.9999999999989999)",
+    "effect_axes": {
+      "reverb": {
+        "swept_param": "room_size",
+        "levels": [
+          0.0,
+          0.25,
+          0.5
+        ],
+        "fixed": {
+          "wet_level": 0.4,
+          "dry_level": 0.6,
+          "damping": 0.5,
+          "width": 1.0,
+          "freeze_mode": 0.0
+        }
+      },
+      "distortion": {
+        "swept_param": "drive_db",
+        "levels": [
+          0.0,
+          7.5,
+          15.0
+        ],
+        "fixed": {}
+      },
+      "highshelf": {
+        "swept_param": "gain_db",
+        "levels": [
+          -9.0,
+          0.0,
+          9.0
+        ],
+        "fixed": {
+          "cutoff_frequency_hz": 4000.0
+        }
+      }
+    },
+    "n_render_jobs": 10800,
+    "elapsed_sec": 705.1821649074554,
+    "seed": 0
+  }
+}

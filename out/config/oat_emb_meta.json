@@ -1,0 +1,67 @@
+{
+  "render_spec": {
+    "n_sources_target_per_family": 120,
+    "n_sources_min_per_family": 60,
+    "family_counts_actual": {
+      "bass": 120,
+      "brass": 120,
+      "flute": 120,
+      "guitar": 120,
+      "keyboard": 120,
+      "mallet": 120,
+      "organ": 120,
+      "reed": 120,
+      "string": 120,
+      "vocal": 120
+    },
+    "excluded_families": [],
+    "n_sources_selected": 1200,
+    "n_silent_excluded": 0,
+    "n_sources_final": 1200,
+    "condition": "A (피크 0.7 정규화, 이펙트 후 peak>1.0이면 0.99/peak 재정규화)",
+    "sample_rate": 48000,
+    "duration_sec": 4.0,
+    "peak_target": 0.7,
+    "effect_axes": {
+      "reverb": {
+        "swept_param": "room_size",
+        "levels": [
+          0.0,
+          0.25,
+          0.5
+        ],
+        "fixed": {
+          "wet_level": 0.4,
+          "dry_level": 0.6,
+          "damping": 0.5,
+          "width": 1.0,
+          "freeze_mode": 0.0
+        }
+      },
+      "distortion": {
+        "swept_param": "drive_db",
+        "levels": [
+          0.0,
+          7.5,
+          15.0
+        ],
+        "fixed": {}
+      },
+      "highshelf": {
+        "swept_param": "gain_db",
+        "levels": [
+          -9.0,
+          0.0,
+          9.0
+        ],
+        "fixed": {
+          "cutoff_frequency_hz": 4000.0,
+          "q": "pedalboard 기본값(미지정)"
+        }
+      }
+    },
+    "n_render_jobs": 10800,
+    "elapsed_sec": 1671.3883740901947,
+    "seed": 0
+  }
+}

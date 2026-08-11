@@ -1,0 +1,140 @@
+{
+  "meta": {
+    "sources": [
+      [
+        "bass_electronic_018-022-100.wav",
+        "bass"
+      ],
+      [
+        "vocal_acoustic_000-050-025.wav",
+        "vocal"
+      ],
+      [
+        "guitar_acoustic_010-021-127.wav",
+        "guitar"
+      ]
+    ],
+    "effects": [
+      "reverb",
+      "distortion",
+      "highshelf"
+    ],
+    "seed": 42,
+    "midi": "/Users/ksh/PycharmProjects/CLAP_FX_Probe/tokensynth_paper/media/input_midi.mid",
+    "top_k": 10
+  },
+  "depends_on_surrogate": "none",
+  "rows": [
+    {
+      "source": "bass",
+      "effect": "reverb",
+      "cos_origwet_origdry": 0.9580763553416897,
+      "c_cos_regen_drytrue": 0.30847208550375166,
+      "c_cos_regen_wet": 0.3126014247654441,
+      "d_cos_regen_drytrue": 0.27854313126435626,
+      "d_cos_regen_wet": 0.28197208428021897,
+      "dry_shift_drytrue_axis": -0.0299289542393954,
+      "dry_shift_wet_axis": 0.030629340485225143
+    },
+    {
+      "source": "bass",
+      "effect": "distortion",
+      "cos_origwet_origdry": 0.9174224089030634,
+      "c_cos_regen_drytrue": 0.25096724933165543,
+      "c_cos_regen_wet": 0.23697681725001477,
+      "d_cos_regen_drytrue": 0.2890610867176197,
+      "d_cos_regen_wet": 0.24856291711305556,
+      "dry_shift_drytrue_axis": 0.03809383738596428,
+      "dry_shift_wet_axis": -0.011586099863040794
+    },
+    {
+      "source": "bass",
+      "effect": "highshelf",
+      "cos_origwet_origdry": 0.9767672419538266,
+      "c_cos_regen_drytrue": 0.25944924354527277,
+      "c_cos_regen_wet": 0.2526800036427832,
+      "d_cos_regen_drytrue": 0.2659423211775934,
+      "d_cos_regen_wet": 0.26621987022253296,
+      "dry_shift_drytrue_axis": 0.006493077632320654,
+      "dry_shift_wet_axis": -0.01353986657974976
+    },
+    {
+      "source": "vocal",
+      "effect": "reverb",
+      "cos_origwet_origdry": 0.9809944022284713,
+      "c_cos_regen_drytrue": 0.5850373855249625,
+      "c_cos_regen_wet": 0.6327642956684814,
+      "d_cos_regen_drytrue": 0.5369402766222352,
+      "d_cos_regen_wet": 0.5707629067154724,
+      "dry_shift_drytrue_axis": -0.04809710890272734,
+      "dry_shift_wet_axis": 0.062001388953008996
+    },
+    {
+      "source": "vocal",
+      "effect": "distortion",
+      "cos_origwet_origdry": 0.6958823800080015,
+      "c_cos_regen_drytrue": 0.6494500041001501,
+      "c_cos_regen_wet": 0.518959641456085,
+      "d_cos_regen_drytrue": 0.6454979181283217,
+      "d_cos_regen_wet": 0.4292475581164836,
+      "dry_shift_drytrue_axis": -0.00395208597182839,
+      "dry_shift_wet_axis": 0.0897120833396014
+    },
+    {
+      "source": "vocal",
+      "effect": "highshelf",
+      "cos_origwet_origdry": 0.9925221204747764,
+      "c_cos_regen_drytrue": 0.6427969719640129,
+      "c_cos_regen_wet": 0.6576829944653487,
+      "d_cos_regen_drytrue": 0.6457699537270764,
+      "d_cos_regen_wet": 0.6540032625191824,
+      "dry_shift_drytrue_axis": 0.002972981763063487,
+      "dry_shift_wet_axis": 0.0036797319461663314
+    },
+    {
+      "source": "guitar",
+      "effect": "reverb",
+      "cos_origwet_origdry": 0.9859958282696776,
+      "c_cos_regen_drytrue": 0.4869101039708814,
+      "c_cos_regen_wet": 0.49593719791567775,
+      "d_cos_regen_drytrue": 0.4606925845141572,
+      "d_cos_regen_wet": 0.48588851010086287,
+      "dry_shift_drytrue_axis": -0.026217519456724236,
+      "dry_shift_wet_axis": 0.010048687814814883
+    },
+    {
+      "source": "guitar",
+      "effect": "distortion",
+      "cos_origwet_origdry": 0.9123393297186311,
+      "c_cos_regen_drytrue": 0.35985881090128197,
+      "c_cos_regen_wet": 0.5002900362009767,
+      "d_cos_regen_drytrue": 0.3488580882545797,
+      "d_cos_regen_wet": 0.36938339471780074,
+      "dry_shift_drytrue_axis": -0.011000722646702266,
+      "dry_shift_wet_axis": 0.13090664148317593
+    },
+    {
+      "source": "guitar",
+      "effect": "highshelf",
+      "cos_origwet_origdry": 0.9825715412232313,
+      "c_cos_regen_drytrue": 0.4642308311732932,
+      "c_cos_regen_wet": 0.43520888299951443,
+      "d_cos_regen_drytrue": 0.4246608868034936,
+      "d_cos_regen_wet": 0.3952490985389571,
+      "dry_shift_drytrue_axis": -0.0395699443697996,
+      "dry_shift_wet_axis": 0.03995978446055731
+    }
+  ],
+  "summary": {
+    "mean_dry_shift": -0.012356270978425423,
+    "dry_shift_ci95": [
+      -0.028351564293657674,
+      0.005220837611633393
+    ],
+    "n_positive_dry_shift": 3,
+    "n_total": 9,
+    "mean_wet_axis_shift": 0.0379790768933066,
+    "n_positive_wet_axis_shift": 7,
+    "verdict": "구분 안 됨(부트스트랩 CI가 0 포함) — TokenSynth가 조건화 신호에 약하게만 반응. 신중히 판단 필요"
+  }
+}

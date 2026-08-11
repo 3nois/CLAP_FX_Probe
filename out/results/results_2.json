@@ -1,0 +1,346 @@
+{
+  "effects": {
+    "reverb": {
+      "is_signed": false,
+      "probe_r2": 0.3802668240233978,
+      "probe_r2_std": 0.018005369672157847,
+      "probe_r2_ci_low": 0.3200924476948876,
+      "probe_r2_ci_high": 0.4153635235994551,
+      "probe_r2_ci_method": "source-level bootstrap (resample src_id with replacement, OOB test)",
+      "probe_r2_shuffled": -0.016313958193888478,
+      "probe_r2_shuffled_std": 0.006739897825677022,
+      "probe_accuracy_7way": 0.2576190476190476,
+      "probe_accuracy_7way_std": 0.005208248298625563,
+      "probe_acc_chance_normalized": 0.13388888888888884,
+      "probe_nmi": 0.09561832790955582,
+      "probe_nmi_std": 0.00478056906558533,
+      "probe_chance_level_7way": 0.14285714285714285,
+      "direction_cosine_mean": 0.22708351271493094,
+      "direction_cosine_by_level": {
+        "0": {
+          "cosine_mean": 0.19013634324073792,
+          "cosine_std": 0.1506151556968689,
+          "n_sources": 800,
+          "n_dropped_near_zero_norm": 0
+        },
+        "1": {
+          "cosine_mean": 0.19934715330600739,
+          "cosine_std": 0.15030620992183685,
+          "n_sources": 800,
+          "n_dropped_near_zero_norm": 0
+        },
+        "2": {
+          "cosine_mean": 0.2106233686208725,
+          "cosine_std": 0.14948050677776337,
+          "n_sources": 800,
+          "n_dropped_near_zero_norm": 0
+        },
+        "3": {
+          "cosine_mean": 0.2235850691795349,
+          "cosine_std": 0.14844821393489838,
+          "n_sources": 800,
+          "n_dropped_near_zero_norm": 0
+        },
+        "4": {
+          "cosine_mean": 0.23804345726966858,
+          "cosine_std": 0.14713157713413239,
+          "n_sources": 800,
+          "n_dropped_near_zero_norm": 0
+        },
+        "5": {
+          "cosine_mean": 0.2549026310443878,
+          "cosine_std": 0.14573116600513458,
+          "n_sources": 800,
+          "n_dropped_near_zero_norm": 0
+        },
+        "6": {
+          "cosine_mean": 0.2729465663433075,
+          "cosine_std": 0.14436595141887665,
+          "n_sources": 800,
+          "n_dropped_near_zero_norm": 0
+        }
+      },
+      "direction_positive": null,
+      "direction_negative": null,
+      "cos_pos_neg": null,
+      "n_neutral_excluded_rows": 0,
+      "neutral_level_cos_check": 0.9350417256355286,
+      "magnitude_spearman_rho": 0.23822100381872507,
+      "magnitude_spearman_pvalue": 4.276292860060939e-73,
+      "magnitude_spearman_rho_abs_param": 0.23822100381872507,
+      "magnitude_spearman_pvalue_abs_param": 4.276292860060939e-73,
+      "monotonicity_spearman_rho": 0.2451679858011466,
+      "monotonicity_spearman_pvalue": 1.9199005434293005e-77,
+      "monotonicity_spearman_rho_abs_param": 0.2451679858011466,
+      "monotonicity_spearman_pvalue_abs_param": 1.9199005434293005e-77
+    },
+    "distortion": {
+      "is_signed": false,
+      "probe_r2": 0.7071582249850398,
+      "probe_r2_std": 0.014638605928815083,
+      "probe_r2_ci_low": 0.668526734407048,
+      "probe_r2_ci_high": 0.7393719911204684,
+      "probe_r2_ci_method": "source-level bootstrap (resample src_id with replacement, OOB test)",
+      "probe_r2_shuffled": -0.02258960089869726,
+      "probe_r2_shuffled_std": 0.010951876887457652,
+      "probe_accuracy_7way": 0.37666666666666665,
+      "probe_accuracy_7way_std": 0.011023320980638131,
+      "probe_acc_chance_normalized": 0.27277777777777773,
+      "probe_nmi": 0.24973057512295876,
+      "probe_nmi_std": 0.009377493588321932,
+      "probe_chance_level_7way": 0.14285714285714285,
+      "direction_cosine_mean": 0.1957903334072658,
+      "direction_cosine_by_level": {
+        "0": {
+          "cosine_mean": 0.08608201891183853,
+          "cosine_std": 0.1583816409111023,
+          "n_sources": 800,
+          "n_dropped_near_zero_norm": 0
+        },
+        "1": {
+          "cosine_mean": 0.11833574622869492,
+          "cosine_std": 0.1557834893465042,
+          "n_sources": 800,
+          "n_dropped_near_zero_norm": 0
+        },
+        "2": {
+          "cosine_mean": 0.17278310656547546,
+          "cosine_std": 0.15341705083847046,
+          "n_sources": 800,
+          "n_dropped_near_zero_norm": 0
+        },
+        "3": {
+          "cosine_mean": 0.21132533252239227,
+          "cosine_std": 0.15174581110477448,
+          "n_sources": 800,
+          "n_dropped_near_zero_norm": 0
+        },
+        "4": {
+          "cosine_mean": 0.24026651680469513,
+          "cosine_std": 0.15139155089855194,
+          "n_sources": 800,
+          "n_dropped_near_zero_norm": 0
+        },
+        "5": {
+          "cosine_mean": 0.2618653178215027,
+          "cosine_std": 0.15175992250442505,
+          "n_sources": 800,
+          "n_dropped_near_zero_norm": 0
+        },
+        "6": {
+          "cosine_mean": 0.2798742949962616,
+          "cosine_std": 0.15194274485111237,
+          "n_sources": 800,
+          "n_dropped_near_zero_norm": 0
+        }
+      },
+      "direction_positive": null,
+      "direction_negative": null,
+      "cos_pos_neg": null,
+      "n_neutral_excluded_rows": 0,
+      "neutral_level_cos_check": 0.973914623260498,
+      "magnitude_spearman_rho": 0.7238963447109255,
+      "magnitude_spearman_pvalue": 0.0,
+      "magnitude_spearman_rho_abs_param": 0.7238963447109255,
+      "magnitude_spearman_pvalue_abs_param": 0.0,
+      "monotonicity_spearman_rho": 0.7481279900601513,
+      "monotonicity_spearman_pvalue": 0.0,
+      "monotonicity_spearman_rho_abs_param": 0.7481279900601513,
+      "monotonicity_spearman_pvalue_abs_param": 0.0
+    },
+    "highshelf": {
+      "is_signed": true,
+      "probe_r2": 0.3594662665805446,
+      "probe_r2_std": 0.015185873916061373,
+      "probe_r2_ci_low": 0.27633805369521397,
+      "probe_r2_ci_high": 0.4080096953429988,
+      "probe_r2_ci_method": "source-level bootstrap (resample src_id with replacement, OOB test)",
+      "probe_r2_shuffled": -0.01822220395953713,
+      "probe_r2_shuffled_std": 0.007655329735085557,
+      "probe_accuracy_7way": 0.2571428571428571,
+      "probe_accuracy_7way_std": 0.00574643732673675,
+      "probe_acc_chance_normalized": 0.1333333333333333,
+      "probe_nmi": 0.09162513782046419,
+      "probe_nmi_std": 0.005912554703156708,
+      "probe_chance_level_7way": 0.14285714285714285,
+      "direction_cosine_mean": null,
+      "direction_cosine_by_level": {
+        "0": {
+          "cosine_mean": 0.27623099088668823,
+          "cosine_std": 0.14691849052906036,
+          "n_sources": 800,
+          "n_dropped_near_zero_norm": 0
+        },
+        "1": {
+          "cosine_mean": 0.2706754505634308,
+          "cosine_std": 0.14506813883781433,
+          "n_sources": 800,
+          "n_dropped_near_zero_norm": 0
+        },
+        "2": {
+          "cosine_mean": 0.26242712140083313,
+          "cosine_std": 0.1449117213487625,
+          "n_sources": 800,
+          "n_dropped_near_zero_norm": 0
+        },
+        "3": {
+          "cosine_mean": -9.919593867380172e-05,
+          "cosine_std": 0.12141589820384979,
+          "n_sources": 782,
+          "n_dropped_near_zero_norm": 18
+        },
+        "4": {
+          "cosine_mean": 0.25549373030662537,
+          "cosine_std": 0.1450020968914032,
+          "n_sources": 800,
+          "n_dropped_near_zero_norm": 0
+        },
+        "5": {
+          "cosine_mean": 0.25765517354011536,
+          "cosine_std": 0.14842726290225983,
+          "n_sources": 800,
+          "n_dropped_near_zero_norm": 0
+        },
+        "6": {
+          "cosine_mean": 0.25894737243652344,
+          "cosine_std": 0.1580096334218979,
+          "n_sources": 800,
+          "n_dropped_near_zero_norm": 0
+        }
+      },
+      "direction_positive": {
+        "direction_cosine_mean": 0.2563687264919281,
+        "direction_cosine_std": 0.15102854371070862,
+        "n_valid_direction": 2400,
+        "n_dropped_near_zero_norm": 0,
+        "monotonicity_spearman_rho_abs_param": 0.7384832523944442,
+        "monotonicity_spearman_pvalue_abs_param": 0.0,
+        "n_rows": 2400
+      },
+      "direction_negative": {
+        "direction_cosine_mean": 0.2687753438949585,
+        "direction_cosine_std": 0.14579761028289795,
+        "n_valid_direction": 2400,
+        "n_dropped_near_zero_norm": 0,
+        "monotonicity_spearman_rho_abs_param": 0.7888940788611596,
+        "monotonicity_spearman_pvalue_abs_param": 0.0,
+        "n_rows": 2400
+      },
+      "cos_pos_neg": -0.9554540514945984,
+      "n_neutral_excluded_rows": 800,
+      "neutral_level_cos_check": 1.0,
+      "magnitude_spearman_rho": -0.014543483030280947,
+      "magnitude_spearman_pvalue": 0.2765292462141375,
+      "magnitude_spearman_rho_abs_param": 0.9243600257430467,
+      "magnitude_spearman_pvalue_abs_param": 0.0,
+      "monotonicity_spearman_rho": null,
+      "monotonicity_spearman_pvalue": null,
+      "monotonicity_spearman_rho_abs_param": null,
+      "monotonicity_spearman_pvalue_abs_param": null
+    }
+  },
+  "controls": {
+    "random_vector_cosine_mean": 0.00011380094431757439,
+    "random_vector_cosine_std": 0.04416747417288695,
+    "instrument_family": {
+      "accuracy": 0.7716666666666667,
+      "accuracy_std": 0.018521758975744033,
+      "acc_chance_normalized": 0.7462962962962963,
+      "nmi": 0.6900915892418003,
+      "nmi_std": 0.012865519855137798,
+      "chance_level": 0.1,
+      "n_classes": 10,
+      "families_used": [
+        "bass",
+        "brass",
+        "flute",
+        "guitar",
+        "keyboard",
+        "mallet",
+        "organ",
+        "reed",
+        "string",
+        "vocal"
+      ],
+      "n_sources_used": 800
+    },
+    "instrument_family_7class_subsampled": {
+      "accuracy": 0.890909090909091,
+      "accuracy_std": 0.012970095797896061,
+      "acc_chance_normalized": 0.8727272727272727,
+      "nmi": 0.8436746041345902,
+      "nmi_std": 0.027244574409505028,
+      "chance_level": 0.14285714285714285,
+      "n_classes": 7,
+      "families_used": [
+        "brass",
+        "flute",
+        "keyboard",
+        "organ",
+        "reed",
+        "string",
+        "vocal"
+      ],
+      "n_sources_used": 475
+    }
+  },
+  "mapping_model": {
+    "architecture": "MLP 516 -> 1024 -> 1024 -> 512, GELU + LayerNorm, residual (e' = e_dry + Delta)",
+    "loss": "MSE + (1 - cosine_similarity), equal weight",
+    "epochs": 300,
+    "lr": 0.001,
+    "seed": 0,
+    "test_size": 0.3,
+    "n_train_sources": 560,
+    "n_test_sources": 240,
+    "param_normalization_stats": {
+      "reverb": {
+        "mean": 0.25,
+        "std": 0.1666666567325592
+      },
+      "distortion": {
+        "mean": 7.5,
+        "std": 5.0
+      },
+      "highshelf": {
+        "mean": 0.0,
+        "std": 6.0
+      }
+    },
+    "held_out_cos_real_labels": 0.9715419411659241,
+    "held_out_cos_shuffled_labels": 0.5031258463859558
+  },
+  "hierarchy": {
+    "reverb": {
+      "identity": 0.9136193990707397,
+      "H1": 0.9326592087745667,
+      "H2": 0.9331531261149061,
+      "H3": 0.9335170388221741,
+      "H4": 0.9500553607940674,
+      "H5": 0.9569195508956909,
+      "shuffle_control": 0.5031258463859558,
+      "n_test_rows": 1680
+    },
+    "distortion": {
+      "identity": 0.9135891199111938,
+      "H1": 0.9279911518096924,
+      "H2": 0.9323215210479865,
+      "H3": 0.9332661032676697,
+      "H4": 0.950092077255249,
+      "H5": 0.9594855308532715,
+      "shuffle_control": 0.5031258463859558,
+      "n_test_rows": 1680
+    },
+    "highshelf": {
+      "identity": 0.9973730444908142,
+      "H1": 0.9973846673965454,
+      "H2": 0.9973913659690635,
+      "H3": 0.998022735118866,
+      "H4": 0.9772094488143921,
+      "H5": 0.9982205629348755,
+      "shuffle_control": 0.5031258463859558,
+      "n_test_rows": 1680
+    },
+    "_note": "H0/H6 여부는 이 표의 각 칸이 identity/shuffle_control을 이기는지로 README의 해석 기준표에 따라 판단할 것 — 이 스크립트는 수치만 산출하고 판정하지 않는다. 참고용 악기 분류 상한(공유 기준선): 0.7716666666666667"
+  }
+}
