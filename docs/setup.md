@@ -2,7 +2,11 @@
 
 CLAP FX Probe 파이프라인 설치·실행·산출물 구조. 프로젝트 개요는 [../README.md](../README.md) 참고.
 
-## 파이프라인 (8단계)
+## 파이프라인 (8단계, 1\~4차 기본 파이프라인)
+
+5차 이후 라운드(`09_fd_phase0.py`\~`23_report_figures.py`)의 스크립트는 각 라운드 문서
+(`docs/round6-7.md`, `docs/round8.md`, `docs/round9.md`, `docs/round10.md`,
+`docs/report_figures.md`)에서 해당 절과 함께 설명한다.
 
 ```
 01_embed.py               결합 LHS 샘플링 + CLAP 오디오/텍스트 임베딩 추출 (4차는 재실행 안 함)
@@ -121,22 +125,36 @@ M5 CPU에서 수 분 내외입니다(야코비안/부분공간/프로브 분석�
 
 ## 출력
 
-`out/`는 6차 후속까지 누적된 산출물이 40여 개라 **유형별 하위 폴더로 정리**했다
-(2026-08-06):
+`out/`는 6차 후속에서 산출물이 40여 개로 늘어나며 **유형별 하위 폴더로 정리**했다
+(2026-08-06). 이후 8\~10차와 보고서 그림이 추가되며 아래 구조로 누적됐다
+(2026-08-12 기준):
 
 ```
 out/
-├── results/    results.json / results_5.json / results_6.json / results_7.json
-├── figures/    모든 *.png (25개)
-├── caches/     모든 *.npz — embeddings.npz(gitignore 대상, 대용량), text_embeddings.npz,
-│               phase1_fd_cache.npz, phase1_fd_theta_cache.npz, phase3_fd_cache.npz,
-│               phase3_base_emb.npz, phase3_solo_emb.npz, oat_emb.npz(gitignore 대상 아님
-│               — 2차 데이터 소실 재발 방지용으로 의도적으로 커밋 대상), ultrasonic_null_largeN.npz
-├── models/     surrogate_model.pt
-└── config/     embed_config.json, oat_emb_meta.json
+├── results/  14개 — results.json(1~4차), results_2.json(2차, git 이력에서 복원),
+│             results_5/6/7/8.json, results_9_{blind,phase2c_norm,phase3_2,phase3_3,
+│             phase3_3R,phase_f3_pilot,phase_f4}.json, results_10_projection.json
+├── figures/  36개 *.png — 1~10차 전 과정 그림 + report_fig1/2(보고서 핵심 그림)
+├── caches/   *.npz·*.pt 중간 산출물 — embeddings.npz, oat_emb.npz, oat_emb_ts.npz,
+│             phase1_fd_cache.npz, phase1_fd_theta_cache.npz, phase3_fd_cache.npz,
+│             phase3_base_emb.npz, phase3_solo_emb.npz, ultrasonic_null_largeN.npz,
+│             b2_model_ts_{reverb,distortion,highshelf}.pt — 전부 해당 numbered
+│             스크립트로 재생성 가능하므로 gitignore 대상(`text_embeddings.npz`만 예외,
+│             220KB로 작고 재생성 비용 대비 보관 가치가 있어 git에 커밋)
+├── models/   surrogate_model.pt
+├── config/   embed_config.json, oat_emb_meta.json, oat_emb_ts_meta.json
+└── audio/    9차 청취용 wav(대부분 gitignore 대상) + audio/blind/*.json·html(git 추적)
 ```
 
-★ **스크립트 기본 경로는 아직 이 구조를 모른다.** 01\~20 스크립트는 `--out`/`--embeddings`/
+★ **caches 정책이 한 번 바뀌었다.** `oat_emb.npz`는 원래 "2차 데이터 소실 재발
+방지용으로 의도적으로 커밋 대상"으로 의도했으나(7차 작성 당시), 실제로는 한 번도
+git에 커밋된 적이 없었다(git 이력에 흔적 없음) — 의도와 실행이 어긋나 있었다. 저장소를
+공개로 전환하며(2026-08-10) 이 불일치를 정리해 `out/caches/*.npz`를 일괄 gitignore
+대상으로 명시했다(`text_embeddings.npz`만 예외). 즉 caches의 재생성 가능성에 기댄
+현재 정책이 실제 git 이력과 일치한다 — 다만 "재발 방지" 취지 자체는 유효하므로,
+캐시가 로컬에서만 존재하는 산출물이 있다면 별도 백업을 고려할 것.
+
+★ **스크립트 기본 경로는 아직 이 구조를 모른다.** 01\~23 스크립트는 `--out`/`--embeddings`/
 `--cache`/`--results` 등의 기본값이 여전히 평평한 `out/`를 가리킨다 — 옛 스크립트를
 그대로 재실행하면 새 산출물이 다시 `out/` 최상위에 떨어진다. 이번 정리는 기존 파일을
 옮기기만 했고 스크립트는 건드리지 않았다(요청 범위 밖이라 판단). 특정 스크립트를
@@ -147,5 +165,8 @@ out/
 (θ=0 앵커 검증), `surrogate`(대리모델 신뢰도, M_the 기준), `ablation`(마스킹 ablation
 4변형 + 분산 분해), `params`(파라미터별 프로브/야코비안/해상도 통계), `resolution_floor`,
 `jacobian_gate_analysis`, `controls`(악기 패밀리 NMI), `text_alignment`, `reverse_model`,
-`subspace`, `quality_stratification`. `results_5/6/7.json`은 각 라운드 절에서 설명한
-키로 `results.json` 위에 별도 병합 저장된다(원본 미변경).
+`subspace`, `quality_stratification`. `results_2.json`은 2차 당시의 원본 산출물이며
+이후 라운드의 `results.json` 재실행으로 덮어써져 로컬에서 소실됐다가 git 이력
+(커밋 `817ccca`)에서 복원했다 — `effects.*.probe_nmi`(이펙트별 NMI)가 이 파일에만
+있다. `results_5/6/7/8/9_*/10_projection.json`은 각 라운드 문서(`docs/round*.md`)에서
+설명한 키로 별도 저장되며, `results.json`을 덮어쓰지 않는다.
