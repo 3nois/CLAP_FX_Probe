@@ -2,12 +2,12 @@
 
 TokenSynth 실제 연결 및 오디오 검증 — 프로젝트 개요는 [../README.md](../README.md) 참고.
 
-8차까지 임베딩 단계 검증(B2 방향 cos 0.71\~0.86)이 끝났다. 남은 건 "cos 0.8이 귀에
+[8차](round8.md)까지 임베딩 단계 검증(B2 방향 cos 0.71\~0.86)이 끝났다. 남은 건 "cos 0.8이 귀에
 어떻게 들리는가" — 숫자만으로는 답할 수 없어 실제로 TokenSynth에 넣어 오디오를
 뽑아야 한다. 이 절의 작업은 전부 `tokensynth_bridge/`(신규 디렉터리)에서 하며
 1\~8차 분석 코드·결과 파일은 건드리지 않는다.
 
-**모델 가중치 경로** (전부 로컬 캐시에 있음, gitignore 대상 — 2차 데이터를 파일명
+**모델 가중치 경로** (전부 로컬 캐시에 있음, gitignore 대상 — [2차](round1-4.md) 데이터를 파일명
 충돌로 잃은 전례가 있어 경로를 여기 기록해 둔다):
 
 | 파일 | 크기 | 경로 |
@@ -27,7 +27,7 @@ HuggingFace 저장소 `KyungsuKim/TokenSynth`에서 `tokensynth.utils.download_m
   이미 설치되어 있었다(`tokensynth==0.0.4`). `torch==2.5.1`(요구 `>=2.0,<2.6.0` 충족),
   `laion-clap==1.1.6`(정확히 일치) — 충돌 없음, 새 venv 불필요.
 - **CLAP 체크포인트 동일성**: `ckpts/music_audioset_epoch_15_esc_90.14.pt`(우리 것)와
-  TokenSynth 캐시의 것이 **SHA256 완전 일치**(`fae3e9c0...`) — 1차부터 쓰던 것과
+  TokenSynth 캐시의 것이 **SHA256 완전 일치**(`fae3e9c0...`) — [1차](round1-4.md)부터 쓰던 것과
   바이트 단위로 같은 파일임을 확인.
 - Phase 1(`tokensynth_bridge/phase1_baseline.py`, CPU): 참조 오디오 조건 합성,
   5.10초 클립. **총 6.4초**(임베딩 0.31s + 토큰생성 4.5s + DAC디코딩 1.6s, \~100
@@ -53,7 +53,7 @@ HuggingFace 저장소 `KyungsuKim/TokenSynth`에서 `tokensynth.utils.download_m
 판정: 일부 다름(정규화 위치만 동일) → 실측 필요. **같은 참조 오디오를 두 경로로
 인코딩해 cos = 0.7035**(무작위 기준선 0.003±0.053보다 훨씬 높지만 1.0과는 거리가
 멂 — `tokensynth_bridge/phase2a_preprocessing_check.py`). **차이가 실질적이다.**
-따라서 8차 학습 임베딩과의 정합성을 위해, 이후 모든 임베딩 추출은 TokenSynth 자체
+따라서 [8차](round8.md) 학습 임베딩과의 정합성을 위해, 이후 모든 임베딩 추출은 TokenSynth 자체
 `clap.encode_audio()`가 아니라 **우리 파이프라인(`01_embed.py`와 동일 전처리)**만
 쓴다(`tokensynth_bridge/inject.py`의 `extract_embedding_our_pipeline()`).
 
@@ -104,7 +104,7 @@ HuggingFace 저장소 `KyungsuKim/TokenSynth`에서 `tokensynth.utils.download_m
 관측됨. 완전 붕괴는 아니므로 β 스윕 범위를 무리하게 제한할 필요는 없지만, 노름이
 2.0 근방까지 가면 신뢰도가 떨어진다는 걸 염두에 둬야 한다. **재정규화는 강제하지
 않고 Phase 3에서 노름을 그대로 두되(옵션은 유지), 결과 노름이 1.5를 넘는 조합은
-"저신뢰 구간"으로 표시하며 리포트한다.** (참고: 8차 데이터의 실제 `‖v_to_dry‖`
+"저신뢰 구간"으로 표시하며 리포트한다.** (참고: [8차](round8.md) 데이터의 실제 `‖v_to_dry‖`
 평균은 reverb 0.10\~0.22, highshelf 0.11\~0.20, distortion 0.28\~0.51 — distortion을
 큰 β로 밀 때가 노름 2.0에 가장 먼저 닿는다.)
 
@@ -118,24 +118,24 @@ phase2_norm_*.wav}`, `out/results/results_9_phase2c_norm.json`.
 Phase 2-A에서 두 경로 임베딩이 cos=0.7035로 실질적으로 다름을 확인했으므로, 이제
 TokenSynth에 주입할 것을 전제로 **임베딩 공간 자체를 TokenSynth 것으로 통일**한다.
 
-**3-1** (`phase3_1_reextract.py`): 7차(`19_oat_render.py`)와 완전히 동일한 시드·
+**3-1** (`phase3_1_reextract.py`): [7차](round6-7.md)(`19_oat_render.py`)와 완전히 동일한 시드·
 렌더링(pedalboard) 코드를 그대로 쓰고, 임베딩 추출 단계만 TokenSynth의
 `clap.encode_audio()`가 하는 16kHz↔48kHz 왕복 리샘플로 교체했다(파일 I/O 없이
 배치 처리 — 사전에 실제 `encode_audio(파일경로)`와 cos=0.9999999999989999로 동치
 확인). 1,200소스×3레벨×3이펙트=10,800회, 11.8분. 저장:
 `out/caches/oat_emb_ts.npz`(`oat_emb.npz`는 안 건드림).
 
-**3-2** (`phase3_2_retrain.py`): 8차와 동일 구조·분할·시드로 정방향과 B2만
+**3-2** (`phase3_2_retrain.py`): [8차](round8.md)와 동일 구조·분할·시드로 정방향과 B2만
 재학습(B1/B3/C/D는 재학습 대상 아님).
 
-| 이펙트 | 정방향(TS공간) | 정방향(8차) | Δ | B2(TS공간) | B2(8차) | Δ |
+| 이펙트 | 정방향(TS공간) | 정방향([8차](round8.md)) | Δ | B2(TS공간) | B2([8차](round8.md)) | Δ |
 |---|---|---|---|---|---|---|
 | reverb | 0.775 | 0.776 | −0.001 | 0.712 | 0.714 | −0.003 |
 | distortion | 0.839 | 0.860 | −0.021 | 0.815 | 0.823 | −0.008 |
 | highshelf | 0.819 | 0.823 | −0.004 | 0.812 | 0.813 | −0.002 |
 
 ★ **비슷하다 — 큰 차이 없음(전부 |Δ|<0.1 임계값 이내, 최대는 distortion 정방향
-−0.021).** 8차 결과(임베딩 공간이 달라도 방향 예측 가능성)가 TokenSynth 임베딩
+−0.021).** [8차](round8.md) 결과(임베딩 공간이 달라도 방향 예측 가능성)가 TokenSynth 임베딩
 공간에서도 그대로 재현된다. B2 모델 가중치 저장:
 `out/caches/b2_model_ts_{reverb,distortion,highshelf}.pt`(Phase 3-4에서 재사용).
 
@@ -352,7 +352,7 @@ F-4 진행)에 따라 **F-4로 진행한다.**
 전환됐다 — MIDI 재설계(F-1)와 악기-이펙트 조합 필터(F-2)가 실제로 측정을
 개선했다는 뜻이다. 단, **reverb는 여전히 null이다** — distortion·highshelf와
 달리 재구성 품질을 올려도 방향 신호가 안 잡힌다(잔향 자체가 CLAP 임베딩에서
-가장 미묘한 신호라는 6차 이전 결과들과 일관).
+가장 미묘한 신호라는 [6차](round6-7.md) 이전 결과들과 일관).
 
 **패밀리별** (내림차순): vocal +0.082(유의) > guitar +0.056 > brass +0.047 >
 bass +0.047 > flute +0.041 > organ +0.040(유의) > reed +0.033 > string +0.027 >

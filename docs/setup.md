@@ -4,7 +4,7 @@ CLAP FX Probe 파이프라인 설치·실행·산출물 구조. 프로젝트 개
 
 ## 파이프라인 (8단계, 1\~4차 기본 파이프라인)
 
-5차 이후 라운드(`09_fd_phase0.py`\~`23_report_figures.py`)의 스크립트는 각 라운드 문서
+[5차](round6-7.md) 이후 라운드(`09_fd_phase0.py`\~`23_report_figures.py`)의 스크립트는 각 라운드 문서
 (`docs/round6-7.md`, `docs/round8.md`, `docs/round9.md`, `docs/round10.md`,
 `docs/report_figures.md`)에서 해당 절과 함께 설명한다.
 
@@ -40,7 +40,7 @@ TokenSynth 패키지 정의(`pyproject.toml`)가 `tokensynth_paper/`로 옮겨�
 > (설치된 `torch` 버전은 `python -c "import torch; print(torch.__version__)"`로 확인).
 
 기존 TokenSynth 의존성(`laion-clap`, `torch` 등)에 더해 `pedalboard`, `scikit-learn`,
-`scipy`, `soundfile`, `matplotlib`가 추가로 설치됩니다. 4차 개정은 새 의존성이 없습니다 —
+`scipy`, `soundfile`, `matplotlib`가 추가로 설치됩니다. [4차](round1-4.md) 개정은 새 의존성이 없습니다 —
 `08_quality_stratified.py`는 NSynth가 이미 제공하는 `examples.json`을 표준 `json` 모듈로
 읽을 뿐이다.
 
@@ -89,7 +89,7 @@ room_size/damping/wet_level/dry_level/width/freeze_mode, `Distortion`: drive_db,
 소스당 표본 수: dry 1 + reverb 32 + distortion 8 + highshelf 16 = **57**. 각 이펙트의
 표본 중 정확히 1개는 **θ=0 앵커**(모든 파라미터가 "무효과" 값)로 예약되며, 이 앵커는
 pedalboard를 통과시키지 않고 dry 오디오를 그대로 써서 `cos(e_dry, e_theta0) = 1.000`이
-되도록 보장한다 (`neutral_check` 참고 — 4차 재실행에서도 세 이펙트 전부 정확히 1.000).
+되도록 보장한다 (`neutral_check` 참고 — [4차](round1-4.md) 재실행에서도 세 이펙트 전부 정확히 1.000).
 
 ## 실행
 
@@ -114,8 +114,8 @@ python 08_quality_stratified.py --examples-json nsynth-test/examples.json --embe
 
 **환경**: 기본 `--device cpu`. Apple Silicon에서 `--device mps`를 쓰려면 먼저
 `PYTORCH_ENABLE_MPS_FALLBACK=1`을 설정하세요. `01_embed.py`가 압도적으로 오래 걸리는
-단계입니다(45,600개 CLAP forward pass, 4차에서는 스킵). `02`는 마스킹 변형별로 완전히
-새로 학습하므로(5회) 3차의 단일 학습보다 느립니다(M5 CPU 기준 40\~50분). `03`\~`08`은 모두
+단계입니다(45,600개 CLAP forward pass, [4차](round1-4.md)에서는 스킵). `02`는 마스킹 변형별로 완전히
+새로 학습하므로(5회) [3차](round1-4.md)의 단일 학습보다 느립니다(M5 CPU 기준 40\~50분). `03`\~`08`은 모두
 M5 CPU에서 수 분 내외입니다(야코비안/부분공간/프로브 분석은 batched autograd·Ridge라 빠름).
 `04_probe.py`의 `--n-boot`(기본 1000), `07_subspace.py`의 `--n-boot`(기본 300),
 `08_quality_stratified.py`의 부트스트랩은 반복 횟수로, 느리면 줄이세요. GPU 클러스터가
@@ -125,7 +125,7 @@ M5 CPU에서 수 분 내외입니다(야코비안/부분공간/프로브 분석�
 
 ## 출력
 
-`out/`는 6차 후속에서 산출물이 40여 개로 늘어나며 **유형별 하위 폴더로 정리**했다
+`out/`는 [6차](round6-7.md) 후속에서 산출물이 40여 개로 늘어나며 **유형별 하위 폴더로 정리**했다
 (2026-08-06). 이후 8\~10차와 보고서 그림이 추가되며 아래 구조로 누적됐다
 (2026-08-12 기준):
 
@@ -146,8 +146,8 @@ out/
 └── audio/    9차 청취용 wav(대부분 gitignore 대상) + audio/blind/*.json·html(git 추적)
 ```
 
-★ **caches 정책이 한 번 바뀌었다.** `oat_emb.npz`는 원래 "2차 데이터 소실 재발
-방지용으로 의도적으로 커밋 대상"으로 의도했으나(7차 작성 당시), 실제로는 한 번도
+★ **caches 정책이 한 번 바뀌었다.** `oat_emb.npz`는 원래 "[2차](round1-4.md) 데이터 소실 재발
+방지용으로 의도적으로 커밋 대상"으로 의도했으나([7차](round6-7.md) 작성 당시), 실제로는 한 번도
 git에 커밋된 적이 없었다(git 이력에 흔적 없음) — 의도와 실행이 어긋나 있었다. 저장소를
 공개로 전환하며(2026-08-10) 이 불일치를 정리해 `out/caches/*.npz`를 일괄 gitignore
 대상으로 명시했다(`text_embeddings.npz`만 예외). 즉 caches의 재생성 가능성에 기댄
@@ -165,7 +165,7 @@ git에 커밋된 적이 없었다(git 이력에 흔적 없음) — 의도와 실
 (θ=0 앵커 검증), `surrogate`(대리모델 신뢰도, M_the 기준), `ablation`(마스킹 ablation
 4변형 + 분산 분해), `params`(파라미터별 프로브/야코비안/해상도 통계), `resolution_floor`,
 `jacobian_gate_analysis`, `controls`(악기 패밀리 NMI), `text_alignment`, `reverse_model`,
-`subspace`, `quality_stratification`. `results_2.json`은 2차 당시의 원본 산출물이며
+`subspace`, `quality_stratification`. `results_2.json`은 [2차](round1-4.md) 당시의 원본 산출물이며
 이후 라운드의 `results.json` 재실행으로 덮어써져 로컬에서 소실됐다가 git 이력
 (커밋 `817ccca`)에서 복원했다 — `effects.*.probe_nmi`(이펙트별 NMI)가 이 파일에만
 있다. `results_5/6/7/8/9_*/10_projection.json`은 각 라운드 문서(`docs/round*.md`)에서
