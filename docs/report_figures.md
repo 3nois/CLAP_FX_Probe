@@ -13,7 +13,7 @@
 이펙트 정보는 그보다 3.4\~9.2배 약하게만 담는다 — distortion이 상대적으로 가장 잘
 읽히고(0.250), reverb·highshelf는 거의 바닥 수준이다(0.096, 0.092). 지표를 통일하지
 않고 R²(회귀)와 accuracy(분류)를 섞어 비교하면 이 결론 자체가 성립하지 않는다는 점이
-1차의 실제 오류였다.
+[1차](round1-4.md)의 실제 오류였다.
 
 ![그림 2 — 임베딩 단계 vs 오디오 단계](../out/figures/report_fig2_embedding_vs_audio.png)
 

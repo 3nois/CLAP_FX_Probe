@@ -1,8 +1,8 @@
-# 9차 후속 D — projection layer 진단 (TokenSynth가 이펙트 성분을 어디서 잃는가)
+# [9차](round9.md) 후속 D — projection layer 진단 (TokenSynth가 이펙트 성분을 어디서 잃는가)
 
 프로젝트 개요는 [../README.md](../README.md) 참고.
 
-9차의 격차(임베딩 단계 cos 0.71\~0.86 vs 오디오 단계 방향 일치도 cos 0.03\~0.06)의
+[9차](round9.md)의 격차(임베딩 단계 cos 0.71\~0.86 vs 오디오 단계 방향 일치도 cos 0.03\~0.06)의
 원인을 논문 III-A projection layer(`clap_projection`: 512→1024→1024, `proj_dim=1024`)
 에서 찾는다. 재학습·재렌더링 없이 기존 체크포인트의 projection 서브모듈 forward와
 `out/caches/oat_emb_ts.npz`만 쓴다(`tokensynth_bridge/phase_d_projection_diagnostic.py`).
@@ -63,7 +63,7 @@ layer 하나만으로는 F-4의 reverb/highshelf 격차를 다 설명하지 못�
 | distortion | 0.0029 (z=−4.11) | 0.0010 (z=−4.02) |
 | highshelf | 0.0025 (z=−4.12) | 0.0010 (z=−4.02) |
 
-★ **4차 값(z≈−4)이 대리모델 없이 재현됐다 — 이 결론(이펙트 방향이 악기 판별
+★ **[4차](round1-4.md) 값(z≈−4)이 대리모델 없이 재현됐다 — 이 결론(이펙트 방향이 악기 판별
 부분공간과 무작위보다도 직교)의 플래그를 `surrogate`에서 `none`으로 바꾼다.**
 투영 후 ratio가 투영 전보다 더 작아진다(예: reverb 0.0037→0.0013, 약 1/3) —
 projection이 이펙트 방향을 악기 판별 축에서 한 번 더 밀어낸다는 뜻으로, "악기
