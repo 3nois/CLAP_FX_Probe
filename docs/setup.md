@@ -17,7 +17,7 @@ CLAP FX Probe 파이프라인 설치·실행·산출물 구조. 프로젝트 개
       └── 08_quality_stratified.py  ★최우선 — NSynth 품질 태그 층화(포화 가설 검증)
 ```
 
-`03`~`08`은 `02`가 저장한 `surrogate_model.pt`(`08`은 `embeddings.npz`만)를 재사용하며
+`03`\~`08`은 `02`가 저장한 `surrogate_model.pt`(`08`은 `embeddings.npz`만)를 재사용하며
 서로 독립적으로 실행 가능하다(순서 무관, 전부 `results.json`에 이어 붙임). `01`, `02`는
 반드시 먼저 실행해야 한다.
 
@@ -111,7 +111,7 @@ python 08_quality_stratified.py --examples-json nsynth-test/examples.json --embe
 **환경**: 기본 `--device cpu`. Apple Silicon에서 `--device mps`를 쓰려면 먼저
 `PYTORCH_ENABLE_MPS_FALLBACK=1`을 설정하세요. `01_embed.py`가 압도적으로 오래 걸리는
 단계입니다(45,600개 CLAP forward pass, 4차에서는 스킵). `02`는 마스킹 변형별로 완전히
-새로 학습하므로(5회) 3차의 단일 학습보다 느립니다(M5 CPU 기준 40~50분). `03`~`08`은 모두
+새로 학습하므로(5회) 3차의 단일 학습보다 느립니다(M5 CPU 기준 40\~50분). `03`\~`08`은 모두
 M5 CPU에서 수 분 내외입니다(야코비안/부분공간/프로브 분석은 batched autograd·Ridge라 빠름).
 `04_probe.py`의 `--n-boot`(기본 1000), `07_subspace.py`의 `--n-boot`(기본 300),
 `08_quality_stratified.py`의 부트스트랩은 반복 횟수로, 느리면 줄이세요. GPU 클러스터가
@@ -136,14 +136,14 @@ out/
 └── config/     embed_config.json, oat_emb_meta.json
 ```
 
-★ **스크립트 기본 경로는 아직 이 구조를 모른다.** 01~20 스크립트는 `--out`/`--embeddings`/
+★ **스크립트 기본 경로는 아직 이 구조를 모른다.** 01\~20 스크립트는 `--out`/`--embeddings`/
 `--cache`/`--results` 등의 기본값이 여전히 평평한 `out/`를 가리킨다 — 옛 스크립트를
 그대로 재실행하면 새 산출물이 다시 `out/` 최상위에 떨어진다. 이번 정리는 기존 파일을
 옮기기만 했고 스크립트는 건드리지 않았다(요청 범위 밖이라 판단). 특정 스크립트를
 재실행할 계획이 있으면 그때 해당 스크립트의 기본 경로만 새 구조에 맞게 고치는 편이
 안전하다.
 
-`results.json`(1~4차) 최상위 키: `meta`(실험 버전/샘플링/파라미터 공간), `neutral_check`
+`results.json`(1\~4차) 최상위 키: `meta`(실험 버전/샘플링/파라미터 공간), `neutral_check`
 (θ=0 앵커 검증), `surrogate`(대리모델 신뢰도, M_the 기준), `ablation`(마스킹 ablation
 4변형 + 분산 분해), `params`(파라미터별 프로브/야코비안/해상도 통계), `resolution_floor`,
 `jacobian_gate_analysis`, `controls`(악기 패밀리 NMI), `text_alignment`, `reverse_model`,

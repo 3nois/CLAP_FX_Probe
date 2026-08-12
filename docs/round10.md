@@ -2,7 +2,7 @@
 
 프로젝트 개요는 [../README.md](../README.md) 참고.
 
-9차의 격차(임베딩 단계 cos 0.71~0.86 vs 오디오 단계 방향 일치도 cos 0.03~0.06)의
+9차의 격차(임베딩 단계 cos 0.71\~0.86 vs 오디오 단계 방향 일치도 cos 0.03\~0.06)의
 원인을 논문 III-A projection layer(`clap_projection`: 512→1024→1024, `proj_dim=1024`)
 에서 찾는다. 재학습·재렌더링 없이 기존 체크포인트의 projection 서브모듈 forward와
 `out/caches/oat_emb_ts.npz`만 쓴다(`tokensynth_bridge/phase_d_projection_diagnostic.py`).
