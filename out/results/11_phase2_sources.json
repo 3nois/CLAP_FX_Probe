@@ -1,0 +1,2419 @@
+{
+  "seed": 0,
+  "n_per_family": 40,
+  "family_counts": {
+    "bass": 40,
+    "brass": 40,
+    "flute": 40,
+    "guitar": 40,
+    "keyboard": 40,
+    "mallet": 40,
+    "organ": 40,
+    "reed": 40,
+    "string": 40,
+    "vocal": 40
+  },
+  "n_total": 400,
+  "sources": [
+    {
+      "src_id": 0,
+      "filename": "bass_electronic_018-026-127.wav",
+      "instrument": "bass_electronic_018",
+      "family": "bass"
+    },
+    {
+      "src_id": 1,
+      "filename": "bass_electronic_018-049-075.wav",
+      "instrument": "bass_electronic_018",
+      "family": "bass"
+    },
+    {
+      "src_id": 2,
+      "filename": "bass_electronic_025-027-127.wav",
+      "instrument": "bass_electronic_025",
+      "family": "bass"
+    },
+    {
+      "src_id": 3,
+      "filename": "bass_electronic_025-062-127.wav",
+      "instrument": "bass_electronic_025",
+      "family": "bass"
+    },
+    {
+      "src_id": 4,
+      "filename": "bass_electronic_027-048-025.wav",
+      "instrument": "bass_electronic_027",
+      "family": "bass"
+    },
+    {
+      "src_id": 5,
+      "filename": "bass_electronic_027-051-100.wav",
+      "instrument": "bass_electronic_027",
+      "family": "bass"
+    },
+    {
+      "src_id": 6,
+      "filename": "bass_electronic_027-052-025.wav",
+      "instrument": "bass_electronic_027",
+      "family": "bass"
+    },
+    {
+      "src_id": 7,
+      "filename": "bass_synthetic_009-077-127.wav",
+      "instrument": "bass_synthetic_009",
+      "family": "bass"
+    },
+    {
+      "src_id": 8,
+      "filename": "bass_synthetic_033-029-127.wav",
+      "instrument": "bass_synthetic_033",
+      "family": "bass"
+    },
+    {
+      "src_id": 9,
+      "filename": "bass_synthetic_033-043-075.wav",
+      "instrument": "bass_synthetic_033",
+      "family": "bass"
+    },
+    {
+      "src_id": 10,
+      "filename": "bass_synthetic_033-048-127.wav",
+      "instrument": "bass_synthetic_033",
+      "family": "bass"
+    },
+    {
+      "src_id": 11,
+      "filename": "bass_synthetic_033-054-025.wav",
+      "instrument": "bass_synthetic_033",
+      "family": "bass"
+    },
+    {
+      "src_id": 12,
+      "filename": "bass_synthetic_033-055-025.wav",
+      "instrument": "bass_synthetic_033",
+      "family": "bass"
+    },
+    {
+      "src_id": 13,
+      "filename": "bass_synthetic_033-104-025.wav",
+      "instrument": "bass_synthetic_033",
+      "family": "bass"
+    },
+    {
+      "src_id": 14,
+      "filename": "bass_synthetic_033-104-127.wav",
+      "instrument": "bass_synthetic_033",
+      "family": "bass"
+    },
+    {
+      "src_id": 15,
+      "filename": "bass_synthetic_034-023-100.wav",
+      "instrument": "bass_synthetic_034",
+      "family": "bass"
+    },
+    {
+      "src_id": 16,
+      "filename": "bass_synthetic_034-048-050.wav",
+      "instrument": "bass_synthetic_034",
+      "family": "bass"
+    },
+    {
+      "src_id": 17,
+      "filename": "bass_synthetic_034-062-100.wav",
+      "instrument": "bass_synthetic_034",
+      "family": "bass"
+    },
+    {
+      "src_id": 18,
+      "filename": "bass_synthetic_034-090-100.wav",
+      "instrument": "bass_synthetic_034",
+      "family": "bass"
+    },
+    {
+      "src_id": 19,
+      "filename": "bass_synthetic_068-021-127.wav",
+      "instrument": "bass_synthetic_068",
+      "family": "bass"
+    },
+    {
+      "src_id": 20,
+      "filename": "bass_synthetic_068-062-075.wav",
+      "instrument": "bass_synthetic_068",
+      "family": "bass"
+    },
+    {
+      "src_id": 21,
+      "filename": "bass_synthetic_068-084-025.wav",
+      "instrument": "bass_synthetic_068",
+      "family": "bass"
+    },
+    {
+      "src_id": 22,
+      "filename": "bass_synthetic_068-106-075.wav",
+      "instrument": "bass_synthetic_068",
+      "family": "bass"
+    },
+    {
+      "src_id": 23,
+      "filename": "bass_synthetic_098-023-100.wav",
+      "instrument": "bass_synthetic_098",
+      "family": "bass"
+    },
+    {
+      "src_id": 24,
+      "filename": "bass_synthetic_098-071-100.wav",
+      "instrument": "bass_synthetic_098",
+      "family": "bass"
+    },
+    {
+      "src_id": 25,
+      "filename": "bass_synthetic_098-091-025.wav",
+      "instrument": "bass_synthetic_098",
+      "family": "bass"
+    },
+    {
+      "src_id": 26,
+      "filename": "bass_synthetic_098-106-050.wav",
+      "instrument": "bass_synthetic_098",
+      "family": "bass"
+    },
+    {
+      "src_id": 27,
+      "filename": "bass_synthetic_098-106-127.wav",
+      "instrument": "bass_synthetic_098",
+      "family": "bass"
+    },
+    {
+      "src_id": 28,
+      "filename": "bass_synthetic_134-022-100.wav",
+      "instrument": "bass_synthetic_134",
+      "family": "bass"
+    },
+    {
+      "src_id": 29,
+      "filename": "bass_synthetic_134-028-075.wav",
+      "instrument": "bass_synthetic_134",
+      "family": "bass"
+    },
+    {
+      "src_id": 30,
+      "filename": "bass_synthetic_134-030-127.wav",
+      "instrument": "bass_synthetic_134",
+      "family": "bass"
+    },
+    {
+      "src_id": 31,
+      "filename": "bass_synthetic_134-037-127.wav",
+      "instrument": "bass_synthetic_134",
+      "family": "bass"
+    },
+    {
+      "src_id": 32,
+      "filename": "bass_synthetic_134-041-075.wav",
+      "instrument": "bass_synthetic_134",
+      "family": "bass"
+    },
+    {
+      "src_id": 33,
+      "filename": "bass_synthetic_134-047-050.wav",
+      "instrument": "bass_synthetic_134",
+      "family": "bass"
+    },
+    {
+      "src_id": 34,
+      "filename": "bass_synthetic_134-061-127.wav",
+      "instrument": "bass_synthetic_134",
+      "family": "bass"
+    },
+    {
+      "src_id": 35,
+      "filename": "bass_synthetic_134-077-050.wav",
+      "instrument": "bass_synthetic_134",
+      "family": "bass"
+    },
+    {
+      "src_id": 36,
+      "filename": "bass_synthetic_134-083-100.wav",
+      "instrument": "bass_synthetic_134",
+      "family": "bass"
+    },
+    {
+      "src_id": 37,
+      "filename": "bass_synthetic_134-099-100.wav",
+      "instrument": "bass_synthetic_134",
+      "family": "bass"
+    },
+    {
+      "src_id": 38,
+      "filename": "bass_synthetic_135-054-100.wav",
+      "instrument": "bass_synthetic_135",
+      "family": "bass"
+    },
+    {
+      "src_id": 39,
+      "filename": "bass_synthetic_135-101-127.wav",
+      "instrument": "bass_synthetic_135",
+      "family": "bass"
+    },
+    {
+      "src_id": 40,
+      "filename": "brass_acoustic_006-028-075.wav",
+      "instrument": "brass_acoustic_006",
+      "family": "brass"
+    },
+    {
+      "src_id": 41,
+      "filename": "brass_acoustic_006-032-100.wav",
+      "instrument": "brass_acoustic_006",
+      "family": "brass"
+    },
+    {
+      "src_id": 42,
+      "filename": "brass_acoustic_006-032-127.wav",
+      "instrument": "brass_acoustic_006",
+      "family": "brass"
+    },
+    {
+      "src_id": 43,
+      "filename": "brass_acoustic_006-036-025.wav",
+      "instrument": "brass_acoustic_006",
+      "family": "brass"
+    },
+    {
+      "src_id": 44,
+      "filename": "brass_acoustic_006-037-127.wav",
+      "instrument": "brass_acoustic_006",
+      "family": "brass"
+    },
+    {
+      "src_id": 45,
+      "filename": "brass_acoustic_006-039-025.wav",
+      "instrument": "brass_acoustic_006",
+      "family": "brass"
+    },
+    {
+      "src_id": 46,
+      "filename": "brass_acoustic_006-047-025.wav",
+      "instrument": "brass_acoustic_006",
+      "family": "brass"
+    },
+    {
+      "src_id": 47,
+      "filename": "brass_acoustic_006-047-100.wav",
+      "instrument": "brass_acoustic_006",
+      "family": "brass"
+    },
+    {
+      "src_id": 48,
+      "filename": "brass_acoustic_006-049-025.wav",
+      "instrument": "brass_acoustic_006",
+      "family": "brass"
+    },
+    {
+      "src_id": 49,
+      "filename": "brass_acoustic_006-051-127.wav",
+      "instrument": "brass_acoustic_006",
+      "family": "brass"
+    },
+    {
+      "src_id": 50,
+      "filename": "brass_acoustic_006-061-100.wav",
+      "instrument": "brass_acoustic_006",
+      "family": "brass"
+    },
+    {
+      "src_id": 51,
+      "filename": "brass_acoustic_006-065-050.wav",
+      "instrument": "brass_acoustic_006",
+      "family": "brass"
+    },
+    {
+      "src_id": 52,
+      "filename": "brass_acoustic_006-066-100.wav",
+      "instrument": "brass_acoustic_006",
+      "family": "brass"
+    },
+    {
+      "src_id": 53,
+      "filename": "brass_acoustic_006-067-100.wav",
+      "instrument": "brass_acoustic_006",
+      "family": "brass"
+    },
+    {
+      "src_id": 54,
+      "filename": "brass_acoustic_006-070-100.wav",
+      "instrument": "brass_acoustic_006",
+      "family": "brass"
+    },
+    {
+      "src_id": 55,
+      "filename": "brass_acoustic_006-073-050.wav",
+      "instrument": "brass_acoustic_006",
+      "family": "brass"
+    },
+    {
+      "src_id": 56,
+      "filename": "brass_acoustic_006-074-050.wav",
+      "instrument": "brass_acoustic_006",
+      "family": "brass"
+    },
+    {
+      "src_id": 57,
+      "filename": "brass_acoustic_006-079-127.wav",
+      "instrument": "brass_acoustic_006",
+      "family": "brass"
+    },
+    {
+      "src_id": 58,
+      "filename": "brass_acoustic_015-045-075.wav",
+      "instrument": "brass_acoustic_015",
+      "family": "brass"
+    },
+    {
+      "src_id": 59,
+      "filename": "brass_acoustic_015-049-050.wav",
+      "instrument": "brass_acoustic_015",
+      "family": "brass"
+    },
+    {
+      "src_id": 60,
+      "filename": "brass_acoustic_015-057-025.wav",
+      "instrument": "brass_acoustic_015",
+      "family": "brass"
+    },
+    {
+      "src_id": 61,
+      "filename": "brass_acoustic_015-058-050.wav",
+      "instrument": "brass_acoustic_015",
+      "family": "brass"
+    },
+    {
+      "src_id": 62,
+      "filename": "brass_acoustic_015-077-075.wav",
+      "instrument": "brass_acoustic_015",
+      "family": "brass"
+    },
+    {
+      "src_id": 63,
+      "filename": "brass_acoustic_016-055-100.wav",
+      "instrument": "brass_acoustic_016",
+      "family": "brass"
+    },
+    {
+      "src_id": 64,
+      "filename": "brass_acoustic_016-064-100.wav",
+      "instrument": "brass_acoustic_016",
+      "family": "brass"
+    },
+    {
+      "src_id": 65,
+      "filename": "brass_acoustic_016-065-075.wav",
+      "instrument": "brass_acoustic_016",
+      "family": "brass"
+    },
+    {
+      "src_id": 66,
+      "filename": "brass_acoustic_016-069-100.wav",
+      "instrument": "brass_acoustic_016",
+      "family": "brass"
+    },
+    {
+      "src_id": 67,
+      "filename": "brass_acoustic_016-077-100.wav",
+      "instrument": "brass_acoustic_016",
+      "family": "brass"
+    },
+    {
+      "src_id": 68,
+      "filename": "brass_acoustic_046-058-025.wav",
+      "instrument": "brass_acoustic_046",
+      "family": "brass"
+    },
+    {
+      "src_id": 69,
+      "filename": "brass_acoustic_046-058-127.wav",
+      "instrument": "brass_acoustic_046",
+      "family": "brass"
+    },
+    {
+      "src_id": 70,
+      "filename": "brass_acoustic_046-064-075.wav",
+      "instrument": "brass_acoustic_046",
+      "family": "brass"
+    },
+    {
+      "src_id": 71,
+      "filename": "brass_acoustic_046-071-025.wav",
+      "instrument": "brass_acoustic_046",
+      "family": "brass"
+    },
+    {
+      "src_id": 72,
+      "filename": "brass_acoustic_046-072-075.wav",
+      "instrument": "brass_acoustic_046",
+      "family": "brass"
+    },
+    {
+      "src_id": 73,
+      "filename": "brass_acoustic_046-084-100.wav",
+      "instrument": "brass_acoustic_046",
+      "family": "brass"
+    },
+    {
+      "src_id": 74,
+      "filename": "brass_acoustic_046-095-050.wav",
+      "instrument": "brass_acoustic_046",
+      "family": "brass"
+    },
+    {
+      "src_id": 75,
+      "filename": "brass_acoustic_059-042-127.wav",
+      "instrument": "brass_acoustic_059",
+      "family": "brass"
+    },
+    {
+      "src_id": 76,
+      "filename": "brass_acoustic_059-043-075.wav",
+      "instrument": "brass_acoustic_059",
+      "family": "brass"
+    },
+    {
+      "src_id": 77,
+      "filename": "brass_acoustic_059-051-127.wav",
+      "instrument": "brass_acoustic_059",
+      "family": "brass"
+    },
+    {
+      "src_id": 78,
+      "filename": "brass_acoustic_059-059-075.wav",
+      "instrument": "brass_acoustic_059",
+      "family": "brass"
+    },
+    {
+      "src_id": 79,
+      "filename": "brass_acoustic_059-062-075.wav",
+      "instrument": "brass_acoustic_059",
+      "family": "brass"
+    },
+    {
+      "src_id": 80,
+      "filename": "flute_acoustic_002-072-127.wav",
+      "instrument": "flute_acoustic_002",
+      "family": "flute"
+    },
+    {
+      "src_id": 81,
+      "filename": "flute_acoustic_002-073-127.wav",
+      "instrument": "flute_acoustic_002",
+      "family": "flute"
+    },
+    {
+      "src_id": 82,
+      "filename": "flute_acoustic_002-077-100.wav",
+      "instrument": "flute_acoustic_002",
+      "family": "flute"
+    },
+    {
+      "src_id": 83,
+      "filename": "flute_acoustic_002-079-100.wav",
+      "instrument": "flute_acoustic_002",
+      "family": "flute"
+    },
+    {
+      "src_id": 84,
+      "filename": "flute_acoustic_002-081-075.wav",
+      "instrument": "flute_acoustic_002",
+      "family": "flute"
+    },
+    {
+      "src_id": 85,
+      "filename": "flute_acoustic_002-084-025.wav",
+      "instrument": "flute_acoustic_002",
+      "family": "flute"
+    },
+    {
+      "src_id": 86,
+      "filename": "flute_acoustic_002-085-050.wav",
+      "instrument": "flute_acoustic_002",
+      "family": "flute"
+    },
+    {
+      "src_id": 87,
+      "filename": "flute_acoustic_002-085-127.wav",
+      "instrument": "flute_acoustic_002",
+      "family": "flute"
+    },
+    {
+      "src_id": 88,
+      "filename": "flute_acoustic_002-086-127.wav",
+      "instrument": "flute_acoustic_002",
+      "family": "flute"
+    },
+    {
+      "src_id": 89,
+      "filename": "flute_acoustic_002-087-127.wav",
+      "instrument": "flute_acoustic_002",
+      "family": "flute"
+    },
+    {
+      "src_id": 90,
+      "filename": "flute_acoustic_002-091-100.wav",
+      "instrument": "flute_acoustic_002",
+      "family": "flute"
+    },
+    {
+      "src_id": 91,
+      "filename": "flute_acoustic_002-101-050.wav",
+      "instrument": "flute_acoustic_002",
+      "family": "flute"
+    },
+    {
+      "src_id": 92,
+      "filename": "flute_acoustic_002-101-127.wav",
+      "instrument": "flute_acoustic_002",
+      "family": "flute"
+    },
+    {
+      "src_id": 93,
+      "filename": "flute_acoustic_002-105-127.wav",
+      "instrument": "flute_acoustic_002",
+      "family": "flute"
+    },
+    {
+      "src_id": 94,
+      "filename": "flute_acoustic_002-106-050.wav",
+      "instrument": "flute_acoustic_002",
+      "family": "flute"
+    },
+    {
+      "src_id": 95,
+      "filename": "flute_acoustic_002-107-100.wav",
+      "instrument": "flute_acoustic_002",
+      "family": "flute"
+    },
+    {
+      "src_id": 96,
+      "filename": "flute_synthetic_000-021-100.wav",
+      "instrument": "flute_synthetic_000",
+      "family": "flute"
+    },
+    {
+      "src_id": 97,
+      "filename": "flute_synthetic_000-022-050.wav",
+      "instrument": "flute_synthetic_000",
+      "family": "flute"
+    },
+    {
+      "src_id": 98,
+      "filename": "flute_synthetic_000-024-050.wav",
+      "instrument": "flute_synthetic_000",
+      "family": "flute"
+    },
+    {
+      "src_id": 99,
+      "filename": "flute_synthetic_000-026-100.wav",
+      "instrument": "flute_synthetic_000",
+      "family": "flute"
+    },
+    {
+      "src_id": 100,
+      "filename": "flute_synthetic_000-027-100.wav",
+      "instrument": "flute_synthetic_000",
+      "family": "flute"
+    },
+    {
+      "src_id": 101,
+      "filename": "flute_synthetic_000-028-075.wav",
+      "instrument": "flute_synthetic_000",
+      "family": "flute"
+    },
+    {
+      "src_id": 102,
+      "filename": "flute_synthetic_000-036-127.wav",
+      "instrument": "flute_synthetic_000",
+      "family": "flute"
+    },
+    {
+      "src_id": 103,
+      "filename": "flute_synthetic_000-042-025.wav",
+      "instrument": "flute_synthetic_000",
+      "family": "flute"
+    },
+    {
+      "src_id": 104,
+      "filename": "flute_synthetic_000-042-100.wav",
+      "instrument": "flute_synthetic_000",
+      "family": "flute"
+    },
+    {
+      "src_id": 105,
+      "filename": "flute_synthetic_000-050-050.wav",
+      "instrument": "flute_synthetic_000",
+      "family": "flute"
+    },
+    {
+      "src_id": 106,
+      "filename": "flute_synthetic_000-053-025.wav",
+      "instrument": "flute_synthetic_000",
+      "family": "flute"
+    },
+    {
+      "src_id": 107,
+      "filename": "flute_synthetic_000-053-127.wav",
+      "instrument": "flute_synthetic_000",
+      "family": "flute"
+    },
+    {
+      "src_id": 108,
+      "filename": "flute_synthetic_000-057-050.wav",
+      "instrument": "flute_synthetic_000",
+      "family": "flute"
+    },
+    {
+      "src_id": 109,
+      "filename": "flute_synthetic_000-058-100.wav",
+      "instrument": "flute_synthetic_000",
+      "family": "flute"
+    },
+    {
+      "src_id": 110,
+      "filename": "flute_synthetic_000-061-050.wav",
+      "instrument": "flute_synthetic_000",
+      "family": "flute"
+    },
+    {
+      "src_id": 111,
+      "filename": "flute_synthetic_000-063-075.wav",
+      "instrument": "flute_synthetic_000",
+      "family": "flute"
+    },
+    {
+      "src_id": 112,
+      "filename": "flute_synthetic_000-081-075.wav",
+      "instrument": "flute_synthetic_000",
+      "family": "flute"
+    },
+    {
+      "src_id": 113,
+      "filename": "flute_synthetic_000-083-127.wav",
+      "instrument": "flute_synthetic_000",
+      "family": "flute"
+    },
+    {
+      "src_id": 114,
+      "filename": "flute_synthetic_000-087-075.wav",
+      "instrument": "flute_synthetic_000",
+      "family": "flute"
+    },
+    {
+      "src_id": 115,
+      "filename": "flute_synthetic_000-090-100.wav",
+      "instrument": "flute_synthetic_000",
+      "family": "flute"
+    },
+    {
+      "src_id": 116,
+      "filename": "flute_synthetic_000-091-075.wav",
+      "instrument": "flute_synthetic_000",
+      "family": "flute"
+    },
+    {
+      "src_id": 117,
+      "filename": "flute_synthetic_000-095-025.wav",
+      "instrument": "flute_synthetic_000",
+      "family": "flute"
+    },
+    {
+      "src_id": 118,
+      "filename": "flute_synthetic_000-098-127.wav",
+      "instrument": "flute_synthetic_000",
+      "family": "flute"
+    },
+    {
+      "src_id": 119,
+      "filename": "flute_synthetic_000-106-100.wav",
+      "instrument": "flute_synthetic_000",
+      "family": "flute"
+    },
+    {
+      "src_id": 120,
+      "filename": "guitar_acoustic_010-036-100.wav",
+      "instrument": "guitar_acoustic_010",
+      "family": "guitar"
+    },
+    {
+      "src_id": 121,
+      "filename": "guitar_acoustic_010-037-025.wav",
+      "instrument": "guitar_acoustic_010",
+      "family": "guitar"
+    },
+    {
+      "src_id": 122,
+      "filename": "guitar_acoustic_010-037-127.wav",
+      "instrument": "guitar_acoustic_010",
+      "family": "guitar"
+    },
+    {
+      "src_id": 123,
+      "filename": "guitar_acoustic_010-049-050.wav",
+      "instrument": "guitar_acoustic_010",
+      "family": "guitar"
+    },
+    {
+      "src_id": 124,
+      "filename": "guitar_acoustic_010-051-100.wav",
+      "instrument": "guitar_acoustic_010",
+      "family": "guitar"
+    },
+    {
+      "src_id": 125,
+      "filename": "guitar_acoustic_010-080-100.wav",
+      "instrument": "guitar_acoustic_010",
+      "family": "guitar"
+    },
+    {
+      "src_id": 126,
+      "filename": "guitar_acoustic_010-087-127.wav",
+      "instrument": "guitar_acoustic_010",
+      "family": "guitar"
+    },
+    {
+      "src_id": 127,
+      "filename": "guitar_acoustic_010-092-075.wav",
+      "instrument": "guitar_acoustic_010",
+      "family": "guitar"
+    },
+    {
+      "src_id": 128,
+      "filename": "guitar_acoustic_010-104-100.wav",
+      "instrument": "guitar_acoustic_010",
+      "family": "guitar"
+    },
+    {
+      "src_id": 129,
+      "filename": "guitar_acoustic_014-045-050.wav",
+      "instrument": "guitar_acoustic_014",
+      "family": "guitar"
+    },
+    {
+      "src_id": 130,
+      "filename": "guitar_acoustic_014-046-075.wav",
+      "instrument": "guitar_acoustic_014",
+      "family": "guitar"
+    },
+    {
+      "src_id": 131,
+      "filename": "guitar_acoustic_014-060-050.wav",
+      "instrument": "guitar_acoustic_014",
+      "family": "guitar"
+    },
+    {
+      "src_id": 132,
+      "filename": "guitar_acoustic_014-062-075.wav",
+      "instrument": "guitar_acoustic_014",
+      "family": "guitar"
+    },
+    {
+      "src_id": 133,
+      "filename": "guitar_acoustic_014-081-025.wav",
+      "instrument": "guitar_acoustic_014",
+      "family": "guitar"
+    },
+    {
+      "src_id": 134,
+      "filename": "guitar_acoustic_015-022-050.wav",
+      "instrument": "guitar_acoustic_015",
+      "family": "guitar"
+    },
+    {
+      "src_id": 135,
+      "filename": "guitar_acoustic_015-024-100.wav",
+      "instrument": "guitar_acoustic_015",
+      "family": "guitar"
+    },
+    {
+      "src_id": 136,
+      "filename": "guitar_acoustic_015-025-127.wav",
+      "instrument": "guitar_acoustic_015",
+      "family": "guitar"
+    },
+    {
+      "src_id": 137,
+      "filename": "guitar_acoustic_015-051-127.wav",
+      "instrument": "guitar_acoustic_015",
+      "family": "guitar"
+    },
+    {
+      "src_id": 138,
+      "filename": "guitar_acoustic_015-059-050.wav",
+      "instrument": "guitar_acoustic_015",
+      "family": "guitar"
+    },
+    {
+      "src_id": 139,
+      "filename": "guitar_acoustic_015-060-025.wav",
+      "instrument": "guitar_acoustic_015",
+      "family": "guitar"
+    },
+    {
+      "src_id": 140,
+      "filename": "guitar_acoustic_015-090-025.wav",
+      "instrument": "guitar_acoustic_015",
+      "family": "guitar"
+    },
+    {
+      "src_id": 141,
+      "filename": "guitar_acoustic_015-102-100.wav",
+      "instrument": "guitar_acoustic_015",
+      "family": "guitar"
+    },
+    {
+      "src_id": 142,
+      "filename": "guitar_acoustic_021-042-025.wav",
+      "instrument": "guitar_acoustic_021",
+      "family": "guitar"
+    },
+    {
+      "src_id": 143,
+      "filename": "guitar_acoustic_021-046-100.wav",
+      "instrument": "guitar_acoustic_021",
+      "family": "guitar"
+    },
+    {
+      "src_id": 144,
+      "filename": "guitar_acoustic_021-052-025.wav",
+      "instrument": "guitar_acoustic_021",
+      "family": "guitar"
+    },
+    {
+      "src_id": 145,
+      "filename": "guitar_acoustic_021-084-100.wav",
+      "instrument": "guitar_acoustic_021",
+      "family": "guitar"
+    },
+    {
+      "src_id": 146,
+      "filename": "guitar_acoustic_021-087-050.wav",
+      "instrument": "guitar_acoustic_021",
+      "family": "guitar"
+    },
+    {
+      "src_id": 147,
+      "filename": "guitar_acoustic_021-104-100.wav",
+      "instrument": "guitar_acoustic_021",
+      "family": "guitar"
+    },
+    {
+      "src_id": 148,
+      "filename": "guitar_acoustic_030-054-075.wav",
+      "instrument": "guitar_acoustic_030",
+      "family": "guitar"
+    },
+    {
+      "src_id": 149,
+      "filename": "guitar_acoustic_030-075-100.wav",
+      "instrument": "guitar_acoustic_030",
+      "family": "guitar"
+    },
+    {
+      "src_id": 150,
+      "filename": "guitar_electronic_022-031-050.wav",
+      "instrument": "guitar_electronic_022",
+      "family": "guitar"
+    },
+    {
+      "src_id": 151,
+      "filename": "guitar_electronic_022-051-075.wav",
+      "instrument": "guitar_electronic_022",
+      "family": "guitar"
+    },
+    {
+      "src_id": 152,
+      "filename": "guitar_electronic_022-054-025.wav",
+      "instrument": "guitar_electronic_022",
+      "family": "guitar"
+    },
+    {
+      "src_id": 153,
+      "filename": "guitar_electronic_022-071-100.wav",
+      "instrument": "guitar_electronic_022",
+      "family": "guitar"
+    },
+    {
+      "src_id": 154,
+      "filename": "guitar_electronic_022-083-075.wav",
+      "instrument": "guitar_electronic_022",
+      "family": "guitar"
+    },
+    {
+      "src_id": 155,
+      "filename": "guitar_electronic_028-022-050.wav",
+      "instrument": "guitar_electronic_028",
+      "family": "guitar"
+    },
+    {
+      "src_id": 156,
+      "filename": "guitar_electronic_028-075-127.wav",
+      "instrument": "guitar_electronic_028",
+      "family": "guitar"
+    },
+    {
+      "src_id": 157,
+      "filename": "guitar_electronic_028-099-025.wav",
+      "instrument": "guitar_electronic_028",
+      "family": "guitar"
+    },
+    {
+      "src_id": 158,
+      "filename": "guitar_electronic_028-103-050.wav",
+      "instrument": "guitar_electronic_028",
+      "family": "guitar"
+    },
+    {
+      "src_id": 159,
+      "filename": "guitar_electronic_028-103-100.wav",
+      "instrument": "guitar_electronic_028",
+      "family": "guitar"
+    },
+    {
+      "src_id": 160,
+      "filename": "keyboard_acoustic_004-038-025.wav",
+      "instrument": "keyboard_acoustic_004",
+      "family": "keyboard"
+    },
+    {
+      "src_id": 161,
+      "filename": "keyboard_electronic_001-052-100.wav",
+      "instrument": "keyboard_electronic_001",
+      "family": "keyboard"
+    },
+    {
+      "src_id": 162,
+      "filename": "keyboard_electronic_001-065-100.wav",
+      "instrument": "keyboard_electronic_001",
+      "family": "keyboard"
+    },
+    {
+      "src_id": 163,
+      "filename": "keyboard_electronic_001-071-025.wav",
+      "instrument": "keyboard_electronic_001",
+      "family": "keyboard"
+    },
+    {
+      "src_id": 164,
+      "filename": "keyboard_electronic_002-022-050.wav",
+      "instrument": "keyboard_electronic_002",
+      "family": "keyboard"
+    },
+    {
+      "src_id": 165,
+      "filename": "keyboard_electronic_002-024-127.wav",
+      "instrument": "keyboard_electronic_002",
+      "family": "keyboard"
+    },
+    {
+      "src_id": 166,
+      "filename": "keyboard_electronic_002-037-050.wav",
+      "instrument": "keyboard_electronic_002",
+      "family": "keyboard"
+    },
+    {
+      "src_id": 167,
+      "filename": "keyboard_electronic_002-039-127.wav",
+      "instrument": "keyboard_electronic_002",
+      "family": "keyboard"
+    },
+    {
+      "src_id": 168,
+      "filename": "keyboard_electronic_002-055-075.wav",
+      "instrument": "keyboard_electronic_002",
+      "family": "keyboard"
+    },
+    {
+      "src_id": 169,
+      "filename": "keyboard_electronic_002-076-025.wav",
+      "instrument": "keyboard_electronic_002",
+      "family": "keyboard"
+    },
+    {
+      "src_id": 170,
+      "filename": "keyboard_electronic_002-101-025.wav",
+      "instrument": "keyboard_electronic_002",
+      "family": "keyboard"
+    },
+    {
+      "src_id": 171,
+      "filename": "keyboard_electronic_002-106-100.wav",
+      "instrument": "keyboard_electronic_002",
+      "family": "keyboard"
+    },
+    {
+      "src_id": 172,
+      "filename": "keyboard_electronic_003-048-025.wav",
+      "instrument": "keyboard_electronic_003",
+      "family": "keyboard"
+    },
+    {
+      "src_id": 173,
+      "filename": "keyboard_electronic_003-053-075.wav",
+      "instrument": "keyboard_electronic_003",
+      "family": "keyboard"
+    },
+    {
+      "src_id": 174,
+      "filename": "keyboard_electronic_003-095-100.wav",
+      "instrument": "keyboard_electronic_003",
+      "family": "keyboard"
+    },
+    {
+      "src_id": 175,
+      "filename": "keyboard_electronic_069-040-127.wav",
+      "instrument": "keyboard_electronic_069",
+      "family": "keyboard"
+    },
+    {
+      "src_id": 176,
+      "filename": "keyboard_electronic_069-061-127.wav",
+      "instrument": "keyboard_electronic_069",
+      "family": "keyboard"
+    },
+    {
+      "src_id": 177,
+      "filename": "keyboard_electronic_069-067-050.wav",
+      "instrument": "keyboard_electronic_069",
+      "family": "keyboard"
+    },
+    {
+      "src_id": 178,
+      "filename": "keyboard_electronic_078-030-050.wav",
+      "instrument": "keyboard_electronic_078",
+      "family": "keyboard"
+    },
+    {
+      "src_id": 179,
+      "filename": "keyboard_electronic_078-043-025.wav",
+      "instrument": "keyboard_electronic_078",
+      "family": "keyboard"
+    },
+    {
+      "src_id": 180,
+      "filename": "keyboard_electronic_078-053-127.wav",
+      "instrument": "keyboard_electronic_078",
+      "family": "keyboard"
+    },
+    {
+      "src_id": 181,
+      "filename": "keyboard_electronic_078-062-100.wav",
+      "instrument": "keyboard_electronic_078",
+      "family": "keyboard"
+    },
+    {
+      "src_id": 182,
+      "filename": "keyboard_electronic_078-079-100.wav",
+      "instrument": "keyboard_electronic_078",
+      "family": "keyboard"
+    },
+    {
+      "src_id": 183,
+      "filename": "keyboard_electronic_098-038-127.wav",
+      "instrument": "keyboard_electronic_098",
+      "family": "keyboard"
+    },
+    {
+      "src_id": 184,
+      "filename": "keyboard_electronic_098-042-127.wav",
+      "instrument": "keyboard_electronic_098",
+      "family": "keyboard"
+    },
+    {
+      "src_id": 185,
+      "filename": "keyboard_electronic_098-068-127.wav",
+      "instrument": "keyboard_electronic_098",
+      "family": "keyboard"
+    },
+    {
+      "src_id": 186,
+      "filename": "keyboard_electronic_098-079-025.wav",
+      "instrument": "keyboard_electronic_098",
+      "family": "keyboard"
+    },
+    {
+      "src_id": 187,
+      "filename": "keyboard_electronic_098-094-075.wav",
+      "instrument": "keyboard_electronic_098",
+      "family": "keyboard"
+    },
+    {
+      "src_id": 188,
+      "filename": "keyboard_synthetic_000-021-025.wav",
+      "instrument": "keyboard_synthetic_000",
+      "family": "keyboard"
+    },
+    {
+      "src_id": 189,
+      "filename": "keyboard_synthetic_000-025-050.wav",
+      "instrument": "keyboard_synthetic_000",
+      "family": "keyboard"
+    },
+    {
+      "src_id": 190,
+      "filename": "keyboard_synthetic_000-038-100.wav",
+      "instrument": "keyboard_synthetic_000",
+      "family": "keyboard"
+    },
+    {
+      "src_id": 191,
+      "filename": "keyboard_synthetic_000-045-025.wav",
+      "instrument": "keyboard_synthetic_000",
+      "family": "keyboard"
+    },
+    {
+      "src_id": 192,
+      "filename": "keyboard_synthetic_000-049-100.wav",
+      "instrument": "keyboard_synthetic_000",
+      "family": "keyboard"
+    },
+    {
+      "src_id": 193,
+      "filename": "keyboard_synthetic_000-061-100.wav",
+      "instrument": "keyboard_synthetic_000",
+      "family": "keyboard"
+    },
+    {
+      "src_id": 194,
+      "filename": "keyboard_synthetic_000-076-025.wav",
+      "instrument": "keyboard_synthetic_000",
+      "family": "keyboard"
+    },
+    {
+      "src_id": 195,
+      "filename": "keyboard_synthetic_000-081-025.wav",
+      "instrument": "keyboard_synthetic_000",
+      "family": "keyboard"
+    },
+    {
+      "src_id": 196,
+      "filename": "keyboard_synthetic_000-087-075.wav",
+      "instrument": "keyboard_synthetic_000",
+      "family": "keyboard"
+    },
+    {
+      "src_id": 197,
+      "filename": "keyboard_synthetic_000-088-050.wav",
+      "instrument": "keyboard_synthetic_000",
+      "family": "keyboard"
+    },
+    {
+      "src_id": 198,
+      "filename": "keyboard_synthetic_000-100-100.wav",
+      "instrument": "keyboard_synthetic_000",
+      "family": "keyboard"
+    },
+    {
+      "src_id": 199,
+      "filename": "keyboard_synthetic_000-108-050.wav",
+      "instrument": "keyboard_synthetic_000",
+      "family": "keyboard"
+    },
+    {
+      "src_id": 200,
+      "filename": "mallet_acoustic_047-065-100.wav",
+      "instrument": "mallet_acoustic_047",
+      "family": "mallet"
+    },
+    {
+      "src_id": 201,
+      "filename": "mallet_acoustic_047-073-025.wav",
+      "instrument": "mallet_acoustic_047",
+      "family": "mallet"
+    },
+    {
+      "src_id": 202,
+      "filename": "mallet_acoustic_047-073-075.wav",
+      "instrument": "mallet_acoustic_047",
+      "family": "mallet"
+    },
+    {
+      "src_id": 203,
+      "filename": "mallet_acoustic_047-076-025.wav",
+      "instrument": "mallet_acoustic_047",
+      "family": "mallet"
+    },
+    {
+      "src_id": 204,
+      "filename": "mallet_acoustic_047-078-100.wav",
+      "instrument": "mallet_acoustic_047",
+      "family": "mallet"
+    },
+    {
+      "src_id": 205,
+      "filename": "mallet_acoustic_047-079-100.wav",
+      "instrument": "mallet_acoustic_047",
+      "family": "mallet"
+    },
+    {
+      "src_id": 206,
+      "filename": "mallet_acoustic_047-099-075.wav",
+      "instrument": "mallet_acoustic_047",
+      "family": "mallet"
+    },
+    {
+      "src_id": 207,
+      "filename": "mallet_acoustic_047-100-127.wav",
+      "instrument": "mallet_acoustic_047",
+      "family": "mallet"
+    },
+    {
+      "src_id": 208,
+      "filename": "mallet_acoustic_047-107-127.wav",
+      "instrument": "mallet_acoustic_047",
+      "family": "mallet"
+    },
+    {
+      "src_id": 209,
+      "filename": "mallet_acoustic_047-108-050.wav",
+      "instrument": "mallet_acoustic_047",
+      "family": "mallet"
+    },
+    {
+      "src_id": 210,
+      "filename": "mallet_acoustic_056-035-025.wav",
+      "instrument": "mallet_acoustic_056",
+      "family": "mallet"
+    },
+    {
+      "src_id": 211,
+      "filename": "mallet_acoustic_056-047-100.wav",
+      "instrument": "mallet_acoustic_056",
+      "family": "mallet"
+    },
+    {
+      "src_id": 212,
+      "filename": "mallet_acoustic_056-065-075.wav",
+      "instrument": "mallet_acoustic_056",
+      "family": "mallet"
+    },
+    {
+      "src_id": 213,
+      "filename": "mallet_acoustic_056-091-100.wav",
+      "instrument": "mallet_acoustic_056",
+      "family": "mallet"
+    },
+    {
+      "src_id": 214,
+      "filename": "mallet_acoustic_056-113-050.wav",
+      "instrument": "mallet_acoustic_056",
+      "family": "mallet"
+    },
+    {
+      "src_id": 215,
+      "filename": "mallet_acoustic_062-024-025.wav",
+      "instrument": "mallet_acoustic_062",
+      "family": "mallet"
+    },
+    {
+      "src_id": 216,
+      "filename": "mallet_acoustic_062-033-100.wav",
+      "instrument": "mallet_acoustic_062",
+      "family": "mallet"
+    },
+    {
+      "src_id": 217,
+      "filename": "mallet_acoustic_062-034-127.wav",
+      "instrument": "mallet_acoustic_062",
+      "family": "mallet"
+    },
+    {
+      "src_id": 218,
+      "filename": "mallet_acoustic_062-035-075.wav",
+      "instrument": "mallet_acoustic_062",
+      "family": "mallet"
+    },
+    {
+      "src_id": 219,
+      "filename": "mallet_acoustic_062-036-075.wav",
+      "instrument": "mallet_acoustic_062",
+      "family": "mallet"
+    },
+    {
+      "src_id": 220,
+      "filename": "mallet_acoustic_062-037-127.wav",
+      "instrument": "mallet_acoustic_062",
+      "family": "mallet"
+    },
+    {
+      "src_id": 221,
+      "filename": "mallet_acoustic_062-049-025.wav",
+      "instrument": "mallet_acoustic_062",
+      "family": "mallet"
+    },
+    {
+      "src_id": 222,
+      "filename": "mallet_acoustic_062-049-127.wav",
+      "instrument": "mallet_acoustic_062",
+      "family": "mallet"
+    },
+    {
+      "src_id": 223,
+      "filename": "mallet_acoustic_062-052-127.wav",
+      "instrument": "mallet_acoustic_062",
+      "family": "mallet"
+    },
+    {
+      "src_id": 224,
+      "filename": "mallet_acoustic_062-055-025.wav",
+      "instrument": "mallet_acoustic_062",
+      "family": "mallet"
+    },
+    {
+      "src_id": 225,
+      "filename": "mallet_acoustic_062-063-100.wav",
+      "instrument": "mallet_acoustic_062",
+      "family": "mallet"
+    },
+    {
+      "src_id": 226,
+      "filename": "mallet_acoustic_062-065-100.wav",
+      "instrument": "mallet_acoustic_062",
+      "family": "mallet"
+    },
+    {
+      "src_id": 227,
+      "filename": "mallet_acoustic_062-067-050.wav",
+      "instrument": "mallet_acoustic_062",
+      "family": "mallet"
+    },
+    {
+      "src_id": 228,
+      "filename": "mallet_acoustic_062-077-075.wav",
+      "instrument": "mallet_acoustic_062",
+      "family": "mallet"
+    },
+    {
+      "src_id": 229,
+      "filename": "mallet_acoustic_062-078-025.wav",
+      "instrument": "mallet_acoustic_062",
+      "family": "mallet"
+    },
+    {
+      "src_id": 230,
+      "filename": "mallet_acoustic_062-082-127.wav",
+      "instrument": "mallet_acoustic_062",
+      "family": "mallet"
+    },
+    {
+      "src_id": 231,
+      "filename": "mallet_acoustic_062-086-075.wav",
+      "instrument": "mallet_acoustic_062",
+      "family": "mallet"
+    },
+    {
+      "src_id": 232,
+      "filename": "mallet_acoustic_062-089-050.wav",
+      "instrument": "mallet_acoustic_062",
+      "family": "mallet"
+    },
+    {
+      "src_id": 233,
+      "filename": "mallet_acoustic_062-089-127.wav",
+      "instrument": "mallet_acoustic_062",
+      "family": "mallet"
+    },
+    {
+      "src_id": 234,
+      "filename": "mallet_acoustic_062-090-100.wav",
+      "instrument": "mallet_acoustic_062",
+      "family": "mallet"
+    },
+    {
+      "src_id": 235,
+      "filename": "mallet_acoustic_062-095-050.wav",
+      "instrument": "mallet_acoustic_062",
+      "family": "mallet"
+    },
+    {
+      "src_id": 236,
+      "filename": "mallet_acoustic_062-100-127.wav",
+      "instrument": "mallet_acoustic_062",
+      "family": "mallet"
+    },
+    {
+      "src_id": 237,
+      "filename": "mallet_acoustic_062-103-100.wav",
+      "instrument": "mallet_acoustic_062",
+      "family": "mallet"
+    },
+    {
+      "src_id": 238,
+      "filename": "mallet_acoustic_062-105-075.wav",
+      "instrument": "mallet_acoustic_062",
+      "family": "mallet"
+    },
+    {
+      "src_id": 239,
+      "filename": "mallet_acoustic_062-105-100.wav",
+      "instrument": "mallet_acoustic_062",
+      "family": "mallet"
+    },
+    {
+      "src_id": 240,
+      "filename": "organ_electronic_001-053-075.wav",
+      "instrument": "organ_electronic_001",
+      "family": "organ"
+    },
+    {
+      "src_id": 241,
+      "filename": "organ_electronic_001-057-075.wav",
+      "instrument": "organ_electronic_001",
+      "family": "organ"
+    },
+    {
+      "src_id": 242,
+      "filename": "organ_electronic_001-063-050.wav",
+      "instrument": "organ_electronic_001",
+      "family": "organ"
+    },
+    {
+      "src_id": 243,
+      "filename": "organ_electronic_001-064-025.wav",
+      "instrument": "organ_electronic_001",
+      "family": "organ"
+    },
+    {
+      "src_id": 244,
+      "filename": "organ_electronic_007-011-050.wav",
+      "instrument": "organ_electronic_007",
+      "family": "organ"
+    },
+    {
+      "src_id": 245,
+      "filename": "organ_electronic_007-024-127.wav",
+      "instrument": "organ_electronic_007",
+      "family": "organ"
+    },
+    {
+      "src_id": 246,
+      "filename": "organ_electronic_007-028-100.wav",
+      "instrument": "organ_electronic_007",
+      "family": "organ"
+    },
+    {
+      "src_id": 247,
+      "filename": "organ_electronic_007-029-127.wav",
+      "instrument": "organ_electronic_007",
+      "family": "organ"
+    },
+    {
+      "src_id": 248,
+      "filename": "organ_electronic_007-037-100.wav",
+      "instrument": "organ_electronic_007",
+      "family": "organ"
+    },
+    {
+      "src_id": 249,
+      "filename": "organ_electronic_007-043-050.wav",
+      "instrument": "organ_electronic_007",
+      "family": "organ"
+    },
+    {
+      "src_id": 250,
+      "filename": "organ_electronic_007-049-075.wav",
+      "instrument": "organ_electronic_007",
+      "family": "organ"
+    },
+    {
+      "src_id": 251,
+      "filename": "organ_electronic_007-065-127.wav",
+      "instrument": "organ_electronic_007",
+      "family": "organ"
+    },
+    {
+      "src_id": 252,
+      "filename": "organ_electronic_007-072-025.wav",
+      "instrument": "organ_electronic_007",
+      "family": "organ"
+    },
+    {
+      "src_id": 253,
+      "filename": "organ_electronic_007-082-127.wav",
+      "instrument": "organ_electronic_007",
+      "family": "organ"
+    },
+    {
+      "src_id": 254,
+      "filename": "organ_electronic_028-025-050.wav",
+      "instrument": "organ_electronic_028",
+      "family": "organ"
+    },
+    {
+      "src_id": 255,
+      "filename": "organ_electronic_028-025-127.wav",
+      "instrument": "organ_electronic_028",
+      "family": "organ"
+    },
+    {
+      "src_id": 256,
+      "filename": "organ_electronic_028-034-075.wav",
+      "instrument": "organ_electronic_028",
+      "family": "organ"
+    },
+    {
+      "src_id": 257,
+      "filename": "organ_electronic_028-040-050.wav",
+      "instrument": "organ_electronic_028",
+      "family": "organ"
+    },
+    {
+      "src_id": 258,
+      "filename": "organ_electronic_028-044-025.wav",
+      "instrument": "organ_electronic_028",
+      "family": "organ"
+    },
+    {
+      "src_id": 259,
+      "filename": "organ_electronic_028-058-127.wav",
+      "instrument": "organ_electronic_028",
+      "family": "organ"
+    },
+    {
+      "src_id": 260,
+      "filename": "organ_electronic_028-060-075.wav",
+      "instrument": "organ_electronic_028",
+      "family": "organ"
+    },
+    {
+      "src_id": 261,
+      "filename": "organ_electronic_028-062-100.wav",
+      "instrument": "organ_electronic_028",
+      "family": "organ"
+    },
+    {
+      "src_id": 262,
+      "filename": "organ_electronic_028-073-127.wav",
+      "instrument": "organ_electronic_028",
+      "family": "organ"
+    },
+    {
+      "src_id": 263,
+      "filename": "organ_electronic_028-074-075.wav",
+      "instrument": "organ_electronic_028",
+      "family": "organ"
+    },
+    {
+      "src_id": 264,
+      "filename": "organ_electronic_028-081-100.wav",
+      "instrument": "organ_electronic_028",
+      "family": "organ"
+    },
+    {
+      "src_id": 265,
+      "filename": "organ_electronic_028-096-025.wav",
+      "instrument": "organ_electronic_028",
+      "family": "organ"
+    },
+    {
+      "src_id": 266,
+      "filename": "organ_electronic_057-026-075.wav",
+      "instrument": "organ_electronic_057",
+      "family": "organ"
+    },
+    {
+      "src_id": 267,
+      "filename": "organ_electronic_057-042-100.wav",
+      "instrument": "organ_electronic_057",
+      "family": "organ"
+    },
+    {
+      "src_id": 268,
+      "filename": "organ_electronic_057-069-025.wav",
+      "instrument": "organ_electronic_057",
+      "family": "organ"
+    },
+    {
+      "src_id": 269,
+      "filename": "organ_electronic_057-072-100.wav",
+      "instrument": "organ_electronic_057",
+      "family": "organ"
+    },
+    {
+      "src_id": 270,
+      "filename": "organ_electronic_057-076-100.wav",
+      "instrument": "organ_electronic_057",
+      "family": "organ"
+    },
+    {
+      "src_id": 271,
+      "filename": "organ_electronic_104-033-127.wav",
+      "instrument": "organ_electronic_104",
+      "family": "organ"
+    },
+    {
+      "src_id": 272,
+      "filename": "organ_electronic_104-041-075.wav",
+      "instrument": "organ_electronic_104",
+      "family": "organ"
+    },
+    {
+      "src_id": 273,
+      "filename": "organ_electronic_104-047-075.wav",
+      "instrument": "organ_electronic_104",
+      "family": "organ"
+    },
+    {
+      "src_id": 274,
+      "filename": "organ_electronic_104-060-100.wav",
+      "instrument": "organ_electronic_104",
+      "family": "organ"
+    },
+    {
+      "src_id": 275,
+      "filename": "organ_electronic_104-061-127.wav",
+      "instrument": "organ_electronic_104",
+      "family": "organ"
+    },
+    {
+      "src_id": 276,
+      "filename": "organ_electronic_113-058-050.wav",
+      "instrument": "organ_electronic_113",
+      "family": "organ"
+    },
+    {
+      "src_id": 277,
+      "filename": "organ_electronic_113-076-100.wav",
+      "instrument": "organ_electronic_113",
+      "family": "organ"
+    },
+    {
+      "src_id": 278,
+      "filename": "organ_electronic_113-080-127.wav",
+      "instrument": "organ_electronic_113",
+      "family": "organ"
+    },
+    {
+      "src_id": 279,
+      "filename": "organ_electronic_113-081-127.wav",
+      "instrument": "organ_electronic_113",
+      "family": "organ"
+    },
+    {
+      "src_id": 280,
+      "filename": "reed_acoustic_011-043-127.wav",
+      "instrument": "reed_acoustic_011",
+      "family": "reed"
+    },
+    {
+      "src_id": 281,
+      "filename": "reed_acoustic_011-055-127.wav",
+      "instrument": "reed_acoustic_011",
+      "family": "reed"
+    },
+    {
+      "src_id": 282,
+      "filename": "reed_acoustic_011-057-127.wav",
+      "instrument": "reed_acoustic_011",
+      "family": "reed"
+    },
+    {
+      "src_id": 283,
+      "filename": "reed_acoustic_011-062-075.wav",
+      "instrument": "reed_acoustic_011",
+      "family": "reed"
+    },
+    {
+      "src_id": 284,
+      "filename": "reed_acoustic_011-064-075.wav",
+      "instrument": "reed_acoustic_011",
+      "family": "reed"
+    },
+    {
+      "src_id": 285,
+      "filename": "reed_acoustic_011-067-127.wav",
+      "instrument": "reed_acoustic_011",
+      "family": "reed"
+    },
+    {
+      "src_id": 286,
+      "filename": "reed_acoustic_018-063-050.wav",
+      "instrument": "reed_acoustic_018",
+      "family": "reed"
+    },
+    {
+      "src_id": 287,
+      "filename": "reed_acoustic_018-065-025.wav",
+      "instrument": "reed_acoustic_018",
+      "family": "reed"
+    },
+    {
+      "src_id": 288,
+      "filename": "reed_acoustic_018-065-050.wav",
+      "instrument": "reed_acoustic_018",
+      "family": "reed"
+    },
+    {
+      "src_id": 289,
+      "filename": "reed_acoustic_018-066-100.wav",
+      "instrument": "reed_acoustic_018",
+      "family": "reed"
+    },
+    {
+      "src_id": 290,
+      "filename": "reed_acoustic_018-068-127.wav",
+      "instrument": "reed_acoustic_018",
+      "family": "reed"
+    },
+    {
+      "src_id": 291,
+      "filename": "reed_acoustic_018-070-025.wav",
+      "instrument": "reed_acoustic_018",
+      "family": "reed"
+    },
+    {
+      "src_id": 292,
+      "filename": "reed_acoustic_018-071-127.wav",
+      "instrument": "reed_acoustic_018",
+      "family": "reed"
+    },
+    {
+      "src_id": 293,
+      "filename": "reed_acoustic_018-073-075.wav",
+      "instrument": "reed_acoustic_018",
+      "family": "reed"
+    },
+    {
+      "src_id": 294,
+      "filename": "reed_acoustic_018-078-025.wav",
+      "instrument": "reed_acoustic_018",
+      "family": "reed"
+    },
+    {
+      "src_id": 295,
+      "filename": "reed_acoustic_018-083-127.wav",
+      "instrument": "reed_acoustic_018",
+      "family": "reed"
+    },
+    {
+      "src_id": 296,
+      "filename": "reed_acoustic_023-034-075.wav",
+      "instrument": "reed_acoustic_023",
+      "family": "reed"
+    },
+    {
+      "src_id": 297,
+      "filename": "reed_acoustic_023-035-050.wav",
+      "instrument": "reed_acoustic_023",
+      "family": "reed"
+    },
+    {
+      "src_id": 298,
+      "filename": "reed_acoustic_023-039-075.wav",
+      "instrument": "reed_acoustic_023",
+      "family": "reed"
+    },
+    {
+      "src_id": 299,
+      "filename": "reed_acoustic_023-043-025.wav",
+      "instrument": "reed_acoustic_023",
+      "family": "reed"
+    },
+    {
+      "src_id": 300,
+      "filename": "reed_acoustic_023-046-100.wav",
+      "instrument": "reed_acoustic_023",
+      "family": "reed"
+    },
+    {
+      "src_id": 301,
+      "filename": "reed_acoustic_023-053-100.wav",
+      "instrument": "reed_acoustic_023",
+      "family": "reed"
+    },
+    {
+      "src_id": 302,
+      "filename": "reed_acoustic_023-057-075.wav",
+      "instrument": "reed_acoustic_023",
+      "family": "reed"
+    },
+    {
+      "src_id": 303,
+      "filename": "reed_acoustic_023-070-050.wav",
+      "instrument": "reed_acoustic_023",
+      "family": "reed"
+    },
+    {
+      "src_id": 304,
+      "filename": "reed_acoustic_023-072-100.wav",
+      "instrument": "reed_acoustic_023",
+      "family": "reed"
+    },
+    {
+      "src_id": 305,
+      "filename": "reed_acoustic_023-073-050.wav",
+      "instrument": "reed_acoustic_023",
+      "family": "reed"
+    },
+    {
+      "src_id": 306,
+      "filename": "reed_acoustic_023-077-025.wav",
+      "instrument": "reed_acoustic_023",
+      "family": "reed"
+    },
+    {
+      "src_id": 307,
+      "filename": "reed_acoustic_023-082-025.wav",
+      "instrument": "reed_acoustic_023",
+      "family": "reed"
+    },
+    {
+      "src_id": 308,
+      "filename": "reed_acoustic_023-090-075.wav",
+      "instrument": "reed_acoustic_023",
+      "family": "reed"
+    },
+    {
+      "src_id": 309,
+      "filename": "reed_acoustic_023-092-025.wav",
+      "instrument": "reed_acoustic_023",
+      "family": "reed"
+    },
+    {
+      "src_id": 310,
+      "filename": "reed_acoustic_037-032-127.wav",
+      "instrument": "reed_acoustic_037",
+      "family": "reed"
+    },
+    {
+      "src_id": 311,
+      "filename": "reed_acoustic_037-043-100.wav",
+      "instrument": "reed_acoustic_037",
+      "family": "reed"
+    },
+    {
+      "src_id": 312,
+      "filename": "reed_acoustic_037-049-025.wav",
+      "instrument": "reed_acoustic_037",
+      "family": "reed"
+    },
+    {
+      "src_id": 313,
+      "filename": "reed_acoustic_037-049-127.wav",
+      "instrument": "reed_acoustic_037",
+      "family": "reed"
+    },
+    {
+      "src_id": 314,
+      "filename": "reed_acoustic_037-050-127.wav",
+      "instrument": "reed_acoustic_037",
+      "family": "reed"
+    },
+    {
+      "src_id": 315,
+      "filename": "reed_acoustic_037-052-025.wav",
+      "instrument": "reed_acoustic_037",
+      "family": "reed"
+    },
+    {
+      "src_id": 316,
+      "filename": "reed_acoustic_037-057-050.wav",
+      "instrument": "reed_acoustic_037",
+      "family": "reed"
+    },
+    {
+      "src_id": 317,
+      "filename": "reed_acoustic_037-061-127.wav",
+      "instrument": "reed_acoustic_037",
+      "family": "reed"
+    },
+    {
+      "src_id": 318,
+      "filename": "reed_acoustic_037-068-050.wav",
+      "instrument": "reed_acoustic_037",
+      "family": "reed"
+    },
+    {
+      "src_id": 319,
+      "filename": "reed_acoustic_037-070-050.wav",
+      "instrument": "reed_acoustic_037",
+      "family": "reed"
+    },
+    {
+      "src_id": 320,
+      "filename": "string_acoustic_012-036-100.wav",
+      "instrument": "string_acoustic_012",
+      "family": "string"
+    },
+    {
+      "src_id": 321,
+      "filename": "string_acoustic_012-038-127.wav",
+      "instrument": "string_acoustic_012",
+      "family": "string"
+    },
+    {
+      "src_id": 322,
+      "filename": "string_acoustic_012-042-025.wav",
+      "instrument": "string_acoustic_012",
+      "family": "string"
+    },
+    {
+      "src_id": 323,
+      "filename": "string_acoustic_012-044-025.wav",
+      "instrument": "string_acoustic_012",
+      "family": "string"
+    },
+    {
+      "src_id": 324,
+      "filename": "string_acoustic_012-044-100.wav",
+      "instrument": "string_acoustic_012",
+      "family": "string"
+    },
+    {
+      "src_id": 325,
+      "filename": "string_acoustic_014-040-050.wav",
+      "instrument": "string_acoustic_014",
+      "family": "string"
+    },
+    {
+      "src_id": 326,
+      "filename": "string_acoustic_014-046-100.wav",
+      "instrument": "string_acoustic_014",
+      "family": "string"
+    },
+    {
+      "src_id": 327,
+      "filename": "string_acoustic_014-047-050.wav",
+      "instrument": "string_acoustic_014",
+      "family": "string"
+    },
+    {
+      "src_id": 328,
+      "filename": "string_acoustic_014-048-075.wav",
+      "instrument": "string_acoustic_014",
+      "family": "string"
+    },
+    {
+      "src_id": 329,
+      "filename": "string_acoustic_014-058-100.wav",
+      "instrument": "string_acoustic_014",
+      "family": "string"
+    },
+    {
+      "src_id": 330,
+      "filename": "string_acoustic_014-062-127.wav",
+      "instrument": "string_acoustic_014",
+      "family": "string"
+    },
+    {
+      "src_id": 331,
+      "filename": "string_acoustic_056-043-025.wav",
+      "instrument": "string_acoustic_056",
+      "family": "string"
+    },
+    {
+      "src_id": 332,
+      "filename": "string_acoustic_056-050-050.wav",
+      "instrument": "string_acoustic_056",
+      "family": "string"
+    },
+    {
+      "src_id": 333,
+      "filename": "string_acoustic_056-054-050.wav",
+      "instrument": "string_acoustic_056",
+      "family": "string"
+    },
+    {
+      "src_id": 334,
+      "filename": "string_acoustic_056-056-025.wav",
+      "instrument": "string_acoustic_056",
+      "family": "string"
+    },
+    {
+      "src_id": 335,
+      "filename": "string_acoustic_056-057-127.wav",
+      "instrument": "string_acoustic_056",
+      "family": "string"
+    },
+    {
+      "src_id": 336,
+      "filename": "string_acoustic_056-058-025.wav",
+      "instrument": "string_acoustic_056",
+      "family": "string"
+    },
+    {
+      "src_id": 337,
+      "filename": "string_acoustic_056-065-127.wav",
+      "instrument": "string_acoustic_056",
+      "family": "string"
+    },
+    {
+      "src_id": 338,
+      "filename": "string_acoustic_056-067-025.wav",
+      "instrument": "string_acoustic_056",
+      "family": "string"
+    },
+    {
+      "src_id": 339,
+      "filename": "string_acoustic_056-067-127.wav",
+      "instrument": "string_acoustic_056",
+      "family": "string"
+    },
+    {
+      "src_id": 340,
+      "filename": "string_acoustic_056-071-075.wav",
+      "instrument": "string_acoustic_056",
+      "family": "string"
+    },
+    {
+      "src_id": 341,
+      "filename": "string_acoustic_056-071-100.wav",
+      "instrument": "string_acoustic_056",
+      "family": "string"
+    },
+    {
+      "src_id": 342,
+      "filename": "string_acoustic_056-071-127.wav",
+      "instrument": "string_acoustic_056",
+      "family": "string"
+    },
+    {
+      "src_id": 343,
+      "filename": "string_acoustic_057-070-050.wav",
+      "instrument": "string_acoustic_057",
+      "family": "string"
+    },
+    {
+      "src_id": 344,
+      "filename": "string_acoustic_057-070-100.wav",
+      "instrument": "string_acoustic_057",
+      "family": "string"
+    },
+    {
+      "src_id": 345,
+      "filename": "string_acoustic_057-075-075.wav",
+      "instrument": "string_acoustic_057",
+      "family": "string"
+    },
+    {
+      "src_id": 346,
+      "filename": "string_acoustic_057-079-025.wav",
+      "instrument": "string_acoustic_057",
+      "family": "string"
+    },
+    {
+      "src_id": 347,
+      "filename": "string_acoustic_057-081-127.wav",
+      "instrument": "string_acoustic_057",
+      "family": "string"
+    },
+    {
+      "src_id": 348,
+      "filename": "string_acoustic_057-090-025.wav",
+      "instrument": "string_acoustic_057",
+      "family": "string"
+    },
+    {
+      "src_id": 349,
+      "filename": "string_acoustic_057-092-050.wav",
+      "instrument": "string_acoustic_057",
+      "family": "string"
+    },
+    {
+      "src_id": 350,
+      "filename": "string_acoustic_071-031-075.wav",
+      "instrument": "string_acoustic_071",
+      "family": "string"
+    },
+    {
+      "src_id": 351,
+      "filename": "string_acoustic_071-032-025.wav",
+      "instrument": "string_acoustic_071",
+      "family": "string"
+    },
+    {
+      "src_id": 352,
+      "filename": "string_acoustic_071-046-025.wav",
+      "instrument": "string_acoustic_071",
+      "family": "string"
+    },
+    {
+      "src_id": 353,
+      "filename": "string_acoustic_080-025-100.wav",
+      "instrument": "string_acoustic_080",
+      "family": "string"
+    },
+    {
+      "src_id": 354,
+      "filename": "string_acoustic_080-034-100.wav",
+      "instrument": "string_acoustic_080",
+      "family": "string"
+    },
+    {
+      "src_id": 355,
+      "filename": "string_acoustic_080-036-050.wav",
+      "instrument": "string_acoustic_080",
+      "family": "string"
+    },
+    {
+      "src_id": 356,
+      "filename": "string_acoustic_080-042-075.wav",
+      "instrument": "string_acoustic_080",
+      "family": "string"
+    },
+    {
+      "src_id": 357,
+      "filename": "string_acoustic_080-045-050.wav",
+      "instrument": "string_acoustic_080",
+      "family": "string"
+    },
+    {
+      "src_id": 358,
+      "filename": "string_acoustic_080-047-100.wav",
+      "instrument": "string_acoustic_080",
+      "family": "string"
+    },
+    {
+      "src_id": 359,
+      "filename": "string_acoustic_080-048-127.wav",
+      "instrument": "string_acoustic_080",
+      "family": "string"
+    },
+    {
+      "src_id": 360,
+      "filename": "vocal_acoustic_000-051-127.wav",
+      "instrument": "vocal_acoustic_000",
+      "family": "vocal"
+    },
+    {
+      "src_id": 361,
+      "filename": "vocal_acoustic_000-056-025.wav",
+      "instrument": "vocal_acoustic_000",
+      "family": "vocal"
+    },
+    {
+      "src_id": 362,
+      "filename": "vocal_acoustic_000-059-100.wav",
+      "instrument": "vocal_acoustic_000",
+      "family": "vocal"
+    },
+    {
+      "src_id": 363,
+      "filename": "vocal_acoustic_000-064-050.wav",
+      "instrument": "vocal_acoustic_000",
+      "family": "vocal"
+    },
+    {
+      "src_id": 364,
+      "filename": "vocal_acoustic_000-065-100.wav",
+      "instrument": "vocal_acoustic_000",
+      "family": "vocal"
+    },
+    {
+      "src_id": 365,
+      "filename": "vocal_acoustic_000-066-127.wav",
+      "instrument": "vocal_acoustic_000",
+      "family": "vocal"
+    },
+    {
+      "src_id": 366,
+      "filename": "vocal_acoustic_000-067-075.wav",
+      "instrument": "vocal_acoustic_000",
+      "family": "vocal"
+    },
+    {
+      "src_id": 367,
+      "filename": "vocal_acoustic_000-069-050.wav",
+      "instrument": "vocal_acoustic_000",
+      "family": "vocal"
+    },
+    {
+      "src_id": 368,
+      "filename": "vocal_acoustic_000-070-075.wav",
+      "instrument": "vocal_acoustic_000",
+      "family": "vocal"
+    },
+    {
+      "src_id": 369,
+      "filename": "vocal_synthetic_003-027-050.wav",
+      "instrument": "vocal_synthetic_003",
+      "family": "vocal"
+    },
+    {
+      "src_id": 370,
+      "filename": "vocal_synthetic_003-027-100.wav",
+      "instrument": "vocal_synthetic_003",
+      "family": "vocal"
+    },
+    {
+      "src_id": 371,
+      "filename": "vocal_synthetic_003-028-025.wav",
+      "instrument": "vocal_synthetic_003",
+      "family": "vocal"
+    },
+    {
+      "src_id": 372,
+      "filename": "vocal_synthetic_003-033-127.wav",
+      "instrument": "vocal_synthetic_003",
+      "family": "vocal"
+    },
+    {
+      "src_id": 373,
+      "filename": "vocal_synthetic_003-039-127.wav",
+      "instrument": "vocal_synthetic_003",
+      "family": "vocal"
+    },
+    {
+      "src_id": 374,
+      "filename": "vocal_synthetic_003-042-127.wav",
+      "instrument": "vocal_synthetic_003",
+      "family": "vocal"
+    },
+    {
+      "src_id": 375,
+      "filename": "vocal_synthetic_003-045-050.wav",
+      "instrument": "vocal_synthetic_003",
+      "family": "vocal"
+    },
+    {
+      "src_id": 376,
+      "filename": "vocal_synthetic_003-050-100.wav",
+      "instrument": "vocal_synthetic_003",
+      "family": "vocal"
+    },
+    {
+      "src_id": 377,
+      "filename": "vocal_synthetic_003-058-100.wav",
+      "instrument": "vocal_synthetic_003",
+      "family": "vocal"
+    },
+    {
+      "src_id": 378,
+      "filename": "vocal_synthetic_003-064-025.wav",
+      "instrument": "vocal_synthetic_003",
+      "family": "vocal"
+    },
+    {
+      "src_id": 379,
+      "filename": "vocal_synthetic_003-064-050.wav",
+      "instrument": "vocal_synthetic_003",
+      "family": "vocal"
+    },
+    {
+      "src_id": 380,
+      "filename": "vocal_synthetic_003-065-127.wav",
+      "instrument": "vocal_synthetic_003",
+      "family": "vocal"
+    },
+    {
+      "src_id": 381,
+      "filename": "vocal_synthetic_003-067-100.wav",
+      "instrument": "vocal_synthetic_003",
+      "family": "vocal"
+    },
+    {
+      "src_id": 382,
+      "filename": "vocal_synthetic_003-072-050.wav",
+      "instrument": "vocal_synthetic_003",
+      "family": "vocal"
+    },
+    {
+      "src_id": 383,
+      "filename": "vocal_synthetic_003-073-050.wav",
+      "instrument": "vocal_synthetic_003",
+      "family": "vocal"
+    },
+    {
+      "src_id": 384,
+      "filename": "vocal_synthetic_003-078-127.wav",
+      "instrument": "vocal_synthetic_003",
+      "family": "vocal"
+    },
+    {
+      "src_id": 385,
+      "filename": "vocal_synthetic_003-079-075.wav",
+      "instrument": "vocal_synthetic_003",
+      "family": "vocal"
+    },
+    {
+      "src_id": 386,
+      "filename": "vocal_synthetic_003-080-100.wav",
+      "instrument": "vocal_synthetic_003",
+      "family": "vocal"
+    },
+    {
+      "src_id": 387,
+      "filename": "vocal_synthetic_003-082-075.wav",
+      "instrument": "vocal_synthetic_003",
+      "family": "vocal"
+    },
+    {
+      "src_id": 388,
+      "filename": "vocal_synthetic_003-083-025.wav",
+      "instrument": "vocal_synthetic_003",
+      "family": "vocal"
+    },
+    {
+      "src_id": 389,
+      "filename": "vocal_synthetic_003-085-100.wav",
+      "instrument": "vocal_synthetic_003",
+      "family": "vocal"
+    },
+    {
+      "src_id": 390,
+      "filename": "vocal_synthetic_003-087-127.wav",
+      "instrument": "vocal_synthetic_003",
+      "family": "vocal"
+    },
+    {
+      "src_id": 391,
+      "filename": "vocal_synthetic_003-090-050.wav",
+      "instrument": "vocal_synthetic_003",
+      "family": "vocal"
+    },
+    {
+      "src_id": 392,
+      "filename": "vocal_synthetic_003-090-075.wav",
+      "instrument": "vocal_synthetic_003",
+      "family": "vocal"
+    },
+    {
+      "src_id": 393,
+      "filename": "vocal_synthetic_003-091-025.wav",
+      "instrument": "vocal_synthetic_003",
+      "family": "vocal"
+    },
+    {
+      "src_id": 394,
+      "filename": "vocal_synthetic_003-094-127.wav",
+      "instrument": "vocal_synthetic_003",
+      "family": "vocal"
+    },
+    {
+      "src_id": 395,
+      "filename": "vocal_synthetic_003-095-075.wav",
+      "instrument": "vocal_synthetic_003",
+      "family": "vocal"
+    },
+    {
+      "src_id": 396,
+      "filename": "vocal_synthetic_003-104-050.wav",
+      "instrument": "vocal_synthetic_003",
+      "family": "vocal"
+    },
+    {
+      "src_id": 397,
+      "filename": "vocal_synthetic_003-105-025.wav",
+      "instrument": "vocal_synthetic_003",
+      "family": "vocal"
+    },
+    {
+      "src_id": 398,
+      "filename": "vocal_synthetic_003-105-100.wav",
+      "instrument": "vocal_synthetic_003",
+      "family": "vocal"
+    },
+    {
+      "src_id": 399,
+      "filename": "vocal_synthetic_003-108-127.wav",
+      "instrument": "vocal_synthetic_003",
+      "family": "vocal"
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+[
+  {
+    "pair": "highshelf_gain_cutoff",
+    "focus": "gain",
+    "context": "cutoff",
+    "without_context": {
+      "cos_mean": 0.8584151750206948,
+      "cos_ci": [
+        0.8452263757586479,
+        0.8697347104549408
+      ],
+      "n_test": 1560
+    },
+    "with_context": {
+      "cos_mean": 0.8673365432024002,
+      "cos_ci": [
+        0.8549481108784676,
+        0.8780779272317887
+      ],
+      "n_test": 1560
+    },
+    "improvement": 0.008921368181705414
+  },
+  {
+    "pair": "lowshelf_gain_cutoff",
+    "focus": "gain",
+    "context": "cutoff",
+    "without_context": {
+      "cos_mean": 0.7852603490352631,
+      "cos_ci": [
+        0.7675109580159187,
+        0.8024210572242737
+      ],
+      "n_test": 1560
+    },
+    "with_context": {
+      "cos_mean": 0.7972460009455681,
+      "cos_ci": [
+        0.780719444155693,
+        0.8128953009843827
+      ],
+      "n_test": 1560
+    },
+    "improvement": 0.011985651910304984
+  },
+  {
+    "pair": "peak_gain_cutoff",
+    "focus": "gain",
+    "context": "cutoff",
+    "without_context": {
+      "cos_mean": 0.8056820624470711,
+      "cos_ci": [
+        0.7897184640169144,
+        0.8208789750933647
+      ],
+      "n_test": 1560
+    },
+    "with_context": {
+      "cos_mean": 0.830740040242672,
+      "cos_ci": [
+        0.8160903617739678,
+        0.8442822173237801
+      ],
+      "n_test": 1560
+    },
+    "improvement": 0.025057977795600928
+  },
+  {
+    "pair": "reverb_wet_room",
+    "focus": "room_size",
+    "context": "wet_level",
+    "without_context": {
+      "cos_mean": 0.7105355352759362,
+      "cos_ci": [
+        0.696383036673069,
+        0.7249543309211731
+      ],
+      "n_test": 1560
+    },
+    "with_context": {
+      "cos_mean": 0.7334095079302788,
+      "cos_ci": [
+        0.7208090469241142,
+        0.7468395307660103
+      ],
+      "n_test": 1560
+    },
+    "improvement": 0.022873972654342656
+  }
+]

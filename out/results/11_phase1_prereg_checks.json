@@ -1,0 +1,503 @@
+{
+  "oat_checks": [
+    {
+      "axis": "HighShelfFilter.cutoff_frequency_hz",
+      "gain_condition": "+6dB",
+      "sweep_values": [
+        500,
+        1500,
+        2500,
+        4000
+      ],
+      "cosines": [
+        0.9879366159429207,
+        0.9905614852895367,
+        0.994389414786298,
+        0.9959786531902518
+      ],
+      "spread": 0.008042037247331102,
+      "nondegenerate": true
+    },
+    {
+      "axis": "HighShelfFilter.cutoff_frequency_hz",
+      "gain_condition": "-6dB",
+      "sweep_values": [
+        500,
+        1500,
+        2500,
+        4000
+      ],
+      "cosines": [
+        0.989837944506609,
+        0.9914779061950011,
+        0.9951595065082794,
+        0.9967021346082257
+      ],
+      "spread": 0.006864190101616652,
+      "nondegenerate": true
+    },
+    {
+      "axis": "HighShelfFilter.q",
+      "gain_condition": "+6dB",
+      "sweep_values": [
+        0.1,
+        0.7,
+        1.3,
+        2.0
+      ],
+      "cosines": [
+        0.9973680973043004,
+        0.9933030605306228,
+        0.9836854924958341,
+        0.9673715810391517
+      ],
+      "spread": 0.029996516265148765,
+      "nondegenerate": true
+    },
+    {
+      "axis": "HighShelfFilter.q",
+      "gain_condition": "-6dB",
+      "sweep_values": [
+        0.1,
+        0.7,
+        1.3,
+        2.0
+      ],
+      "cosines": [
+        0.9975882172574557,
+        0.9937891371491582,
+        0.9876905679692881,
+        0.9808334708203997
+      ],
+      "spread": 0.01675474643705599,
+      "nondegenerate": true
+    },
+    {
+      "axis": "LowShelfFilter.cutoff_frequency_hz",
+      "gain_condition": "+6dB",
+      "sweep_values": [
+        30,
+        90,
+        150,
+        200
+      ],
+      "cosines": [
+        0.9997070431524677,
+        0.9964356422414351,
+        0.991006195008133,
+        0.9872849576037165
+      ],
+      "spread": 0.012422085548751238,
+      "nondegenerate": true
+    },
+    {
+      "axis": "LowShelfFilter.cutoff_frequency_hz",
+      "gain_condition": "-6dB",
+      "sweep_values": [
+        30,
+        90,
+        150,
+        200
+      ],
+      "cosines": [
+        0.999941289420397,
+        0.9986480473656233,
+        0.9949056506146972,
+        0.9924989938726037
+      ],
+      "spread": 0.007442295547793298,
+      "nondegenerate": true
+    },
+    {
+      "axis": "LowShelfFilter.q",
+      "gain_condition": "+6dB",
+      "sweep_values": [
+        0.1,
+        0.7,
+        1.3,
+        2.0
+      ],
+      "cosines": [
+        0.9975073933591403,
+        0.9955834743718369,
+        0.9902946347163928,
+        0.9788799285878882
+      ],
+      "spread": 0.0186274647712521,
+      "nondegenerate": true
+    },
+    {
+      "axis": "LowShelfFilter.q",
+      "gain_condition": "-6dB",
+      "sweep_values": [
+        0.1,
+        0.7,
+        1.3,
+        2.0
+      ],
+      "cosines": [
+        0.9978612661351715,
+        0.9981066583448597,
+        0.9985056518607676,
+        0.99697554111381
+      ],
+      "spread": 0.0015301107469575248,
+      "nondegenerate": true
+    },
+    {
+      "axis": "PeakFilter.cutoff_frequency_hz",
+      "gain_condition": "+6dB",
+      "sweep_values": [
+        200,
+        2000,
+        4000,
+        6000
+      ],
+      "cosines": [
+        0.9942330121984075,
+        0.9837852716436084,
+        0.9933685656399668,
+        0.9948126670596587
+      ],
+      "spread": 0.011027395416050245,
+      "nondegenerate": true
+    },
+    {
+      "axis": "PeakFilter.cutoff_frequency_hz",
+      "gain_condition": "-6dB",
+      "sweep_values": [
+        200,
+        2000,
+        4000,
+        6000
+      ],
+      "cosines": [
+        0.9950477480878416,
+        0.9890779852857234,
+        0.9944396615018436,
+        0.9962381720532945
+      ],
+      "spread": 0.00716018676757102,
+      "nondegenerate": true
+    },
+    {
+      "axis": "PeakFilter.q",
+      "gain_condition": "+6dB",
+      "sweep_values": [
+        0.1,
+        0.7,
+        1.3,
+        2.0
+      ],
+      "cosines": [
+        0.9904352426519025,
+        0.9896904820009398,
+        0.9911468029012305,
+        0.9930763244618974
+      ],
+      "spread": 0.003385842460957633,
+      "nondegenerate": true
+    },
+    {
+      "axis": "PeakFilter.q",
+      "gain_condition": "-6dB",
+      "sweep_values": [
+        0.1,
+        0.7,
+        1.3,
+        2.0
+      ],
+      "cosines": [
+        0.9902094000692837,
+        0.9925531148900596,
+        0.9919328689565275,
+        0.9930782318105302
+      ],
+      "spread": 0.0028688317412465247,
+      "nondegenerate": true
+    },
+    {
+      "axis": "Reverb.room_size",
+      "gain_condition": "wet_level=0.3",
+      "sweep_values": [
+        0.05,
+        0.3,
+        0.6,
+        0.85
+      ],
+      "cosines": [
+        0.8728326483260396,
+        0.8459758758536461,
+        0.7857862710944901,
+        0.6865328959537373
+      ],
+      "spread": 0.18629975237230223,
+      "nondegenerate": true
+    },
+    {
+      "axis": "Reverb.damping",
+      "gain_condition": "wet_level=0.3",
+      "sweep_values": [
+        0.0,
+        0.33,
+        0.66,
+        1.0
+      ],
+      "cosines": [
+        0.8134677410117597,
+        0.8153184652320338,
+        0.8168708086005625,
+        0.8146096467963655
+      ],
+      "spread": 0.0034030675888028217,
+      "nondegenerate": true
+    },
+    {
+      "axis": "Reverb.width",
+      "gain_condition": "wet_level=0.3",
+      "sweep_values": [
+        0.0,
+        0.33,
+        0.66,
+        1.0
+      ],
+      "cosines": [
+        0.848173141478644,
+        0.8317446313200463,
+        0.8152890205375147,
+        0.7997875213615049
+      ],
+      "spread": 0.048385620117139094,
+      "nondegenerate": true
+    }
+  ],
+  "insertion_cost": [
+    {
+      "axis": "Reverb.room_size",
+      "theta_min": 0.05,
+      "reference": "wet_level=0.3",
+      "min_cos": 0.8616735852753596,
+      "mean_cos": 0.9467902350263283
+    },
+    {
+      "axis": "Reverb.damping",
+      "theta_min": 0.0,
+      "reference": "wet_level=0.3",
+      "min_cos": 0.8134677410117597,
+      "mean_cos": 0.9278436082245958
+    },
+    {
+      "axis": "Reverb.width",
+      "theta_min": 0.0,
+      "reference": "wet_level=0.3",
+      "min_cos": 0.848173141478644,
+      "mean_cos": 0.9412261722933889
+    }
+  ],
+  "cascade_check": [
+    {
+      "source": "bass_electronic_018-022-100.wav",
+      "seed": 42,
+      "gains": {
+        "low_shelf": 8.218681456678901,
+        "first_band": -1.8336468074384307,
+        "second_band": 10.757937597341474,
+        "third_band": 5.921040871780917,
+        "high_shelf": -12.174679563370514
+      },
+      "band_freqs": {
+        "low_shelf": 100.0,
+        "first_band": 400.0,
+        "second_band": 2000.0,
+        "third_band": 4000.0,
+        "high_shelf": 3500.0
+      },
+      "s_grid": [
+        0.0,
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ],
+      "cosines": [
+        0.999999999999,
+        0.9917647242536163,
+        0.9707964062681026,
+        0.939758896826758,
+        0.9025626124469919
+      ],
+      "spread": 0.09743738755200815,
+      "s0_is_noop": true
+    },
+    {
+      "source": "brass_acoustic_006-025-025.wav",
+      "seed": 43,
+      "gains": {
+        "low_shelf": 4.568977881027319,
+        "first_band": -13.686740290830102,
+        "second_band": -14.399112393773494,
+        "third_band": 10.176377475330902,
+        "high_shelf": 2.614291427641753
+      },
+      "band_freqs": {
+        "low_shelf": 100.0,
+        "first_band": 400.0,
+        "second_band": 2000.0,
+        "third_band": 4000.0,
+        "high_shelf": 3500.0
+      },
+      "s_grid": [
+        0.0,
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ],
+      "cosines": [
+        1.0000000596036482,
+        0.9919324512431508,
+        0.967103064059244,
+        0.9306658506384126,
+        0.8904662132254278
+      ],
+      "spread": 0.10953384637822039,
+      "s0_is_noop": true
+    },
+    {
+      "source": "flute_acoustic_002-067-025.wav",
+      "seed": 44,
+      "gains": {
+        "low_shelf": -11.323034709783853,
+        "first_band": -7.25660775681681,
+        "second_band": -2.8268781653660664,
+        "third_band": 14.075518444332658,
+        "high_shelf": -10.130486256432995
+      },
+      "band_freqs": {
+        "low_shelf": 100.0,
+        "first_band": 400.0,
+        "second_band": 2000.0,
+        "third_band": 4000.0,
+        "high_shelf": 3500.0
+      },
+      "s_grid": [
+        0.0,
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ],
+      "cosines": [
+        1.0000000596036482,
+        0.9975812432256788,
+        0.9910327190766389,
+        0.9815739967305378,
+        0.9705895763977345
+      ],
+      "spread": 0.029410483205913773,
+      "s0_is_noop": true
+    },
+    {
+      "source": "guitar_acoustic_010-021-127.wav",
+      "seed": 45,
+      "gains": {
+        "low_shelf": 2.1939197084251703,
+        "first_band": 0.8547343551060838,
+        "second_band": 7.909507194057781,
+        "third_band": 9.350783010288211,
+        "high_shelf": 0.30686565602171
+      },
+      "band_freqs": {
+        "low_shelf": 100.0,
+        "first_band": 400.0,
+        "second_band": 2000.0,
+        "third_band": 4000.0,
+        "high_shelf": 3500.0
+      },
+      "s_grid": [
+        0.0,
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ],
+      "cosines": [
+        0.9999999403943517,
+        0.9982607958617713,
+        0.9923648834218591,
+        0.9810782052361936,
+        0.965820489275711
+      ],
+      "spread": 0.034179451118640736,
+      "s0_is_noop": true
+    },
+    {
+      "source": "keyboard_acoustic_004-022-050.wav",
+      "seed": 46,
+      "gains": {
+        "low_shelf": 12.168128300709363,
+        "first_band": -12.683196203647704,
+        "second_band": -6.822907322440868,
+        "third_band": 3.655514467383991,
+        "high_shelf": 13.020852248680924
+      },
+      "band_freqs": {
+        "low_shelf": 100.0,
+        "first_band": 400.0,
+        "second_band": 2000.0,
+        "third_band": 4000.0,
+        "high_shelf": 3500.0
+      },
+      "s_grid": [
+        0.0,
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ],
+      "cosines": [
+        1.0000000596036482,
+        0.9973802564956858,
+        0.9892938720328299,
+        0.9740704878600923,
+        0.9506242216368016
+      ],
+      "spread": 0.049375837966846636,
+      "s0_is_noop": true
+    },
+    {
+      "source": "reed_acoustic_011-035-127.wav",
+      "seed": 47,
+      "gains": {
+        "low_shelf": 7.254059839276817,
+        "first_band": 7.6100645135882345,
+        "second_band": -1.0445838531154958,
+        "third_band": -11.88824911056324,
+        "high_shelf": 14.005555494772011
+      },
+      "band_freqs": {
+        "low_shelf": 100.0,
+        "first_band": 400.0,
+        "second_band": 2000.0,
+        "third_band": 4000.0,
+        "high_shelf": 3500.0
+      },
+      "s_grid": [
+        0.0,
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ],
+      "cosines": [
+        1.0000000596036482,
+        0.9977700710286652,
+        0.9910526866338288,
+        0.9806129313236124,
+        0.9676661472111888
+      ],
+      "spread": 0.03233391239245942,
+      "s0_is_noop": true
+    }
+  ]
+}

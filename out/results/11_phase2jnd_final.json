@@ -1,0 +1,68 @@
+{
+  "distortion_drive_db": {
+    "jnd_theta": 0.27974906184733095,
+    "magnitude": 0.27974906184733095,
+    "pct_of_range": 1.3987453092366546
+  },
+  "reverb_wet_level": {
+    "jnd_theta": 2.0833333333333333e-05,
+    "magnitude": 2.0833333333333333e-05,
+    "pct_of_range": 0.004166666666666667
+  },
+  "reverb_room_size": {
+    "jnd_theta": 0.07315113917127196,
+    "magnitude": 0.023151139171271956,
+    "pct_of_range": 2.8938923964089946
+  },
+  "reverb_damping": null,
+  "reverb_width": null,
+  "highshelf_cutoff_gp6": null,
+  "lowshelf_cutoff_gp6": {
+    "jnd_theta": 30.010562582424164,
+    "magnitude": 0.01056258242416419,
+    "pct_of_range": 0.0062132837789201124
+  },
+  "peak_cutoff_gp6": {
+    "jnd_theta": 214.70310524283158,
+    "magnitude": 14.703105242831583,
+    "pct_of_range": 0.253501814531579
+  },
+  "highshelf_q_gp6": null,
+  "lowshelf_q_gp6": null,
+  "peak_q_gp6": null,
+  "eq_cascade_intensity": {
+    "jnd_theta": 0.013987453092366547,
+    "magnitude": 0.013987453092366547,
+    "pct_of_range": 1.3987453092366546
+  },
+  "highshelf_gain_boost(+)": {
+    "jnd_theta": 0.6035757262698214,
+    "magnitude": 0.6035757262698214,
+    "pct_of_range": 4.023838175132142
+  },
+  "highshelf_gain_cut(-)": {
+    "jnd_theta": -0.6035757262698214,
+    "magnitude": 0.6035757262698214,
+    "pct_of_range": 4.023838175132142
+  },
+  "lowshelf_gain_boost(+)": {
+    "jnd_theta": 0.6035757262698214,
+    "magnitude": 0.6035757262698214,
+    "pct_of_range": 4.023838175132142
+  },
+  "lowshelf_gain_cut(-)": {
+    "jnd_theta": -0.6035757262698214,
+    "magnitude": 0.6035757262698214,
+    "pct_of_range": 4.023838175132142
+  },
+  "peak_gain_boost(+)": {
+    "jnd_theta": 0.6035757262698214,
+    "magnitude": 0.6035757262698214,
+    "pct_of_range": 4.023838175132142
+  },
+  "peak_gain_cut(-)": {
+    "jnd_theta": -0.6035757262698214,
+    "magnitude": 0.6035757262698214,
+    "pct_of_range": 4.023838175132142
+  }
+}

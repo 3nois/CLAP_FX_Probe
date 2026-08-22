@@ -1,0 +1,268 @@
+{
+  "noop_checks": [
+    {
+      "label": "HighShelfFilter.gain_db=0",
+      "min_cos": 0.9999999999989999,
+      "mean_cos": 1.000000079471862,
+      "per_source_cos": {
+        "bass_electronic_018-022-100.wav": 0.9999999999989999,
+        "brass_acoustic_006-025-025.wav": 1.000000238417579,
+        "flute_acoustic_002-067-025.wav": 1.0000000596036482,
+        "guitar_acoustic_010-021-127.wav": 1.0000000596036482,
+        "keyboard_acoustic_004-022-050.wav": 1.0000000596036482,
+        "reed_acoustic_011-035-127.wav": 1.0000000596036482
+      },
+      "passed": true
+    },
+    {
+      "label": "LowShelfFilter.gain_db=0",
+      "min_cos": 0.9999999403943551,
+      "mean_cos": 1.0000000397354334,
+      "per_source_cos": {
+        "bass_electronic_018-022-100.wav": 0.9999999403943551,
+        "brass_acoustic_006-025-025.wav": 1.0000001192082895,
+        "flute_acoustic_002-067-025.wav": 1.0000000596036553,
+        "guitar_acoustic_010-021-127.wav": 0.999999999999,
+        "keyboard_acoustic_004-022-050.wav": 1.0000000596036482,
+        "reed_acoustic_011-035-127.wav": 1.0000000596036518
+      },
+      "passed": true
+    },
+    {
+      "label": "PeakFilter.gain_db=0",
+      "min_cos": 0.9999999999989999,
+      "mean_cos": 1.0000000496695403,
+      "per_source_cos": {
+        "bass_electronic_018-022-100.wav": 0.9999999999989999,
+        "brass_acoustic_006-025-025.wav": 1.0000001192082895,
+        "flute_acoustic_002-067-025.wav": 1.0000000596036482,
+        "guitar_acoustic_010-021-127.wav": 0.999999999999,
+        "keyboard_acoustic_004-022-050.wav": 1.0000001192083037,
+        "reed_acoustic_011-035-127.wav": 0.9999999999989999
+      },
+      "passed": true
+    },
+    {
+      "label": "Distortion.drive_db=0",
+      "min_cos": 0.9003348887157311,
+      "mean_cos": 0.9785858479435338,
+      "per_source_cos": {
+        "bass_electronic_018-022-100.wav": 0.9996933340833523,
+        "brass_acoustic_006-025-025.wav": 0.9984656572331934,
+        "flute_acoustic_002-067-025.wav": 0.9790149318574969,
+        "guitar_acoustic_010-021-127.wav": 0.9973220823589176,
+        "keyboard_acoustic_004-022-050.wav": 0.9966841934125109,
+        "reed_acoustic_011-035-127.wav": 0.9003348887157311
+      },
+      "passed": false
+    },
+    {
+      "label": "Reverb.wet_level=0(dry_level=1)",
+      "min_cos": 0.98403322601418,
+      "mean_cos": 0.985676277969112,
+      "per_source_cos": {
+        "bass_electronic_018-022-100.wav": 0.986329673904963,
+        "brass_acoustic_006-025-025.wav": 0.9858940235303333,
+        "flute_acoustic_002-067-025.wav": 0.9860486975927445,
+        "guitar_acoustic_010-021-127.wav": 0.98403322601418,
+        "keyboard_acoustic_004-022-050.wav": 0.9871765963530561,
+        "reed_acoustic_011-035-127.wav": 0.984575450419395
+      },
+      "passed": false
+    },
+    {
+      "label": "Reverb.all_default_wet0",
+      "min_cos": 0.9980779885090139,
+      "mean_cos": 0.9983459411507559,
+      "per_source_cos": {
+        "bass_electronic_018-022-100.wav": 0.9983015656461268,
+        "brass_acoustic_006-025-025.wav": 0.9986538887013938,
+        "flute_acoustic_002-067-025.wav": 0.9986469744013068,
+        "guitar_acoustic_010-021-127.wav": 0.9982365366633452,
+        "keyboard_acoustic_004-022-050.wav": 0.9981586929833491,
+        "reed_acoustic_011-035-127.wav": 0.9980779885090139
+      },
+      "passed": false
+    }
+  ],
+  "interaction_scan": [
+    {
+      "description": "Reverb: wet_level=0 -> room_size 변화 무효?",
+      "gate_param": "wet_level",
+      "gate_value": 0.0,
+      "test_param": "room_size",
+      "sweep": [
+        [
+          0.0,
+          0.986329673904963
+        ],
+        [
+          0.3,
+          0.986329673904963
+        ],
+        [
+          0.7,
+          0.986329673904963
+        ],
+        [
+          1.0,
+          0.986329673904963
+        ]
+      ],
+      "spread": 0.0,
+      "nullified": true
+    },
+    {
+      "description": "Reverb: wet_level=0 -> damping 변화 무효?",
+      "gate_param": "wet_level",
+      "gate_value": 0.0,
+      "test_param": "damping",
+      "sweep": [
+        [
+          0.0,
+          0.986329673904963
+        ],
+        [
+          0.3,
+          0.986329673904963
+        ],
+        [
+          0.7,
+          0.986329673904963
+        ],
+        [
+          1.0,
+          0.986329673904963
+        ]
+      ],
+      "spread": 0.0,
+      "nullified": true
+    },
+    {
+      "description": "Reverb: freeze_mode=1 -> room_size 변화 무효?(기지 결함 재확인)",
+      "gate_param": "freeze_mode",
+      "gate_value": 1.0,
+      "test_param": "room_size",
+      "sweep": [
+        [
+          0.0,
+          0.9999999999989999
+        ],
+        [
+          0.3,
+          0.9999999999989999
+        ],
+        [
+          0.7,
+          0.9999999999989999
+        ],
+        [
+          1.0,
+          0.9999999999989999
+        ]
+      ],
+      "spread": 0.0,
+      "nullified": true
+    },
+    {
+      "description": "HighShelf: gain_db=0 -> cutoff 변화 무효?",
+      "gate_param": "gain_db",
+      "gate_value": 0.0,
+      "test_param": "cutoff_frequency_hz",
+      "sweep": [
+        [
+          500,
+          0.999999999999
+        ],
+        [
+          2000,
+          0.9999999999989999
+        ],
+        [
+          6000,
+          0.9999999999989999
+        ],
+        [
+          8000,
+          0.9999999999989999
+        ]
+      ],
+      "spread": 1.1102230246251565e-16,
+      "nullified": true
+    },
+    {
+      "description": "HighShelf: gain_db=0 -> q 변화 무효?",
+      "gate_param": "gain_db",
+      "gate_value": 0.0,
+      "test_param": "q",
+      "sweep": [
+        [
+          0.3,
+          0.9999999403943551
+        ],
+        [
+          0.7,
+          0.9999999999989999
+        ],
+        [
+          1.0,
+          1.0000000596036482
+        ]
+      ],
+      "spread": 1.1920929310349493e-07,
+      "nullified": true
+    },
+    {
+      "description": "PeakFilter: gain_db=0 -> cutoff 변화 무효?",
+      "gate_param": "gain_db",
+      "gate_value": 0.0,
+      "test_param": "cutoff_frequency_hz",
+      "sweep": [
+        [
+          500,
+          0.999999999999
+        ],
+        [
+          2000,
+          0.9999999999989999
+        ],
+        [
+          6000,
+          0.9999999999989999
+        ],
+        [
+          8000,
+          0.9999999999989999
+        ]
+      ],
+      "spread": 1.1102230246251565e-16,
+      "nullified": true
+    },
+    {
+      "description": "Distortion: drive_db=0 -> 실제로 완전 무효?(진짜 no-op 아닐 수 있음)",
+      "gate_param": "drive_db",
+      "gate_value": 0.0,
+      "test_param": "drive_db_probe",
+      "sweep": [
+        [
+          0.0,
+          0.9996933340833523
+        ],
+        [
+          0.3,
+          0.9996933340833523
+        ],
+        [
+          0.7,
+          0.9996933340833523
+        ],
+        [
+          1.0,
+          0.9996933340833523
+        ]
+      ],
+      "spread": 0.0,
+      "nullified": true
+    }
+  ]
+}
