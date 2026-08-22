@@ -1,0 +1,21 @@
+{
+  "n_sources": 1200,
+  "n_2d_levels": 13,
+  "n_3dplus_levels": 5,
+  "pairs_2d": [
+    "reverb_wet_room",
+    "reverb_wet_damping",
+    "reverb_room_damping",
+    "highshelf_gain_cutoff",
+    "lowshelf_gain_cutoff",
+    "peak_gain_cutoff"
+  ],
+  "grids_3dplus": [
+    "highshelf_gain_cutoff_q",
+    "lowshelf_gain_cutoff_q",
+    "peak_gain_cutoff_q",
+    "reverb_wet_room_damping_width"
+  ],
+  "q_median_fixed": 0.4472135954999579,
+  "total_elapsed_sec": 267139.10123181343
+}

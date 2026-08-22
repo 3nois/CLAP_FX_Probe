@@ -1,0 +1,27 @@
+{
+  "n_sources_ext": 800,
+  "n_per_family_ext": 80,
+  "ext_source_seed": 1,
+  "axes": [
+    "distortion_drive_db",
+    "reverb_wet_level",
+    "reverb_room_size",
+    "reverb_damping",
+    "reverb_width",
+    "highshelf_gain",
+    "lowshelf_gain",
+    "peak_gain",
+    "highshelf_cutoff_gp6",
+    "lowshelf_cutoff_gp6",
+    "peak_cutoff_gp6",
+    "highshelf_q_gp6",
+    "lowshelf_q_gp6",
+    "peak_q_gp6",
+    "eq_cascade_intensity",
+    "null_12k_gain",
+    "null_15k_gain"
+  ],
+  "n_axes": 17,
+  "total_conditions": 340000,
+  "total_elapsed_sec": 24350.247037887573
+}
