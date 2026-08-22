@@ -181,6 +181,40 @@ def predict_family_mean_oracle(Y_train, family_train, family_eval):
     return np.array(dirs), np.array(mags)
 
 
+# ---------------------------------------------------------------------------
+# 결함 21 수정 — 고정방향 베이스라인은 "평균 코사인"을 최대화하는 방향(=단위벡터의
+# 평균)이어야 한다. raw(비정규화) 벡터를 먼저 평균한 뒤 정규화하면 ‖Y‖가 큰 소스가
+# 평균 방향을 지배해 최적 상수 예측자보다 열등한 베이스라인이 된다 — 그 결과 B2가
+# 베이스라인을 넘는 폭이 실제보다 크게 보이는 방향으로 편향된다. 아래 두 함수는
+# 위 predict_global_mean/predict_family_mean_oracle과 나란히 두는 단위벡터-평균
+# 버전이다(기존 함수는 그대로 유지 — 두 버전을 대조해서 보고한다).
+# ---------------------------------------------------------------------------
+def predict_global_mean_unitavg(Y_train, X_eval_n):
+    v_const = unit_np(Y_train).mean(axis=0)
+    direction = unit_np(v_const)
+    magnitude = np.linalg.norm(Y_train.mean(axis=0))  # 크기는 원래 방식 유지(방향만 결함 21 대상)
+    return np.tile(direction, (X_eval_n, 1)), np.full(X_eval_n, magnitude)
+
+
+def predict_family_mean_oracle_unitavg(Y_train, family_train, family_eval):
+    families = sorted(set(family_train.tolist()))
+    fam_vec = {}
+    global_fallback_dir = unit_np(unit_np(Y_train).mean(axis=0))
+    global_fallback_mag = np.linalg.norm(Y_train.mean(axis=0))
+    for fam in families:
+        mask = family_train == fam
+        if mask.sum() > 0:
+            fam_vec[fam] = (unit_np(unit_np(Y_train[mask]).mean(axis=0)), np.linalg.norm(Y_train[mask].mean(axis=0)))
+        else:
+            fam_vec[fam] = (global_fallback_dir, global_fallback_mag)
+    dirs, mags = [], []
+    for fam in family_eval:
+        d, m = fam_vec.get(fam, (global_fallback_dir, global_fallback_mag))
+        dirs.append(d)
+        mags.append(m)
+    return np.array(dirs), np.array(mags)
+
+
 def bootstrap_cos_ci(cos_per_row, row_to_source, seed, n_boot=1000):
     sources = np.unique(row_to_source)
     rng = np.random.RandomState(seed)
@@ -211,6 +245,15 @@ def run_all_models(X_train, Y_train, fam_train, X_val, Y_val, X_test, Y_test, fa
     dir_pred, mag_pred = predict_family_mean_oracle(Y_train, fam_train, fam_test)
     cos = np.sum(dir_pred * Yt_dir_test, axis=-1)
     results["family_mean_oracle"] = {"cos_per_row": cos, "mag_pred": mag_pred, "mag_true": Yt_mag_test, "val_cos": None, "epochs_used": None}
+
+    # ①'②' 결함 21 수정 — 단위벡터-평균 버전(나란히 비교용)
+    dir_pred, mag_pred = predict_global_mean_unitavg(Y_train, n_test)
+    cos = np.sum(dir_pred * Yt_dir_test, axis=-1)
+    results["global_mean_unitavg"] = {"cos_per_row": cos, "mag_pred": mag_pred, "mag_true": Yt_mag_test, "val_cos": None, "epochs_used": None}
+
+    dir_pred, mag_pred = predict_family_mean_oracle_unitavg(Y_train, fam_train, fam_test)
+    cos = np.sum(dir_pred * Yt_dir_test, axis=-1)
+    results["family_mean_oracle_unitavg"] = {"cos_per_row": cos, "mag_pred": mag_pred, "mag_true": Yt_mag_test, "val_cos": None, "epochs_used": None}
 
     # ③④ 학습 모델
     Xtr_t = torch.tensor(X_train, dtype=torch.float32)

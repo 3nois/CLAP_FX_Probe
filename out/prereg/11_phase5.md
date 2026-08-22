@@ -92,3 +92,35 @@ Phase 2 bend(`out/results/11_phase2_bend_signedjnd.md`)와 Phase 3 rotation
 
 예상 소요: 수 시간(신경망 학습 다수, 그러나 소규모 데이터라 회당 수 초~수십 초).
 **본 문서 승인 후 실행한다.**
+
+---
+
+## addendum (2026-08-22, 세션 소실 후 재개 — 결함 20·21)
+
+**결함 20**: 5-E(`11_phase5_curvature_rotation.py`)가 `11_phase3_rotation_raw.json`
+(v1, 결함18 미수정 원본)을 참조하고 있었다 — 3-1이 v2~v5로 갱신되는 동안 이
+파일만 누락된 하류 오염 사례. `11_phase5_curvature_rotation_v2.py`로 교체해
+v5(unsigned)+v4(signed, 부호 분기별)를 재사용하도록 고쳤다. 원본
+`11_phase5_curvature_rotation.md`는 인용 금지로 표시했고, 최신본은
+`11_phase5_curvature_rotation_v2.md`.
+
+**결함 21**: 고정방향 베이스라인(`21_handle_predict_phase1.predict_global_mean`,
+`predict_family_mean_oracle`, `20_family_cosine_oat.split_half_correction`
+과제C)이 raw(비정규화) 벡터를 소스 간 평균한 뒤 정규화했다. 목표 지표(소스별
+코사인의 평균)를 최대화하는 상수 방향은 단위벡터의 평균이지 raw 평균이 아니므로
+이는 열등한 베이스라인이며, 편향 방향은 B2(학습 모델)의 초과폭을 과대평가하는
+쪽이었다. 단위벡터-평균 버전(`*_unitavg`)을 두 파일에 나란히 추가하고
+`11_phase5_defect21_baseline_recheck.py`로 실사용 범위(21의 OAT 기반 A/B1,
+q3q4의 5축×7구간, 20의 과제C) 전체를 비교했다.
+
+결과: 전체 최대 차이 0.0818(임계값 0.01의 8배) — "실질 영향 없음"으로 넘길 수
+없었다. `lowshelf_gain` 축(q3q4, 전 구간)과 20의 과제C(family 평균 코사인,
+다수 패밀리쌍에서 0.01~0.08 차이)가 특히 영향을 받았다. Q3/Q4 표의 "between
+기준선" 열 자체는 `bootstrap_within_between`이 이미 `unit(v)`를 쓰는 별도
+경로라 이 결함과 무관함을 확인했다(재계산 불필요). 상세는
+`out/results/11_phase5_defect21_baseline_recheck.md`.
+
+결함 20: "5-E가 3-1의 결함18 미수정 원본(v1)을 계속 참조 — 수정이 하류로
+전파되지 않은 사례."
+결함 21: "고정방향 베이스라인을 raw 평균으로 추정해 목표 지표 기준 열등한
+값으로 잡음 — 편향 방향이 B2의 우위를 과대평가하는 쪽이었다."
