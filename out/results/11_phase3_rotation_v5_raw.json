@@ -1,0 +1,211 @@
+{
+  "unsigned_final": [
+    {
+      "pair": "reverb_wet_room",
+      "focus": "wet_level",
+      "context": "room_size",
+      "b0": 0.85,
+      "excluded": [],
+      "rot_context_max": {
+        "context_val": 0.05,
+        "mean_deg": 51.42710876464844,
+        "ci_lo": 50.44031129201253,
+        "ci_hi": 52.314681123097735,
+        "d_A": 0.08092310279607773
+      },
+      "rot_source": {
+        "mean_deg": 70.2684555053711,
+        "ci_lo": 69.87413584391275,
+        "ci_hi": 70.63907967885335
+      },
+      "context_vs_null": true,
+      "verdict": "context 부차적"
+    },
+    {
+      "pair": "reverb_wet_room",
+      "focus": "room_size",
+      "context": "wet_level",
+      "b0": 0.5,
+      "excluded": [
+        {
+          "context_val": 0.0,
+          "d_A": -4.043181789370465e-08
+        }
+      ],
+      "rot_context_max": {
+        "context_val": 0.041666666666666664,
+        "mean_deg": 55.86677169799805,
+        "ci_lo": 54.75023366292318,
+        "ci_hi": 56.9743372853597,
+        "d_A": 0.04613055661320686
+      },
+      "rot_source": {
+        "mean_deg": 70.91222381591797,
+        "ci_lo": 70.50004976908366,
+        "ci_hi": 71.29085599263509
+      },
+      "context_vs_null": true,
+      "verdict": "context 부차적"
+    },
+    {
+      "pair": "reverb_wet_damping",
+      "focus": "wet_level",
+      "context": "damping",
+      "b0": 0.0,
+      "excluded": [],
+      "rot_context_max": {
+        "context_val": 1.0,
+        "mean_deg": 16.461965560913086,
+        "ci_lo": 15.923315108617146,
+        "ci_hi": 17.011318152745563,
+        "d_A": 0.11513778567314148
+      },
+      "rot_source": {
+        "mean_deg": 74.25942993164062,
+        "ci_lo": 73.88489232381185,
+        "ci_hi": 74.59045454661052
+      },
+      "context_vs_null": true,
+      "verdict": "context 부차적"
+    },
+    {
+      "pair": "reverb_wet_damping",
+      "focus": "damping",
+      "context": "wet_level",
+      "b0": 0.5,
+      "excluded": [
+        {
+          "context_val": 0.0,
+          "d_A": -4.043181789370465e-08
+        }
+      ],
+      "rot_context_max": {
+        "context_val": 0.041666666666666664,
+        "mean_deg": 74.01227569580078,
+        "ci_lo": 72.91015235900879,
+        "ci_hi": 75.14498462677003,
+        "d_A": 0.002352958545088768
+      },
+      "rot_source": {
+        "mean_deg": 83.44340515136719,
+        "ci_lo": 83.09294926961263,
+        "ci_hi": 83.81593324025472
+      },
+      "context_vs_null": true,
+      "verdict": "context 부차적"
+    },
+    {
+      "pair": "reverb_room_damping",
+      "focus": "room_size",
+      "context": "damping",
+      "b0": 0.0,
+      "excluded": [],
+      "rot_context_max": {
+        "context_val": 1.0,
+        "mean_deg": 29.027978897094727,
+        "ci_lo": 28.037109362284344,
+        "ci_hi": 29.992387199401854,
+        "d_A": 0.08196093142032623
+      },
+      "rot_source": {
+        "mean_deg": 71.242431640625,
+        "ci_lo": 70.80297005971273,
+        "ci_hi": 71.61401067097982
+      },
+      "context_vs_null": true,
+      "verdict": "context 부차적"
+    },
+    {
+      "pair": "reverb_room_damping",
+      "focus": "damping",
+      "context": "room_size",
+      "b0": 0.85,
+      "excluded": [],
+      "rot_context_max": {
+        "context_val": 0.05,
+        "mean_deg": 75.8641128540039,
+        "ci_lo": 74.95360955556234,
+        "ci_hi": 76.71335842132568,
+        "d_A": 0.002172738779336214
+      },
+      "rot_source": {
+        "mean_deg": 80.43140411376953,
+        "ci_lo": 80.0672817993164,
+        "ci_hi": 80.794681930542
+      },
+      "context_vs_null": true,
+      "verdict": "context 부차적"
+    },
+    {
+      "pair": "highshelf_gain_cutoff",
+      "focus": "gain",
+      "context": "cutoff",
+      "b0": 500.0,
+      "excluded": [],
+      "rot_context_max": {
+        "context_val": 4000.0,
+        "mean_deg": 40.076210021972656,
+        "ci_lo": 39.445366541544594,
+        "ci_hi": 40.708602301279704,
+        "d_A": 0.04107370600104332
+      },
+      "rot_source": {
+        "mean_deg": 68.67736053466797,
+        "ci_lo": 68.29782886505127,
+        "ci_hi": 69.08633533477783
+      },
+      "context_vs_null": true,
+      "verdict": "context 부차적"
+    },
+    {
+      "pair": "lowshelf_gain_cutoff",
+      "focus": "gain",
+      "context": "cutoff",
+      "b0": 200.0,
+      "excluded": [],
+      "rot_context_max": {
+        "context_val": 30.0,
+        "mean_deg": 37.873199462890625,
+        "ci_lo": 36.88278791427612,
+        "ci_hi": 38.895979468027754,
+        "d_A": 0.007425668183714151
+      },
+      "rot_source": {
+        "mean_deg": 76.74994659423828,
+        "ci_lo": 76.26363094329834,
+        "ci_hi": 77.19962894439698
+      },
+      "context_vs_null": true,
+      "verdict": "context 부차적"
+    },
+    {
+      "pair": "peak_gain_cutoff",
+      "focus": "gain",
+      "context": "cutoff",
+      "b0": 825.0821377109633,
+      "excluded": [],
+      "rot_context_max": {
+        "context_val": 6000.0,
+        "mean_deg": 82.57211303710938,
+        "ci_lo": 81.44840152740478,
+        "ci_hi": 83.75819213867187,
+        "d_A": 0.08624346554279327
+      },
+      "rot_source": {
+        "mean_deg": 71.8917007446289,
+        "ci_lo": 71.5136269124349,
+        "ci_hi": 72.29934051513672
+      },
+      "context_vs_null": false,
+      "verdict": "context 무관(보정 후 널과 구분 안 됨)"
+    }
+  ],
+  "signed_reused_from": "11_phase3_rotation_v4_raw.json",
+  "null_band_bonf": [
+    82.59700398296883,
+    96.45409518926142
+  ],
+  "alpha_bonf": 0.0033333333333333335,
+  "null_disp_p95": 0.00010919868946075413,
+  "n_flipped_unsigned_of_9": 5
+}

@@ -143,7 +143,41 @@ normalize(e_min)`)으로 정의하면, b0 대비 약한 효과 지점에서 반�
 뒤집혔다(예측과 일치, `out/results/11_phase3_rotation_v4.md`). 부호 대칭
 결론(부스트/컷은 별개 손잡이)은 v3와 동일하게 유지된다.
 
-**미확인 사항(결함 19 후보)**: unsigned 9건과 Q3/Q4 등 다른 스크립트도 같은
-`normalize(e_max) - normalize(e_min)` 벡터 정의를 쓴다. 이번 수정 범위는
-인수인계 지시대로 signed 6건에 한정했고, unsigned/Q3/Q4에 같은 문제가
-있는지는 확인하지 않았다.
+**미확인 사항(당시 결함 19 후보, 아래에서 확정)**: unsigned 9건과 Q3/Q4 등
+다른 스크립트도 같은 `normalize(e_max) - normalize(e_min)` 벡터 정의를 쓴다.
+당시 수정 범위는 인수인계 지시대로 signed 6건에 한정했고, unsigned/Q3/Q4에
+같은 문제가 있는지는 확인하지 않았다.
+
+## 3-1 v5 addendum (2026-08-22, 결함 19)
+
+v4는 "unsigned 9건은 부호 문제 없음"이라며 v3 결과를 그대로 유지했다. 사용자
+지시로 이 면제가 무효라는 것이 확인됐다 — 결함 18의 실제 원인(정규화 순서)은
+부호 분기와 무관하므로 unsigned 9건도 영향권에 있다.
+
+**v5 방법(실행 전 확정)**: v2의 `run_pair_direction`(퇴화 판정·b0 선정 로직은
+그대로) 안에서 회전 벡터만 `normalize(e_max - e_min)`으로 바꿔 unsigned 9건을
+재산출한다. rot_source도 같은 v_b0를 쓰므로 함께 재산출된다. signed 6건은
+v4를 그대로 재사용(이미 올바른 정의로 계산됨).
+
+**결과(실행 후)**: unsigned 9건 중 5/9건이 판정을 바꿨다 — 전부 "context
+무관" → "context 부차적"으로 뒤집혔다(reverb_wet_room room_size-focus,
+reverb_wet_damping damping-focus, reverb_room_damping damping-focus,
+highshelf_gain_cutoff gain-focus, lowshelf_gain_cutoff gain-focus).
+peak_gain_cutoff(gain-focus)만 재산출 후에도 "context 무관"으로 남았다.
+나머지 3건(wet_room wet_level-focus, wet_damping wet_level-focus,
+room_damping room_size-focus)은 v3에서도 이미 "context 부차적"이었고 v5에서도
+유지됐다(각도 값 자체는 바뀌었으나 판정 문턱을 넘지 않음). 상세는
+`out/results/11_phase3_rotation_v5.md` 참고.
+
+결함 19: "결함 18을 signed 6건에만 적용하고 unsigned 9건은 원인을 '부호 분기
+경계'로 오진해 면제했다 — 실제 원인은 정규화 순서 자체로 부호와 무관했고,
+수정 범위가 실제 영향 범위보다 좁게 설정됐다."
+
+**갱신된 3-1 결론**: 15개 검정(unsigned 9 + signed 6) 중 이제 14건이 "context
+부차적"(cutoff/focus 방향의 손잡이가 실재하며, context 값에 따라 방향이 다소
+흔들리지만 소스 간 변동보다는 작다), 1건("peak_gain_cutoff, focus=gain")만
+"context 무관"이다. signed 6건은 전부 부차적로 일관되고, unsigned 9건 중 8건도
+부차적이다. Phase 5-D "context 조건 불필요" 판단(11차 인수인계 §5)은 이 갱신된
+결과를 기준으로 재확인해야 한다 — 15건 중 14건에서 context가 부차적으로나마
+영향을 준다는 것이 확인됐으므로, "완전히 무시 가능"보다는 "focus 방향이
+주도적이되 context 미세조정이 남아 있을 수 있다"는 결론에 더 가깝다.
