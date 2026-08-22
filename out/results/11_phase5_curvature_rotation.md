@@ -1,5 +1,9 @@
 # Phase 5-E — 곡률(bend)-회전(rotation) 통합표
 
+> ⚠️ **인용 금지 (결함 20)**: 이 파일의 rotation 열은 `11_phase3_rotation_raw.json`
+> (v1, 결함18 미수정 원본 — `normalize(e_max)-normalize(e_min)`)을 참조한다.
+> 최신 산출(v4/v5)로 교체·재실행한 버전은 `11_phase5_curvature_rotation_v2.md`를 볼 것.
+
 bend: 한 축 안에서 세게 걸수록 방향이 바뀌나(Phase 2). rotation: 다른 파라미터가 바뀌면 방향이 바뀌나(Phase 3, 3-1). 신규 계산 없음, 기존 산출 재사용.
 
 | bend 축 | rotation 쌍(focus) | bend 중앙값 | bend 최댓값 | rot_context 최댓값 | rot_source | 해석 |
