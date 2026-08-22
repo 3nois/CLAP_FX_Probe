@@ -122,6 +122,43 @@ def split_half_correction(v_by_family, n_reps, seed):
     return cross_cosine, self_cosine_dist, corrected_dist, families
 
 
+def split_half_correction_unitavg(v_by_family, n_reps, seed):
+    """결함 21 수정 — split_half_correction과 동일하지만 family 평균을
+    '먼저 정규화(unit) -> 평균'으로 낸다(raw 평균이 아님). 나란히 비교용.
+    v_by_family: {family: (n_i, 512) raw 배열} — 내부에서 unit()을 적용."""
+    families = sorted(v_by_family.keys())
+    v_unit_by_family = {f: unit(v_by_family[f]) for f in families}
+    full_mean = {f: v_unit_by_family[f].mean(axis=0) for f in families}
+    cross_cosine = {}
+    for fi, fj in itertools.combinations(families, 2):
+        a, b = full_mean[fi], full_mean[fj]
+        cross_cosine[(fi, fj)] = float(np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b) + 1e-12))
+
+    rng = np.random.RandomState(seed)
+    self_cosine_dist = {f: [] for f in families}
+    corrected_dist = {(fi, fj): [] for fi, fj in itertools.combinations(families, 2)}
+    for r in range(n_reps):
+        half_mean = {}
+        for f in families:
+            arr = v_unit_by_family[f]
+            n_i = arr.shape[0]
+            perm = rng.permutation(n_i)
+            half_a_idx, half_b_idx = perm[: n_i // 2], perm[n_i // 2:]
+            ma = arr[half_a_idx].mean(axis=0)
+            mb = arr[half_b_idx].mean(axis=0)
+            self_c = float(np.dot(ma, mb) / (np.linalg.norm(ma) * np.linalg.norm(mb) + 1e-12))
+            self_cosine_dist[f].append(self_c)
+            half_mean[f] = self_c
+        for fi, fj in itertools.combinations(families, 2):
+            si, sj = half_mean[fi], half_mean[fj]
+            denom = np.sqrt(max(si, 1e-6) * max(sj, 1e-6)) if si > 0 and sj > 0 else np.nan
+            corrected = cross_cosine[(fi, fj)] / denom if denom and denom > 1e-6 else np.nan
+            corrected_dist[(fi, fj)].append(corrected)
+    self_cosine_dist = {f: np.array(v) for f, v in self_cosine_dist.items()}
+    corrected_dist = {k: np.array(v) for k, v in corrected_dist.items()}
+    return cross_cosine, self_cosine_dist, corrected_dist, families
+
+
 def main():
     parser = argparse.ArgumentParser(description="6차 후속 — family cosine (OAT diff-vector, 원래 질문)")
     parser.add_argument("--oat-emb", type=str, default="out/oat_emb.npz")
