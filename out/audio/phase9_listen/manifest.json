@@ -1,0 +1,362 @@
+[
+  {
+    "axis": "distortion_drive_db",
+    "level": 12,
+    "alpha": 0.3,
+    "query_src": 731,
+    "R0_top1_src": 730,
+    "R0_top1_tag": "wet@18",
+    "R1_top1_src": 730,
+    "R1_top1_tag": "dry",
+    "files": [
+      "distortion_drive_db_lvl12_src731_query.wav",
+      "distortion_drive_db_lvl12_src731_R0top1.wav",
+      "distortion_drive_db_lvl12_src731_R1top1.wav"
+    ]
+  },
+  {
+    "axis": "distortion_drive_db",
+    "level": 12,
+    "alpha": 0.3,
+    "query_src": 566,
+    "R0_top1_src": 567,
+    "R0_top1_tag": "wet@18",
+    "R1_top1_src": 569,
+    "R1_top1_tag": "dry",
+    "files": [
+      "distortion_drive_db_lvl12_src566_query.wav",
+      "distortion_drive_db_lvl12_src566_R0top1.wav",
+      "distortion_drive_db_lvl12_src566_R1top1.wav"
+    ]
+  },
+  {
+    "axis": "distortion_drive_db",
+    "level": 12,
+    "alpha": 0.3,
+    "query_src": 75,
+    "R0_top1_src": 76,
+    "R0_top1_tag": "wet@18",
+    "R1_top1_src": 487,
+    "R1_top1_tag": "dry",
+    "files": [
+      "distortion_drive_db_lvl12_src75_query.wav",
+      "distortion_drive_db_lvl12_src75_R0top1.wav",
+      "distortion_drive_db_lvl12_src75_R1top1.wav"
+    ]
+  },
+  {
+    "axis": "distortion_drive_db",
+    "level": 12,
+    "alpha": 0.3,
+    "query_src": 702,
+    "R0_top1_src": 150,
+    "R0_top1_tag": "wet@18",
+    "R1_top1_src": 703,
+    "R1_top1_tag": "dry",
+    "files": [
+      "distortion_drive_db_lvl12_src702_query.wav",
+      "distortion_drive_db_lvl12_src702_R0top1.wav",
+      "distortion_drive_db_lvl12_src702_R1top1.wav"
+    ]
+  },
+  {
+    "axis": "distortion_drive_db",
+    "level": 18,
+    "alpha": 0.4,
+    "query_src": 731,
+    "R0_top1_src": 730,
+    "R0_top1_tag": "wet@18",
+    "R1_top1_src": 730,
+    "R1_top1_tag": "wet@18",
+    "files": [
+      "distortion_drive_db_lvl18_src731_query.wav",
+      "distortion_drive_db_lvl18_src731_R0top1.wav",
+      "distortion_drive_db_lvl18_src731_R1top1.wav"
+    ]
+  },
+  {
+    "axis": "distortion_drive_db",
+    "level": 18,
+    "alpha": 0.4,
+    "query_src": 566,
+    "R0_top1_src": 567,
+    "R0_top1_tag": "wet@18",
+    "R1_top1_src": 569,
+    "R1_top1_tag": "dry",
+    "files": [
+      "distortion_drive_db_lvl18_src566_query.wav",
+      "distortion_drive_db_lvl18_src566_R0top1.wav",
+      "distortion_drive_db_lvl18_src566_R1top1.wav"
+    ]
+  },
+  {
+    "axis": "distortion_drive_db",
+    "level": 18,
+    "alpha": 0.4,
+    "query_src": 75,
+    "R0_top1_src": 76,
+    "R0_top1_tag": "wet@24",
+    "R1_top1_src": 77,
+    "R1_top1_tag": "dry",
+    "files": [
+      "distortion_drive_db_lvl18_src75_query.wav",
+      "distortion_drive_db_lvl18_src75_R0top1.wav",
+      "distortion_drive_db_lvl18_src75_R1top1.wav"
+    ]
+  },
+  {
+    "axis": "distortion_drive_db",
+    "level": 18,
+    "alpha": 0.4,
+    "query_src": 702,
+    "R0_top1_src": 150,
+    "R0_top1_tag": "wet@18",
+    "R1_top1_src": 703,
+    "R1_top1_tag": "dry",
+    "files": [
+      "distortion_drive_db_lvl18_src702_query.wav",
+      "distortion_drive_db_lvl18_src702_R0top1.wav",
+      "distortion_drive_db_lvl18_src702_R1top1.wav"
+    ]
+  },
+  {
+    "axis": "distortion_drive_db",
+    "level": 24,
+    "alpha": 0.5,
+    "query_src": 731,
+    "R0_top1_src": 161,
+    "R0_top1_tag": "wet@24",
+    "R1_top1_src": 730,
+    "R1_top1_tag": "wet@18",
+    "files": [
+      "distortion_drive_db_lvl24_src731_query.wav",
+      "distortion_drive_db_lvl24_src731_R0top1.wav",
+      "distortion_drive_db_lvl24_src731_R1top1.wav"
+    ]
+  },
+  {
+    "axis": "distortion_drive_db",
+    "level": 24,
+    "alpha": 0.5,
+    "query_src": 566,
+    "R0_top1_src": 567,
+    "R0_top1_tag": "wet@24",
+    "R1_top1_src": 569,
+    "R1_top1_tag": "dry",
+    "files": [
+      "distortion_drive_db_lvl24_src566_query.wav",
+      "distortion_drive_db_lvl24_src566_R0top1.wav",
+      "distortion_drive_db_lvl24_src566_R1top1.wav"
+    ]
+  },
+  {
+    "axis": "distortion_drive_db",
+    "level": 24,
+    "alpha": 0.5,
+    "query_src": 75,
+    "R0_top1_src": 76,
+    "R0_top1_tag": "wet@24",
+    "R1_top1_src": 77,
+    "R1_top1_tag": "dry",
+    "files": [
+      "distortion_drive_db_lvl24_src75_query.wav",
+      "distortion_drive_db_lvl24_src75_R0top1.wav",
+      "distortion_drive_db_lvl24_src75_R1top1.wav"
+    ]
+  },
+  {
+    "axis": "distortion_drive_db",
+    "level": 24,
+    "alpha": 0.5,
+    "query_src": 702,
+    "R0_top1_src": 150,
+    "R0_top1_tag": "wet@24",
+    "R1_top1_src": 150,
+    "R1_top1_tag": "dry",
+    "files": [
+      "distortion_drive_db_lvl24_src702_query.wav",
+      "distortion_drive_db_lvl24_src702_R0top1.wav",
+      "distortion_drive_db_lvl24_src702_R1top1.wav"
+    ]
+  },
+  {
+    "axis": "reverb_room_size",
+    "level": 12,
+    "alpha": 0.2,
+    "query_src": 937,
+    "R0_top1_src": 271,
+    "R0_top1_tag": "wet@18",
+    "R1_top1_src": 271,
+    "R1_top1_tag": "dry",
+    "files": [
+      "reverb_room_size_lvl12_src937_query.wav",
+      "reverb_room_size_lvl12_src937_R0top1.wav",
+      "reverb_room_size_lvl12_src937_R1top1.wav"
+    ]
+  },
+  {
+    "axis": "reverb_room_size",
+    "level": 12,
+    "alpha": 0.2,
+    "query_src": 1124,
+    "R0_top1_src": 1121,
+    "R0_top1_tag": "wet@18",
+    "R1_top1_src": 1120,
+    "R1_top1_tag": "dry",
+    "files": [
+      "reverb_room_size_lvl12_src1124_query.wav",
+      "reverb_room_size_lvl12_src1124_R0top1.wav",
+      "reverb_room_size_lvl12_src1124_R1top1.wav"
+    ]
+  },
+  {
+    "axis": "reverb_room_size",
+    "level": 12,
+    "alpha": 0.2,
+    "query_src": 779,
+    "R0_top1_src": 672,
+    "R0_top1_tag": "wet@18",
+    "R1_top1_src": 746,
+    "R1_top1_tag": "dry",
+    "files": [
+      "reverb_room_size_lvl12_src779_query.wav",
+      "reverb_room_size_lvl12_src779_R0top1.wav",
+      "reverb_room_size_lvl12_src779_R1top1.wav"
+    ]
+  },
+  {
+    "axis": "reverb_room_size",
+    "level": 12,
+    "alpha": 0.2,
+    "query_src": 330,
+    "R0_top1_src": 1064,
+    "R0_top1_tag": "wet@18",
+    "R1_top1_src": 1064,
+    "R1_top1_tag": "wet@18",
+    "files": [
+      "reverb_room_size_lvl12_src330_query.wav",
+      "reverb_room_size_lvl12_src330_R0top1.wav",
+      "reverb_room_size_lvl12_src330_R1top1.wav"
+    ]
+  },
+  {
+    "axis": "reverb_room_size",
+    "level": 18,
+    "alpha": 0.3,
+    "query_src": 937,
+    "R0_top1_src": 936,
+    "R0_top1_tag": "wet@18",
+    "R1_top1_src": 271,
+    "R1_top1_tag": "dry",
+    "files": [
+      "reverb_room_size_lvl18_src937_query.wav",
+      "reverb_room_size_lvl18_src937_R0top1.wav",
+      "reverb_room_size_lvl18_src937_R1top1.wav"
+    ]
+  },
+  {
+    "axis": "reverb_room_size",
+    "level": 18,
+    "alpha": 0.3,
+    "query_src": 1124,
+    "R0_top1_src": 1121,
+    "R0_top1_tag": "wet@18",
+    "R1_top1_src": 1121,
+    "R1_top1_tag": "dry",
+    "files": [
+      "reverb_room_size_lvl18_src1124_query.wav",
+      "reverb_room_size_lvl18_src1124_R0top1.wav",
+      "reverb_room_size_lvl18_src1124_R1top1.wav"
+    ]
+  },
+  {
+    "axis": "reverb_room_size",
+    "level": 18,
+    "alpha": 0.3,
+    "query_src": 779,
+    "R0_top1_src": 746,
+    "R0_top1_tag": "wet@18",
+    "R1_top1_src": 781,
+    "R1_top1_tag": "dry",
+    "files": [
+      "reverb_room_size_lvl18_src779_query.wav",
+      "reverb_room_size_lvl18_src779_R0top1.wav",
+      "reverb_room_size_lvl18_src779_R1top1.wav"
+    ]
+  },
+  {
+    "axis": "reverb_room_size",
+    "level": 18,
+    "alpha": 0.3,
+    "query_src": 330,
+    "R0_top1_src": 1064,
+    "R0_top1_tag": "wet@18",
+    "R1_top1_src": 1064,
+    "R1_top1_tag": "wet@18",
+    "files": [
+      "reverb_room_size_lvl18_src330_query.wav",
+      "reverb_room_size_lvl18_src330_R0top1.wav",
+      "reverb_room_size_lvl18_src330_R1top1.wav"
+    ]
+  },
+  {
+    "axis": "reverb_room_size",
+    "level": 24,
+    "alpha": 0.5,
+    "query_src": 937,
+    "R0_top1_src": 936,
+    "R0_top1_tag": "wet@24",
+    "R1_top1_src": 271,
+    "R1_top1_tag": "dry",
+    "files": [
+      "reverb_room_size_lvl24_src937_query.wav",
+      "reverb_room_size_lvl24_src937_R0top1.wav",
+      "reverb_room_size_lvl24_src937_R1top1.wav"
+    ]
+  },
+  {
+    "axis": "reverb_room_size",
+    "level": 24,
+    "alpha": 0.5,
+    "query_src": 1124,
+    "R0_top1_src": 1121,
+    "R0_top1_tag": "wet@24",
+    "R1_top1_src": 361,
+    "R1_top1_tag": "dry",
+    "files": [
+      "reverb_room_size_lvl24_src1124_query.wav",
+      "reverb_room_size_lvl24_src1124_R0top1.wav",
+      "reverb_room_size_lvl24_src1124_R1top1.wav"
+    ]
+  },
+  {
+    "axis": "reverb_room_size",
+    "level": 24,
+    "alpha": 0.5,
+    "query_src": 779,
+    "R0_top1_src": 781,
+    "R0_top1_tag": "wet@24",
+    "R1_top1_src": 169,
+    "R1_top1_tag": "dry",
+    "files": [
+      "reverb_room_size_lvl24_src779_query.wav",
+      "reverb_room_size_lvl24_src779_R0top1.wav",
+      "reverb_room_size_lvl24_src779_R1top1.wav"
+    ]
+  },
+  {
+    "axis": "reverb_room_size",
+    "level": 24,
+    "alpha": 0.5,
+    "query_src": 330,
+    "R0_top1_src": 1064,
+    "R0_top1_tag": "wet@24",
+    "R1_top1_src": 1062,
+    "R1_top1_tag": "wet@18",
+    "files": [
+      "reverb_room_size_lvl24_src330_query.wav",
+      "reverb_room_size_lvl24_src330_R0top1.wav",
+      "reverb_room_size_lvl24_src330_R1top1.wav"
+    ]
+  }
+]
