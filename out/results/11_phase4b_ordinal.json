@@ -1,0 +1,39 @@
+{
+  "seed": 0,
+  "n_splits": 5,
+  "test_size": 0.3,
+  "bins": 25,
+  "instrument_ami": 0.7732,
+  "rows": [
+    {
+      "axis": "distortion_drive_db",
+      "n_sources": 1200,
+      "n_levels": 25,
+      "ami": 0.1905060345532236,
+      "rho_clf": 0.834079815114422,
+      "rho_reg": 0.8945034062256377,
+      "r2": 0.7872956699122351,
+      "n_folds": 5
+    },
+    {
+      "axis": "reverb_room_size",
+      "n_sources": 1200,
+      "n_levels": 25,
+      "ami": 0.15327978010023074,
+      "rho_clf": 0.7637205217573675,
+      "rho_reg": 0.8484352107614708,
+      "r2": 0.6993307877181295,
+      "n_folds": 5
+    },
+    {
+      "axis": "highshelf_gain",
+      "n_sources": 1200,
+      "n_levels": 25,
+      "ami": 0.1462219528408662,
+      "rho_clf": 0.7732895669121295,
+      "rho_reg": 0.8605270310427902,
+      "r2": 0.7227836401184039,
+      "n_folds": 5
+    }
+  ]
+}
