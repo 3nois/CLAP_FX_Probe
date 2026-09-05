@@ -1,0 +1,786 @@
+{
+  "seed": 0,
+  "n_boot": 300,
+  "rows": [
+    {
+      "axis": "distortion_drive_db",
+      "interval": "전범위",
+      "is_original_5": true,
+      "within_mean": 0.4185468886913455,
+      "between_mean": 0.29726667757331826,
+      "gap_mean": 0.12128021111802721,
+      "gap_ci": [
+        0.11469514925772531,
+        0.12836496298103958
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "distortion_drive_db",
+      "interval": "하위1/3",
+      "is_original_5": true,
+      "within_mean": 0.35597299648516945,
+      "between_mean": 0.2601840509675364,
+      "gap_mean": 0.09578894551763306,
+      "gap_ci": [
+        0.0896252716586041,
+        0.10252195940835541
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "distortion_drive_db",
+      "interval": "중위1/3",
+      "is_original_5": true,
+      "within_mean": 0.2857762491657556,
+      "between_mean": 0.18963369877417555,
+      "gap_mean": 0.09614255039158003,
+      "gap_ci": [
+        0.09014082922593329,
+        0.10234675811207955
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "distortion_drive_db",
+      "interval": "상위1/3",
+      "is_original_5": true,
+      "within_mean": 0.2447995878188101,
+      "between_mean": 0.14027118921333145,
+      "gap_mean": 0.10452839860547865,
+      "gap_ci": [
+        0.09765860281166608,
+        0.1113333046863421
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "reverb_room_size",
+      "interval": "전범위",
+      "is_original_5": true,
+      "within_mean": 0.43940753341949074,
+      "between_mean": 0.304191565853752,
+      "gap_mean": 0.13521596756573875,
+      "gap_ci": [
+        0.12772160451529582,
+        0.14272977587699462
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "reverb_room_size",
+      "interval": "하위1/3",
+      "is_original_5": true,
+      "within_mean": 0.2562581465702964,
+      "between_mean": 0.15936244310513645,
+      "gap_mean": 0.09689570346516001,
+      "gap_ci": [
+        0.0899220808589135,
+        0.10435343198773957
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "reverb_room_size",
+      "interval": "중위1/3",
+      "is_original_5": true,
+      "within_mean": 0.32510468919895513,
+      "between_mean": 0.21818586250163255,
+      "gap_mean": 0.10691882669732258,
+      "gap_ci": [
+        0.0996785918245519,
+        0.11432048794989232
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "reverb_room_size",
+      "interval": "상위1/3",
+      "is_original_5": true,
+      "within_mean": 0.38533164589839347,
+      "between_mean": 0.25698447484197723,
+      "gap_mean": 0.1283471710564161,
+      "gap_ci": [
+        0.12120685596247095,
+        0.1362970156500817
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "highshelf_gain",
+      "interval": "전범위",
+      "is_original_5": true,
+      "within_mean": 0.39309408948915897,
+      "between_mean": 0.252062770212831,
+      "gap_mean": 0.14103131927632787,
+      "gap_ci": [
+        0.1327567981220452,
+        0.14943881800984837
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "highshelf_gain",
+      "interval": "하위1/3",
+      "is_original_5": true,
+      "within_mean": 0.3191144897454939,
+      "between_mean": 0.17117876640217905,
+      "gap_mean": 0.14793572334331484,
+      "gap_ci": [
+        0.13833937666850876,
+        0.157021367841388
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "highshelf_gain",
+      "interval": "중위1/3",
+      "is_original_5": true,
+      "within_mean": 0.33698520086873857,
+      "between_mean": 0.21186197918899705,
+      "gap_mean": 0.1251232216797415,
+      "gap_ci": [
+        0.1180461645493439,
+        0.13244301177038123
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "highshelf_gain",
+      "interval": "상위1/3",
+      "is_original_5": true,
+      "within_mean": 0.3490027654346457,
+      "between_mean": 0.21181113329429266,
+      "gap_mean": 0.13719163214035301,
+      "gap_ci": [
+        0.12919488698271553,
+        0.14546320262996623
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "lowshelf_gain",
+      "interval": "전범위",
+      "is_original_5": true,
+      "within_mean": 0.2801421823145604,
+      "between_mean": 0.17783947418248583,
+      "gap_mean": 0.10230270813207455,
+      "gap_ci": [
+        0.09474084845541872,
+        0.11021528677101392
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "lowshelf_gain",
+      "interval": "하위1/3",
+      "is_original_5": true,
+      "within_mean": 0.23536296462279768,
+      "between_mean": 0.13921727224658628,
+      "gap_mean": 0.09614569237621143,
+      "gap_ci": [
+        0.08971832227932398,
+        0.10291179657833098
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "lowshelf_gain",
+      "interval": "중위1/3",
+      "is_original_5": true,
+      "within_mean": 0.2398879938344322,
+      "between_mean": 0.1468591233007695,
+      "gap_mean": 0.0930288705336627,
+      "gap_ci": [
+        0.08629960478512737,
+        0.10090049219284415
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "lowshelf_gain",
+      "interval": "상위1/3",
+      "is_original_5": true,
+      "within_mean": 0.2541045741454033,
+      "between_mean": 0.16199519668580606,
+      "gap_mean": 0.09210937745959719,
+      "gap_ci": [
+        0.08455289778612599,
+        0.09990875362869768
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "peak_gain",
+      "interval": "전범위",
+      "is_original_5": true,
+      "within_mean": 0.35778196757300135,
+      "between_mean": 0.23564245937647688,
+      "gap_mean": 0.12213950819652442,
+      "gap_ci": [
+        0.11482399269073612,
+        0.13022689715403596
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "peak_gain",
+      "interval": "하위1/3",
+      "is_original_5": true,
+      "within_mean": 0.29340871052263245,
+      "between_mean": 0.1703932572676277,
+      "gap_mean": 0.12301545325500475,
+      "gap_ci": [
+        0.11507169205805994,
+        0.1325237975006416
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "peak_gain",
+      "interval": "중위1/3",
+      "is_original_5": true,
+      "within_mean": 0.2971193768916751,
+      "between_mean": 0.18295042167942005,
+      "gap_mean": 0.11416895521225508,
+      "gap_ci": [
+        0.10714502107695861,
+        0.12234404822724806
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "peak_gain",
+      "interval": "상위1/3",
+      "is_original_5": true,
+      "within_mean": 0.3469669371208259,
+      "between_mean": 0.2251526361849821,
+      "gap_mean": 0.12181430093584376,
+      "gap_ci": [
+        0.11359755785198411,
+        0.13057912821883938
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "reverb_wet_level",
+      "interval": "전범위",
+      "is_original_5": false,
+      "within_mean": 0.3843280248081883,
+      "between_mean": 0.25694730484453077,
+      "gap_mean": 0.12738071996365746,
+      "gap_ci": [
+        0.1200676724077827,
+        0.13527789299580104
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "reverb_wet_level",
+      "interval": "하위1/3",
+      "is_original_5": false,
+      "within_mean": 0.3158911610264549,
+      "between_mean": 0.19522944423586366,
+      "gap_mean": 0.12066171679059126,
+      "gap_ci": [
+        0.11217151410538476,
+        0.1306922858802816
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "reverb_wet_level",
+      "interval": "중위1/3",
+      "is_original_5": false,
+      "within_mean": 0.27074574912847366,
+      "between_mean": 0.1713353521530997,
+      "gap_mean": 0.09941039697537399,
+      "gap_ci": [
+        0.09282345843970595,
+        0.1062943195010798
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "reverb_wet_level",
+      "interval": "상위1/3",
+      "is_original_5": false,
+      "within_mean": 0.26631375943972196,
+      "between_mean": 0.154312418868135,
+      "gap_mean": 0.11200134057158696,
+      "gap_ci": [
+        0.10433921205535719,
+        0.11836181513174229
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "reverb_damping",
+      "interval": "전범위",
+      "is_original_5": false,
+      "within_mean": 0.16992668809712852,
+      "between_mean": 0.08555391958338454,
+      "gap_mean": 0.08437276851374396,
+      "gap_ci": [
+        0.077467764507026,
+        0.09104235902962428
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "reverb_damping",
+      "interval": "하위1/3",
+      "is_original_5": false,
+      "within_mean": 0.11109800604689156,
+      "between_mean": 0.051092500601949226,
+      "gap_mean": 0.06000550544494234,
+      "gap_ci": [
+        0.05451031326972839,
+        0.06584170411704621
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "reverb_damping",
+      "interval": "중위1/3",
+      "is_original_5": false,
+      "within_mean": 0.11282723315141503,
+      "between_mean": 0.05364399088866766,
+      "gap_mean": 0.05918324226274736,
+      "gap_ci": [
+        0.05381008243431779,
+        0.06490458314294129
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "reverb_damping",
+      "interval": "상위1/3",
+      "is_original_5": false,
+      "within_mean": 0.12808563469064976,
+      "between_mean": 0.06663184855914127,
+      "gap_mean": 0.06145378613150849,
+      "gap_ci": [
+        0.05584354131625028,
+        0.06713353217807137
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "reverb_width",
+      "interval": "전범위",
+      "is_original_5": false,
+      "within_mean": 0.24665114400243007,
+      "between_mean": 0.15020893937220636,
+      "gap_mean": 0.09644220463022368,
+      "gap_ci": [
+        0.08904134849758838,
+        0.10326187416039227
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "reverb_width",
+      "interval": "하위1/3",
+      "is_original_5": false,
+      "within_mean": 0.22798170300659024,
+      "between_mean": 0.13948756847725452,
+      "gap_mean": 0.08849413452933569,
+      "gap_ci": [
+        0.08208462791613924,
+        0.09522240481779053
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "reverb_width",
+      "interval": "중위1/3",
+      "is_original_5": false,
+      "within_mean": 0.22286321478483037,
+      "between_mean": 0.13516669674884058,
+      "gap_mean": 0.08769651803598981,
+      "gap_ci": [
+        0.08062443224006373,
+        0.09399440001347084
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "reverb_width",
+      "interval": "상위1/3",
+      "is_original_5": false,
+      "within_mean": 0.2188524117004715,
+      "between_mean": 0.128313045406833,
+      "gap_mean": 0.09053936629363847,
+      "gap_ci": [
+        0.08339930116965899,
+        0.09708488955052551
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "eq_cascade_intensity",
+      "interval": "전범위",
+      "is_original_5": false,
+      "within_mean": 0.040869270302008355,
+      "between_mean": 0.017588047058589903,
+      "gap_mean": 0.023281223243418456,
+      "gap_ci": [
+        0.01948390608009047,
+        0.027091243917459113
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "eq_cascade_intensity",
+      "interval": "하위1/3",
+      "is_original_5": false,
+      "within_mean": 0.012699377973983204,
+      "between_mean": 0.0031860757157941328,
+      "gap_mean": 0.009513302258189072,
+      "gap_ci": [
+        0.00670977527886858,
+        0.012820935851293947
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "eq_cascade_intensity",
+      "interval": "중위1/3",
+      "is_original_5": false,
+      "within_mean": 0.04255677716187809,
+      "between_mean": 0.018332829742537544,
+      "gap_mean": 0.02422394741934055,
+      "gap_ci": [
+        0.020311056645735133,
+        0.027975390947166293
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "eq_cascade_intensity",
+      "interval": "상위1/3",
+      "is_original_5": false,
+      "within_mean": 0.07175453439548797,
+      "between_mean": 0.032456602304286326,
+      "gap_mean": 0.039297932091201644,
+      "gap_ci": [
+        0.03459474930222397,
+        0.04411910669013911
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "highshelf_cutoff_gp6",
+      "interval": "전범위",
+      "is_original_5": false,
+      "within_mean": 0.3085064903581218,
+      "between_mean": 0.19895673776446582,
+      "gap_mean": 0.10954975259365597,
+      "gap_ci": [
+        0.10321872129243649,
+        0.11716522184901468
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "highshelf_cutoff_gp6",
+      "interval": "하위1/3",
+      "is_original_5": false,
+      "within_mean": 0.259507731310871,
+      "between_mean": 0.15625612733844713,
+      "gap_mean": 0.10325160397242385,
+      "gap_ci": [
+        0.09615941873064093,
+        0.1110610988361564
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "highshelf_cutoff_gp6",
+      "interval": "중위1/3",
+      "is_original_5": false,
+      "within_mean": 0.22374561890542685,
+      "between_mean": 0.11504289259946965,
+      "gap_mean": 0.10870272630595716,
+      "gap_ci": [
+        0.10115961606539088,
+        0.1168725355063197
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "highshelf_cutoff_gp6",
+      "interval": "상위1/3",
+      "is_original_5": false,
+      "within_mean": 0.2798992477561924,
+      "between_mean": 0.16487904956276722,
+      "gap_mean": 0.11502019819342517,
+      "gap_ci": [
+        0.10768508561488535,
+        0.1229214635647791
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "highshelf_q_gp6",
+      "interval": "전범위",
+      "is_original_5": false,
+      "within_mean": 0.2796489897621489,
+      "between_mean": 0.14790265645673176,
+      "gap_mean": 0.13174633330541716,
+      "gap_ci": [
+        0.12258257408196922,
+        0.14076154989135498
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "highshelf_q_gp6",
+      "interval": "하위1/3",
+      "is_original_5": false,
+      "within_mean": 0.278445072295335,
+      "between_mean": 0.1686283977766429,
+      "gap_mean": 0.10981667451869206,
+      "gap_ci": [
+        0.10244457377938421,
+        0.11829839541886153
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "highshelf_q_gp6",
+      "interval": "중위1/3",
+      "is_original_5": false,
+      "within_mean": 0.2514149244589183,
+      "between_mean": 0.1275170296024198,
+      "gap_mean": 0.12389789485649848,
+      "gap_ci": [
+        0.114332108988566,
+        0.13271891349617224
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "highshelf_q_gp6",
+      "interval": "상위1/3",
+      "is_original_5": false,
+      "within_mean": 0.27493862020072335,
+      "between_mean": 0.154670184443929,
+      "gap_mean": 0.12026843575679436,
+      "gap_ci": [
+        0.1116068049199531,
+        0.12962101740223184
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "lowshelf_cutoff_gp6",
+      "interval": "전범위",
+      "is_original_5": false,
+      "within_mean": 0.225691621549858,
+      "between_mean": 0.1302641102064501,
+      "gap_mean": 0.0954275113434079,
+      "gap_ci": [
+        0.0878969308848649,
+        0.10360924351115668
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "lowshelf_cutoff_gp6",
+      "interval": "하위1/3",
+      "is_original_5": false,
+      "within_mean": 0.15825083410273527,
+      "between_mean": 0.0865425498315959,
+      "gap_mean": 0.07170828427113936,
+      "gap_ci": [
+        0.06448915503288918,
+        0.08034704442884712
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "lowshelf_cutoff_gp6",
+      "interval": "중위1/3",
+      "is_original_5": false,
+      "within_mean": 0.19120472316088302,
+      "between_mean": 0.10866760230088664,
+      "gap_mean": 0.0825371208599964,
+      "gap_ci": [
+        0.07610417774265181,
+        0.09041374047009844
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "lowshelf_cutoff_gp6",
+      "interval": "상위1/3",
+      "is_original_5": false,
+      "within_mean": 0.1905444791206265,
+      "between_mean": 0.10156591963108369,
+      "gap_mean": 0.08897855948954281,
+      "gap_ci": [
+        0.0819039414895635,
+        0.09696981746445292
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "lowshelf_q_gp6",
+      "interval": "전범위",
+      "is_original_5": false,
+      "within_mean": 0.2083583053624386,
+      "between_mean": 0.1280498808149072,
+      "gap_mean": 0.08030842454753141,
+      "gap_ci": [
+        0.07285590317132079,
+        0.08784842484131009
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "lowshelf_q_gp6",
+      "interval": "하위1/3",
+      "is_original_5": false,
+      "within_mean": 0.29382095193076574,
+      "between_mean": 0.18891757424431171,
+      "gap_mean": 0.10490337768645407,
+      "gap_ci": [
+        0.09700230956123214,
+        0.11355068772181787
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "lowshelf_q_gp6",
+      "interval": "중위1/3",
+      "is_original_5": false,
+      "within_mean": 0.18106235911162988,
+      "between_mean": 0.10432397189057496,
+      "gap_mean": 0.07673838722105492,
+      "gap_ci": [
+        0.06978570846406286,
+        0.08476877476709983
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "lowshelf_q_gp6",
+      "interval": "상위1/3",
+      "is_original_5": false,
+      "within_mean": 0.14252866475944326,
+      "between_mean": 0.0797592441000355,
+      "gap_mean": 0.06276942065940776,
+      "gap_ci": [
+        0.05663734955291559,
+        0.06961081662254204
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "peak_cutoff_gp6",
+      "interval": "전범위",
+      "is_original_5": false,
+      "within_mean": 0.2598181239121868,
+      "between_mean": 0.14741321149426947,
+      "gap_mean": 0.11240491241791732,
+      "gap_ci": [
+        0.10423274978543313,
+        0.12104772772562558
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "peak_cutoff_gp6",
+      "interval": "하위1/3",
+      "is_original_5": false,
+      "within_mean": 0.19730414482090666,
+      "between_mean": 0.08390656746196404,
+      "gap_mean": 0.11339757735894263,
+      "gap_ci": [
+        0.10342180514251309,
+        0.1245752270284965
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "peak_cutoff_gp6",
+      "interval": "중위1/3",
+      "is_original_5": false,
+      "within_mean": 0.20124377237602406,
+      "between_mean": 0.09546308524976316,
+      "gap_mean": 0.10578068712626094,
+      "gap_ci": [
+        0.09679304692172257,
+        0.11588586475789263
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "peak_cutoff_gp6",
+      "interval": "상위1/3",
+      "is_original_5": false,
+      "within_mean": 0.24784459519810453,
+      "between_mean": 0.13293260839791288,
+      "gap_mean": 0.11491198680019167,
+      "gap_ci": [
+        0.10676649653870209,
+        0.1245141508818689
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "peak_q_gp6",
+      "interval": "전범위",
+      "is_original_5": false,
+      "within_mean": 0.38068711881548173,
+      "between_mean": 0.28838472742044485,
+      "gap_mean": 0.0923023913950369,
+      "gap_ci": [
+        0.08720408595612189,
+        0.0978010829673351
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "peak_q_gp6",
+      "interval": "하위1/3",
+      "is_original_5": false,
+      "within_mean": 0.3326585040545911,
+      "between_mean": 0.21879522659611003,
+      "gap_mean": 0.11386327745848104,
+      "gap_ci": [
+        0.10633057868313858,
+        0.12200775369513386
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "peak_q_gp6",
+      "interval": "중위1/3",
+      "is_original_5": false,
+      "within_mean": 0.30580004003546485,
+      "between_mean": 0.21107344449466056,
+      "gap_mean": 0.09472659554080426,
+      "gap_ci": [
+        0.0893312444458363,
+        0.10103109101404836
+      ],
+      "verdict": "within > between"
+    },
+    {
+      "axis": "peak_q_gp6",
+      "interval": "상위1/3",
+      "is_original_5": false,
+      "within_mean": 0.27609961816084944,
+      "between_mean": 0.1762002591921004,
+      "gap_mean": 0.09989935896874905,
+      "gap_ci": [
+        0.09355356508519255,
+        0.10753643274703223
+      ],
+      "verdict": "within > between"
+    }
+  ]
+}
