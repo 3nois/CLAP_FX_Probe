@@ -1,10 +1,8 @@
 <!-- docs/개인_포트폴리오_논문_최종.docx 를 pandoc 으로 변환한 파일이다.
-     docx 가 정본이며 여기서는 두 가지만 교정했다.
-       · Ⅱ장 §5 가 둘이던 것을 §5(R² 범위 종속성) / §6(AMI) 로 분리
-       · 참고문헌 번호를 각주 등장 순서에 맞게 재정렬
+     docx 가 정본이며 여기서는 Ⅱ장 §5 중복 번호만 §5/§6 으로 나눴다.
      수식은 GitHub 이 렌더링하는 $…$ 표기, 그림은 docs/paper_media/ 에 있다. -->
 
-**CLAP 음색 임베딩의 오디오 이펙트 정보: TokenSynth의 성능 향상을 중심으로**
+**CLAP 음색 임베딩의 오디오 이펙트 정보 분석: TokenSynth 성능 향상을 중심으로**
 
 | **작성자** | 김성현 / 첨단융합학부                                             |
 |------------|-------------------------------------------------------------------|
@@ -14,9 +12,9 @@
 
 # 초록
 
-CLAP 음색 임베딩이 오디오 이펙트 정보를 담는지, 담는다면 그 정보로 이펙트를 제어할 수 있는지를 측정했다. 대상은 TokenSynth가 증강 학습의 음색 지표 저하 원인으로 추정했으나 측정하지는 않은 진술이다. NSynth 1200개 소스에 이펙트 3계열 23축을 각 25레벨로 적용해 575000회 렌더링하고, Q1~Q6 6가지 질문에 답했다. 이펙트 정보는 존재하며, 악기 정체성보다는 유의하게 약하다. 이펙트를 조작하는 방향은 소스마다 다르며, 그 방향은 임베딩만으로 예측된다. 그러나 그 방향으로 조건 벡터를 이동시켜 오디오를 생성하면 유의하지 않은 결과가 나온다. 손실 지점을 Projection 층의 국소 유효계수, 프리픽스 토큰 하나를 공유하는 조건 채널의 경쟁, 자기회귀 샘플링 잔차로 특정하여 대응하여 성능이 1.77배가 향상되었으나 실용 수준에는 이르지 못했다.
+CLAP 음색 임베딩이 오디오 이펙트 정보를 담는지, 담는다면 그 정보로 이펙트를 제어할 수 있는지를 측정했다. 대상은 TokenSynth가 증강 학습의 음색 지표 저하 원인으로 추정했으나 측정하지는 않은 진술이다. NSynth 1200개 소스에 이펙트 3계열 23축을 각 25레벨로 적용해 570000회 렌더링하고, Q1~Q6 6가지 질문에 답했다. 이펙트 정보는 존재하며, 악기 정체성보다는 유의하게 약하다. 이펙트를 조작하는 방향은 소스마다 다르며, 그 방향은 임베딩만으로 예측된다. 그러나 그 방향으로 조건 벡터를 이동시켜 오디오를 생성하면, 방향성은 통계적으로 관찰되나(20조합 중 19개가 신뢰구간으로 0을 배제, Bonferroni 보정 후 16개) 효과 크기가 작아 실용 수준의 제어에는 이르지 못한다. 손실 지점을 Projection 층의 국소 유효계수, 프리픽스 토큰 하나를 공유하는 조건 채널의 경쟁, 자기회귀 샘플링 잔차로 특정하여 대응하여 성능이 1.77배가 향상되었으나 실용 수준에는 이르지 못했다.
 
-세 장애가 모두 생성기 내부에 있다는 점에 착안하여 생성기를 경유하지 않는 검색 과제로 같은 방향 정보를 보냈더니, 회수율이 6가지 조건에서 유의하게 개선되었으며 악기 패밀리 보존율은 하락하지 않았다. 동일한 방향 정보가 한 경로에서만 살아남았다는 것은 병목이 표현이 아닌 생성 경로에 있음을 뜻한다.
+세 장애가 모두 생성기 내부에 있다는 점에 착안하여 생성기를 경유하지 않는 검색 과제로 같은 방향 정보를 보냈더니, 천장 효과가 없는 2축 3레벨을 검증했고 그 6조건 전부에서 회수율이 개선되었으며(Bonferroni 보정 후 5조건), 악기 패밀리 보존율은 하락하지 않았다. 동일한 방향 정보가 한 경로에서만 살아남았다는 것은 병목이 표현이 아닌 생성 경로에 있음을 뜻한다.
 
 # Ⅰ. 서론
 
@@ -87,7 +85,7 @@ Probe는 임베딩 벡터 위에 얕은 모델을 얹어 속성의 선형 분리
 
 ## 3. 멜 스펙트로그램
 
-*멜 스펙트로그램은 소리를 벡터로 변환해주는 기술이다. 시간에 따른 공기압 변화를 짧은 시간 동안의 푸리에 변환을 통해 주파수 구성을 분석한다. 이를 연속해서 이어붙여 2차원 그림으로 스펙트로그램을 구성할 수 있다. 이를 멜(Mel), 즉 사람 귀에 맞도록 저역을 더 강화시킨 것이 멜 스펙트로그램이다.*
+*멜 스펙트로그램은 소리를 벡터로 변환해주는 기술이다. 시간에 따른 공기압 변화를 짧은 시간 동안의 푸리에 변환을 통해 주파수 구성을 분석한다. 이를 연속해서 이어붙여 2차원 그림으로 스펙트로그램을 구성할 수 있다. 이를 멜(Mel), 이를 사람의 주파수 지각에 맞게 주파수 축을 비선형적으로 재배치한 것이 멜(Mel) 스펙트로그램이다.*
 
 ## 4. 오디오 이펙트의 수학적 성격
 
@@ -191,7 +189,7 @@ TokenSynth 저장소에서는 Augmentation과 관련된 코드가 없었기에, 
 <table><thead><tr class="header"><th><strong>EQ Gain</strong></th><th><p>대표 Cutoff 고정, Q = 0.7071</p><p><strong>highshelf_gain</strong> : -15 ~ +15 dB @ 2000 Hz <strong>lowshelf_gain</strong> : -15 ~ +15 dB @ 100 Hz <strong>peak_gain</strong> : - 15 ~ +15 dB @ 1000 Hz</p></th><th>3 axis</th></tr></thead><tbody><tr class="odd"><td><strong>EQ cutoff</strong></td><td><p>gain ±6 dB 고정</p><p><strong>highshelf_cutoff :</strong> 500 ~ 4000 Hz <strong>lowshelf_cutoff :</strong> 30 ~ 200 Hz<br />
 <strong>peak_cutoff :</strong> 200 ~ 6000 Hz</p></td><td>6 axis</td></tr><tr class="even"><td><strong>EQ Q</strong></td><td>{Gain +6dB, Gain -6dB} <span class="math inline">×</span> 3 Type</td><td>6 axis</td></tr><tr class="odd"><td><strong>Distortion</strong></td><td>Drive dB (0 ~ 20dB)</td><td>1 axis</td></tr><tr class="even"><td><strong>Reverb</strong></td><td>Wet_level (0 ~ 0.5), room_size (0.05 ~ 0.85), damping (0 ~ 1.0), width (0 ~ 1.0)</td><td>4 axis</td></tr><tr class="odd"><td><strong>Cascade</strong></td><td><p>Eq_cascade_intensity (0 ~ 1.0)</p><p>100Hz, 400Hz, 2000Hz, 3000Hz, 6500 Hz lowshelf, 3band, highshelf 직렬 적용 (랜덤 변위)</p></td><td>1 axis</td></tr><tr class="even"><td><strong>NULL</strong></td><td>Ultrasonic shelf 12kHz <span class="math inline">⋅</span> 15kHz</td><td>2 axis</td></tr></tbody></table>
 
-주축 21개, 널 2개에 대해 각 25레벨, 즉 575000회 렌더링을 시행했다.
+주축 21개, 널 2개에 대해 각 25레벨, 즉 570000회 렌더링을 시행했다.
 
 다만 Cascade에서 원본 highshelf 기본값이 8kHz였으나, 사용하는 오디오인 NSynthsms 16kHz, Nyquist는 8kHz, 즉 경계와 같아 원본 그대로 재현할 수 없었기에 (시간축 에일리어싱) 6500Hz로 대체했다.
 
@@ -230,6 +228,12 @@ Q6을 판별하기 위해 검색단계 지표를 활용한다. 4개의 팔을 �
 **R3. 전역 평균 방향 :** $q = unit\left( e_{\text{wet}} + \alpha\overline{v} \right)$ – 소스 정보가 없는 대조군
 
 **Ror. 실제 보정 방향 :** $q = unit\left( e_{\text{wet}} + \alpha v_{\text{true}} \right)$ – $\alpha$ 격자 하의 상한
+
+모든 질문에서 표본 단위는 레벨이 아닌 소스다. 한 소스의 25레벨은 같은 원음에서 나온 관측이라 독립 표본이 아니기 때문이다. 따라서 Q1의 릿지 프로브와 Q2의 분류·회귀는 sklearn 의 GroupShuffleSplit 에 groups = src\_id 를 넘겨 소스 단위로 분할했다. 한 소스의 25레벨은 전부 학습이거나 전부 시험이며 양쪽에 걸치지 않는다. 이 처리가 없으면 프로브가 이펙트가 아니라 음색을 외워 맞힐 수 있어 성능이 과대평가된다. Q4~Q6의 패밀리 층화 분할도 같은 src\_id 목록 위에서 이루어지며, Q6는 라이브러리의 바이트 중복 20곡을 묶어 group-aware 로 회수·제외한다. 다만 이 중복 처리는 Q1·Q2의 프로브 분할에는 적용하지 않았다.
+
+불확실도는 전부 소스 단위 부트스트랩의 백분위 95% 신뢰구간이다. 반복 수는 Q3이 300회, Q5가 2000회, Q6가 1000회이며 시드는 0으로 고정했다. Q1은 GroupShuffleSplit 3겹(시험 20%), Q2는 5겹(시험 30%), Q4는 패밀리 층화 80/10/10, Q6는 60/20/20이다. 초매개변수는 검증 분할에서만 고르고 시험 분할은 1회만 평가한다.
+
+각 질문은 여러 축과 구간을 동시에 보므로 다중 비교가 발생한다. 원 분석은 조합별 신뢰구간만 냈기에, 질문 단위 Bonferroni 보정을 사후에 계산해 병기한다. Q3은 60조합 전부, Q4는 20조합 전부가 보정 후에도 유지되나, Q5는 19개에서 16개로, Q6의 회수율은 6조건에서 5조건으로 줄어든다. 판정이 바뀌는 두 곳은 결과에 함께 적었다.
 
 ## 3. 결과 해석
 
@@ -273,7 +277,7 @@ Q6을 판별하기 위해 검색단계 지표를 활용한다. 4개의 팔을 �
 
 **그림 6.** Q5 — 생성 경로의 directional\_agreement(왼쪽)와 읽기·쓰기 각도 대조(오른쪽). 붉은 띠는 무작위 널의 95% 범위다.
 
-20개의 조합 중 19개가 CI로 0을 배제한다. 유일한 null은 reverb 하위 1/3으로, 시간축 이펙트가 가장 약하리라는 사전 예측과 일치한다.
+표본 단위는 소스이고 신뢰구간은 소스 부트스트랩 2000회의 백분위 95% 구간이다. 20개의 조합 중 19개가 CI로 0을 배제한다. 유일한 null은 reverb 하위 1/3으로, 시간축 이펙트가 가장 약하리라는 사전 예측과 일치한다.
 
 손실 지점의 특정을 위해 projection 층의 국소 계수를 실측하였고, 입력 방향의 약 81%가 이 지점에서 1차 미분상 소멸함을 확인하였다. 더불어 조건 채널의 경쟁에 대해 앞에서 서술하였고, 자기회귀 샘플링 과정에서 랜덤 요소가 개입되어 더욱 문제가 된 것으로 보인다.
 
@@ -299,7 +303,7 @@ M3 계산을 통한 패밀리 보존율은 0.93~0.98로 유지된다. 즉 악기
 
 논문의 추정은 절반만 옳았다. 이펙트 정보가 없었던 것이 아니었으며, 약했다는 표현이 더 올바를 것이다. 그리고 그 정보는 읽을 수 있다. 이펙트를 조작하는 방향이 소스마다 전부 다르며, 임베딩만 보고 그 방향을 예측할 수 있다는 결론을 얻었다.
 
-그러나 TokenSynth를 통과하면 그 성분이 대다수 소거되었다. 이를 Projection 층의 유효계수, 자기 회귀 잔차, 조건 채널의 경쟁이라는 세 가지 관점으로 확인하여 문제가 생성기 안에 있음을 가정했다. 이를 해결하기 위해 생성기를 지나가지 않는, 즉 검색으로 같은 방향 정보를 흘렸더니 모든 조건에서 유의하게 문제가 개선되었다. 같은 정보가 한 경로에서 살아남았다는 것은, 표현 자체의 문제가 있는 것이 아닌 생성 경로에서의 문제가 있다는 것을 시사한다. 연구를 통해 원하는 사운드에서 이펙트를 제거한 새로운 사운드를 검색할 수 있는 툴이 만들어 질 수 있다는 분석을 할 수 있었다. 많은 이펙트들에 대한 사후실험을 통해 사운드 디자인에서 활용하기 좋은 툴을 만들 수 있을 것이다.
+그러나 TokenSynth를 통과하면 그 성분이 대다수 소거되었다. 이를 Projection 층의 유효계수, 자기 회귀 잔차, 조건 채널의 경쟁이라는 세 가지 관점으로 확인하여 문제가 생성기 안에 있음을 가정했다. 이를 해결하기 위해 생성기를 지나가지 않는, 즉 검색으로 같은 방향 정보를 흘렸더니 검증한 조건 전부에서 문제가 개선되었다. 다만 이는 천장 효과가 없는 2축 3레벨에 한정된 결과이며, 실사용 조건(M2)에서는 distortion 이 물리 지표 4개 중 3개, reverb 가 최대 강도 구간에서만 4개 전부의 지지를 받는다. 같은 정보가 한 경로에서 살아남았다는 것은, 표현 자체의 문제가 있는 것이 아닌 생성 경로에서의 문제가 있다는 것을 시사한다. 연구를 통해 원하는 사운드에서 이펙트를 제거한 새로운 사운드를 검색할 수 있는 툴이 만들어 질 수 있다는 분석을 할 수 있었다. 많은 이펙트들에 대한 사후실험을 통해 사운드 디자인에서 활용하기 좋은 툴을 만들 수 있을 것이다.
 
 더불어 TokenSynth에 FXencoder를 추가하여[^7] 재학습을 한다면, 검색 툴 뿐만이 아니라 생성 툴 까지도 만들 수 있을 것으로 보인다. FXencoder가 오디오에 적용된 이펙트 정보를 더욱 상세하게 TokenSynth로 전달할 것이기 때문이다.
 
@@ -311,19 +315,21 @@ EQ의 cutoff, Q 축은 게인 부호별로 두 벌을 구성했으나, -6dB 계�
 
 JND는 15개의 축 중 8축만 정밀 측정되었다. 6개의 축은 문턱 없이 점진 누적되어 상한만 확정된 상황이고, reverb\_wet\_level 1개의 축은 미세 격자의 첫 점에서 이미 널을 넘어버려 더 잘게 재지 못했다.
 
+Q5의 평가 구조에도 한계가 있다. 생성한 오디오를 다시 같은 CLAP 으로 인코딩해 방향 일치도를 재기 때문에, 방향을 검출한 모델과 그 반영 여부를 채점하는 모델이 동일하다. 완전히 독립적인 검증이 아니며 양방향으로 치우칠 수 있다 — CLAP 이 보는 축에서만 점수가 나므로 과대평가될 수도, CLAP 이 압축한 축이라 바닥이 낮아 과소평가될 수도 있다. 각도의 절대 수준을 논할 때 특히 문제가 된다. Q6의 M2 에서 CLAP 밖의 물리 지표 8종을 쓴 것이 부분적 대응이나 Q5에는 같은 대응을 적용하지 않았으므로, 외부 음향 지표와 블라인드 청취 평가가 추가로 필요하다.
+
 # 참고문헌
 
-[1] K. Kim, J. Koo, S. Lee, H. Joung, and K. Lee, "TokenSynth: A token-based neural synthesizer for instrument cloning and text-to-instrument," in *Proc. ICASSP 2025 — 2025 IEEE Int. Conf. Acoust., Speech Signal Process. (ICASSP)*, Hyderabad, India, Apr. 2025, pp. 1–5, doi: 10.1109/ICASSP49660.2025.10888403.
+\[1\] K. Kim, J. Koo, S. Lee, H. Joung, and K. Lee, "TokenSynth: A token-based neural synthesizer for instrument cloning and text-to-instrument," in *Proc. ICASSP 2025 — 2025 IEEE Int. Conf. Acoust., Speech Signal Process. (ICASSP)*, Hyderabad, India, Apr. 2025, pp. 1–5, doi: 10.1109/ICASSP49660.2025.10888403.
 
-[2] Y. Wu, K. Chen, T. Zhang, Y. Hui, T. Berg-Kirkpatrick, and S. Dubnov, "Large-scale contrastive language-audio pretraining with feature fusion and keyword-to-caption augmentation," in *Proc. ICASSP 2023 — 2023 IEEE Int. Conf. Acoust., Speech Signal Process. (ICASSP)*, Rhodes Island, Greece, Jun. 2023, pp. 1–5.
+\[2\] Y. Wu, K. Chen, T. Zhang, Y. Hui, T. Berg-Kirkpatrick, and S. Dubnov, "Large-scale contrastive language-audio pretraining with feature fusion and keyword-to-caption augmentation," in *Proc. ICASSP 2023 — 2023 IEEE Int. Conf. Acoust., Speech Signal Process. (ICASSP)*, Rhodes Island, Greece, Jun. 2023, pp. 1–5.
 
-[3] N. X. Vinh, J. Epps, and J. Bailey, "Information theoretic measures for clusterings comparison: Variants, properties, normalization and correction for chance," *Journal of Machine Learning Research*, vol. 11, pp. 2837–2854, 2010.
+\[3\] N. X. Vinh, J. Epps, and J. Bailey, "Information theoretic measures for clusterings comparison: Variants, properties, normalization and correction for chance," *Journal of Machine Learning Research*, vol. 11, pp. 2837–2854, 2010.
 
-[4] J. Engel, C. Resnick, A. Roberts, S. Dieleman, M. Norouzi, D. Eck, and K. Simonyan, "Neural audio synthesis of musical notes with WaveNet autoencoders," in *Proc. 34th Int. Conf. Machine Learning (ICML)*, Sydney, Australia, Aug. 2017, pp. 1068–1077.
+\[4\] J. Engel, C. Resnick, A. Roberts, S. Dieleman, M. Norouzi, D. Eck, and K. Simonyan, "Neural audio synthesis of musical notes with WaveNet autoencoders," in *Proc. 34th Int. Conf. Machine Learning (ICML)*, Sydney, Australia, Aug. 2017, pp. 1068–1077.
 
-[5] P. Sobot, "Pedalboard," Zenodo, 2021. doi: 10.5281/zenodo.7817838. \[Online\]. Available: <https://github.com/spotify/pedalboard>
+\[5\] P. Sobot, "Pedalboard," Zenodo, 2021. doi: 10.5281/zenodo.7817838. \[Online\]. Available: <https://github.com/spotify/pedalboard>
 
-[6] J. Koo, M. A. Martínez-Ramírez, W.-H. Liao, S. Uhlich, K. Lee, and Y. Mitsufuji, "Music mixing style transfer: A contrastive learning approach to disentangle audio effects," in *Proc. ICASSP 2023 — 2023 IEEE Int. Conf. Acoust., Speech Signal Process. (ICASSP)*, Rhodes Island, Greece, Jun. 2023, pp. 1–5.
+\[6\] J. Koo, M. A. Martínez-Ramírez, W.-H. Liao, S. Uhlich, K. Lee, and Y. Mitsufuji, "Music mixing style transfer: A contrastive learning approach to disentangle audio effects," in *Proc. ICASSP 2023 — 2023 IEEE Int. Conf. Acoust., Speech Signal Process. (ICASSP)*, Rhodes Island, Greece, Jun. 2023, pp. 1–5.
 
 [^1]: K. Kim, J. Koo, S. Lee, H. Joung, and K. Lee, “TokenSynth: A token-based neural synthesizer for instrument cloning and text-to-instrument,” in Proc. ICASSP 2025, Hyderabad, India, Apr. 2025, pp. 1–5.
 
