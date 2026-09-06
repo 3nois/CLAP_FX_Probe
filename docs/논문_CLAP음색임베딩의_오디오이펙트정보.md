@@ -1,5 +1,4 @@
-<!-- docs/개인_포트폴리오_논문_최종.docx 를 pandoc 으로 변환한 파일이다.
-     docx 가 정본이며 여기서는 Ⅱ장 §5 중복 번호만 §5/§6 으로 나눴다.
+<!-- docs/개인_포트폴리오_논문_최종.docx 를 pandoc 으로 변환한 파일이다. docx 가 정본.
      수식은 GitHub 이 렌더링하는 $…$ 표기, 그림은 docs/paper_media/ 에 있다. -->
 
 **CLAP 음색 임베딩의 오디오 이펙트 정보 분석: TokenSynth 성능 향상을 중심으로**
@@ -26,7 +25,7 @@ CLAP 음색 임베딩이 오디오 이펙트 정보를 담는지, 담는다면 �
 
 **그림 1.** TokenSynth 구조. 점선은 학습 중 동결되는 모듈이다. 음색은 맨 앞 프리픽스 토큰 하나로만 전달된다.
 
-TokenSynth는 MIDI 토큰과 CLAP 음색 임베딩을 조건으로 오디오 토큰을 자기회귀 생성하는 신경망 기반의 신디사이저이다[^1]. 구조상 모델이 음색에 대해 보는 것은 512차원의 벡터 하나 뿐이기에, 벡터가 담지 못하는 정보는 모델이 원리적으로 사용할 수 없다.
+TokenSynth는 MIDI 토큰과 CLAP 음색 임베딩을 조건으로 오디오 토큰을 자기회귀 생성하는 신경망 기반의 신디사이저이다\[1\]. 구조상 모델이 음색에 대해 보는 것은 512차원의 벡터 하나 뿐이기에, 벡터가 담지 못하는 정보는 모델이 원리적으로 사용할 수 없다.
 
 저자들은 EQ, 디스토션, 리버브로 Augmentation한 TokenSynth-Aug를 학습시켰으나 wet 오디오에서 음색 유사도와 스펙트럼 재현은 오히려 원본 학습 모델에 미치지 못했다. (MSS 0.826 vs 0.754; CLAP score 0.790 vs 0.795, Ref$\neq$Tgt$\cdot$Wet 조건). 저자들은 이 중 이펙트 적용의 부정확성을 “*CLAP 모델의 음색 임베딩이 오디오 이펙트 정보를 결여하고 있기 때문(likely due to)”* 으로 추정했다. (Kim et al., 2025, p.4). 그러나 이 추정을 임베딩 측정을 통해 구체화한 절차는 논문에서 확인되지 않는다. 이 미검증 진술은 본 연구가 목표하는 도구의 성립 조건과 정확히 같은 문장이다.
 
@@ -67,7 +66,7 @@ $\begin{matrix}
 
 ## 1. CLAP 임베딩
 
-CLAP(Contrastive Language-Audio Pretraining[^2]) 임베딩은 오디오와 텍스트를 동일한 Multimodal Space에 매핑하여 서로 비교, 정렬할 수 있도록 만든 표현 방식이다. CLAP은 오디오 인코더 $f_{a}$와 텍스트 인코더 $f_{t}$를 (오디오, 캡션) 쌍의 대조 손실로 정렬한다.
+CLAP(Contrastive Language-Audio Pretraining\[2\]) 임베딩은 오디오와 텍스트를 동일한 Multimodal Space에 매핑하여 서로 비교, 정렬할 수 있도록 만든 표현 방식이다. CLAP은 오디오 인코더 $f_{a}$와 텍스트 인코더 $f_{t}$를 (오디오, 캡션) 쌍의 대조 손실로 정렬한다.
 
 $\mathcal{L} = - \frac{1}{N}\sum_{i = 1}^{N}{\log\frac{\exp\left( \left\langle f_{a}\left( x_{i} \right),f_{t}\left( c_{i} \right) \right\rangle/\tau \right)}{\sum_{j = 1}^{N}{\exp\left( \left\langle f_{a}\left( x_{i} \right),f_{t}\left( c_{j} \right) \right\rangle/\tau \right)}}}$ (2)
 
@@ -125,7 +124,7 @@ $\text{JND}\left( \theta \right) = \min\left\{ \Delta: \parallel e_{s}\left( \th
 
 $\text{NMI}\left( X;Y \right) = \frac{I\left( X;Y \right)}{\sqrt{H\left( X \right)H\left( Y \right)}}$ (7)
 
-*클래스 수가 다른 두 과제를 NMI로 비교할 수 없으니, 이를 조정 상호정보량*[^3] (*Adjusted MI)로 보정한다.*
+*클래스 수가 다른 두 과제를 NMI로 비교할 수 없으니, 이를 조정 상호정보량*\[3\] (*Adjusted MI)로 보정한다.*
 
 $\text{AMI}\left( X;Y \right) = \frac{I\left( X;Y \right) - \mathbb{E}\left\lbrack I\left( X;Y \right) \right\rbrack}{\max\left\{ H\left( X \right),H\left( Y \right) \right\} - \mathbb{E}\left\lbrack I\left( X;Y \right) \right\rbrack}$ (8)
 
@@ -180,9 +179,9 @@ $R@k = \frac{1}{\left| \mathcal{T} \right|}\sum_{s \in \mathcal{T}}^{}\mathbb{1}
 
 ## 2. 실험 설계
 
-Nsynth test split 1200개를 활용한다[^4]. (10개의 패밀리에 대해 120개씩 데이터가 존재) 이펙터는 Pedalboard를 사용한다[^5]. 유한차분의 성립을 위해 결정론적 이펙터를 사용한다. 인코더는 논문과 동일한 music\_audioset\_epoch\_15\_esc\_90.14.pt를 활용한다. 48kHz 리샘플, 모노, 4초 고정, 피크 정규화 0.7으로 모든 오디오를 전처리한다. 더불어 Nsynth는 소스의 25%가 reverb와 관련된 태그를 가지며, 23%가 distortion과 관련된 태그를 가진다. 이들을 제외하는 것이 좋지만, 태그가 악기 패밀리와 상관관계가 있음은 자명했기에 Q2의 비교를 직접 교락시킨다고 판별해 특별히 대응하지 않았다.
+Nsynth test split 1200개를 활용한다\[4\]. (10개의 패밀리에 대해 120개씩 데이터가 존재) 이펙터는 Pedalboard를 사용한다\[5\]. 유한차분의 성립을 위해 결정론적 이펙터를 사용한다. 인코더는 논문과 동일한 music\_audioset\_epoch\_15\_esc\_90.14.pt를 활용한다. 48kHz 리샘플, 모노, 4초 고정, 피크 정규화 0.7으로 모든 오디오를 전처리한다. 더불어 Nsynth는 소스의 25%가 reverb와 관련된 태그를 가지며, 23%가 distortion과 관련된 태그를 가진다. 이들을 제외하는 것이 좋지만, 태그가 악기 패밀리와 상관관계가 있음은 자명했기에 Q2의 비교를 직접 교락시킨다고 판별해 특별히 대응하지 않았다.
 
-TokenSynth 저장소에서는 Augmentation과 관련된 코드가 없었기에, 상류 저장소를 통해 Koo et al. 2023[^6]의 Augmentation을 따른다. OAT(one-at-a-time) 격자로 설계, 즉 축만 변화시키고 나머지는 고정시킨다. 그에 따라 설계된 축 구성은 다음과 같다.
+TokenSynth 저장소에서는 Augmentation과 관련된 코드가 없었기에, 상류 저장소를 통해 Koo et al. 2023\[6\]의 Augmentation을 따른다. OAT(one-at-a-time) 격자로 설계, 즉 축만 변화시키고 나머지는 고정시킨다. 그에 따라 설계된 축 구성은 다음과 같다.
 
 **표 2.** 축 구성 — 계열별 파라미터 범위와 고정 조건.
 
@@ -233,7 +232,7 @@ Q6을 판별하기 위해 검색단계 지표를 활용한다. 4개의 팔을 �
 
 불확실도는 전부 소스 단위 부트스트랩의 백분위 95% 신뢰구간이다. 반복 수는 Q3이 300회, Q5가 2000회, Q6가 1000회이며 시드는 0으로 고정했다. Q1은 GroupShuffleSplit 3겹(시험 20%), Q2는 5겹(시험 30%), Q4는 패밀리 층화 80/10/10, Q6는 60/20/20이다. 초매개변수는 검증 분할에서만 고르고 시험 분할은 1회만 평가한다.
 
-각 질문은 여러 축과 구간을 동시에 보므로 다중 비교가 발생한다. 원 분석은 조합별 신뢰구간만 냈기에, 질문 단위 Bonferroni 보정을 사후에 계산해 병기한다. Q3은 60조합 전부, Q4는 20조합 전부가 보정 후에도 유지되나, Q5는 19개에서 16개로, Q6의 회수율은 6조건에서 5조건으로 줄어든다. 판정이 바뀌는 두 곳은 결과에 함께 적었다.
+각 연구 질문 내 다중 비교를 고려하여, percentile bootstrap 표본으로 Bonferroni 보정 95% 신뢰구간을 추가 산출하였다. Q3은 60조합 전부, Q4는 20조합 전부가 보정 후에도 유지되나, Q5는 19개에서 16개로, Q6의 회수율은 6조건에서 5조건으로 줄어든다. 판정이 바뀌는 두 곳은 결과에 함께 적었다.
 
 ## 3. 결과 해석
 
@@ -305,7 +304,7 @@ M3 계산을 통한 패밀리 보존율은 0.93~0.98로 유지된다. 즉 악기
 
 그러나 TokenSynth를 통과하면 그 성분이 대다수 소거되었다. 이를 Projection 층의 유효계수, 자기 회귀 잔차, 조건 채널의 경쟁이라는 세 가지 관점으로 확인하여 문제가 생성기 안에 있음을 가정했다. 이를 해결하기 위해 생성기를 지나가지 않는, 즉 검색으로 같은 방향 정보를 흘렸더니 검증한 조건 전부에서 문제가 개선되었다. 다만 이는 천장 효과가 없는 2축 3레벨에 한정된 결과이며, 실사용 조건(M2)에서는 distortion 이 물리 지표 4개 중 3개, reverb 가 최대 강도 구간에서만 4개 전부의 지지를 받는다. 같은 정보가 한 경로에서 살아남았다는 것은, 표현 자체의 문제가 있는 것이 아닌 생성 경로에서의 문제가 있다는 것을 시사한다. 연구를 통해 원하는 사운드에서 이펙트를 제거한 새로운 사운드를 검색할 수 있는 툴이 만들어 질 수 있다는 분석을 할 수 있었다. 많은 이펙트들에 대한 사후실험을 통해 사운드 디자인에서 활용하기 좋은 툴을 만들 수 있을 것이다.
 
-더불어 TokenSynth에 FXencoder를 추가하여[^7] 재학습을 한다면, 검색 툴 뿐만이 아니라 생성 툴 까지도 만들 수 있을 것으로 보인다. FXencoder가 오디오에 적용된 이펙트 정보를 더욱 상세하게 TokenSynth로 전달할 것이기 때문이다.
+더불어 TokenSynth에 FXencoder를 추가하여\[6\] 재학습을 한다면, 검색 툴 뿐만이 아니라 생성 툴 까지도 만들 수 있을 것으로 보인다. FXencoder가 오디오에 적용된 이펙트 정보를 더욱 상세하게 TokenSynth로 전달할 것이기 때문이다.
 
 ## 2. 한계
 
@@ -330,17 +329,3 @@ Q5의 평가 구조에도 한계가 있다. 생성한 오디오를 다시 같은
 \[5\] P. Sobot, "Pedalboard," Zenodo, 2021. doi: 10.5281/zenodo.7817838. \[Online\]. Available: <https://github.com/spotify/pedalboard>
 
 \[6\] J. Koo, M. A. Martínez-Ramírez, W.-H. Liao, S. Uhlich, K. Lee, and Y. Mitsufuji, "Music mixing style transfer: A contrastive learning approach to disentangle audio effects," in *Proc. ICASSP 2023 — 2023 IEEE Int. Conf. Acoust., Speech Signal Process. (ICASSP)*, Rhodes Island, Greece, Jun. 2023, pp. 1–5.
-
-[^1]: K. Kim, J. Koo, S. Lee, H. Joung, and K. Lee, “TokenSynth: A token-based neural synthesizer for instrument cloning and text-to-instrument,” in Proc. ICASSP 2025, Hyderabad, India, Apr. 2025, pp. 1–5.
-
-[^2]: Y. Wu, K. Chen, T. Zhang, Y. Hui, T. Berg-Kirkpatrick, and S. Dubnov, “Large-scale contrastive language-audio pretraining with feature fusion and keyword-to-caption augmentation,” in Proc. ICASSP 2023, Rhodes Island, Greece, Jun. 2023, pp. 1–5.
-
-[^3]: N. X. Vinh, J. Epps, and J. Bailey, “Information theoretic measures for clusterings comparison: Variants, properties, normalization and correction for chance,” Journal of Machine Learning Research, vol. 11, pp. 2837–2854, 2010.
-
-[^4]: J. Engel, C. Resnick, A. Roberts, S. Dieleman, M. Norouzi, D. Eck, and K. Simonyan, “Neural audio synthesis of musical notes with WaveNet autoencoders,” in Proc. 34th Int. Conf. Machine Learning (ICML), Sydney, Australia, Aug. 2017, pp. 1068–1077.
-
-[^5]: P. Sobot, “Pedalboard,” Zenodo, 2021, doi: 10.5281/zenodo.7817838.
-
-[^6]: J. Koo, M. A. Martínez-Ramírez, W.-H. Liao, S. Uhlich, K. Lee, and Y. Mitsufuji, “Music mixing style transfer: A contrastive learning approach to disentangle audio effects,” in Proc. ICASSP 2023, Rhodes Island, Greece, Jun. 2023, pp. 1–5.
-
-[^7]: J. Koo, M. A. Martínez-Ramírez, W.-H. Liao, S. Uhlich, K. Lee, and Y. Mitsufuji, 앞의 글.
