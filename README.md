@@ -24,9 +24,9 @@ TokenSynth-Aug 성능 저하(wet 복제 실패)의 추정 원인 — "CLAP 임�
 | [`out/apply/김성현_CLAP음색임베딩_오디오이펙트정보분석.pdf`](out/apply/김성현_CLAP음색임베딩_오디오이펙트정보분석.pdf) | 최종 논문 (PDF) |
 | [`docs/논문_CLAP음색임베딩의_오디오이펙트정보.md`](docs/논문_CLAP음색임베딩의_오디오이펙트정보.md) | 최종 논문 (Markdown) |
 | [`docs/setup.md`](docs/setup.md) | 설치, 체크포인트, 데이터, 파라미터 공간, 실행 명령, `out/` 산출물 구조 |
-| [`docs/round1-4.md`](docs/round1-4.md) | 1~4차 — 정보 존재 확인, 지표 통일, 야코비안 전환, 결과 해석 기준 ①~⑩ |
-| [`docs/round6-7.md`](docs/round6-7.md) | 6차 후속(5~7차) — 유한차분 검증, freeze_mode 결함, 해상도 바닥 재정의, family cosine |
-| [`docs/round8.md`](docs/round8.md) | 8차 — 손잡이 방향 예측(정방향/역방향/LOFO) |
-| [`docs/round9.md`](docs/round9.md) | 9차 — TokenSynth 실제 연결, 오디오 생성·검증, 재구성 품질 개선 |
-| [`docs/round10.md`](docs/round10.md) | 9차 후속 D — projection layer 진단 |
+| [`docs/01_probe_baseline.md`](docs/01_probe_baseline.md) | 1~4차 — 프로브 방법론 확립, 정보 존재 확인 |
+| [`docs/02_resolution_and_family.md`](docs/02_resolution_and_family.md) | 5~7차 — 해상도 바닥 확정, 소스 고유성(within/between) 검증 |
+| [`docs/03_direction_prediction.md`](docs/03_direction_prediction.md) | 8차 — 손잡이 방향 예측(정방향/역방향/LOFO) |
+| [`docs/04_tokensynth_generation.md`](docs/04_tokensynth_generation.md) | 9차 — TokenSynth 실제 연결, 오디오 생성·검증 |
+| [`docs/05_projection_diagnosis.md`](docs/05_projection_diagnosis.md) | 9차 후속 — projection layer 정보 손실 진단 |
 | [`docs/report_figures.md`](docs/report_figures.md) | 보고서용 핵심 그림 2개의 데이터 출처와 해설 |
