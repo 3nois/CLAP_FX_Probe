@@ -131,3 +131,6 @@ out/caches/*.npz
 
 # macOS
 .DS_Store
+
+# 메일 초안은 공개 레포에 올리지 않는다
+out/apply/메일_초안.md
