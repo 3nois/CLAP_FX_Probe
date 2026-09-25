@@ -1,0 +1,1296 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CLAP FX Probe</title>
+<meta name="description" content="CLAP 음색 임베딩에 오디오 이펙트 정보가 있는지, 그 정보가 TokenSynth 생성 경로를 통과해 살아남는지 측정한 개인 연구의 요약입니다.">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FAFAF9;
+  --surface: #F2F2F0;
+  --panel: #F4F5F7;
+  --line: #E4E4E1;
+  --muted: #8A8A86;
+  --text: #3A3A38;
+  --head: #111111;
+  --accent: #2F5BFF;
+  --accent-text: #2F5BFF;
+  --accent-soft: rgba(47, 91, 255, .10);
+  --on-accent: #FFFFFF;
+  --sans: "IBM Plex Sans KR", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --ease: cubic-bezier(.16, 1, .3, 1);
+  --wrap: 1120px;
+  --gutter: clamp(16px, 4vw, 32px);
+  --navh: 56px;
+}
+@media (min-width: 1600px) { :root { --wrap: 1240px; } }
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0F0F0F;
+    --surface: #1A1A1A;
+    --panel: #1C1F24;
+    --line: #2A2A2A;
+    --muted: #8C8C8C;
+    --text: #D4D4D4;
+    --head: #F5F5F5;
+    --accent-text: #7D97FF;
+    --accent-soft: rgba(47, 91, 255, .18);
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+figure { margin: 0; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: calc(var(--navh) + 16px); }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 400 17px/1.75 var(--sans);
+  letter-spacing: -0.01em;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+::selection { background: var(--accent); color: var(--on-accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+a { color: var(--accent-text); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+h1, h2, h3 { color: var(--head); margin: 0; font-weight: 600; letter-spacing: -0.02em; text-wrap: balance; }
+p { margin: 0; text-wrap: pretty; }
+.num, code { font-family: var(--mono); font-variant-numeric: tabular-nums; letter-spacing: 0; }
+code { font-size: .88em; }
+strong { color: var(--head); font-weight: 600; }
+
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gutter); }
+.prose { max-width: 66ch; }
+.prose p + p { margin-top: 1em; }
+.lede { font-size: 1.1875rem; line-height: 1.7; }
+.small { font-size: .875rem; line-height: 1.6; color: var(--muted); }
+
+/* nav */
+.nav {
+  position: sticky; top: 0; z-index: 10;
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: saturate(180%) blur(18px);
+  -webkit-backdrop-filter: saturate(180%) blur(18px);
+  border-bottom: 1px solid var(--line);
+}
+.nav .wrap { height: var(--navh); display: flex; align-items: center; gap: 32px; }
+.brand { font-weight: 600; color: var(--head); font-size: 15px; letter-spacing: -0.01em; }
+.brand:hover { text-decoration: none; }
+.nav ul { display: flex; gap: 28px; list-style: none; margin: 0 0 0 auto; padding: 0; }
+.nav ul a { color: var(--text); font-size: 14px; }
+.nav ul a { position: relative; display: inline-block; padding: 4px 0; transition: color .2s var(--ease); }
+.nav ul a:hover { color: var(--head); text-decoration: none; }
+.nav ul a[aria-current="true"] { color: var(--head); font-weight: 600; }
+.nav ul a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 2px; border-radius: 2px; background: var(--accent); transform: scaleX(0); transition: transform .3s var(--ease); }
+.nav ul a[aria-current="true"]::after { transform: scaleX(1); }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  height: 44px; padding: 0 20px; border-radius: 999px;
+  font: 500 15px/1 var(--sans); letter-spacing: -0.01em; white-space: nowrap;
+  transition: transform .2s var(--ease), background-color .2s var(--ease);
+}
+.btn:hover { text-decoration: none; }
+.btn:active { transform: scale(.97); }
+.btn-primary { background: var(--accent); color: var(--on-accent); }
+.btn-primary:hover { background: #2549D6; }
+.btn-quiet { color: var(--head); border: 1px solid var(--line); background: var(--bg); }
+.btn-quiet:hover { background: var(--surface); }
+.btn-sm { height: 34px; padding: 0 14px; font-size: 13px; }
+.btn svg { width: 16px; height: 16px; flex: none; }
+
+/* sections */
+section { padding: clamp(80px, 11vw, 128px) 0; }
+section + section { border-top: 1px solid var(--line); }
+.sec-head { margin-bottom: 56px; }
+.sec-head h2 { font-size: clamp(1.875rem, 3.4vw, 2.75rem); line-height: 1.25; }
+.sec-head p { margin-top: 20px; }
+
+/* hero */
+.hero { padding: clamp(56px, 8vw, 96px) 0 clamp(72px, 9vw, 112px); border-top: 0; }
+.hero h1 { font-size: clamp(2.375rem, 5.4vw, 4.25rem); line-height: 1.16; max-width: 15em; }
+.hero .lede { margin-top: 28px; max-width: 34em; }
+.hero .ctas { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* pipeline diagram */
+.pipe { margin-top: 88px; background: var(--surface); border-radius: 24px; padding: 48px 40px 40px; }
+.pipe-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 40px; position: relative; }
+.node { position: relative; background: var(--bg); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; min-height: 104px; }
+.node b { display: block; color: var(--head); font-weight: 600; font-size: 15px; line-height: 1.4; }
+.node > span { display: block; margin-top: 6px; font-size: 13px; line-height: 1.5; color: var(--muted); }
+.pipe-row .node:not(:last-child)::after {
+  content: ""; position: absolute; top: 50%; left: 100%; width: 40px; height: 1px; background: var(--muted); opacity: .6;
+}
+.pipe-row .node:not(:last-child)::before {
+  content: ""; position: absolute; top: calc(50% - 3px); left: calc(100% + 34px);
+  border: 3.5px solid transparent; border-left: 6px solid var(--muted); opacity: .6;
+}
+.pulse { position: absolute; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); top: calc(50% - 3px); left: 100%; opacity: 0; }
+.fork { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; position: relative; }
+.fork::before {
+  content: ""; position: absolute; top: -20px; height: 20px;
+  left: calc((100% - 40px) / 4); right: calc((100% - 120px) / 8);
+  border-top: 1px solid var(--muted); border-left: 1px solid var(--muted); border-radius: 10px 0 0 0; opacity: .6;
+}
+.fork::after { content: ""; position: absolute; top: -40px; right: calc((100% - 120px) / 8); width: 1px; height: 20px; background: var(--muted); opacity: .6; }
+.branch.ret { position: relative; }
+.branch.ret::before { content: ""; position: absolute; top: -21px; left: 50%; width: 1px; height: 20px; background: var(--muted); opacity: .6; }
+.branch { border-radius: 14px; padding: 20px 22px; display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; align-items: baseline; }
+.branch b { color: var(--head); font-weight: 600; font-size: 15px; }
+.branch .verdict { grid-column: 2; grid-row: 1 / span 2; align-self: center; font-family: var(--mono); font-size: 13px; }
+.branch span { font-size: 13px; color: var(--muted); line-height: 1.5; }
+.branch.gen { border: 1px dashed var(--muted); }
+.branch.gen .verdict { color: var(--muted); }
+.branch.ret { border: 1px solid var(--accent); background: var(--accent-soft); }
+.branch.ret .verdict { color: var(--accent-text); font-weight: 600; }
+.pipe-caption { margin-top: 28px; }
+
+/* background */
+.quote { margin: 56px 0 0; padding: 0; max-width: 40em; }
+.quote p { font-size: clamp(1.375rem, 2.4vw, 1.75rem); line-height: 1.5; color: var(--head); font-weight: 500; letter-spacing: -0.02em; }
+.quote footer { margin-top: 16px; font-size: 14px; color: var(--muted); }
+.facts { margin-top: 72px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px 32px; }
+.facts div { border-top: 1px solid var(--line); padding-top: 16px; }
+.facts dt { font-size: 13px; color: var(--muted); }
+.facts dd { margin: 4px 0 0; color: var(--head); font-weight: 500; font-size: 15px; line-height: 1.5; }
+
+/* questions */
+.qgroups { display: grid; gap: 48px; }
+.qgroup { display: grid; grid-template-columns: 220px 1fr; gap: 32px; }
+.qgroup > h3 { font-size: 15px; font-weight: 600; color: var(--muted); padding-top: 22px; letter-spacing: -0.01em; }
+.qlist { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.qlist li { border-bottom: 1px solid var(--line); }
+.qrow { display: grid; grid-template-columns: 44px 1fr minmax(0, 22em) 20px; gap: 20px; padding: 20px 12px; margin: 0 -12px; border-radius: 12px; align-items: baseline; color: var(--text); transition: background-color .2s var(--ease); }
+.qrow:hover { text-decoration: none; background: var(--surface); }
+.qrow::after { content: "→"; color: var(--muted); transition: transform .25s var(--ease), color .2s var(--ease); }
+.qrow:hover::after { transform: translateX(4px); color: var(--accent-text); }
+.qrow:hover .a { color: var(--head); }
+.qlist .qn { font-family: var(--mono); font-size: 14px; color: var(--muted); }
+.qlist .q { color: var(--head); font-weight: 500; }
+.qlist .a { font-size: 15px; }
+.qlist .a em { font-style: normal; font-weight: 600; color: var(--head); }
+.qlist .a.neg em { color: var(--muted); }
+
+/* Q links */
+.qref { font-family: var(--mono); font-size: .92em; letter-spacing: 0; color: var(--accent-text); border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); }
+.qref:hover { text-decoration: none; border-bottom-color: var(--accent); }
+a.tag { display: inline-flex; gap: 6px; align-items: center; }
+a.tag:hover { text-decoration: none; color: var(--accent-text); }
+@keyframes flash { 0%, 30% { color: var(--accent-text); } 100% { color: var(--head); } }
+.result:target h3 { animation: flash 2s var(--ease); }
+
+/* method */
+.wave { margin-top: 0; }
+.wave-cap { margin-bottom: 96px; }
+.wave .oat-stage { cursor: default; touch-action: auto; }
+.wave-now { display: none; margin-top: 4px; }
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px 24px; }
+.stat .num { display: block; font-size: clamp(2rem, 3.6vw, 2.75rem); line-height: 1.1; color: var(--head); font-weight: 500; letter-spacing: -0.03em; }
+.stat span:last-child { display: block; margin-top: 8px; font-size: 14px; color: var(--muted); }
+.oat { margin-top: 72px; display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: 40px; align-items: stretch; }
+.oat-side { display: flex; flex-direction: column; justify-content: space-between; gap: 32px; }
+.oat-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.oat-steps button {
+  all: unset; box-sizing: border-box; display: block; width: 100%; cursor: pointer;
+  padding: 16px 18px 18px; border-radius: 14px; position: relative; overflow: hidden;
+  transition: background-color .25s var(--ease);
+}
+.oat-steps button:hover, .oat-steps button[aria-pressed="true"] { background: var(--surface); }
+.oat-steps button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.oat-steps b { display: flex; gap: 12px; align-items: baseline; color: var(--head); font-weight: 600; font-size: 16px; letter-spacing: -0.02em; }
+.oat-steps b .num { font-size: 13px; color: var(--muted); font-weight: 500; }
+.oat-steps button[aria-pressed="true"] b .num { color: var(--accent-text); }
+.oat-steps .d { display: block; margin-top: 6px; padding-left: 25px; font-size: 14px; line-height: 1.6; }
+.oat-steps .bar { position: absolute; left: 18px; right: 18px; bottom: 8px; height: 2px; border-radius: 2px; background: var(--accent); transform: scaleX(0); transform-origin: left; }
+.oat-count { padding: 0 18px; }
+.oat-count .num { display: block; font-size: clamp(2rem, 3.4vw, 2.75rem); line-height: 1.1; color: var(--head); font-weight: 500; letter-spacing: -0.03em; }
+.oat-count small { display: block; margin-top: 8px; font: 400 13px/1.5 var(--mono); color: var(--muted); letter-spacing: 0; }
+.oat-stage { position: relative; background: var(--surface); border-radius: 20px; min-height: 460px; overflow: hidden; touch-action: pan-y; cursor: grab; user-select: none; -webkit-user-select: none; }
+.oat-stage.drag { cursor: grabbing; }
+.oat-stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.oat-hint { position: absolute; left: 20px; top: 22px; font-size: 12px; color: var(--muted); pointer-events: none; }
+.oat-replay { position: absolute; right: 14px; top: 14px; }
+.oat-cap { margin-top: 16px; max-width: 72ch; }
+
+.fx-table { margin-top: 88px; width: 100%; border-collapse: collapse; font-size: 15px; }
+.fx-table caption { text-align: left; color: var(--head); font-weight: 600; font-size: 1.25rem; letter-spacing: -0.02em; padding-bottom: 20px; }
+.fx-table th, .fx-table td { text-align: left; padding: 16px 16px 16px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+.fx-table thead th { font-size: 13px; font-weight: 500; color: var(--muted); padding-top: 0; }
+.fx-table tbody th { color: var(--head); font-weight: 600; white-space: nowrap; }
+.fx-table td.hl { color: var(--head); font-weight: 500; }
+
+.rigor { margin-top: 88px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 64px; }
+.rigor h3 { grid-column: 1 / -1; font-size: 1.25rem; margin-bottom: 20px; }
+.rigor div { padding: 20px 0; border-top: 1px solid var(--line); }
+.rigor b { display: block; color: var(--head); font-weight: 600; font-size: 15px; }
+.rigor p { margin-top: 6px; font-size: 15px; line-height: 1.65; }
+
+/* results */
+.result { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 64px; align-items: start; }
+.result + .result { margin-top: 120px; padding-top: 120px; border-top: 1px solid var(--line); }
+.result .tag { font-family: var(--mono); font-size: 13px; color: var(--muted); }
+.result h3 { margin-top: 10px; font-size: clamp(1.5rem, 2.6vw, 2rem); line-height: 1.3; }
+.result .prose { margin-top: 20px; font-size: 16px; }
+.result .notes { margin-top: 28px; display: grid; gap: 12px; }
+.result .notes p { font-size: 14px; line-height: 1.6; padding-left: 14px; position: relative; }
+.result .notes p::before { content: ""; position: absolute; left: 0; top: .72em; width: 5px; height: 1px; background: var(--muted); }
+.figure { background: var(--surface); border-radius: 20px; padding: 32px; }
+.figure svg { display: block; width: 100%; height: auto; overflow: visible; }
+.figure figcaption { margin-top: 20px; font-size: 13px; line-height: 1.6; color: var(--muted); }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-bottom: 20px; font-size: 13px; color: var(--text); }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 8px; vertical-align: -1px; }
+.figure + .figure { margin-top: 20px; }
+
+/* chart primitives */
+.ax { stroke: var(--line); stroke-width: 1; }
+.ax-t { font: 400 13px var(--mono); fill: var(--muted); }
+.lab { font: 500 16px var(--sans); fill: var(--head); letter-spacing: -0.01em; }
+.lab-s { font: 400 13px var(--mono); fill: var(--muted); }
+.val { font: 500 15px var(--mono); fill: var(--head); }
+.val-a { font: 600 15px var(--mono); fill: var(--accent-text); }
+.val-m { font: 400 14px var(--mono); fill: var(--muted); }
+.bar-i { fill: var(--head); }
+.bar-e { fill: var(--accent); }
+.link { stroke: var(--muted); stroke-width: 1.5; opacity: .45; }
+.pt-a { fill: var(--accent); }
+.pt-h { fill: var(--head); }
+.pt-o { fill: var(--surface); stroke: var(--muted); stroke-width: 1.5; }
+.pt-m { fill: var(--muted); }
+.pt-r { fill: var(--surface); stroke: var(--head); stroke-width: 1.5; }
+.band { fill: var(--muted); opacity: .14; }
+.nline { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 4; }
+
+.grow { transform-box: fill-box; transform-origin: left center; }
+.js .reveal .grow { transform: scaleX(0); }
+.js .reveal .fade { opacity: 0; }
+.js .reveal.in .grow { transform: scaleX(1); transition: transform 1.1s var(--ease); }
+.js .reveal.in .fade { opacity: 1; transition: opacity .6s var(--ease) .5s; }
+
+/* dial */
+.dial-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px; }
+.dial-tabs button {
+  font: 500 13px var(--mono); letter-spacing: 0; color: var(--text);
+  background: transparent; border: 1px solid var(--line); border-radius: 999px;
+  height: 32px; padding: 0 14px; cursor: pointer;
+  transition: background-color .2s var(--ease), color .2s var(--ease), border-color .2s var(--ease);
+}
+.dial-tabs button:hover { border-color: var(--muted); }
+.dial-tabs button[aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.dial-body { display: grid; gap: 20px; }
+.dial-body svg { max-width: 440px; }
+.ray { transform-box: view-box; transform-origin: 40px 300px; transition: transform 1.2s var(--ease); }
+.ray-true { stroke: var(--head); stroke-width: 2; }
+.ray-read { stroke: var(--accent); stroke-width: 2.5; }
+.ray-write { stroke: var(--muted); stroke-width: 2; stroke-dasharray: 6 5; }
+.arc { fill: none; stroke: var(--line); stroke-width: 1; }
+.readout { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.readout div { border-top: 1px solid var(--line); padding-top: 10px; }
+.readout dt { font-size: 12px; color: var(--muted); }
+.readout dd { margin: 2px 0 0; font: 500 24px/1.2 var(--mono); color: var(--head); letter-spacing: -0.02em; }
+.readout .r-read dd { color: var(--accent-text); }
+.readout .r-write dd { color: var(--muted); }
+
+/* listening squares */
+.squares { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 6px; max-width: 360px; }
+.squares i { aspect-ratio: 1; border-radius: 4px; background: var(--line); }
+.squares i.s-eq { background: var(--muted); }
+.squares i.s-orig { background: var(--head); }
+.squares i.s-new { background: var(--accent); }
+
+/* conclusion */
+.claims { list-style: none; margin: 0; padding: 0; counter-reset: c; display: grid; gap: 0; }
+.claims li { display: grid; grid-template-columns: 56px 1fr; gap: 16px; padding: 28px 0; border-top: 1px solid var(--line); }
+.claims li::before { counter-increment: c; content: counter(c); font: 500 14px var(--mono); color: var(--muted); padding-top: 4px; }
+.claims b { display: block; color: var(--head); font-weight: 600; font-size: 1.1875rem; line-height: 1.45; letter-spacing: -0.02em; }
+.claims p { margin-top: 8px; font-size: 16px; }
+.limits { margin-top: 96px; background: var(--surface); border-radius: 24px; padding: 48px; }
+.limits h3 { font-size: 1.375rem; }
+.limits ul { margin: 24px 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 24px 48px; }
+.limits li b { display: block; color: var(--head); font-weight: 600; font-size: 15px; }
+.limits li p { margin-top: 6px; font-size: 15px; line-height: 1.65; }
+
+/* materials */
+.materials { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.mat {
+  display: flex; flex-direction: column; justify-content: space-between; gap: 40px;
+  min-height: 200px; padding: 28px; border-radius: 20px; background: var(--surface); color: var(--text);
+  transition: transform .3s var(--ease), background-color .3s var(--ease);
+}
+.mat:hover { text-decoration: none; transform: translateY(-2px); }
+.mat b { display: block; color: var(--head); font-size: 1.25rem; font-weight: 600; letter-spacing: -0.02em; }
+.mat span { display: block; margin-top: 8px; font-size: 14px; line-height: 1.55; }
+.mat .go { font-size: 14px; color: var(--accent-text); font-weight: 500; }
+.mat.primary { background: var(--accent); color: rgba(255,255,255,.82); }
+.mat.primary b, .mat.primary .go { color: #fff; }
+.contact { margin-top: 56px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px 32px; font-size: 14px; color: var(--muted); }
+.contact a { color: var(--text); }
+.refs { margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 13px; line-height: 1.6; color: var(--muted); }
+.refs p { max-width: 90ch; }
+.refs p + p { margin-top: 6px; }
+
+/* motion for pipeline */
+@media (prefers-reduced-motion: no-preference) {
+  .pulse { animation: travel 3.2s var(--ease) infinite; }
+  .pipe-row .node:nth-child(2) .pulse { animation-delay: .8s; }
+  .pipe-row .node:nth-child(3) .pulse { animation-delay: 1.6s; }
+  @keyframes travel {
+    0% { opacity: 0; transform: translateX(0); }
+    8% { opacity: 1; }
+    30% { opacity: 1; transform: translateX(32px); }
+    38%, 100% { opacity: 0; transform: translateX(32px); }
+  }
+  .js .pipe .branch { opacity: 0; transform: translateY(8px); }
+  .js .pipe.in .branch { opacity: 1; transform: none; transition: opacity .8s var(--ease), transform .8s var(--ease); }
+  .js .pipe.in .branch.gen { transition-delay: .5s; }
+  .js .pipe.in .branch.ret { transition-delay: .9s; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .ray, .js .reveal .grow, .js .reveal .fade, .dot { transition: none !important; }
+  .js .reveal .grow { transform: none; }
+  .js .reveal .fade { opacity: 1; }
+}
+
+/* responsive */
+@media (max-width: 960px) {
+  :root { --navh: 96px; }
+  .nav .wrap { height: auto; flex-wrap: wrap; gap: 0 16px; padding-top: 10px; }
+  .nav .btn-sm { margin-left: auto; }
+  .nav ul { order: 3; width: 100%; margin: 6px 0 0; gap: 22px; overflow-x: auto; scrollbar-width: none; padding: 4px 0 10px; }
+  .nav ul::-webkit-scrollbar { display: none; }
+  .nav ul a { white-space: nowrap; }
+  .result { grid-template-columns: 1fr; gap: 40px; }
+  .oat { grid-template-columns: 1fr; gap: 24px; }
+  .oat-stage { order: -1; min-height: 0; aspect-ratio: 4 / 3; }
+  .oat-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .wave-cap { margin-bottom: 72px; }
+  .wave .oat-steps .d { display: none; }
+  .wave .oat-steps button { padding: 12px 14px 16px; }
+  .wave-now { display: block; }
+  .qgroup { grid-template-columns: 1fr; gap: 12px; }
+  .qgroup > h3 { padding-top: 0; }
+  .facts { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 900px) {
+  .pipe { margin-top: 56px; padding: 24px 20px; border-radius: 20px; }
+  .pipe-row { grid-template-columns: 1fr; gap: 28px; }
+  .node { min-height: 0; padding: 14px 16px; }
+  .pipe-row .node:not(:last-child)::after { top: 100%; left: 50%; width: 1px; height: 28px; }
+  .pipe-row .node:not(:last-child)::before { top: calc(100% + 22px); left: calc(50% - 3.5px); border: 3.5px solid transparent; border-top: 6px solid var(--muted); }
+  .pulse { display: none; }
+  .fork { grid-template-columns: 1fr; gap: 12px; margin-top: 28px; }
+  .fork::before, .fork::after, .branch.ret::before { display: none; }
+}
+@media (max-width: 720px) {
+  body { font-size: 16px; }
+  .hero .lede { font-size: 1.0625rem; }
+  .sec-head { margin-bottom: 40px; }
+  .stats { grid-template-columns: 1fr 1fr; }
+  .oat-stage { aspect-ratio: 1 / 1; }
+  .oat-steps { grid-template-columns: 1fr; }
+  .wave .oat-steps { grid-template-columns: 1fr 1fr; }
+  .wave .oat-stage { aspect-ratio: 5 / 4; }
+  .wave .oat-steps b { font-size: 14px; }
+  .oat-steps button { padding: 14px 16px 16px; }
+  .qrow { grid-template-columns: 36px 1fr; gap: 4px 12px; padding: 18px 10px; margin: 0 -10px; }
+  .qrow::after { display: none; }
+  .qlist .a { grid-column: 2; }
+  .stats { gap: 28px 16px; }
+  .fx-table { font-size: 14px; }
+  .fx-table th, .fx-table td { padding-right: 10px; }
+  .fx-table .col-hide { display: none; }
+  .rigor { grid-template-columns: 1fr; }
+  .result + .result { margin-top: 72px; padding-top: 72px; }
+  .figure { padding: 20px 16px; border-radius: 16px; }
+  .readout { gap: 12px; }
+  .readout dd { font-size: 18px; }
+  .claims li { grid-template-columns: 32px 1fr; gap: 8px; }
+  .limits { padding: 28px 20px; margin-top: 64px; border-radius: 20px; }
+  .limits ul { grid-template-columns: 1fr; }
+  .materials { grid-template-columns: 1fr; }
+  .mat { min-height: 0; gap: 24px; }
+  .facts { gap: 20px 16px; }
+}
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js')</script>
+
+<nav class="nav" aria-label="주 메뉴">
+  <div class="wrap">
+    <a class="brand" href="#top">CLAP FX Probe</a>
+    <ul>
+      <li><a href="#background">배경</a></li>
+      <li><a href="#questions">질문</a></li>
+      <li><a href="#method">방법</a></li>
+      <li><a href="#results">결과</a></li>
+      <li><a href="#conclusion">결론</a></li>
+    </ul>
+    <a class="btn btn-primary btn-sm" href="assets/report.pdf">보고서 PDF</a>
+  </div>
+</nav>
+
+<main id="top">
+
+<section class="hero" id="intro">
+  <div class="wrap">
+    <h1>음색 임베딩 속 이펙트 정보는 어디에서 사라지는가</h1>
+    <p class="lede">TokenSynth 논문이 추정만 하고 측정하지 않은 한 문장을, 57만 회의 렌더링으로 직접 확인했습니다.</p>
+    <div class="ctas">
+      <a class="btn btn-primary" href="assets/report.pdf">보고서 PDF</a>
+      <a class="btn btn-quiet" href="https://github.com/3nois/CLAP_FX_Probe">
+        <svg viewBox="0 0 16 16" aria-hidden="true" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        코드 저장소
+      </a>
+    </div>
+
+    <figure class="pipe" id="pipe" aria-label="연구 경로 요약 도식">
+      <div class="pipe-row">
+        <div class="node"><b>NSynth 원음</b><span><span class="num">1,200</span>개 소스, 10개 악기 패밀리</span><i class="pulse"></i></div>
+        <div class="node"><b>이펙트 적용</b><span>EQ, Distortion, Reverb <span class="num">23</span>축 × <span class="num">25</span>레벨</span><i class="pulse"></i></div>
+        <div class="node"><b>CLAP 임베딩</b><span><span class="num">512</span>차원 단위 벡터</span><i class="pulse"></i></div>
+        <div class="node"><b>방향 예측</b><span>임베딩만 보고 dry 쪽 손잡이 방향을 추정</span></div>
+      </div>
+      <div class="fork">
+        <div class="branch gen"><b>TokenSynth로 생성</b><span>예측 방향과 실제 변위의 각도</span><span class="verdict num">84.5°~88.1°</span></div>
+        <div class="branch ret"><b>라이브러리에서 검색</b><span>자기 dry 회수율 R@1 향상</span><span class="verdict num">6 / 6 조건</span></div>
+      </div>
+      <figcaption class="pipe-caption small">같은 방향 정보를 두 경로로 보냈습니다. 생성 경로에서는 무작위(90°)에 가깝게 흐려지고, 검색 경로에서는 검증한 모든 조건에서 살아남았습니다.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="background">
+  <div class="wrap">
+    <div class="sec-head prose">
+      <h2>검증되지 않은 한 문장에서 시작했습니다</h2>
+      <p class="lede">TokenSynth는 MIDI와 CLAP 음색 임베딩을 조건으로 오디오를 생성하는 신경망 신디사이저입니다. 모델이 음색에 대해 보는 것은 512차원 벡터 하나뿐이어서, 이 벡터에 없는 정보는 원리적으로 쓸 수 없습니다.</p>
+    </div>
+    <div class="prose">
+      <p>저자들은 EQ, 디스토션, 리버브로 증강 학습한 TokenSynth-Aug가 wet 오디오에서 오히려 원본 모델보다 못하다고 보고했습니다 (MSS <span class="num">0.826</span> 대 <span class="num">0.754</span>). 그리고 그 원인을 이렇게 추정했습니다.</p>
+    </div>
+    <blockquote class="quote">
+      <p>“CLAP 모델의 음색 임베딩이 오디오 이펙트 정보를 결여하고 있기 때문 (likely due to)”</p>
+      <footer>Kim et al., TokenSynth, ICASSP 2025, p.4</footer>
+    </blockquote>
+    <div class="prose" style="margin-top:48px">
+      <p>이 추정을 임베딩 측정으로 확인한 절차는 논문에 없습니다. 이펙트를 뺀 음색을 새로 연주하는 도구가 가능한지는 정확히 이 문장에 달려 있어서, 재학습 없이 직접 측정하기로 했습니다.</p>
+    </div>
+    <dl class="facts">
+      <div><dt>연구자</dt><dd>김성현<br>서울대학교 첨단융합학부</dd></div>
+      <div><dt>기간</dt><dd class="num" style="font-size:14px">2026.07.29 ~ 09.06</dd></div>
+      <div><dt>환경</dt><dd>MacBook M5 CPU,<br>단독 수행</dd></div>
+      <div><dt>대상 모델</dt><dd>CLAP (music_audioset_epoch_15), TokenSynth</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section id="questions">
+  <div class="wrap">
+    <div class="sec-head prose">
+      <h2>여섯 개의 질문을 순서대로 물었습니다</h2>
+      <p>Q1, Q2는 논문 진술의 직접 검증이고, Q3부터는 도구가 성립하기 위한 조건입니다. Q6는 Q5가 부정된 뒤에 따로 세운 질문입니다.</p>
+    </div>
+    <div class="qgroups">
+      <div class="qgroup">
+        <h3>정보가 있는가</h3>
+        <ol class="qlist">
+          <li><a class="qrow" href="#r-q12"><span class="qn">Q1</span><span class="q">CLAP 임베딩에 이펙트 정보가 있는가?</span><span class="a"><em>있다.</em> 널 축은 바닥 안, 주축은 바닥 위</span></a></li>
+          <li><a class="qrow" href="#r-q12"><span class="qn">Q2</span><span class="q">악기 정체성에 비해 얼마나 강한가?</span><span class="a"><em>약하다.</em> AMI 기준 <span class="num">4.06~5.29</span>배 차이</span></a></li>
+        </ol>
+      </div>
+      <div class="qgroup">
+        <h3>읽을 수 있는가</h3>
+        <ol class="qlist" start="3">
+          <li><a class="qrow" href="#r-q34"><span class="qn">Q3</span><span class="q">이펙트를 조작하는 방향이 소스마다 다른가?</span><span class="a"><em>다르다.</em> <span class="num">60</span>개 조합 전부</span></a></li>
+          <li><a class="qrow" href="#r-q34"><span class="qn">Q4</span><span class="q">그 방향을 임베딩만으로 예측할 수 있는가?</span><span class="a"><em>예측된다.</em> <span class="num">20</span>개 조합 전부 기준선 초과</span></a></li>
+        </ol>
+      </div>
+      <div class="qgroup">
+        <h3>쓸 수 있는가</h3>
+        <ol class="qlist" start="5">
+          <li><a class="qrow" href="#r-q5"><span class="qn">Q5</span><span class="q">예측한 방향이 생성 오디오에 반영되는가?</span><span class="a neg"><em>통계적으로만.</em> 효과가 작아 실용 수준 미달</span></a></li>
+          <li><a class="qrow" href="#r-q6"><span class="qn">Q6</span><span class="q">생성이 아닌 다른 경로로는 전달되는가?</span><span class="a"><em>전달된다.</em> 검색 경로 <span class="num">6</span>조건 전부 개선</span></a></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="method">
+  <div class="wrap">
+    <div class="sec-head prose">
+      <h2>한 축만 움직이고, 나머지는 고정했습니다</h2>
+      <p>결정론적 이펙터(Pedalboard)로 한 번에 한 파라미터만 바꾸는 OAT 격자를 만들고, 각 레벨의 CLAP 임베딩을 모았습니다. 인코더는 TokenSynth 논문과 같은 체크포인트를 썼습니다.</p>
+    </div>
+    <figure class="oat wave" id="wave">
+      <div class="oat-side">
+        <ol class="oat-steps">
+          <li><button type="button" data-step="0" aria-pressed="true"><b><span class="num">1</span>원음 불러오기</b><span class="d">NSynth 단음 한 개. 16 kHz, 4초 길이입니다.</span><i class="bar"></i></button></li>
+          <li><button type="button" data-step="1" aria-pressed="false"><b><span class="num">2</span>48 kHz로 리샘플</b><span class="d">CLAP 입력 규격에 맞춰 샘플 사이를 채웁니다. 모노, 4초 고정.</span><i class="bar"></i></button></li>
+          <li><button type="button" data-step="2" aria-pressed="false"><b><span class="num">3</span>피크 0.7로 정규화</b><span class="d">소스마다 음량이 달라도 최대 진폭을 0.7로 맞춥니다.</span><i class="bar"></i></button></li>
+          <li><button type="button" data-step="3" aria-pressed="false"><b><span class="num">4</span>이펙트 적용</b><span class="d">Pedalboard로 한 축을 25레벨로 바꿔 렌더링합니다.</span><i class="bar"></i></button></li>
+          <li><button type="button" data-step="4" aria-pressed="false"><b><span class="num">5</span>멜 스펙트로그램</b><span class="d">짧은 창으로 푸리에 변환해 시간 × 주파수 그림으로 바꿉니다. 크기만 남습니다.</span><i class="bar"></i></button></li>
+          <li><button type="button" data-step="5" aria-pressed="false"><b><span class="num">6</span>CLAP 임베딩</b><span class="d">HTSAT 인코더가 512차원 벡터로 요약하고 길이를 1로 맞춥니다.</span><i class="bar"></i></button></li>
+        </ol>
+      </div>
+      <div class="oat-stage">
+        <canvas role="img" aria-label="오디오 파형이 리샘플, 정규화, 이펙트, 멜 스펙트로그램을 거쳐 512차원 CLAP 임베딩이 되는 과정"></canvas>
+      </div>
+      <p class="small wave-now" aria-live="polite"></p>
+    </figure>
+    <p class="small oat-cap wave-cap">그림 속 파형과 스펙트로그램은 과정을 보여주기 위한 합성 신호입니다. 실제 NSynth 음이나 측정값이 아닙니다.</p>
+
+    <div class="stats">
+        <div class="stat"><span class="num">1,200</span><span>NSynth test 소스, 패밀리당 120개</span></div>
+        <div class="stat"><span class="num">23</span><span>파라미터 축 (주축 21, 초음파 널 2)</span></div>
+        <div class="stat"><span class="num">25</span><span>축당 레벨 수</span></div>
+        <div class="stat"><span class="num">570,000</span><span>렌더링 횟수</span></div>
+    </div>
+
+    <figure class="oat" id="oat">
+      <div class="oat-side">
+        <ol class="oat-steps">
+          <li><button type="button" data-stage="0" aria-pressed="true"><b><span class="num">1</span>한 축을 25레벨로 훑습니다</b><span class="d">소스 하나에서 파라미터 하나만 바꾸고, 나머지 파라미터는 기준값에 묶어 둡니다.</span><i class="bar"></i></button></li>
+          <li><button type="button" data-stage="1" aria-pressed="false"><b><span class="num">2</span>23개 축에 반복합니다</b><span class="d">주축 21개와 초음파 널 2개 축(빈 점). 소스 하나당 575회입니다.</span><i class="bar"></i></button></li>
+          <li><button type="button" data-stage="2" aria-pressed="false"><b><span class="num">3</span>1,200개 소스로 쌓습니다</b><span class="d">−6 dB 계열 6개 축은 400개 소스만 렌더링해서 얕게 남습니다.</span><i class="bar"></i></button></li>
+        </ol>
+        <div class="oat-count" aria-live="polite"><span class="num" data-k="n">0</span><small data-k="f">렌더링 횟수</small></div>
+      </div>
+      <div class="oat-stage">
+        <canvas aria-label="레벨, 파라미터 축, 소스 세 방향으로 쌓이는 OAT 격자의 3차원 그림" role="img"></canvas>
+        <button type="button" class="btn btn-quiet btn-sm oat-replay">다시 재생</button>
+        <span class="oat-hint">드래그해서 돌려 보세요</span>
+      </div>
+    </figure>
+    <p class="small oat-cap">점 하나가 렌더링 한 번(깊이 방향 한 층은 소스 100개)입니다. 가로는 레벨, 세로는 파라미터 축, 깊이는 소스입니다. 한 번에 한 방향으로만 격자가 자랍니다.</p>
+
+    <table class="fx-table">
+      <caption>세 이펙트는 수학적으로 서로 다른 부류입니다</caption>
+      <thead><tr><th scope="col">이펙트</th><th scope="col">부류</th><th scope="col" class="col-hide">성질</th><th scope="col">멜 스펙트로그램에서</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">EQ</th><td>선형, 시불변</td><td class="col-hide">역필터 존재</td><td class="hl">프레임마다 직접 보임</td></tr>
+        <tr><th scope="row">Distortion</th><td>비선형, 시불변</td><td class="col-hide"><code>tanh(gx)</code>, 비가역</td><td class="hl">프레임마다 직접 보임</td></tr>
+        <tr><th scope="row">Reverb</th><td>선형, 시변</td><td class="col-hide">시간축 확산</td><td class="hl">프레임 사이 관계에 실림</td></tr>
+      </tbody>
+    </table>
+    <p class="small" style="margin-top:16px;max-width:66ch">CLAP 오디오 인코더는 멜 스펙트로그램의 크기만 봅니다. 이펙트마다 결과가 다른 이유를 여기서 먼저 예상할 수 있습니다.</p>
+
+    <div class="rigor">
+      <h3>수치를 믿을 수 있게 하려고 정한 규칙</h3>
+      <div><b>표본 단위는 소스</b><p>한 소스의 25레벨은 독립 표본이 아닙니다. GroupShuffleSplit으로 소스 단위로 나눠, 프로브가 음색을 외워 맞히지 못하게 했습니다.</p></div>
+      <div><b>널을 먼저 세움</b><p>원리적으로 아무 효과가 없는 초음파 셸프 두 축으로 파이프라인 누수의 하한을 재고, 셔플 라벨과 함께 대조했습니다.</p></div>
+      <div><b>범위에 흔들리지 않는 지표</b><p>R²는 스윕 범위에 따라 달라집니다. 축끼리 비교할 때는 잡음 바닥을 넘는 최소 스텝, 즉 분해능(JND)을 따로 정의해 썼습니다.</p></div>
+      <div><b>클래스 수를 보정한 비교</b><p>악기(10종)와 이펙트 레벨은 클래스 수가 달라, 우연 수준을 보정한 AMI로 비교하고 연속 회귀 R²를 함께 적었습니다.</p></div>
+      <div><b>불확실도와 다중 비교</b><p>모든 구간은 소스 부트스트랩 95% 신뢰구간이며, 질문마다 Bonferroni 보정 구간을 추가로 냈습니다. 판정이 바뀐 두 곳은 그대로 적었습니다.</p></div>
+      <div><b>시험 분할은 한 번만</b><p>초매개변수는 검증 분할에서만 고르고, 시험 분할은 한 번만 평가했습니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="results">
+  <div class="wrap">
+    <div class="sec-head prose">
+      <h2>정보는 있고, 읽을 수도 있지만, 생성을 거치면 흐려집니다</h2>
+    </div>
+
+    <article class="result" id="r-q12">
+      <div>
+        <a class="tag" href="#questions" title="질문 목록으로">Q1 · Q2</a>
+        <h3>이펙트 정보는 있지만 악기보다 훨씬 약합니다</h3>
+        <div class="prose">
+          <p>같은 프로브로 읽었을 때 악기 패밀리 AMI는 <span class="num">0.7732</span>, 이펙트 AMI는 <span class="num">0.1905</span>였습니다. 비교 조건에 따라 <span class="num">4.06~5.29</span>배 차이입니다.</p>
+          <p>그래도 없는 것은 아닙니다. 두 널 축은 널 바닥 안에 머물렀고, 주축들은 그 위에서 R²를 냈습니다.</p>
+        </div>
+        <div class="notes">
+          <p>MI 지표는 이펙트 레벨의 순서 정보를 버립니다. 순서를 살리면 격차는 이보다 작을 것으로 봅니다 (Spearman ρ <span class="num">0.85~0.89</span>).</p>
+          <p>분해능은 <code>reverb_wet_level</code>이 가장 작았지만, JND는 15축 중 8축만 정밀 측정되었습니다.</p>
+        </div>
+      </div>
+      <figure class="figure reveal" data-chart="ami">
+        <svg viewBox="0 0 560 200" role="img" aria-label="AMI 비교 막대그래프. 악기 패밀리 0.7732, 이펙트 0.1905."></svg>
+        <figcaption>AMI (우연 수준 보정 상호정보량). 1에 가까울수록 표현이 레이블을 잘 구분합니다.</figcaption>
+      </figure>
+    </article>
+
+    <article class="result" id="r-q34">
+      <div>
+        <a class="tag" href="#questions" title="질문 목록으로">Q3 · Q4</a>
+        <h3>손잡이 방향은 소스마다 다르고, 임베딩만 보고 예측됩니다</h3>
+        <div class="prose">
+          <p>같은 이펙트라도 소스마다 임베딩이 움직이는 방향이 다릅니다. 같은 패밀리 안의 코사인(within)이 패밀리 사이(between)보다 컸고, 15축 × 4구간 <span class="num">60</span>개 조합 전부에서 차이의 신뢰구간이 0을 배제했습니다.</p>
+          <p>그 방향을 파라미터 값을 모르는 상태에서 MLP로 예측하니, 대표 5축 × 4구간 <span class="num">20</span>개 조합 전부가 고정 방향 기준선을 넘었습니다. 임베딩 단계의 요건은 충족됩니다.</p>
+        </div>
+        <div class="notes">
+          <p>between은 모든 소스에 고정 방향 하나를 쓸 때의 성능이라, 예측 모델의 기준선이 됩니다.</p>
+          <p>Cascade 축은 손잡이가 소스 안에서도 일관되지 않았습니다. 무작위 변위로 생성한 축이라는 점과 맞습니다.</p>
+        </div>
+      </div>
+      <figure class="figure reveal" data-chart="predict">
+        <div class="legend"><span><i style="background:var(--accent)"></i>예측 방향 (파라미터 미지)</span><span><i style="border:1.5px solid var(--muted)"></i>between 기준선</span></div>
+        <svg viewBox="0 0 560 300" role="img" aria-label="5개 축에서 예측 코사인이 기준선을 크게 넘는 점 그래프."></svg>
+        <figcaption>예측 방향과 실제 손잡이의 코사인, 전 범위 구간. 1에 가까울수록 같은 방향입니다.</figcaption>
+      </figure>
+    </article>
+
+    <article class="result" id="r-q5">
+      <div>
+        <a class="tag" href="#questions" title="질문 목록으로">Q5</a>
+        <h3>같은 방향이 생성을 거치면 거의 직각으로 흐려집니다</h3>
+        <div class="prose">
+          <p>예측 방향으로 조건 벡터를 옮겨 TokenSynth로 오디오를 만들고, 다시 CLAP으로 인코딩해 방향을 쟀습니다. 임베딩에서 34~45°였던 각도가 생성 뒤에는 84~88°가 됩니다. 무작위라면 90°입니다.</p>
+          <p>방향성 자체는 통계적으로 남아 있습니다 (20개 조합 중 <span class="num">19</span>개가 0을 배제, Bonferroni 보정 후 <span class="num">16</span>개). 그러나 손잡이로 쓰기에는 효과가 너무 작습니다.</p>
+        </div>
+        <div class="notes">
+          <p>projection 층의 국소 계수를 실측하니 입력 방향의 약 <span class="num">81%</span>가 1차 미분상 소멸했습니다.</p>
+          <p>나머지 원인 후보는 프리픽스 토큰 하나를 나눠 쓰는 조건 채널의 경쟁과 자기회귀 샘플링의 잔차입니다.</p>
+          <p>변위 증폭(α = 2)과 다중 시드 평균(k = 4)으로 약 <span class="num">1.77</span>배 개선했지만 실용 수준에는 이르지 못했습니다.</p>
+        </div>
+      </div>
+      <figure class="figure" id="dial">
+        <div class="dial-tabs" role="tablist" aria-label="이펙트 축 선택"></div>
+        <div class="dial-body">
+          <svg viewBox="0 0 400 320" role="img" aria-label="실제 손잡이 방향을 0도로 두고, 임베딩 단계 예측 각도와 생성 뒤 각도를 비교하는 각도계.">
+            <path class="band"></path>
+          </svg>
+          <dl class="readout">
+            <div class="r-read"><dt>읽기 (임베딩)</dt><dd data-k="read">34.5°</dd></div>
+            <div class="r-write"><dt>쓰기 (생성 뒤)</dt><dd data-k="write">84.5°</dd></div>
+            <div><dt>무작위 널</dt><dd>89.97°</dd></div>
+          </dl>
+        </div>
+        <figcaption>검은 선이 실제 손잡이 방향(0°)입니다. 파란 선은 임베딩에서 예측한 방향, 점선은 그 방향으로 생성한 오디오의 변위입니다. 회색 띠는 무작위 널의 95% 범위 [84.98°, 94.77°]입니다.</figcaption>
+      </figure>
+    </article>
+
+    <article class="result" id="r-q6">
+      <div>
+        <a class="tag" href="#questions" title="질문 목록으로">Q6</a>
+        <h3>생성기를 우회하면 같은 정보가 살아남습니다</h3>
+        <div class="prose">
+          <p>세 장애가 모두 생성기 안에 있다면, 생성기를 거치지 않으면 됩니다. 예측한 dry 방향으로 질의를 옮겨 1,200개 dry 라이브러리에서 검색했습니다.</p>
+          <p>소스별 예측 방향(R1)은 무처리(R0)와 전역 평균 방향(R3)을 천장 효과가 없는 2축 × 3레벨 <span class="num">6</span>조건 전부에서 유의하게 이겼습니다 (Bonferroni 보정 후 <span class="num">5</span>조건).</p>
+        </div>
+        <div class="notes">
+          <p>실사용 조건(M2)에서 상위 10개 중 dry 비율은 <span class="num">0.573~0.781</span>로 무작위 <span class="num">0.333</span>을 넘었습니다. CLAP 밖의 물리 지표로는 distortion이 4개 중 3개, reverb는 최대 강도 구간에서만 4개 전부 지지합니다.</p>
+          <p>악기 패밀리 보존율(M3)은 <span class="num">0.93~0.98</span>로, 악기 정체성은 거의 바뀌지 않았습니다.</p>
+        </div>
+      </div>
+      <div>
+        <figure class="figure reveal" data-chart="retrieval">
+          <div class="legend"><span><i style="border:1.5px solid var(--muted)"></i>R0 무처리</span><span><i style="background:var(--muted)"></i>R3 전역 평균</span><span><i style="background:var(--accent)"></i>R1 예측 방향</span><span><i style="border:1.5px solid var(--head)"></i>Ror 실제 방향 (상한)</span></div>
+          <svg viewBox="0 0 560 330" role="img" aria-label="검색 경로의 자기 dry 회수율 R@1. 6개 조건 모두에서 예측 방향이 무처리와 전역 평균을 넘습니다."></svg>
+          <figcaption>M1 자기 dry 회수율 R@1. 레벨이 클수록 이펙트가 강합니다.</figcaption>
+        </figure>
+        <figure class="figure">
+          <p style="font-size:15px;color:var(--head);font-weight:500;margin-bottom:16px">청취 확인 <span class="num">24</span>쌍: 원본 dry와 검색된 dry</p>
+          <div class="squares" aria-hidden="true"></div>
+          <div class="legend" style="margin:16px 0 0"><span><i style="background:var(--muted);border-radius:2px"></i>차이 없음 <span class="num">11</span></span><span><i style="background:var(--head);border-radius:2px"></i>원본 우세 <span class="num">10</span></span><span><i style="background:var(--accent);border-radius:2px"></i>검색 결과 우세 <span class="num">3</span></span></div>
+          <figcaption>왜곡되거나 이상한 결과는 없었습니다. 원본이 조금 낫더라도 대체해 쓸 수 있는 수준으로 들렸습니다.</figcaption>
+        </figure>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="conclusion">
+  <div class="wrap">
+    <div class="sec-head prose">
+      <h2>병목은 표현이 아니라 생성 경로에 있습니다</h2>
+      <p class="lede">논문의 추정은 절반만 맞았습니다. 이펙트 정보는 없었던 것이 아니라 약했고, 그 약한 정보도 읽고 예측할 수 있었습니다.</p>
+    </div>
+    <ol class="claims">
+      <li><div><b>정보는 있다, 다만 약하다.</b><p>악기 정체성보다 AMI 기준 4배 이상 약하지만, 널 바닥 위에서 분명히 읽힙니다.</p></div></li>
+      <li><div><b>방향은 소스마다 다르고, 예측된다.</b><p>고정된 “리버브 빼기” 방향은 없습니다. 대신 임베딩만 보고 소스별 방향을 추정할 수 있습니다.</p></div></li>
+      <li><div><b>생성기를 통과하면 대부분 소거된다.</b><p>projection 층의 유효계수, 조건 채널 경쟁, 자기회귀 잔차가 원인 후보이며, 완화해도 약 1.77배 개선에 그쳤습니다.</p></div></li>
+      <li><div><b>검색 경로에서는 살아남는다.</b><p>이펙트를 제거한 소리를 라이브러리에서 찾는 도구는 지금의 CLAP만으로도 가능하다는 근거입니다. 생성 도구로 가려면 FXencoder 같은 이펙트 전용 조건을 더해 재학습하는 방향을 제안합니다.</p></div></li>
+    </ol>
+
+    <div class="limits">
+      <h3>한계</h3>
+      <ul>
+        <li><b>데이터와 이펙트 범위</b><p>NSynth 한 종, 이펙트 3계열에 한정했고 Q4부터는 대표 5축만 돌렸습니다. NSynth는 16 kHz라 8 kHz 위 고역은 원천적으로 다룰 수 없습니다.</p></li>
+        <li><b>분해능 측정</b><p>JND는 15축 중 8축만 정밀 측정되었습니다. 6축은 상한만 확정되었고, <code>reverb_wet_level</code>은 격자 첫 점에서 이미 널을 넘었습니다.</p></li>
+        <li><b>Q5의 자기참조 평가</b><p>방향을 찾은 모델과 채점하는 모델이 같은 CLAP입니다. 양쪽으로 치우칠 수 있어 외부 음향 지표와 블라인드 청취가 더 필요합니다.</p></li>
+        <li><b>Q6의 적용 범위</b><p>천장 효과가 없는 2축 3레벨에서만 검증했습니다. 실사용 조건의 물리 지표 지지는 부분적입니다.</p></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="materials">
+  <div class="wrap">
+    <div class="sec-head prose">
+      <h2>자세한 내용은 보고서에 있습니다</h2>
+      <p>수식, 축 구성, 그림 7개와 전체 수치는 보고서에서, 실험 코드와 원시 결과(JSON)는 저장소에서 볼 수 있습니다.</p>
+    </div>
+    <div class="materials">
+      <a class="mat primary" href="assets/report.pdf"><div><b>보고서 PDF</b><span>CLAP 음색 임베딩의 오디오 이펙트 정보 분석: TokenSynth 성능 향상을 중심으로</span></div><span class="go">열기 →</span></a>
+      <a class="mat" href="https://github.com/3nois/CLAP_FX_Probe"><div><b>코드 저장소</b><span>실험 스크립트, 사전 등록 문서, 결과 JSON</span></div><span class="go">GitHub →</span></a>
+      <a class="mat" href="assets/cv.pdf"><div><b>이력서</b><span>김성현, 서울대학교 첨단융합학부</span></div><span class="go">CV 열기 →</span></a>
+    </div>
+    <div class="contact">
+      <span>김성현 · <a href="mailto:ryan0823@snu.ac.kr">ryan0823@snu.ac.kr</a></span>
+      <span>2026년 9월</span>
+    </div>
+    <div class="refs">
+      <p>[1] K. Kim, J. Koo, S. Lee, H. Joung, K. Lee, “TokenSynth: A token-based neural synthesizer for instrument cloning and text-to-instrument,” ICASSP 2025.</p>
+      <p>[2] Y. Wu et al., “Large-scale contrastive language-audio pretraining with feature fusion and keyword-to-caption augmentation,” ICASSP 2023.</p>
+      <p>[3] J. Engel et al., “Neural audio synthesis of musical notes with WaveNet autoencoders,” ICML 2017.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script>
+(() => {
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = (tag, attrs, parent, text) => {
+    const n = document.createElementNS(NS, tag);
+    for (const k in attrs) n.setAttribute(k, attrs[k]);
+    if (text != null) n.textContent = text;
+    if (parent) parent.appendChild(n);
+    return n;
+  };
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // x-axis with ticks for a [0, max] scale mapped to [x0, x1]
+  const axis = (svg, x0, x1, y0, y1, ticks, fmt) => {
+    ticks.forEach(t => {
+      const x = x0 + (x1 - x0) * t;
+      el('line', { class: 'ax', x1: x, x2: x, y1: y0, y2: y1 }, svg);
+      el('text', { class: 'ax-t', x, y: y1 + 18, 'text-anchor': 'middle' }, svg, fmt(t));
+    });
+  };
+
+  // Q1/Q2: AMI bars (보고서 Ⅲ-3, Q2)
+  const ami = (svg, W) => {
+    const x0 = W < 480 ? 104 : 140, x1 = W - 70, rows = [['악기 패밀리', 0.7732, 'bar-i'], ['이펙트', 0.1905, 'bar-e']];
+    axis(svg, x0, x1, 10, 150, W < 480 ? [0, .5, 1] : [0, .25, .5, .75, 1], t => t.toFixed(2));
+    rows.forEach(([name, v, cls], i) => {
+      const y = 30 + i * 64;
+      el('text', { class: 'lab', x: 0, y: y + 22 }, svg, name);
+      el('rect', { class: cls + ' grow', x: x0, y, width: (x1 - x0) * v, height: 36, rx: 4 }, svg);
+      el('text', { class: 'val fade', x: x0 + (x1 - x0) * v + 10, y: y + 23 }, svg, v.toFixed(4));
+    });
+  };
+
+  // Q4: 예측 vs between, 전범위 (보고서 그림 5)
+  const predict = (svg, W) => {
+    const x0 = W < 480 ? 120 : 150, x1 = W - 60;
+    const d = [['distortion', 'drive_db', .297, .801], ['reverb', 'room_size', .304, .706], ['highshelf', 'gain', .252, .824], ['lowshelf', 'gain', .178, .725], ['peak', 'gain', .236, .801]];
+    axis(svg, x0, x1, 0, 260, W < 480 ? [0, .5, 1] : [0, .2, .4, .6, .8, 1], t => t.toFixed(1));
+    d.forEach(([a, b, base, pred], i) => {
+      const y = 28 + i * 50, xb = x0 + (x1 - x0) * base, xp = x0 + (x1 - x0) * pred;
+      el('text', { class: 'lab', x: 0, y: y - 2 }, svg, a);
+      el('text', { class: 'lab-s', x: 0, y: y + 14 }, svg, b);
+      el('line', { class: 'link grow', x1: xb, x2: xp, y1: y + 4, y2: y + 4 }, svg);
+      el('circle', { class: 'pt-o', cx: xb, cy: y + 4, r: 5 }, svg);
+      el('circle', { class: 'pt-a fade', cx: xp, cy: y + 4, r: 6 }, svg);
+      el('text', { class: 'val-m', x: xb - 10, y: y + 8, 'text-anchor': 'end' }, svg, base.toFixed(3));
+      el('text', { class: 'val-a fade', x: xp + 12, y: y + 8 }, svg, pred.toFixed(3));
+    });
+  };
+
+  // Q6: M1 R@1 (out/results/11_phase9_retrieval.md §1, §2)
+  const retrieval = (svg, W) => {
+    const narrow = W < 480, x0 = narrow ? 64 : 150, x1 = W - 20, lo = .2, hi = 1, sx = v => x0 + (x1 - x0) * (v - lo) / (hi - lo);
+    const d = [
+      ['distortion', 'lvl 24', .2500, .3750, .4875, .9792], ['distortion', 'lvl 18', .3750, .5292, .6083, .9708], ['distortion', 'lvl 12', .6125, .7083, .7375, .9750],
+      ['reverb', 'lvl 24', .4667, .6250, .6875, .9500], ['reverb', 'lvl 18', .6542, .7042, .8292, .9708], ['reverb', 'lvl 12', .7250, .7958, .8542, .9667]
+    ];
+    const yb = narrow ? 366 : 296;
+    svg.setAttribute('viewBox', `0 0 ${W} ${yb + 34}`);
+    [.2, .4, .6, .8, 1].forEach(t => {
+      const x = sx(t);
+      el('line', { class: 'ax', x1: x, x2: x, y1: 0, y2: yb }, svg);
+      el('text', { class: 'ax-t', x, y: yb + 18, 'text-anchor': 'middle' }, svg, t.toFixed(1));
+    });
+    d.forEach(([fx, lv, r0, r3, r1, ror], i) => {
+      const y = narrow ? 44 + i * 40 + (i > 2 ? 44 : 0) : 22 + i * 44 + (i > 2 ? 18 : 0);
+      if (i % 3 === 0) el('text', { class: 'lab', x: 0, y: narrow ? y - 26 : y + 5 }, svg, fx);
+      el('text', { class: 'lab-s', x: narrow ? 0 : 88, y: y + 5 }, svg, lv);
+      el('line', { class: 'link grow', x1: sx(r0), x2: sx(r1), y1: y, y2: y }, svg);
+      el('circle', { class: 'pt-o', cx: sx(r0), cy: y, r: 5 }, svg);
+      el('circle', { class: 'pt-m fade', cx: sx(r3), cy: y, r: 5 }, svg);
+      el('circle', { class: 'pt-a fade', cx: sx(r1), cy: y, r: 6 }, svg);
+      el('circle', { class: 'pt-r', cx: sx(ror), cy: y, r: 5 }, svg);
+      el('text', { class: 'val-a fade', x: sx(r1), y: y - 11, 'text-anchor': 'middle' }, svg, r1.toFixed(3));
+    });
+  };
+
+  // 차트는 컨테이너 실제 폭으로 그려서 모바일에서도 글자가 줄어들지 않게 한다
+  const charts = { ami, predict, retrieval };
+  const figs = [...document.querySelectorAll('[data-chart]')];
+  const draw = () => figs.forEach(f => {
+    const svg = f.querySelector('svg');
+    const W = Math.max(300, Math.min(560, Math.round(svg.getBoundingClientRect().width)));
+    if (svg.dataset.w == W) return;
+    svg.dataset.w = W;
+    svg.replaceChildren();
+    svg.setAttribute('viewBox', `0 0 ${W} ${svg.viewBox.baseVal.height}`);
+    charts[f.dataset.chart](svg, W);
+  });
+  draw();
+  let rt;
+  addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(draw, 150); });
+
+  // Q5 dial: 읽기(Q4 B2) vs 쓰기(Q5) 각도 (보고서 그림 6 오른쪽)
+  const dial = document.getElementById('dial');
+  const dsvg = dial.querySelector('svg');
+  const CX = 40, CY = 300, R = 240;
+  const pt = (deg, r = R) => [CX + r * Math.cos(deg * Math.PI / 180), CY - r * Math.sin(deg * Math.PI / 180)];
+  // 널 띠 [84.98, 94.77]
+  const [bx1, by1] = pt(84.98), [bx2, by2] = pt(94.77);
+  dsvg.querySelector('.band').setAttribute('d', `M${CX} ${CY} L${bx1} ${by1} A${R} ${R} 0 0 0 ${bx2} ${by2} Z`);
+  const [ax0, ay0] = pt(0), [ax1, ay1] = pt(97);
+  el('path', { class: 'arc', d: `M${ax0} ${ay0} A${R} ${R} 0 0 0 ${ax1} ${ay1}` }, dsvg);
+  [0, 30, 60, 90].forEach(t => {
+    const [x1, y1] = pt(t, R), [x2, y2] = pt(t, R + 8), [tx, ty] = pt(t, R + 22);
+    el('line', { class: 'ax', x1, y1, x2, y2 }, dsvg);
+    el('text', { class: 'ax-t', x: tx, y: ty + 4, 'text-anchor': 'middle' }, dsvg, t + '°');
+  });
+  const ray = (cls) => {
+    const g = el('g', { class: 'ray' }, dsvg);
+    el('line', { class: cls, x1: CX, y1: CY, x2: CX + R, y2: CY, 'stroke-linecap': 'round' }, g);
+    return g;
+  };
+  ray('ray-true');
+  const write = ray('ray-write'), read = ray('ray-read');
+  el('circle', { class: 'pt-h', cx: CX, cy: CY, r: 4 }, dsvg);
+
+  const axes = [
+    ['highshelf gain', 34.5, 84.5], ['distortion drive', 36.7, 86.4], ['peak gain', 36.8, 86.4],
+    ['reverb room', 45.0, 87.4], ['lowshelf gain', 43.5, 88.1]
+  ];
+  const tabs = dial.querySelector('.dial-tabs');
+  const out = k => dial.querySelector(`[data-k="${k}"]`);
+  const set = (i, animate) => {
+    const [, r, w] = axes[i];
+    tabs.querySelectorAll('button').forEach((b, j) => b.setAttribute('aria-selected', j === i));
+    read.style.transform = `rotate(${-r}deg)`;
+    write.style.transform = `rotate(${-w}deg)`;
+    out('read').textContent = r.toFixed(1) + '°';
+    out('write').textContent = w.toFixed(1) + '°';
+  };
+  axes.forEach(([name], i) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.role = 'tab'; b.textContent = name;
+    b.addEventListener('click', () => set(i));
+    tabs.appendChild(b);
+  });
+  // 처음엔 세 선이 겹친 상태(0°)에서 펼쳐지며 차이를 보여준다
+  tabs.firstChild.setAttribute('aria-selected', 'true');
+
+  // 청취 24쌍: 차이 없음 11, 원본 우세 10, 검색 우세 3
+  const sq = document.querySelector('.squares');
+  [['s-eq', 11], ['s-orig', 10], ['s-new', 3]].forEach(([c, n]) => { for (let i = 0; i < n; i++) sq.appendChild(document.createElement('i')).className = c; });
+
+  const io = new IntersectionObserver(entries => entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add('in');
+    io.unobserve(e.target);
+    if (e.target === dial && !reduce) setTimeout(() => set(0), 250);
+  }), { threshold: .35 });
+  document.querySelectorAll('.reveal, #pipe').forEach(n => io.observe(n));
+  if (reduce) set(0); else io.observe(dial);
+
+  // 본문의 Q1~Q6 언급을 해당 결과로 연결
+  const qTarget = { 1: 'r-q12', 2: 'r-q12', 3: 'r-q34', 4: 'r-q34', 5: 'r-q5', 6: 'r-q6' };
+  const walker = document.createTreeWalker(document.querySelector('main'), NodeFilter.SHOW_TEXT, {
+    acceptNode: n => /Q[1-6]/.test(n.data) && !n.parentElement.closest('a, h1, h2, h3, svg, button, script') ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT
+  });
+  const qNodes = [];
+  while (walker.nextNode()) qNodes.push(walker.currentNode);
+  qNodes.forEach(n => {
+    const frag = document.createDocumentFragment();
+    n.data.split(/(Q[1-6])/).forEach(part => {
+      const m = /^Q([1-6])$/.exec(part);
+      if (m) {
+        const a = frag.appendChild(document.createElement('a'));
+        a.className = 'qref'; a.href = '#' + qTarget[m[1]]; a.textContent = part;
+      } else if (part) frag.appendChild(document.createTextNode(part));
+    });
+    n.replaceWith(frag);
+  });
+
+  // 메뉴: 지금 읽는 구간 표시
+  const navLinks = [...document.querySelectorAll('.nav ul a')];
+  const navList = document.querySelector('.nav ul');
+  const spy = new IntersectionObserver(entries => entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    navLinks.forEach(a => {
+      const on = a.getAttribute('href') === '#' + e.target.id;
+      a.setAttribute('aria-current', on);
+      // scrollIntoView는 sticky 메뉴에서 페이지 자체를 끌어올리므로, 메뉴 줄만 가로로 옮긴다
+      if (on && navList.scrollWidth > navList.clientWidth) navList.scrollTo({ left: a.offsetLeft - (navList.clientWidth - a.offsetWidth) / 2 });
+    });
+  }), { rootMargin: '-45% 0px -50% 0px' });
+  navLinks.forEach(a => spy.observe(document.querySelector(a.getAttribute('href'))));
+  spy.observe(document.getElementById('intro'));  // 첫 화면에서는 표시 없음
+
+  // OAT 격자 3D: 레벨(25) × 파라미터 축(23) × 소스(1,200개를 100개씩 12층)
+  const oat = document.getElementById('oat');
+  const stageEl = oat.querySelector('.oat-stage'), cv = oat.querySelector('canvas'), ctx = cv.getContext('2d');
+  const L = 25, A = 23, S = 12;
+  const SHALLOW = new Set([6, 7, 8, 12, 13, 14]);   // -6 dB cutoff 3축 + Q 3축: 400 소스 = 4층
+  const depth = a => SHALLOW.has(a) ? 4 : S;
+  const GROUPS = [['EQ gain', 0, 2], ['EQ cutoff', 3, 8], ['EQ Q', 9, 14], ['Distortion', 15, 15], ['Reverb', 16, 19], ['Cascade', 20, 20], ['널', 21, 22]];
+  const DX = .08, DY = .08, DZ = .14;
+  const P = [];
+  for (let sI = 0; sI < S; sI++) for (let a = 0; a < A; a++) if (sI < depth(a)) for (let l = 0; l < L; l++)
+    P.push({ l, a, s: sI, x: (l - 12) * DX, y: (11 - a) * DY - (a >= 21 ? .05 : 0), z: (sI - 5.5) * DZ });
+  const BOX = { x: 12 * DX + .05, y0: -11 * DY - .1, y1: 11 * DY + .05, z: 5.5 * DZ + .06 };
+
+  const STAGES = [
+    { dur: 2000, f: '1 소스 × 1 축 × 25 레벨' },
+    { dur: 4600, f: '1 소스 × 23 축 × 25 레벨' },
+    { dur: 3200, f: '(17 축 × 1,200 + 6 축 × 400) × 25' }
+  ];
+  const fmt = new Intl.NumberFormat('en-US');
+  let stage = 0, prog = 0, chain = false, t0 = 0, playing = false;
+  let yaw = -0.88, pitch = 0.3, sway = 0, W = 0, H = 0, colors = {};
+  const stepBtns = [...oat.querySelectorAll('[data-stage]')];
+  const countN = oat.querySelector('[data-k="n"]'), countF = oat.querySelector('[data-k="f"]');
+
+  const readColors = () => {
+    const cs = getComputedStyle(document.documentElement);
+    ['--head', '--muted', '--accent', '--line', '--text'].forEach(k => colors[k] = cs.getPropertyValue(k).trim());
+  };
+  const resize = () => {
+    const r = stageEl.getBoundingClientRect(), dpr = Math.min(devicePixelRatio || 1, 2);
+    W = r.width; H = r.height;
+    cv.width = W * dpr; cv.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    readColors(); drawOat();
+  };
+
+  const project = (x, y, z, sc, cx, cy) => {
+    const yw = yaw + sway, c1 = Math.cos(yw), s1 = Math.sin(yw), c2 = Math.cos(pitch), s2 = Math.sin(pitch);
+    const x1 = x * c1 + z * s1, z1 = -x * s1 + z * c1;
+    const y1 = y * c2 - z1 * s2, z2 = y * s2 + z1 * c2;
+    const f = 4 / (4 + z2);
+    return [cx + x1 * sc * f, cy - y1 * sc * f, f, z2];
+  };
+
+  // 현재 단계·진행도에서 각 점의 상태: 0 숨김, 1 완료, 2 지금 그려지는 중
+  const stateOf = pt => {
+    if (stage === 0) {
+      if (pt.s || pt.a) return 0;
+      return pt.l <= Math.floor(prog * (L - 1e-6)) ? 2 : 0;
+    }
+    if (stage === 1) {
+      if (pt.s) return 0;
+      const pos = prog * A, ra = Math.min(A - 1, Math.floor(pos)), k = Math.floor((pos - ra) * L);
+      if (prog >= 1 || pt.a < ra) return 1;
+      return pt.a === ra && pt.l <= k ? 2 : 0;
+    }
+    const pos = prog * S, rs = Math.floor(pos);
+    if (prog >= 1 || pt.s < rs) return 1;
+    return pt.s === rs ? 2 : 0;
+  };
+  const renders = () => {
+    if (stage === 0) return Math.floor(prog * (L - 1e-6)) + 1;
+    if (stage === 1) return prog >= 1 ? A * L : Math.min(A * L, Math.floor(prog * A * L) + 1);
+    const pos = prog * S; let n = 0;
+    for (let sI = 0; sI < S; sI++) {
+      const frac = Math.max(0, Math.min(1, pos - sI));
+      n += frac * (sI < 4 ? A : A - SHALLOW.size) * L * 100;
+    }
+    return Math.round(n);
+  };
+
+  function drawOat() {
+    if (!W) return;
+    ctx.clearRect(0, 0, W, H);
+    const sc = Math.min(W, H) * (W < 480 ? .27 : .28), cx = W / 2 + (W < 480 ? 0 : -20), cy = H / 2 + 14;
+    // 상자 윤곽
+    const cs = [];
+    for (const x of [-BOX.x, BOX.x]) for (const y of [BOX.y0, BOX.y1]) for (const z of [-BOX.z, BOX.z]) cs.push(project(x, y, z, sc, cx, cy));
+    ctx.strokeStyle = colors['--muted']; ctx.globalAlpha = .28; ctx.lineWidth = 1;
+    [[0,1],[0,2],[0,4],[1,3],[1,5],[2,3],[2,6],[3,7],[4,5],[4,6],[5,7],[6,7]].forEach(([i, j]) => {
+      ctx.beginPath(); ctx.moveTo(cs[i][0], cs[i][1]); ctx.lineTo(cs[j][0], cs[j][1]); ctx.stroke();
+    });
+    const r0 = Math.max(1.4, sc * .012);
+    const dots = (sI, st) => {
+      const vis = [];
+      for (const pt of P) if (pt.s === sI) { const k = st || stateOf(pt); if (k) vis.push([project(pt.x, pt.y, pt.z, sc, cx, cy), k, pt.a >= 21]); }
+      for (const [[x, y, f], k, isNull] of vis) {
+        ctx.globalAlpha = k === 2 ? 1 : .85;
+        ctx.beginPath(); ctx.arc(x, y, (k === 2 ? r0 * 1.35 : r0) * f, 0, 6.2832);
+        if (isNull && k !== 2) { ctx.strokeStyle = colors['--muted']; ctx.lineWidth = 1; ctx.stroke(); }
+        else { ctx.fillStyle = k === 2 ? colors['--accent'] : colors['--head']; ctx.fill(); }
+      }
+    };
+    if (stage < 2) dots(0);
+    else {
+      // 소스 층은 축마다 띠 하나로 그린 반투명 판. 얕은 6개 축은 뒤쪽 층에서 빠져 홈으로 보인다.
+      const pos = prog * S, layers = [];
+      for (let sI = 0; sI < S; sI++) {
+        const a = prog >= 1 ? 1 : Math.max(0, Math.min(1, pos - sI));
+        if (a > 0) layers.push([sI, a, project(0, 0, (sI - 5.5) * DZ, sc, cx, cy)[3]]);
+      }
+      layers.sort((p1, p2) => p2[2] - p1[2]);
+      const hx = 12 * DX + DX / 2;
+      for (const [sI, a] of layers) {
+        const z = (sI - 5.5) * DZ, fresh = a < 1;
+        if (sI === 0) { dots(0, 1); continue; }
+        // 층 윤곽: 카드를 쌓은 듯 보이게
+        const yTop = 11 * DY + DY * .34, yBot = -11 * DY - .05 - DY * .34;
+        const o = [[-hx, yBot], [hx, yBot], [hx, yTop], [-hx, yTop]].map(([x, y]) => project(x, y, z, sc, cx, cy));
+        ctx.globalAlpha = fresh ? .8 * a : .3; ctx.strokeStyle = fresh ? colors['--accent'] : colors['--muted']; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(o[0][0], o[0][1]); o.slice(1).forEach(v => ctx.lineTo(v[0], v[1])); ctx.closePath(); ctx.stroke();
+        ctx.fillStyle = fresh ? colors['--accent'] : colors['--head'];
+        for (let r = 0; r < A; r++) {
+          if (sI >= depth(r)) continue;
+          const yc = (11 - r) * DY - (r >= 21 ? .05 : 0), hy = DY * .34;
+          const q = [[-hx, yc - hy], [hx, yc - hy], [hx, yc + hy], [-hx, yc + hy]].map(([x, y]) => project(x, y, z, sc, cx, cy));
+          ctx.globalAlpha = (fresh ? .4 * a : .07) * (r >= 21 ? .5 : 1);
+          ctx.beginPath(); ctx.moveTo(q[0][0], q[0][1]); q.slice(1).forEach(v => ctx.lineTo(v[0], v[1])); ctx.closePath(); ctx.fill();
+        }
+      }
+    }
+    // 축 라벨
+    ctx.globalAlpha = 1; ctx.fillStyle = colors['--muted'];
+    const small = W < 480;
+    ctx.font = `500 ${small ? 11 : 12}px "JetBrains Mono", monospace`;
+    const lab = (txt, x, y, z, align) => { const [px, py] = project(x, y, z, sc, cx, cy); ctx.textAlign = align; ctx.fillText(txt, px, py); };
+    lab('레벨 1 → 25', 0, BOX.y0 - .2, -BOX.z, 'center');
+    lab('소스 1,200 →', -BOX.x, BOX.y0 - .2, 0, 'center');
+    lab('축 23', BOX.x + .08, BOX.y1 + .02, -BOX.z, 'left');
+    if (stage >= 1 && !small) {
+      ctx.font = '500 11px "IBM Plex Sans KR", sans-serif';
+      GROUPS.forEach(([g, a0, a1]) => lab(g, BOX.x + .08, (11 - (a0 + a1) / 2) * DY - (a0 >= 21 ? .05 : 0) - .015, -BOX.z, 'left'));
+    }
+  }
+
+  const syncUI = () => {
+    stepBtns.forEach((b, i) => {
+      b.setAttribute('aria-pressed', i === stage);
+      b.querySelector('.bar').style.transform = `scaleX(${i < stage ? 0 : i === stage ? prog : 0})`;
+    });
+    countN.textContent = fmt.format(renders());
+    countF.textContent = STAGES[stage].f;
+  };
+  const play = (st, all) => {
+    stage = st; prog = 0; chain = all; t0 = performance.now(); playing = true;
+    if (reduce) { prog = 1; playing = false; }
+    syncUI(); drawOat(); loop();
+  };
+  let raf = 0, visible = false;
+  function loop() {
+    cancelAnimationFrame(raf);
+    if (!visible || reduce) return;
+    raf = requestAnimationFrame(now => {
+      if (playing) {
+        prog = Math.max(0, Math.min(1, (now - t0) / STAGES[stage].dur));
+        if (prog >= 1) {
+          if (chain && stage < 2) { stage++; prog = 0; t0 = now + 500; }
+          else playing = false;
+        }
+        syncUI();
+      }
+      if (!dragging) sway = Math.sin(now / 4200) * .22;
+      drawOat(); loop();
+    });
+  }
+
+  stepBtns.forEach((b, i) => b.addEventListener('click', () => play(i, false)));
+  oat.querySelector('.oat-replay').addEventListener('click', () => play(0, true));
+
+  // 드래그로 회전 (터치는 좌우만, 세로 스크롤은 그대로)
+  let dragging = false, px = 0, py = 0;
+  stageEl.addEventListener('pointerdown', e => {
+    if (e.target.closest('button')) return;
+    dragging = true; px = e.clientX; py = e.clientY; stageEl.classList.add('drag');
+    stageEl.setPointerCapture(e.pointerId);
+  });
+  stageEl.addEventListener('pointermove', e => {
+    if (!dragging) return;
+    yaw += (e.clientX - px) * .008;
+    if (e.pointerType === 'mouse') pitch = Math.max(-.15, Math.min(1.1, pitch + (e.clientY - py) * .006));
+    px = e.clientX; py = e.clientY;
+    if (reduce) drawOat();
+  });
+  const endDrag = () => { dragging = false; stageEl.classList.remove('drag'); };
+  stageEl.addEventListener('pointerup', endDrag);
+  stageEl.addEventListener('pointercancel', endDrag);
+
+  new ResizeObserver(resize).observe(stageEl);
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { readColors(); drawOat(); });
+  let started = false;
+  new IntersectionObserver(([e]) => {
+    visible = e.isIntersecting;
+    if (visible && !started) { started = true; play(0, true); }
+    else loop();
+  }, { threshold: .3 }).observe(stageEl);
+  if (reduce) { stage = 2; prog = 1; syncUI(); }
+
+  // 오디오 가공 과정: 원음 → 48 kHz → 피크 0.7 → 이펙트 → 멜 스펙트로그램 → CLAP 512차원
+  const wave = document.getElementById('wave');
+  const wStage = wave.querySelector('.oat-stage'), wcv = wave.querySelector('canvas'), wx = wcv.getContext('2d');
+  const wBtns = [...wave.querySelectorAll('[data-step]')], wNow = wave.querySelector('.wave-now');
+  const WDUR = [2600, 3600, 2800, 7200, 4600, 4000];
+  const F0 = 14;  // 화면에서 보이도록 낮춘 기본 주파수 (실제 음높이 아님)
+  const envA = t => t < .03 ? t / .03 : t < 3 ? Math.exp(-(t - .03) * .55) : Math.exp(-2.97 * .55) * Math.exp(-(t - 3) * 7);
+  const tone = (t, g = 1) => envA(t) * (Math.sin(6.2832 * F0 * t) + g * (.45 * Math.sin(6.2832 * 2 * F0 * t + .3) + .25 * Math.sin(6.2832 * 3 * F0 * t + 1.1)));
+  const peakOf = fn => { let m = 0; for (let i = 0; i < 4000; i++) m = Math.max(m, Math.abs(fn(i / 1000))); return m; };
+  const P0 = peakOf(t => tone(t));
+  const clean = t => tone(t) / P0 * .7;   // 정규화 뒤 신호
+  const reverbOf = (t, wet) => { let y = clean(t); for (let k = 1; k <= 26; k++) { const tt = t - k * .045; if (tt > 0) y += wet * .82 ** k * (k % 2 ? 1 : -.8) * clean(tt); } return y; };
+  const FX = [
+    ['distortion drive_db', q => `${(q * 20).toFixed(0)} dB`, q => t => Math.tanh(clean(t) * 10 ** (q * 20 / 20))],
+    ['reverb wet_level', q => (q * .5).toFixed(2), q => t => reverbOf(t, q * .5 * 1.6)],
+    ['highshelf gain', q => `+${(q * 15).toFixed(0)} dB`, q => { const g = 10 ** (q * 15 / 20), pk = peakOf(t => tone(t, g)); return t => tone(t, g) / pk * .7; }]
+  ];
+  // 합성 멜 스펙트로그램: 기음 440 Hz의 배음, 16 kHz 샘플이라 8 kHz까지
+  const FR = 80, MB = 40, mel = f => 2595 * Math.log10(1 + f / 700), MMAX = mel(8000);
+  const SPEC = [];
+  for (let fI = 0; fI < FR; fI++) {
+    const t = (fI + .5) / FR * 4, col = [];
+    for (let b = 0; b < MB; b++) {
+      const mb = (b + .5) / MB * MMAX; let v = 0;
+      for (let h = 1; h * 440 < 8000; h++) v += envA(t) * h ** -1.3 * Math.exp(-t * .25 * h) * Math.exp(-(((mb - mel(h * 440)) / 55) ** 2));
+      col.push(Math.max(0, Math.min(1, (20 * Math.log10(v + 1e-3) + 60) / 60)));
+    }
+    SPEC.push(col);
+  }
+  let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const EMB = Array.from({ length: 64 }, () => { const u = rnd() + rnd() + rnd() - 1.5; return u / 1.5; });
+
+  let wStep = 0, wT0 = 0, wVis = false, wRaf = 0, WW = 0, WH = 0;
+  const wResize = () => {
+    const rc = wStage.getBoundingClientRect(), dpr = Math.min(devicePixelRatio || 1, 2);
+    WW = rc.width; WH = rc.height; wcv.width = WW * dpr; wcv.height = WH * dpr;
+    wx.setTransform(dpr, 0, 0, dpr, 0, 0); readColors(); wDraw(reduce ? 1 : 0);
+  };
+  const ease = p => 1 - (1 - p) ** 3;
+  function wDraw(p) {
+    if (!WW) return;
+    const c = wx, pad = WW < 480 ? 16 : 28, x0 = pad, x1 = WW - pad, e = ease(p);
+    const X = t => x0 + (x1 - x0) * t / 4;
+    c.clearRect(0, 0, WW, WH);
+    c.globalAlpha = Math.min(1, p * 8 + (reduce ? 1 : 0));
+    const small = WW < 480, mono = `500 ${small ? 11 : 12}px "JetBrains Mono", monospace`;
+    const text = (s, x, y, col = colors['--muted'], align = 'left', font = mono) => { c.fillStyle = col; c.font = font; c.textAlign = align; c.fillText(s, x, y); };
+    const path = (fn, yc, amp, col, lw = 1.3, alpha = 1, tEnd = 4) => {
+      const n = Math.round((x1 - x0) * 1.5), ga = c.globalAlpha;
+      c.globalAlpha = ga * alpha; c.strokeStyle = col; c.lineWidth = lw; c.beginPath();
+      for (let i = 0; i <= n; i++) { const t = i / n * tEnd, v = Math.max(-1.05, Math.min(1.05, fn(t))); i ? c.lineTo(X(t), yc - v * amp) : c.moveTo(X(t), yc - v * amp); }
+      c.stroke(); c.globalAlpha = ga;
+    };
+    const hline = (y, col, dash = [], alpha = 1) => { const ga = c.globalAlpha; c.globalAlpha = ga * alpha; c.strokeStyle = col; c.lineWidth = 1; c.setLineDash(dash); c.beginPath(); c.moveTo(x0, y); c.lineTo(x1, y); c.stroke(); c.setLineDash([]); c.globalAlpha = ga; };
+    const tAxis = y => { for (let s = 0; s <= 4; s++) text(s + ' s', X(s), y, colors['--muted'], s === 0 ? 'left' : s === 4 ? 'right' : 'center'); };
+    const spec = (top, bot, upto) => {
+      const cw = (x1 - x0) / FR, ch = (bot - top) / MB, ga = c.globalAlpha;
+      c.fillStyle = colors['--head'];
+      for (let fI = 0; fI < Math.min(FR, upto); fI++) for (let b = 0; b < MB; b++) {
+        const v = SPEC[fI][b]; if (v < .04) continue;
+        c.globalAlpha = ga * v * .9; c.fillRect(x0 + fI * cw, bot - (b + 1) * ch, cw + .5, ch + .5);
+      }
+      c.globalAlpha = ga;
+    };
+    const full = { yc: WH * .47, amp: WH * .3 };
+    const g0 = .92 / P0;
+
+    if (wStep === 0) {
+      text('NSynth · 16 kHz · 4.0 s', x0, 30);
+      hline(full.yc, colors['--line']);
+      path(t => tone(t) * g0, full.yc, full.amp, colors['--head'], 1.3, 1, 4 * e);
+      tAxis(full.yc + full.amp + 30);
+    } else if (wStep === 1) {
+      const yc = WH * .27, amp = WH * .15;
+      text('48 kHz · 모노 · 4.0 s 고정', x0, 30);
+      hline(yc, colors['--line']); path(t => tone(t) * g0, yc, amp, colors['--head']);
+      // 확대 구간
+      const ta = 1.2, tb = ta + 1 / F0, zx0 = x0, zx1 = x1, zt = WH * .5, zb = WH * .84, zc = (zt + zb) / 2, za = (zb - zt) * .42;
+      c.strokeStyle = colors['--accent']; c.lineWidth = 1; c.strokeRect(X(ta) - 2, yc - amp - 4, X(tb) - X(ta) + 4, amp * 2 + 8);
+      c.globalAlpha *= .35; c.beginPath(); c.moveTo(X(ta) - 2, yc + amp + 4); c.lineTo(zx0, zt); c.moveTo(X(tb) + 2, yc + amp + 4); c.lineTo(zx1, zt); c.stroke(); c.globalAlpha = Math.min(1, p * 8 + (reduce ? 1 : 0));
+      const ZX = t => zx0 + (zx1 - zx0) * (t - ta) / (tb - ta), val = t => tone(t) * g0;
+      c.strokeStyle = colors['--muted']; c.lineWidth = 1.2; c.beginPath();
+      for (let i = 0; i <= 200; i++) { const t = ta + (tb - ta) * i / 200; i ? c.lineTo(ZX(t), zc - val(t) * za) : c.moveTo(ZX(t), zc - val(t) * za); }
+      c.stroke();
+      const n16 = 8, show48 = p > .35 || reduce, grow = reduce ? 1 : Math.max(0, Math.min(1, (p - .35) / .4));
+      for (let i = 0; i < n16 * 3 - 2; i++) {
+        const t = ta + (tb - ta) * (i + 1) / (n16 * 3 - 1), orig = i % 3 === 2;
+        if (!orig && !show48) continue;
+        const r = orig ? 4 : 3.2 * grow;
+        c.beginPath(); c.arc(ZX(t), zc - val(t) * za, r, 0, 6.2832); c.fillStyle = orig ? colors['--head'] : colors['--accent']; c.fill();
+      }
+      text(show48 ? '같은 구간, 샘플 3배 (16 kHz → 48 kHz)' : '16 kHz 샘플', zx0, zb + 22, show48 ? colors['--accent'] : colors['--muted']);
+    } else if (wStep === 2) {
+      const g = .92 + (.7 - .92) * e;
+      text(`peak ${g.toFixed(2)}`, x0, 30, g < .71 ? colors['--accent'] : colors['--muted']);
+      hline(full.yc, colors['--line']);
+      [-1, 1].forEach(sg => { hline(full.yc - sg * .7 * full.amp, colors['--accent'], [4, 5], .9); text((sg > 0 ? '+' : '−') + '0.7', x1, full.yc - sg * .7 * full.amp - 6, colors['--accent'], 'right'); });
+      path(t => tone(t) / P0 * g, full.yc, full.amp, colors['--head']);
+      tAxis(full.yc + full.amp + 30);
+    } else if (wStep === 3) {
+      const sub = Math.min(2.999, p * 3), idx = Math.floor(sub), q = reduce ? 1 : ease(Math.min(1, (sub - idx) / .8)), [name, lbl, mk] = FX[idx];
+      const lv = 1 + Math.round(q * 24);
+      text(`${name}  ${lbl(q)}`, x0, 30, colors['--head']);
+      text(`레벨 ${lv} / 25`, x1, 30, colors['--accent'], 'right');
+      hline(full.yc, colors['--line']);
+      path(clean, full.yc, full.amp, colors['--muted'], 1, .45);
+      path(mk(q), full.yc, full.amp, colors['--head'], 1.3);
+      const ty = full.yc + full.amp + 26, tw = (x1 - x0) / 25;
+      for (let i = 0; i < 25; i++) { c.fillStyle = i < lv ? colors['--accent'] : colors['--line']; c.fillRect(x0 + i * tw + 1, ty, tw - 3, 4); }
+      text('회색은 이펙트 전, 검정은 이펙트 후', x0, ty + 26);
+    } else if (wStep === 4) {
+      const yc = WH * .2, amp = WH * .11, st = WH * .4, sb = WH * .86, tw = e * 4;
+      text('STFT → 멜 필터 → 크기(dB)', x0, 30);
+      hline(yc, colors['--line']); path(clean, yc, amp, colors['--head'], 1.1);
+      c.strokeStyle = colors['--accent']; c.lineWidth = 1.5; c.strokeRect(X(Math.min(3.9, tw)) - 5, yc - amp - 6, 10, amp * 2 + 12);
+      spec(st, sb, Math.round(e * FR));
+      c.strokeStyle = colors['--line']; c.lineWidth = 1; c.strokeRect(x0, st, x1 - x0, sb - st);
+      text('멜 주파수', x0, st - 8); text('시간 →', x1, sb + 20, colors['--muted'], 'right');
+    } else {
+      const st = WH * .1, sb = WH * .34, bt = WH * .42, bb = WH * .54, vt = WH * .66, vb = WH * .88;
+      spec(st, sb, FR); c.strokeStyle = colors['--line']; c.lineWidth = 1; c.strokeRect(x0, st, x1 - x0, sb - st);
+      text('멜 스펙트로그램', x0, st - 8);
+      const bx = WW / 2, bw = Math.min(300, x1 - x0);
+      c.strokeStyle = colors['--accent']; c.lineWidth = 1.5; c.beginPath(); c.roundRect(bx - bw / 2, bt, bw, bb - bt, 10); c.stroke();
+      text('CLAP 오디오 인코더 (HTSAT)', bx, (bt + bb) / 2 + 5, colors['--head'], 'center', `600 ${small ? 12 : 14}px "IBM Plex Sans KR", sans-serif`);
+      c.strokeStyle = colors['--muted']; c.beginPath(); c.moveTo(bx, sb + 6); c.lineTo(bx, bt - 4); c.moveTo(bx, bb + 4); c.lineTo(bx, vt - 8); c.stroke();
+      const n = EMB.length, bwid = (x1 - x0) / n, mid = (vt + vb) / 2, ah = (vb - vt) / 2;
+      c.fillStyle = colors['--head'];
+      EMB.forEach((v, i) => { const g = reduce ? 1 : ease(Math.max(0, Math.min(1, e * 1.6 - i / n * .6))); c.fillRect(x0 + i * bwid + 1, v > 0 ? mid - v * ah * g : mid, bwid - 2, Math.abs(v) * ah * g); });
+      hline(mid, colors['--line']);
+      text('512차원 벡터 (64칸으로 줄여 표시) · L2 정규화 → 길이 1', x0, vb + 22);
+    }
+    c.globalAlpha = 1;
+  }
+  const wSync = p => {
+    wBtns.forEach((b, i) => { b.setAttribute('aria-pressed', i === wStep); b.querySelector('.bar').style.transform = `scaleX(${i === wStep ? p : 0})`; });
+    wNow.textContent = wBtns[wStep].querySelector('.d').textContent;
+  };
+  const wGo = i => { wStep = i; wT0 = performance.now(); wSync(reduce ? 1 : 0); wDraw(reduce ? 1 : 0); wLoop(); };
+  function wLoop() {
+    cancelAnimationFrame(wRaf);
+    if (!wVis || reduce) return;
+    wRaf = requestAnimationFrame(now => {
+      let p = (now - wT0) / WDUR[wStep];
+      if (p >= 1.12) { wStep = (wStep + 1) % WDUR.length; wT0 = now; p = 0; }   // 끝 장면을 잠깐 보여 준 뒤 다음 단계로, 마지막 뒤에는 처음부터 반복
+      p = Math.max(0, Math.min(1, p));
+      wSync(p); wDraw(p); wLoop();
+    });
+  }
+  wBtns.forEach((b, i) => b.addEventListener('click', () => wGo(i)));
+  new ResizeObserver(wResize).observe(wStage);
+  new IntersectionObserver(([en]) => { wVis = en.isIntersecting; if (wVis) { wT0 = performance.now(); wLoop(); } }, { threshold: .25 }).observe(wStage);
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { readColors(); wDraw(1); });
+  wSync(reduce ? 1 : 0);
+})();
+</script>
+</body>
+</html>
